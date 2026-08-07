@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="position:relative;width:100%;height:440px;font-family:'Oswald',sans-serif;cursor:pointer;perspective:1500px" onMouseEnter="{{ onEnter }}" onMouseLeave="{{ onLeave }}" onClick="{{ toggle }}">
+  <div style="{{ liftStyle }}">
+    <div style="{{ innerStyle }}">
+      <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;background:#101014;border:1px solid rgba(255,255,255,.08);clip-path:polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%);overflow:hidden">
+        <div style="{{ portStyle }}">
+          <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,#0000 0 2px,#0000004d 2px 3px);pointer-events:none;opacity:.55"></div>
+          <div style="{{ slashStyle }}"></div>
+          <div style="{{ glyphStyle }}">{{ glyph }}</div>
+          <div style="position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none">
+            <span style="font-family:'Oswald',sans-serif;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#d0d0d6;background:#0b0b0ecc;border:1px solid #ffffff1f;padding:4px 9px">{{ cls }}</span>
+            <span style="{{ tierStyle }}">{{ tier }}</span>
+          </div>
+          <div style="position:absolute;bottom:11px;left:14px;font-family:'Oswald',sans-serif;font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#ffffff8c;pointer-events:none">◇ клик — досье</div>
+          <div style="{{ overlayStyle }}">
+            <div style="font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:{{ accent }};text-transform:uppercase;margin-bottom:9px">Характеристики</div>
+            <sc-for list="{{ stats }}" as="st" hint-placeholder-count="4">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:7px">
+                <span style="width:80px;font-size:10px;letter-spacing:.1em;color:#9a9aa4;text-transform:uppercase">{{ st.k }}</span>
+                <span style="flex:1;height:6px;background:#ffffff14;overflow:hidden"><span style="{{ st.barStyle }}"></span></span>
+                <span style="width:26px;text-align:right;font-family:'Russo One',sans-serif;font-size:12px;color:#e9e9ee">{{ st.val }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;background:#0d0d11;border-top:1px solid #ffffff12">
+          <div style="min-width:0">
+            <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:21px;line-height:1;text-transform:uppercase;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ name }}</div>
+            <div style="font-size:12px;color:#83838d;letter-spacing:.03em;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">«{{ tag }}»</div>
+          </div>
+          <div style="text-align:right;line-height:1;flex-shrink:0">
+            <div style="font-family:'Russo One',sans-serif;font-size:28px;color:{{ accent }}">{{ overall }}</div>
+            <div style="font-size:9px;letter-spacing:.18em;color:#6b6b73;text-transform:uppercase;margin-top:3px">рейтинг</div>
+          </div>
+        </div>
+      </div>
+      <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);display:flex;flex-direction:column;gap:11px;padding:18px;background:linear-gradient(180deg,#111117,#0a0a0d);border:1px solid {{ accent }};clip-path:polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%)">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+          <div style="min-width:0">
+            <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:23px;line-height:.95;text-transform:uppercase">{{ name }}</div>
+            <div style="font-size:11px;color:#9a9aa4;margin-top:4px;letter-spacing:.04em">{{ cls }} · {{ region }}</div>
+          </div>
+          <span style="{{ tierStyle }}">{{ tier }}</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:1px">
+          <sc-for list="{{ stats }}" as="st" hint-placeholder-count="4">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:10px;letter-spacing:.1em;color:#9a9aa4;text-transform:uppercase;margin-bottom:4px"><span>{{ st.k }}</span><span style="color:#e9e9ee;font-family:'Russo One',sans-serif">{{ st.val }}</span></div>
+              <div style="height:6px;background:#ffffff12;overflow:hidden"><div style="{{ st.barStyle }}"></div></div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:auto;padding:10px 12px;background:#00000059;border-left:2px solid {{ accent }}">
+          <div style="font-size:9px;letter-spacing:.2em;color:#83838d;text-transform:uppercase">спец-приём</div>
+          <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;color:{{ accent }};text-transform:uppercase;margin-top:3px;line-height:1">{{ sig }}</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:stretch">
+          <button style="flex:1;font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:{{ accent }};border:none;padding:11px;cursor:pointer;clip-path:polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))" onClick="{{ onVs }}">▶ В бой</button>
+          <div style="text-align:right;line-height:1.1;flex-shrink:0">
+            <div style="font-size:9px;letter-spacing:.16em;color:#6b6b73;text-transform:uppercase">винрейт</div>
+            <div style="font-family:'Russo One',sans-serif;font-size:19px;color:#e9e9ee;margin-top:3px">{{ wr }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:260,&quot;height&quot;:440},&quot;fighter&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;any&quot;},&quot;onToVs&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(id:number)=&gt;void&quot;}}">
+class Component extends DCLogic {
+  state = { flipped:false, hover:false };
+  toggle = () => this.setState(s=>({flipped:!s.flipped}));
+  renderVals(){
+    const f = this.props.fighter || {};
+    const c = f.c || '#ff2130';
+    const hover = this.state.hover, flipped = this.state.flipped;
+    const ov = Math.round(((f.pow||0)+(f.spd||0)+(f.tech||0)+(f.def||0))/4);
+    const stats = [
+      {k:'СИЛА',v:f.pow||0},{k:'СКОРОСТЬ',v:f.spd||0},{k:'ТЕХНИКА',v:f.tech||0},{k:'ЗАЩИТА',v:f.def||0}
+    ].map(s=>({k:s.k,val:s.v,barStyle:{display:'block',width:s.v+'%',height:'100%',background:'linear-gradient(90deg,'+c+',color-mix(in srgb,'+c+' 15%, transparent))',boxShadow:'0 0 10px '+c+'88'}}));
+    const tierColor = f.tier==='S' ? 'var(--accent,#ff2130)' : f.tier==='A' ? '#e6e6ea' : '#83838d';
+    return {
+      glyph:f.glyph, name:f.name, tag:f.tag, cls:f.cls, tier:f.tier, region:f.region,
+      sig:f.sig, wr:(f.wr||0)+'%', overall:ov, accent:c, stats,
+      toggle:this.toggle,
+      onEnter:()=>this.setState({hover:true}),
+      onLeave:()=>this.setState({hover:false}),
+      onVs:(e)=>{ if(e&&e.stopPropagation)e.stopPropagation(); if(this.props.onToVs)this.props.onToVs(f.id); },
+      tierStyle:{fontFamily:"'Russo One',sans-serif",fontSize:'13px',lineHeight:'1',padding:'5px 9px 4px',color:'#0b0b0e',background:tierColor,clipPath:'polygon(0 0,100% 0,100% 100%,5px 100%)'},
+      liftStyle:{position:'relative',width:'100%',height:'100%',transition:'transform .4s cubic-bezier(.16,1,.3,1),filter .4s',transform:hover?'translateY(-10px)':'translateY(0)',filter:hover?'drop-shadow(0 24px 42px '+c+'44)':'none'},
+      innerStyle:{position:'relative',width:'100%',height:'100%',transformStyle:'preserve-3d',transition:'transform .7s cubic-bezier(.7,0,.2,1)',transform:flipped?'rotateY(180deg)':'rotateY(0deg)'},
+      portStyle:{position:'relative',flex:'1 1 auto',minHeight:'0',overflow:'hidden',background:'radial-gradient(112% 78% at 50% 4%, '+c+'59 0%, #0d0d11 58%), linear-gradient(180deg,#0000 42%, #0d0d11 100%)'},
+      slashStyle:{position:'absolute',top:'-20%',right:'26%',width:'26px',height:'150%',background:c,opacity:hover?.34:.18,transform:'rotate(20deg)',filter:'blur(1px)',mixBlendMode:'screen',pointerEvents:'none',transition:'opacity .4s'},
+      glyphStyle:{position:'absolute',left:'50%',top:'45%',transform:'translate(-50%,-50%) scale('+(hover?1.12:1)+')',transition:'transform .5s cubic-bezier(.16,1,.3,1),-webkit-text-stroke-color .4s',fontFamily:"'Russo One',sans-serif",fontSize:'190px',lineHeight:'1',color:'transparent',WebkitTextStroke:'2px '+(hover?c:'#ffffff1f'),userSelect:'none',pointerEvents:'none'},
+      overlayStyle:{position:'absolute',left:0,right:0,top:'100%',padding:'16px 16px 18px',background:'linear-gradient(180deg,#0b0b0ef2,#0b0b0e)',borderTop:'1px solid '+c+'59',transform:hover?'translateY(-100%)':'translateY(0)',transition:'transform .42s cubic-bezier(.16,1,.3,1)'}
+    };
+  }
+}
+</script>
+</body>
+</html>

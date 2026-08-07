@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Russo+One&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#08080a;color:#f4f4f5;font-family:'Oswald',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  a:hover{color:var(--accent,#ff2130)}
+  input,button{font-family:inherit}
+  ::selection{background:#ff2130;color:#fff}
+  ::-webkit-scrollbar{width:11px;height:11px}
+  ::-webkit-scrollbar-track{background:#0c0c0f}
+  ::-webkit-scrollbar-thumb{background:#26262c;border:2px solid #0c0c0f}
+  ::-webkit-scrollbar-thumb:hover{background:var(--accent,#ff2130)}
+  [data-reveal]{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+  [data-reveal].r-in{opacity:1;transform:none}
+  [data-stagger]>[data-reveal]:nth-child(2){transition-delay:.06s}
+  [data-stagger]>[data-reveal]:nth-child(3){transition-delay:.12s}
+  [data-stagger]>[data-reveal]:nth-child(4){transition-delay:.18s}
+  [data-stagger]>[data-reveal]:nth-child(5){transition-delay:.24s}
+  [data-stagger]>[data-reveal]:nth-child(6){transition-delay:.3s}
+  [data-stagger]>[data-reveal]:nth-child(n+7){transition-delay:.34s}
+  @media (prefers-reduced-motion:reduce){[data-reveal]{transition:none;opacity:1;transform:none}}
+  @keyframes heroRise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+  @keyframes shine{0%{left:-60%}60%,100%{left:130%}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes bgLogoPulse{0%,100%{opacity:.05}50%{opacity:.1}}
+  @keyframes xBlink{0%,90%,100%{opacity:1;filter:none}92%{opacity:.28}94%{opacity:1;filter:drop-shadow(0 0 22px var(--accent,#ff2130))}96%{opacity:.42}98%{opacity:1;filter:drop-shadow(0 0 28px var(--accent,#ff2130))}}
+</style>
+</helmet>
+<div style="{{ rootStyle }}" ref="{{ rootRef }}">
+  <canvas ref="{{ fxRef }}" style="position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none"></canvas>
+  <div style="position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(75% 45% at 50% 0%, color-mix(in srgb,var(--accent,#ff2130) 10%, transparent), transparent 70%)"></div>
+  <div style="position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(120% 120% at 50% 40%, transparent 58%, #000 130%)"></div>
+  <div ref="{{ glowRef }}" style="position:fixed;top:0;left:0;width:540px;height:540px;border-radius:50%;z-index:2;pointer-events:none;background:radial-gradient(closest-side, color-mix(in srgb,var(--accent,#ff2130) 13%, transparent), transparent);mix-blend-mode:screen"></div>
+  <div ref="{{ barRef }}" style="position:fixed;top:0;left:0;height:3px;width:0%;z-index:130;background:linear-gradient(90deg,var(--accent,#ff2130),#ff7a3d);box-shadow:0 0 12px var(--accent,#ff2130)"></div>
+
+  <nav style="{{ navStyle }}">
+    <a href="Bender%20X%20Arena.dc.html#hero" style="display:flex;align-items:center;gap:11px;flex-shrink:0">
+      <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="Bender X Arena" style="height:40px;width:auto;display:block;filter:drop-shadow(0 0 12px color-mix(in srgb,var(--accent,#ff2130) 55%, transparent))">
+      <span style="font-family:'Russo One',sans-serif;font-size:16px;letter-spacing:.05em;white-space:nowrap">BENDER<span style="color:var(--accent,#ff2130)"> X </span>ARENA</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:clamp(14px,2vw,28px);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#c1c1c9">
+      <a href="Bender%20X%20Arena.dc.html#hero" style="transition:color .2s">Главная</a>
+      <span style="color:var(--accent,#ff2130);border-bottom:1px solid var(--accent,#ff2130);padding-bottom:2px">Бойцы</span>
+      <a href="Расписание%20стримов.dc.html" style="transition:color .2s">Стримы</a>
+      <a href="Топ%20игроков.dc.html" style="transition:color .2s">Топ</a>
+      <a href="Bender%20X%20Arena.dc.html#bracket" style="transition:color .2s">Сетка</a>
+      <a href="Новости%20арены.dc.html" style="transition:color .2s">Новости</a>
+    </div>
+    <a href="Bender%20X%20Arena.dc.html#register" style="position:relative;overflow:hidden;flex-shrink:0;font-family:'Oswald',sans-serif;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:var(--accent,#ff2130);padding:11px 20px;clip-path:polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))" style-before="{{ shineStyle }}">Регистрация</a>
+  </nav>
+
+  <header style="position:relative;z-index:3;overflow:hidden;padding:clamp(112px,14vh,150px) clamp(18px,4vw,44px) clamp(30px,4vw,46px);border-bottom:1px solid #ffffff10">
+    <div ref="{{ ghostRef }}" style="position:absolute;inset:0;pointer-events:none;z-index:0">
+      <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="" style="position:absolute;right:2%;top:46%;width:min(46vw,520px);height:auto;transform:translateY(-50%);animation:bgLogoPulse 8s ease-in-out infinite;mix-blend-mode:screen">
+      <div style="position:absolute;left:-1%;bottom:-14%;font-family:'Russo One',sans-serif;font-size:17vw;line-height:.78;color:transparent;-webkit-text-stroke:1px #ffffff0a;white-space:nowrap">ROSTER</div>
+    </div>
+    <div style="position:relative;z-index:2;max-width:1480px;margin:0 auto">
+      <a href="Bender%20X%20Arena.dc.html#hero" style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#83838d;transition:color .2s;animation:heroRise .6s both">← На главную</a>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:16px;font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent,#ff2130);animation:heroRise .6s .06s both">
+        <span style="font-family:'Russo One',sans-serif;font-size:13px;color:#4a4a52">01</span>
+        <span style="width:44px;height:1px;background:color-mix(in srgb,var(--accent,#ff2130) 60%, transparent)"></span>Ростер · сезон 4
+      </div>
+      <h1 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(42px,7vw,104px);line-height:.86;text-transform:uppercase;letter-spacing:-.022em;margin-top:12px;text-shadow:0 8px 40px #000;animation:heroRise .7s .12s both">Бойцы <span style="display:inline-block;color:var(--accent,#ff2130);animation:xBlink 6s 2.4s infinite">арены</span></h1>
+      <p style="max-width:520px;margin-top:16px;font-size:clamp(14px,1.4vw,17px);font-weight:300;line-height:1.6;color:#9a9aa4;animation:heroRise .7s .18s both">Шестнадцать бойцов, пять классов, один трон. Наведи на плашку — характеристики, клик — досье и спец-приём.</p>
+      <div style="display:flex;flex-wrap:wrap;align-items:stretch;gap:clamp(14px,2.4vw,30px);margin-top:clamp(24px,3vw,34px);animation:heroRise .7s .24s both">
+        <sc-for list="{{ headStats }}" as="hs" hint-placeholder-count="4">
+          <div style="{{ hs.style }}">
+            <div style="font-family:'Russo One',sans-serif;font-size:clamp(19px,2.1vw,27px);line-height:1;color:{{ hs.color }}">{{ hs.v }}</div>
+            <div style="font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:#83838d;margin-top:6px">{{ hs.k }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </header>
+
+  <section id="roster" data-reveal style="{{ revealStyle }}">
+    <div style="max-width:1480px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:clamp(20px,2.6vw,30px)">
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <sc-for list="{{ classes }}" as="c" hint-placeholder-count="6">
+            <button style="{{ c.style }}" onClick="{{ c.onClick }}">{{ c.label }}</button>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px">
+          <span style="font-size:12px;color:#83838d;letter-spacing:.04em">Найдено: <span style="font-family:'Russo One',sans-serif;color:#f4f4f5">{{ foundCount }}</span></span>
+          <div style="display:flex;gap:6px">
+            <sc-for list="{{ sorts }}" as="so" hint-placeholder-count="3">
+              <button style="{{ so.style }}" onClick="{{ so.onClick }}">{{ so.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fill,minmax(224px,1fr));gap:18px">
+        <sc-for list="{{ visibleFighters }}" as="f" hint-placeholder-count="8">
+          <div data-reveal>
+            <dc-import name="Fighter" fighter="{{ f }}" hint-size="100%,440px"></dc-import>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <footer style="position:relative;z-index:3;border-top:1px solid #ffffff12;background:#0a0a0d;padding:clamp(38px,4.6vw,60px) clamp(18px,4vw,44px) 28px">
+    <div style="max-width:1480px;margin:0 auto;display:flex;flex-wrap:wrap;gap:26px;align-items:center;justify-content:space-between">
+      <a href="Bender%20X%20Arena.dc.html#hero" style="display:inline-flex;align-items:center;gap:10px">
+        <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="Bender X Arena" style="height:44px;width:auto;display:block;filter:drop-shadow(0 0 14px color-mix(in srgb,var(--accent,#ff2130) 45%, transparent))">
+        <span style="font-family:'Russo One',sans-serif;font-size:16px;letter-spacing:.05em">BENDER<span style="color:var(--accent,#ff2130)"> X </span>ARENA</span>
+      </a>
+      <div style="display:flex;flex-wrap:wrap;gap:20px;font-size:13px;color:#83838d">
+        <a href="Bender%20X%20Arena.dc.html#schedule" style="transition:color .2s">Расписание</a>
+        <a href="Топ%20игроков.dc.html" style="transition:color .2s">Топ игроков</a>
+        <a href="Bender%20X%20Arena.dc.html#bracket" style="transition:color .2s">Сетка</a>
+        <a href="Bender%20X%20Arena.dc.html#register" style="transition:color .2s">Регистрация</a>
+      </div>
+    </div>
+    <div style="max-width:1480px;margin:30px auto 0;padding-top:20px;border-top:1px solid #ffffff10;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:11px;color:#5f5f68">
+      <span>© 2026 BENDER X ARENA. Все права защищены.</span>
+      <span style="max-width:560px;text-align:right">Bender X Arena — оригинальный вымышленный проект. Не связан с Mortal Kombat / NetherRealm Studios и не использует их персонажей.</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#ff2130&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#ff2130&quot;,&quot;#e10600&quot;,&quot;#ff3b1f&quot;,&quot;#c60011&quot;],&quot;section&quot;:&quot;Стиль&quot;},&quot;particles&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Эффекты&quot;}}">
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    const F=(id,name,tag,cls,tier,region,wr,pow,spd,tech,def,sig,glyph,c)=>({id,name,tag,cls,tier,region,wr,pow,spd,tech,def,sig,glyph,c});
+    this.fighters=[
+      F(1,'КРИМЗОН','Кровавый Прилив','Берсерк','S','Москва',78,95,70,60,74,'Багровый Разлом','К','#ff2130'),
+      F(2,'ВАЙПЕР','Тихий Яд','Ассасин','S','Сеул',81,68,96,88,55,'Змеиный Поцелуй','В','#cdd6df'),
+      F(3,'ОБСИДИАН','Чёрная Стена','Танк','A','Берлин',69,74,40,58,98,'Разлом Земли','О','#8a9098'),
+      F(4,'НОКТИС','Полночный Жрец','Колдун','S','Токио',76,80,66,95,60,'Затмение','Н','#7a1f2b'),
+      F(5,'РЕЙЗ','Стальной Ливень','Стрелок','A','Даллас',72,78,84,90,50,'Град Свинца','Р','#c60011'),
+      F(6,'ГХОСТ','Без Лица','Ассасин','A','Прага',70,60,98,82,52,'Фантомный Шаг','Г','#e6e8ea'),
+      F(7,'ТАЙФУН','Буря','Берсерк','A','Манила',74,90,80,62,66,'Глаз Циклона','Т','#d43b2a'),
+      F(8,'ВОЛТ','Разряд','Стрелок','B','Осло',66,72,88,86,48,'Перегрузка','В','#ff4d2e'),
+      F(9,'КОБРА','Гадюка','Ассасин','A','Каир',73,66,92,84,58,'Удар Кобры','К','#9a1622'),
+      F(10,'ГРАНИТ','Несокрушимый','Танк','B','Цюрих',64,80,38,52,96,'Каменный Кулак','Г','#6b7076'),
+      F(11,'ПИРО','Пепел','Колдун','A','Мехико',71,88,64,90,54,'Адское Пламя','П','#ff3b1f'),
+      F(12,'ФРОСТ','Вечная Зима','Колдун','B','Хельсинки',63,70,60,88,64,'Ледяной Гроб','Ф','#bcd3e0'),
+      F(13,'РОНИН','Без Хозяина','Берсерк','S','Киото',79,92,78,74,63,'Путь Клинка','Р','#d11324'),
+      F(14,'ХАОС','Безумие','Берсерк','B','Рио',62,96,72,50,58,'Разрушение','Х','#e02718'),
+      F(15,'СТИНГ','Оса','Стрелок','A','Лагос',70,70,90,84,52,'Смертельный Рой','С','#ff5a3c'),
+      F(16,'ТИТАН','Колосс','Танк','S','Дубай',77,88,44,60,99,'Сокрушение','Т','#74797f')
+    ];
+    this.fxRef=el=>{this.fx=el}; this.glowRef=el=>{this.glow=el}; this.rootRef=el=>{this.root=el}; this.ghostRef=el=>{this.ghost=el}; this.barRef=el=>{this.bar=el};
+  }
+  state={ filter:'Все', sort:'Рейтинг', scrolled:false };
+
+  componentDidMount(){
+    if(this.root){ if(this.props.accent) this.root.style.setProperty('--accent',this.props.accent); }
+    this.initFX();
+    this._move=e=>this.onMove(e); window.addEventListener('mousemove',this._move,{passive:true});
+    this._scroll=()=>this.onScroll(); window.addEventListener('scroll',this._scroll,{passive:true});
+    setTimeout(()=>this.setupReveals(),40);
+  }
+  componentWillUnmount(){ cancelAnimationFrame(this._raf); window.removeEventListener('mousemove',this._move); window.removeEventListener('scroll',this._scroll); if(this._fxResize) window.removeEventListener('resize',this._fxResize); if(this._io) this._io.disconnect(); }
+  componentDidUpdate(){ const key=this.state.filter+'|'+this.state.sort; if(this._lastKey!==undefined&&this._lastKey!==key){ this._lastKey=key; this.revealScan(); } }
+  setupReveals(){
+    if(!this.root) return;
+    if(!('IntersectionObserver' in window)){ this.root.querySelectorAll('[data-reveal]').forEach(el=>el.classList.add('r-in')); return; }
+    this._io=new IntersectionObserver(ents=>{ ents.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('r-in'); e.target.dataset.revealed='1'; this._io.unobserve(e.target); } }); },{threshold:0.08,rootMargin:'0px 0px -6% 0px'});
+    this._lastKey=this.state.filter+'|'+this.state.sort;
+    this.revealScan();
+  }
+  revealScan(){
+    if(!this.root||!this._io) return;
+    this.root.querySelectorAll('[data-reveal]').forEach(el=>{ if(el.dataset.revealed) return; const r=el.getBoundingClientRect(); if(r.top<window.innerHeight*0.92&&r.bottom>0){ el.classList.add('r-in'); el.dataset.revealed='1'; this._io.unobserve(el); } else { this._io.observe(el); } });
+  }
+  hexRgb(h){ h=(h||'#ff2130').replace('#',''); if(h.length===3) h=h.split('').map(x=>x+x).join(''); const n=parseInt(h,16); return (n>>16&255)+','+(n>>8&255)+','+(n&255); }
+  mkP(W,H,bottom){ const max=220+Math.random()*280; return {x:Math.random()*W,y:bottom?H+Math.random()*40:Math.random()*H,vy:.25+Math.random()*.95,vx:(Math.random()-.5)*.3,r:.6+Math.random()*2.3,alpha:.2+Math.random()*.5,life:max,max}; }
+  initFX(){ const cv=this.fx; if(!cv) return; const ctx=cv.getContext('2d'); let W=1,H=1; const resize=()=>{ const dpr=Math.min(2,window.devicePixelRatio||1); W=cv.clientWidth||window.innerWidth; H=cv.clientHeight||window.innerHeight; cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }; resize(); this._fxResize=resize; window.addEventListener('resize',resize);
+    const rgb=this.hexRgb(this.props.accent||'#ff2130'); const N=this.props.particles===false?0:78;
+    const ps=Array.from({length:N},()=>this.mkP(W,H));
+    const draw=()=>{ ctx.clearRect(0,0,W,H); for(const p of ps){ p.y-=p.vy; p.x+=p.vx; p.life--; if(p.y<-12||p.life<0) Object.assign(p,this.mkP(W,H,true)); const a=p.alpha*Math.min(1,p.life/60); ctx.beginPath(); ctx.fillStyle='rgba('+rgb+','+a+')'; ctx.shadowColor='rgba('+rgb+',.9)'; ctx.shadowBlur=p.r*4; ctx.arc(p.x,p.y,p.r,0,6.283); ctx.fill(); } ctx.shadowBlur=0; this._raf=requestAnimationFrame(draw); }; draw();
+  }
+  onMove(e){ if(this.glow) this.glow.style.transform='translate('+(e.clientX-270)+'px,'+(e.clientY-270)+'px)'; const cx=e.clientX/window.innerWidth-.5, cy=e.clientY/window.innerHeight-.5; if(this.ghost) this.ghost.style.transform='translate('+(cx*-26)+'px,'+(cy*-12)+'px)'; }
+  onScroll(){ if(this._st) return; this._st=requestAnimationFrame(()=>{ this._st=null; const d=document.documentElement; const max=d.scrollHeight-window.innerHeight; if(this.bar) this.bar.style.width=(max>0?(window.scrollY/max*100):0)+'%'; const s=window.scrollY>28; if(s!==this.state.scrolled) this.setState({scrolled:s}); }); }
+  ov(f){ return Math.round((f.pow+f.spd+f.tech+f.def)/4); }
+
+  renderVals(){
+    const S=this.state, A='var(--accent,#ff2130)';
+    const shine={content:"''",position:'absolute',top:0,left:'-60%',width:'46%',height:'100%',background:'linear-gradient(90deg,transparent,#ffffff5c,transparent)',transform:'skewX(-22deg)',animation:'shine 3.6s ease-in-out infinite',pointerEvents:'none'};
+    const chip=(active)=>({fontFamily:"'Oswald',sans-serif",fontWeight:600,fontSize:'12px',letterSpacing:'.12em',textTransform:'uppercase',padding:'9px 16px',cursor:'pointer',border:'1px solid '+(active?'transparent':'#ffffff1f'),background:active?A:'#0e0e12',color:active?'#0b0b0e':'#c9c9d0',clipPath:'polygon(0 0,100% 0,100% 100%,7px 100%,0 calc(100% - 7px))',transition:'all .2s'});
+    const small=(active)=>({fontFamily:"'Oswald',sans-serif",fontWeight:600,fontSize:'10px',letterSpacing:'.12em',textTransform:'uppercase',padding:'7px 11px',cursor:'pointer',border:'1px solid '+(active?'color-mix(in srgb,var(--accent,#ff2130) 55%, transparent)':'#ffffff1a'),background:active?'color-mix(in srgb,var(--accent,#ff2130) 16%, #0e0e12)':'#0e0e12',color:active?A:'#83838d',transition:'all .2s'});
+    const classList=['Все','Ассасин','Берсерк','Танк','Колдун','Стрелок'];
+    const classes=classList.map(c=>({label:c,onClick:()=>this.setState({filter:c}),style:chip(S.filter===c)}));
+    const sortList=['Рейтинг','Имя','Винрейт'];
+    const sorts=sortList.map(s=>({label:s,onClick:()=>this.setState({sort:s}),style:small(S.sort===s)}));
+    let list=this.fighters.filter(f=>S.filter==='Все'||f.cls===S.filter);
+    if(S.sort==='Рейтинг') list=[...list].sort((a,b)=>this.ov(b)-this.ov(a));
+    else if(S.sort==='Имя') list=[...list].sort((a,b)=>a.name.localeCompare(b.name,'ru'));
+    else list=[...list].sort((a,b)=>b.wr-a.wr);
+    const statBox=(bd)=>({display:'flex',flexDirection:'column',paddingLeft:bd?'clamp(14px,2.4vw,30px)':0,borderLeft:bd?'1px solid #ffffff14':'none'});
+    const sTier=this.fighters.filter(f=>f.tier==='S').length;
+    const avg=Math.round(this.fighters.reduce((a,f)=>a+this.ov(f),0)/this.fighters.length);
+    const headStats=[{k:'бойцов',v:this.fighters.length,color:A},{k:'классов',v:5,color:'#f4f4f5'},{k:'S-тир',v:sTier,color:'#f4f4f5'},{k:'средний рейтинг',v:avg,color:'#f4f4f5'}].map((d,i)=>({k:d.k,v:d.v,color:d.color,style:statBox(i>0)}));
+    return {
+      rootStyle:{'--accent':'#ff2130',position:'relative',minHeight:'100vh',background:'#08080a',overflowX:'hidden'},
+      navStyle:{position:'fixed',top:'3px',left:0,right:0,zIndex:120,display:'flex',alignItems:'center',justifyContent:'space-between',gap:'clamp(14px,2vw,28px)',height:'60px',padding:'0 clamp(18px,4vw,44px)',background:S.scrolled?'rgba(8,8,10,.9)':'rgba(8,8,10,.1)',borderBottom:'1px solid '+(S.scrolled?'#ffffff14':'#ffffff00'),backdropFilter:'blur(12px)',transition:'background .3s,border-color .3s'},
+      revealStyle:{position:'relative',zIndex:3,padding:'clamp(38px,4.4vw,64px) 0 clamp(48px,5.6vw,86px)'},
+      fxRef:this.fxRef, glowRef:this.glowRef, rootRef:this.rootRef, ghostRef:this.ghostRef, barRef:this.barRef,
+      shineStyle:shine, classes, sorts, headStats,
+      visibleFighters:list, foundCount:list.length
+    };
+  }
+}
+</script>
+</body>
+</html>

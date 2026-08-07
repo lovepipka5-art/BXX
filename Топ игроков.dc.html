@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Russo+One&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#08080a;color:#f4f4f5;font-family:'Oswald',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  a:hover{color:var(--accent,#ff2130)}
+  input,button{font-family:inherit}
+  ::selection{background:#ff2130;color:#fff}
+  ::-webkit-scrollbar{width:11px;height:11px}
+  ::-webkit-scrollbar-track{background:#0c0c0f}
+  ::-webkit-scrollbar-thumb{background:#26262c;border:2px solid #0c0c0f}
+  ::-webkit-scrollbar-thumb:hover{background:var(--accent,#ff2130)}
+  [data-reveal]{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+  [data-reveal].r-in{opacity:1;transform:none}
+  [data-stagger]>[data-reveal]:nth-child(2){transition-delay:.08s}
+  [data-stagger]>[data-reveal]:nth-child(3){transition-delay:.16s}
+  [data-stagger]>[data-reveal]:nth-child(4){transition-delay:.22s}
+  [data-stagger]>[data-reveal]:nth-child(5){transition-delay:.28s}
+  [data-stagger]>[data-reveal]:nth-child(n+6){transition-delay:.32s}
+  @media (prefers-reduced-motion:reduce){[data-reveal]{transition:none;opacity:1;transform:none}}
+  @keyframes heroRise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+  @keyframes shine{0%{left:-60%}60%,100%{left:130%}}
+  @keyframes bgLogoPulse{0%,100%{opacity:.05}50%{opacity:.1}}
+  @keyframes crownFloat{0%,100%{transform:translateX(-50%) translateY(0) rotate(-7deg)}50%{transform:translateX(-50%) translateY(-6px) rotate(7deg)}}
+  @keyframes podiumGlow{0%,100%{opacity:.45}50%{opacity:1}}
+  @keyframes xBlink{0%,90%,100%{opacity:1;filter:none}92%{opacity:.28}94%{opacity:1;filter:drop-shadow(0 0 22px var(--accent,#ff2130))}96%{opacity:.42}98%{opacity:1;filter:drop-shadow(0 0 28px var(--accent,#ff2130))}}
+</style>
+</helmet>
+<div style="{{ rootStyle }}" ref="{{ rootRef }}">
+  <canvas ref="{{ fxRef }}" style="position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none"></canvas>
+  <div style="position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(75% 45% at 50% 0%, color-mix(in srgb,var(--accent,#ff2130) 10%, transparent), transparent 70%)"></div>
+  <div style="position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(120% 120% at 50% 40%, transparent 58%, #000 130%)"></div>
+  <div ref="{{ glowRef }}" style="position:fixed;top:0;left:0;width:540px;height:540px;border-radius:50%;z-index:2;pointer-events:none;background:radial-gradient(closest-side, color-mix(in srgb,var(--accent,#ff2130) 13%, transparent), transparent);mix-blend-mode:screen"></div>
+  <div ref="{{ barRef }}" style="position:fixed;top:0;left:0;height:3px;width:0%;z-index:130;background:linear-gradient(90deg,var(--accent,#ff2130),#ff7a3d);box-shadow:0 0 12px var(--accent,#ff2130)"></div>
+
+  <nav style="{{ navStyle }}">
+    <a href="Bender%20X%20Arena.dc.html#hero" style="display:flex;align-items:center;gap:11px;flex-shrink:0">
+      <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="Bender X Arena" style="height:40px;width:auto;display:block;filter:drop-shadow(0 0 12px color-mix(in srgb,var(--accent,#ff2130) 55%, transparent))">
+      <span style="font-family:'Russo One',sans-serif;font-size:16px;letter-spacing:.05em;white-space:nowrap">BENDER<span style="color:var(--accent,#ff2130)"> X </span>ARENA</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:clamp(14px,2vw,28px);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#c1c1c9">
+      <a href="Bender%20X%20Arena.dc.html#hero" style="transition:color .2s">Главная</a>
+      <a href="Бойцы%20арены.dc.html" style="transition:color .2s">Бойцы</a>
+      <a href="Расписание%20стримов.dc.html" style="transition:color .2s">Стримы</a>
+      <span style="color:var(--accent,#ff2130);border-bottom:1px solid var(--accent,#ff2130);padding-bottom:2px">Топ</span>
+      <a href="Bender%20X%20Arena.dc.html#bracket" style="transition:color .2s">Сетка</a>
+      <a href="Новости%20арены.dc.html" style="transition:color .2s">Новости</a>
+    </div>
+    <a href="Bender%20X%20Arena.dc.html#register" style="position:relative;overflow:hidden;flex-shrink:0;font-family:'Oswald',sans-serif;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:var(--accent,#ff2130);padding:11px 20px;clip-path:polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))" style-before="{{ shineStyle }}">Регистрация</a>
+  </nav>
+
+  <header style="position:relative;z-index:3;overflow:hidden;padding:clamp(112px,14vh,150px) clamp(18px,4vw,44px) clamp(30px,4vw,46px);border-bottom:1px solid #ffffff10">
+    <div ref="{{ ghostRef }}" style="position:absolute;inset:0;pointer-events:none;z-index:0">
+      <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="" style="position:absolute;right:2%;top:46%;width:min(46vw,520px);height:auto;transform:translateY(-50%);animation:bgLogoPulse 8s ease-in-out infinite;mix-blend-mode:screen">
+      <div style="position:absolute;left:-1%;bottom:-14%;font-family:'Russo One',sans-serif;font-size:17vw;line-height:.78;color:transparent;-webkit-text-stroke:1px #ffffff0a;white-space:nowrap">LADDER</div>
+    </div>
+    <div style="position:relative;z-index:2;max-width:1480px;margin:0 auto">
+      <a href="Bender%20X%20Arena.dc.html#hero" style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#83838d;transition:color .2s;animation:heroRise .6s both">← На главную</a>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:16px;font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent,#ff2130);animation:heroRise .6s .06s both">
+        <span style="font-family:'Russo One',sans-serif;font-size:13px;color:#4a4a52">02</span>
+        <span style="width:44px;height:1px;background:color-mix(in srgb,var(--accent,#ff2130) 60%, transparent)"></span>Итоги месяца · сезон 4
+      </div>
+      <h1 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(42px,7vw,104px);line-height:.86;text-transform:uppercase;letter-spacing:-.022em;margin-top:12px;text-shadow:0 8px 40px #000;animation:heroRise .7s .12s both">Топ <span style="display:inline-block;color:var(--accent,#ff2130);animation:xBlink 6s 2.4s infinite">игроков</span></h1>
+      <p style="max-width:520px;margin-top:16px;font-size:clamp(14px,1.4vw,17px);font-weight:300;line-height:1.6;color:#9a9aa4;animation:heroRise .7s .18s both">Ладдер обновляется в реальном времени: очки, победы и движение в рейтинге по итогам каждого матча.</p>
+      <div style="display:flex;flex-wrap:wrap;align-items:stretch;gap:clamp(14px,2.4vw,30px);margin-top:clamp(24px,3vw,34px);animation:heroRise .7s .24s both">
+        <sc-for list="{{ headStats }}" as="hs" hint-placeholder-count="4">
+          <div style="{{ hs.style }}">
+            <div style="font-family:'Russo One',sans-serif;font-size:clamp(19px,2.1vw,27px);line-height:1;color:{{ hs.color }}">{{ hs.v }}</div>
+            <div style="font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:#83838d;margin-top:6px">{{ hs.k }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </header>
+
+  <section id="podium" data-reveal style="{{ revealStyle }}">
+    <div style="max-width:1480px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:clamp(24px,3vw,38px)">
+        <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,50px);line-height:.92;text-transform:uppercase">Пьедестал месяца</h2>
+        <div style="font-size:13px;color:#83838d;max-width:280px;text-align:right;line-height:1.5">Три лучших бойца по сумме очков за июнь.</div>
+      </div>
+      <div data-stagger style="display:grid;grid-template-columns:1fr 1.12fr 1fr;gap:clamp(10px,1.8vw,22px);align-items:end;max-width:1000px;margin:0 auto">
+        <sc-for list="{{ podium }}" as="pd" hint-placeholder-count="3">
+          <div data-reveal>
+            <div style="{{ pd.wrap }}" style-hover="{{ podiumHover }}">
+              <div style="{{ pd.portrait }}">
+                <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,#0000 0 2px,#0000004d 2px 3px);opacity:.5;pointer-events:none"></div>
+                <div style="{{ pd.glyphS }}">{{ pd.glyph }}</div>
+                <sc-if value="{{ pd.isFirst }}" hint-placeholder-val="{{ false }}"><div style="{{ pd.ring }}"></div></sc-if>
+                <sc-if value="{{ pd.isFirst }}" hint-placeholder-val="{{ false }}"><div style="{{ pd.crown }}">♛</div></sc-if>
+                <div style="{{ pd.medal }}">{{ pd.rankStr }}</div>
+                <sc-if value="{{ pd.isFirst }}" hint-placeholder-val="{{ false }}"><div style="{{ pd.label }}">Игрок месяца</div></sc-if>
+              </div>
+              <div style="padding:16px 16px 18px;text-align:center">
+                <div style="{{ pd.tagS }}">{{ pd.tag }}</div>
+                <div style="display:flex;align-items:center;justify-content:center;gap:7px;margin-top:7px"><span style="width:8px;height:8px;background:{{ pd.mainC }};transform:rotate(45deg)"></span><span style="font-size:12px;color:#83838d">{{ pd.main }}</span></div>
+                <div style="display:flex;align-items:baseline;justify-content:center;gap:6px;margin-top:12px"><span style="{{ pd.ptsS }}">{{ pd.pts }}</span><span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6b6b73">очков</span></div>
+                <div style="display:flex;justify-content:center;gap:18px;margin-top:10px;font-family:'Russo One',sans-serif;font-size:13px;color:#c1c1c9">
+                  <span>{{ pd.wins }}<span style="font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#6b6b73;margin-left:5px">побед</span></span>
+                  <span>{{ pd.wr }}<span style="font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#6b6b73;margin-left:5px">WR</span></span>
+                </div>
+              </div>
+              <div style="{{ pd.pedestal }}"><span style="{{ pd.pedNum }}">{{ pd.rankStr }}</span></div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="ladder" data-reveal style="{{ revealStyle }}">
+    <div style="max-width:1100px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:16px">
+        <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(24px,3vw,40px);line-height:.92;text-transform:uppercase">Полный ладдер</h2>
+        <span style="display:inline-flex;align-items:center;gap:6px;font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent,#ff2130);border:1px solid color-mix(in srgb,var(--accent,#ff2130) 45%, transparent);padding:5px 10px"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent,#ff2130);animation:blink 1.1s infinite"></span>Live</span>
+      </div>
+      <div style="display:grid;grid-template-columns:46px 1fr 130px 92px 54px;gap:12px;padding:0 14px 10px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6b6b73">
+        <span>#</span><span>Игрок</span><span>Очки</span><span>Победы</span><span style="text-align:right">±</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <sc-for list="{{ players }}" as="p" hint-placeholder-count="12">
+          <div style="{{ p.rowStyle }}" ref="{{ p.ref }}">
+            <div style="font-family:'Russo One',sans-serif;font-size:18px;color:{{ p.rankColor }}">{{ p.rankStr }}</div>
+            <div style="min-width:0">
+              <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.tag }}</div>
+              <div style="display:flex;align-items:center;gap:6px;margin-top:3px"><span style="width:8px;height:8px;background:{{ p.mainC }};transform:rotate(45deg)"></span><span style="font-size:11px;color:#83838d">{{ p.main }} · {{ p.region }}</span></div>
+            </div>
+            <div>
+              <div style="font-family:'Russo One',sans-serif;font-size:15px;color:#f4f4f5">{{ p.pts }}</div>
+              <div style="height:4px;background:#ffffff12;margin-top:5px;overflow:hidden"><div style="{{ p.barStyle }}"></div></div>
+            </div>
+            <div style="font-size:13px;color:#c1c1c9;font-family:'Russo One',sans-serif">{{ p.wins }}</div>
+            <div style="text-align:right">
+              <sc-if value="{{ p.up }}" hint-placeholder-val="{{ true }}"><span style="font-family:'Russo One',sans-serif;font-size:12px;color:var(--accent,#ff2130)">▲{{ p.deltaAbs }}</span></sc-if>
+              <sc-if value="{{ p.down }}" hint-placeholder-val="{{ false }}"><span style="font-family:'Russo One',sans-serif;font-size:12px;color:#83838d">▼{{ p.deltaAbs }}</span></sc-if>
+              <sc-if value="{{ p.flat }}" hint-placeholder-val="{{ false }}"><span style="color:#4a4a52">—</span></sc-if>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;margin-top:20px;font-size:12px;color:#6b6b73">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--accent,#ff2130);animation:blink 1.1s infinite"></span>Очки пересчитываются после каждого матча
+      </div>
+    </div>
+  </section>
+
+  <footer style="position:relative;z-index:3;border-top:1px solid #ffffff12;background:#0a0a0d;padding:clamp(38px,4.6vw,60px) clamp(18px,4vw,44px) 28px">
+    <div style="max-width:1480px;margin:0 auto;display:flex;flex-wrap:wrap;gap:26px;align-items:center;justify-content:space-between">
+      <a href="Bender%20X%20Arena.dc.html#hero" style="display:inline-flex;align-items:center;gap:10px">
+        <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="Bender X Arena" style="height:44px;width:auto;display:block;filter:drop-shadow(0 0 14px color-mix(in srgb,var(--accent,#ff2130) 45%, transparent))">
+        <span style="font-family:'Russo One',sans-serif;font-size:16px;letter-spacing:.05em">BENDER<span style="color:var(--accent,#ff2130)"> X </span>ARENA</span>
+      </a>
+      <div style="display:flex;flex-wrap:wrap;gap:20px;font-size:13px;color:#83838d">
+        <a href="Bender%20X%20Arena.dc.html#schedule" style="transition:color .2s">Расписание</a>
+        <a href="Бойцы%20арены.dc.html" style="transition:color .2s">Бойцы арены</a>
+        <a href="Bender%20X%20Arena.dc.html#bracket" style="transition:color .2s">Сетка</a>
+        <a href="Bender%20X%20Arena.dc.html#register" style="transition:color .2s">Регистрация</a>
+      </div>
+    </div>
+    <div style="max-width:1480px;margin:30px auto 0;padding-top:20px;border-top:1px solid #ffffff10;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:11px;color:#5f5f68">
+      <span>© 2026 BENDER X ARENA. Все права защищены.</span>
+      <span style="max-width:560px;text-align:right">Bender X Arena — оригинальный вымышленный проект. Не связан с Mortal Kombat / NetherRealm Studios и не использует их персонажей.</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#ff2130&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#ff2130&quot;,&quot;#e10600&quot;,&quot;#ff3b1f&quot;,&quot;#c60011&quot;],&quot;section&quot;:&quot;Стиль&quot;},&quot;particles&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Эффекты&quot;}}">
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.fighterC={'КРИМЗОН':{c:'#ff2130',glyph:'К'},'ВАЙПЕР':{c:'#cdd6df',glyph:'В'},'НОКТИС':{c:'#7a1f2b',glyph:'Н'},'РОНИН':{c:'#d11324',glyph:'Р'},'ГХОСТ':{c:'#e6e8ea',glyph:'Г'},'ТАЙФУН':{c:'#d43b2a',glyph:'Т'},'ПИРО':{c:'#ff3b1f',glyph:'П'},'КОБРА':{c:'#9a1622',glyph:'К'},'ТИТАН':{c:'#74797f',glyph:'Т'},'РЕЙЗ':{c:'#c60011',glyph:'Р'},'ФРОСТ':{c:'#bcd3e0',glyph:'Ф'},'ОБСИДИАН':{c:'#8a9098',glyph:'О'}};
+    const P=(id,tag,main,region,pts,wins)=>({id,tag,main,region,pts,wins,delta:0,_flash:false});
+    this.state.players=[
+      P(1,'vX.KOBALT','КРИМЗОН','Москва',2480,312),
+      P(2,'N3RV','ВАЙПЕР','Сеул',2412,298),
+      P(3,'0xSHADOW','НОКТИС','Токио',2360,276),
+      P(4,'DR4G0N_RU','РОНИН','Киото',2295,264),
+      P(5,'APEX//','ГХОСТ','Прага',2240,251),
+      P(6,'KrakenTV','ТАЙФУН','Манила',2182,240),
+      P(7,'z3r0.cool','ПИРО','Мехико',2120,229),
+      P(8,'M4MBA','КОБРА','Каир',2061,218),
+      P(9,'GRVSHOT','ТИТАН','Дубай',2008,206),
+      P(10,'lil_bl4de','РЕЙЗ','Даллас',1964,198),
+      P(11,'SUB.ZONE','ФРОСТ','Хельсинки',1902,187),
+      P(12,'WALL//E','ОБСИДИАН','Берлин',1855,179)
+    ];
+    this._refFns={}; this.rowRefs={};
+    this.fxRef=el=>{this.fx=el}; this.glowRef=el=>{this.glow=el}; this.rootRef=el=>{this.root=el}; this.ghostRef=el=>{this.ghost=el}; this.barRef=el=>{this.bar=el};
+  }
+  state={ players:[], scrolled:false };
+
+  componentDidMount(){
+    if(this.root){ if(this.props.accent) this.root.style.setProperty('--accent',this.props.accent); }
+    this._lbT=setInterval(()=>this.shuffle(),3200);
+    this.initFX();
+    this._move=e=>this.onMove(e); window.addEventListener('mousemove',this._move,{passive:true});
+    this._scroll=()=>this.onScroll(); window.addEventListener('scroll',this._scroll,{passive:true});
+    setTimeout(()=>this.setupReveals(),40);
+  }
+  componentWillUnmount(){ clearInterval(this._lbT); clearTimeout(this._flashT); cancelAnimationFrame(this._raf); window.removeEventListener('mousemove',this._move); window.removeEventListener('scroll',this._scroll); if(this._fxResize) window.removeEventListener('resize',this._fxResize); if(this._io) this._io.disconnect(); }
+  componentDidUpdate(){
+    if(!this._orderChanged) return; this._orderChanged=false;
+    const first=this._first||{};
+    for(const id in this.rowRefs){ const el=this.rowRefs[id]; if(!el) continue; const last=el.getBoundingClientRect().top; const dy=(first[id]==null?last:first[id])-last; if(dy){ el.style.transition='none'; el.style.transform='translateY('+dy+'px)'; requestAnimationFrame(()=>{ el.style.transition='transform .55s cubic-bezier(.16,1,.3,1)'; el.style.transform=''; }); } }
+  }
+  setupReveals(){
+    if(!this.root) return;
+    if(!('IntersectionObserver' in window)){ this.root.querySelectorAll('[data-reveal]').forEach(el=>el.classList.add('r-in')); return; }
+    this._io=new IntersectionObserver(ents=>{ ents.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('r-in'); e.target.dataset.revealed='1'; this._io.unobserve(e.target); } }); },{threshold:0.08,rootMargin:'0px 0px -6% 0px'});
+    this.revealScan();
+  }
+  revealScan(){
+    if(!this.root||!this._io) return;
+    this.root.querySelectorAll('[data-reveal]').forEach(el=>{ if(el.dataset.revealed) return; const r=el.getBoundingClientRect(); if(r.top<window.innerHeight*0.92&&r.bottom>0){ el.classList.add('r-in'); el.dataset.revealed='1'; this._io.unobserve(el); } else { this._io.observe(el); } });
+  }
+  shuffle(){
+    const cur=[...this.state.players].sort((a,b)=>b.pts-a.pts); const oldRank={}; cur.forEach((p,i)=>oldRank[p.id]=i);
+    const first={}; for(const id in this.rowRefs){ const el=this.rowRefs[id]; if(el) first[id]=el.getBoundingClientRect().top; } this._first=first;
+    const players=this.state.players.map(p=>({...p,_flash:false}));
+    const n=1+Math.floor(Math.random()*2); const hit=new Set(); while(hit.size<n) hit.add(Math.floor(Math.random()*players.length));
+    hit.forEach(i=>{ players[i].pts+=6+Math.floor(Math.random()*46); players[i]._flash=true; });
+    const sorted=[...players].sort((a,b)=>b.pts-a.pts); sorted.forEach((p,i)=>{ p.delta=(oldRank[p.id]==null?i:oldRank[p.id])-i; });
+    this._orderChanged=sorted.some((p,i)=>cur[i].id!==p.id);
+    this.setState({players:sorted});
+    clearTimeout(this._flashT); this._flashT=setTimeout(()=>this.setState(s=>({players:s.players.map(p=>({...p,_flash:false}))})),950);
+  }
+  hexRgb(h){ h=(h||'#ff2130').replace('#',''); if(h.length===3) h=h.split('').map(x=>x+x).join(''); const n=parseInt(h,16); return (n>>16&255)+','+(n>>8&255)+','+(n&255); }
+  mkP(W,H,bottom){ const max=220+Math.random()*280; return {x:Math.random()*W,y:bottom?H+Math.random()*40:Math.random()*H,vy:.25+Math.random()*.95,vx:(Math.random()-.5)*.3,r:.6+Math.random()*2.3,alpha:.2+Math.random()*.5,life:max,max}; }
+  initFX(){ const cv=this.fx; if(!cv) return; const ctx=cv.getContext('2d'); let W=1,H=1; const resize=()=>{ const dpr=Math.min(2,window.devicePixelRatio||1); W=cv.clientWidth||window.innerWidth; H=cv.clientHeight||window.innerHeight; cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }; resize(); this._fxResize=resize; window.addEventListener('resize',resize);
+    const rgb=this.hexRgb(this.props.accent||'#ff2130'); const N=this.props.particles===false?0:78;
+    const ps=Array.from({length:N},()=>this.mkP(W,H));
+    const draw=()=>{ ctx.clearRect(0,0,W,H); for(const p of ps){ p.y-=p.vy; p.x+=p.vx; p.life--; if(p.y<-12||p.life<0) Object.assign(p,this.mkP(W,H,true)); const a=p.alpha*Math.min(1,p.life/60); ctx.beginPath(); ctx.fillStyle='rgba('+rgb+','+a+')'; ctx.shadowColor='rgba('+rgb+',.9)'; ctx.shadowBlur=p.r*4; ctx.arc(p.x,p.y,p.r,0,6.283); ctx.fill(); } ctx.shadowBlur=0; this._raf=requestAnimationFrame(draw); }; draw();
+  }
+  onMove(e){ if(this.glow) this.glow.style.transform='translate('+(e.clientX-270)+'px,'+(e.clientY-270)+'px)'; const cx=e.clientX/window.innerWidth-.5, cy=e.clientY/window.innerHeight-.5; if(this.ghost) this.ghost.style.transform='translate('+(cx*-26)+'px,'+(cy*-12)+'px)'; }
+  onScroll(){ if(this._st) return; this._st=requestAnimationFrame(()=>{ this._st=null; const d=document.documentElement; const max=d.scrollHeight-window.innerHeight; if(this.bar) this.bar.style.width=(max>0?(window.scrollY/max*100):0)+'%'; const s=window.scrollY>28; if(s!==this.state.scrolled) this.setState({scrolled:s}); }); }
+  rowRef(id){ if(!this._refFns[id]) this._refFns[id]=el=>{ this.rowRefs[id]=el; }; return this._refFns[id]; }
+
+  renderVals(){
+    const S=this.state, A='var(--accent,#ff2130)';
+    const shine={content:"''",position:'absolute',top:0,left:'-60%',width:'46%',height:'100%',background:'linear-gradient(90deg,transparent,#ffffff5c,transparent)',transform:'skewX(-22deg)',animation:'shine 3.6s ease-in-out infinite',pointerEvents:'none'};
+    const medals={1:'#ffca3a',2:'#d7d7de',3:'#c9803f'};
+    const sorted=[...S.players].sort((a,b)=>b.pts-a.pts);
+    const wrOf=p=>Math.round(p.wins/(p.wins+Math.round(p.wins*0.29))*100);
+    const podSrc=[sorted[1],sorted[0],sorted[2]].filter(Boolean);
+    const podium=podSrc.map(d=>{ const rank=sorted.indexOf(d)+1; const mf=this.fighterC[d.main]||{c:A,glyph:'?'}; const first=rank===1; const mc=medals[rank]||'#83838d'; return {
+      rankStr:String(rank),tag:d.tag,main:d.main,mainC:mf.c,glyph:mf.glyph,pts:d.pts.toLocaleString('ru-RU'),wins:d.wins,wr:wrOf(d)+'%',isFirst:first,
+      wrap:{position:'relative',background:'linear-gradient(180deg,#101016,#0a0a0d)',border:'1px solid '+(first?'color-mix(in srgb,var(--accent,#ff2130) 55%, transparent)':'#ffffff16'),clipPath:'polygon(0 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%)',overflow:'hidden',transition:'transform .35s,box-shadow .35s',boxShadow:first?'0 22px 54px rgba(255,33,48,.22)':'0 14px 30px #0008'},
+      portrait:{position:'relative',height:first?'clamp(170px,19vw,230px)':'clamp(140px,15vw,186px)',overflow:'hidden',background:'radial-gradient(120% 82% at 50% 0%, '+mf.c+'59, #0c0c10 62%)',borderBottom:'1px solid '+mc+'55'},
+      glyphS:{position:'absolute',left:'50%',top:'44%',transform:'translate(-50%,-50%)',fontFamily:"'Russo One',sans-serif",fontSize:first?'clamp(92px,11vw,146px)':'clamp(72px,8.4vw,112px)',lineHeight:1,color:'transparent',WebkitTextStroke:'2px '+mf.c+'75',userSelect:'none',pointerEvents:'none'},
+      ring:{position:'absolute',inset:0,boxShadow:'inset 0 0 70px rgba(255,33,48,.28)',animation:'podiumGlow 3s ease-in-out infinite',pointerEvents:'none'},
+      crown:{position:'absolute',left:'50%',top:'10px',transform:'translateX(-50%)',fontSize:'27px',color:'#ffca3a',filter:'drop-shadow(0 0 12px rgba(255,202,58,.6))',animation:'crownFloat 3.4s ease-in-out infinite',pointerEvents:'none'},
+      medal:{position:'absolute',top:'12px',left:'12px',width:'34px',height:'34px',display:'flex',alignItems:'center',justifyContent:'center',borderRadius:'50%',fontFamily:"'Russo One',sans-serif",fontSize:'15px',color:'#0b0b0e',background:mc,boxShadow:'0 0 16px '+mc+'88'},
+      label:{position:'absolute',left:'50%',bottom:'10px',transform:'translateX(-50%)',fontFamily:"'Oswald',sans-serif",fontSize:'10px',fontWeight:700,letterSpacing:'.16em',textTransform:'uppercase',color:'#0b0b0e',background:'#ffca3a',padding:'4px 11px',whiteSpace:'nowrap'},
+      tagS:{fontFamily:"'Oswald',sans-serif",fontWeight:700,fontSize:first?'23px':'19px',lineHeight:1.25,textTransform:'uppercase',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'},
+      ptsS:{fontFamily:"'Russo One',sans-serif",fontSize:first?'29px':'24px',color:first?A:'#f4f4f5',lineHeight:1.15},
+      pedestal:{position:'relative',height:first?'68px':rank===2?'48px':'34px',display:'flex',alignItems:'center',justifyContent:'center',background:'linear-gradient(180deg,'+mc+'2e,#0b0b0e)',borderTop:'2px solid '+mc},
+      pedNum:{fontFamily:"'Russo One',sans-serif",fontSize:first?'38px':'28px',color:mc,opacity:.85,lineHeight:1}
+    };});
+    const maxPts=Math.max(...sorted.map(p=>p.pts),1);
+    const players=sorted.map((p,i)=>{ const mf=this.fighterC[p.main]||{c:A}; return {
+      rankStr:String(i+1).padStart(2,'0'), tag:p.tag, main:p.main, region:p.region, mainC:mf.c, pts:p.pts.toLocaleString('ru-RU'), wins:p.wins,
+      up:p.delta>0, down:p.delta<0, flat:p.delta===0, deltaAbs:Math.abs(p.delta), ref:this.rowRef(p.id), rankColor:i<3?medals[i+1]:'#6b6b73',
+      rowStyle:{display:'grid',gridTemplateColumns:'46px 1fr 130px 92px 54px',alignItems:'center',gap:'12px',padding:'12px 14px',background:p._flash?'color-mix(in srgb,var(--accent,#ff2130) 18%, #0d0d11)':(i<3?'#101015':'#0d0d11'),borderLeft:'3px solid '+(i<3?medals[i+1]:'#2a2a30'),transition:'background .5s'},
+      barStyle:{width:Math.round(p.pts/maxPts*100)+'%',height:'100%',background:'linear-gradient(90deg,'+mf.c+',color-mix(in srgb,'+mf.c+' 15%, transparent))'}
+    };});
+    const statBox=(bd)=>({display:'flex',flexDirection:'column',paddingLeft:bd?'clamp(14px,2.4vw,30px)':0,borderLeft:bd?'1px solid #ffffff14':'none'});
+    const totalWins=sorted.reduce((a,p)=>a+p.wins,0);
+    const headStats=[{k:'игроков в ладдере',v:sorted.length,color:A},{k:'лидер',v:sorted[0]?sorted[0].tag:'—',color:'#f4f4f5'},{k:'матчей за месяц',v:totalWins.toLocaleString('ru-RU'),color:'#f4f4f5'},{k:'сезон',v:'S4',color:'#f4f4f5'}].map((d,i)=>({k:d.k,v:d.v,color:d.color,style:statBox(i>0)}));
+    return {
+      rootStyle:{'--accent':'#ff2130',position:'relative',minHeight:'100vh',background:'#08080a',overflowX:'hidden'},
+      navStyle:{position:'fixed',top:'3px',left:0,right:0,zIndex:120,display:'flex',alignItems:'center',justifyContent:'space-between',gap:'clamp(14px,2vw,28px)',height:'60px',padding:'0 clamp(18px,4vw,44px)',background:S.scrolled?'rgba(8,8,10,.9)':'rgba(8,8,10,.1)',borderBottom:'1px solid '+(S.scrolled?'#ffffff14':'#ffffff00'),backdropFilter:'blur(12px)',transition:'background .3s,border-color .3s'},
+      revealStyle:{position:'relative',zIndex:3,padding:'clamp(38px,4.4vw,64px) 0'},
+      fxRef:this.fxRef, glowRef:this.glowRef, rootRef:this.rootRef, ghostRef:this.ghostRef, barRef:this.barRef,
+      shineStyle:shine, headStats, podium, players,
+      podiumHover:{transform:'translateY(-8px)',boxShadow:'0 28px 60px rgba(0,0,0,.6)'}
+    };
+  }
+}
+</script>
+</body>
+</html>
