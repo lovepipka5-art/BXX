@@ -13,11 +13,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Russo+One&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;color-scheme:dark}
   body{background:#08080a;color:#f4f4f5;font-family:'Oswald',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   a:hover{color:var(--accent,#ff2130)}
   input,button{font-family:inherit}
+  button,a,input,select,textarea{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  :focus-visible{outline:2px solid var(--accent,#ff2130);outline-offset:3px}
+  nav a:hover{transform:translateY(-2px)}
   ::selection{background:#ff2130;color:#fff}
   ::-webkit-scrollbar{width:11px;height:11px}
   ::-webkit-scrollbar-track{background:#0c0c0f}
@@ -25,7 +28,10 @@
   ::-webkit-scrollbar-thumb:hover{background:var(--accent,#ff2130)}
   [data-reveal]{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
   [data-reveal].r-in{opacity:1;transform:none}
-  @media (prefers-reduced-motion:reduce){[data-reveal]{transition:none;opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  [data-reveal]{opacity:1!important;transform:none!important}
+}
   @keyframes heroRise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
   @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
   @keyframes shine{0%{left:-60%}60%,100%{left:130%}}
@@ -45,15 +51,16 @@
       <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="Bender X Arena" style="height:40px;width:auto;display:block;filter:drop-shadow(0 0 12px color-mix(in srgb,var(--accent,#ff2130) 55%, transparent))">
       <span style="font-family:'Russo One',sans-serif;font-size:16px;letter-spacing:.05em;white-space:nowrap">BENDER<span style="color:var(--accent,#ff2130)"> X </span>ARENA</span>
     </a>
-    <div style="display:flex;align-items:center;gap:clamp(12px,1.8vw,26px);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#c1c1c9">
+    <div style="display:flex;align-items:center;gap:clamp(12px,1.8vw,26px);font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:#c1c1c9">
       <a href="Bender%20X%20Arena.dc.html#hero" style="transition:color .2s">Главная</a>
-      <a href="%D0%91%D0%BE%D0%B9%D1%86%D1%8B%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="transition:color .2s">Бойцы</a>
       <a href="%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%81%D1%82%D1%80%D0%B8%D0%BC%D0%BE%D0%B2.dc.html" style="transition:color .2s">Стримы</a>
+      <a href="%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="transition:color .2s">Новости</a>
+      <a href="%D0%91%D0%BE%D0%B9%D1%86%D1%8B%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="transition:color .2s">Бойцы</a>
       <a href="%D0%A2%D0%BE%D0%BF%20%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2.dc.html" style="transition:color .2s">Топ</a>
       <span style="color:var(--accent,#ff2130);border-bottom:1px solid var(--accent,#ff2130);padding-bottom:2px">Сетка</span>
-      <a href="%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="transition:color .2s">Новости</a>
+      <a href="%D0%9E%20%D0%B0%D1%80%D0%B5%D0%BD%D0%B5.dc.html" style="transition:color .2s">О арене</a>
     </div>
-    <a href="Bender%20X%20Arena.dc.html#register" style="position:relative;overflow:hidden;flex-shrink:0;font-family:'Oswald',sans-serif;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:var(--accent,#ff2130);padding:11px 20px;clip-path:polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))" style-before="{{ shineStyle }}">Регистрация</a>
+    <a href="Bender%20X%20Arena.dc.html#register" style="position:relative;overflow:hidden;flex-shrink:0;font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:var(--accent,#ff2130);padding:11px 20px;clip-path:polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))" style-before="{{ shineStyle }}">Регистрация</a>
   </nav>
 
   <header style="position:relative;z-index:3;overflow:hidden;padding:clamp(112px,14vh,150px) clamp(18px,4vw,44px) clamp(30px,4vw,46px);border-bottom:1px solid #ffffff10">
@@ -62,8 +69,8 @@
       <div style="position:absolute;left:-1%;bottom:-14%;font-family:'Russo One',sans-serif;font-size:17vw;line-height:.78;color:transparent;-webkit-text-stroke:1px #ffffff0a;white-space:nowrap">PLAYOFF</div>
     </div>
     <div style="position:relative;z-index:2;max-width:1480px;margin:0 auto">
-      <a href="Bender%20X%20Arena.dc.html#hero" style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#83838d;transition:color .2s;animation:heroRise .6s both">← На главную</a>
-      <div style="display:flex;align-items:center;gap:12px;margin-top:16px;font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent,#ff2130);animation:heroRise .6s .06s both">
+      <a href="Bender%20X%20Arena.dc.html#hero" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#83838d;transition:color .2s;animation:heroRise .6s both">← На главную</a>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:16px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent,#ff2130);animation:heroRise .6s .06s both">
         <span style="font-family:'Russo One',sans-serif;font-size:13px;color:#4a4a52">04</span>
         <span style="width:44px;height:1px;background:color-mix(in srgb,var(--accent,#ff2130) 60%, transparent)"></span>Плей-офф · топ-8
       </div>
@@ -73,7 +80,7 @@
         <sc-for list="{{ headStats }}" as="hs" hint-placeholder-count="4">
           <div style="{{ hs.style }}">
             <div style="font-family:'Russo One',sans-serif;font-size:clamp(19px,2.1vw,27px);line-height:1;color:{{ hs.color }}">{{ hs.v }}</div>
-            <div style="font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:#83838d;margin-top:6px">{{ hs.k }}</div>
+            <div style="font-size:14px;letter-spacing:.17em;text-transform:uppercase;color:#83838d;margin-top:6px">{{ hs.k }}</div>
           </div>
         </sc-for>
       </div>
@@ -96,20 +103,20 @@
         <div style="display:flex;gap:clamp(16px,2.5vw,40px);align-items:stretch;min-width:820px">
           <sc-for list="{{ bracket.rounds }}" as="rd" hint-placeholder-count="3">
             <div style="flex:1;min-width:190px;display:flex;flex-direction:column">
-              <div style="font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#83838d;text-align:center;margin-bottom:16px">{{ rd.title }}</div>
+              <div style="font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#83838d;text-align:center;margin-bottom:16px">{{ rd.title }}</div>
               <div style="flex:1;display:flex;flex-direction:column;justify-content:space-around;gap:14px">
                 <sc-for list="{{ rd.matches }}" as="mt" hint-placeholder-count="2">
-                  <div style="background:#0d0d11;border:1px solid #ffffff14;clip-path:polygon(0 0,100% 0,100% 100%,8px 100%,0 calc(100% - 8px))">
+                  <div style="background:rgba(18,18,23,.12);backdrop-filter:blur(14px);border:1px solid #ffffff14;clip-path:polygon(0 0,100% 0,100% 100%,8px 100%,0 calc(100% - 8px))">
                     <div style="{{ mt.a.style }}" onClick="{{ mt.a.onPick }}">
                       <span style="width:9px;height:9px;background:{{ mt.a.c }};transform:rotate(45deg);flex-shrink:0"></span>
                       <span style="flex:1;font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ mt.a.name }}</span>
-                      <sc-if value="{{ mt.a.winner }}" hint-placeholder-val="{{ false }}"><span style="color:var(--accent,#ff2130);font-size:12px">✔</span></sc-if>
+                      <sc-if value="{{ mt.a.winner }}" hint-placeholder-val="{{ false }}"><span style="color:var(--accent,#ff2130);font-size:14px">✔</span></sc-if>
                     </div>
                     <div style="height:1px;background:#ffffff12"></div>
                     <div style="{{ mt.b.style }}" onClick="{{ mt.b.onPick }}">
                       <span style="width:9px;height:9px;background:{{ mt.b.c }};transform:rotate(45deg);flex-shrink:0"></span>
                       <span style="flex:1;font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ mt.b.name }}</span>
-                      <sc-if value="{{ mt.b.winner }}" hint-placeholder-val="{{ false }}"><span style="color:var(--accent,#ff2130);font-size:12px">✔</span></sc-if>
+                      <sc-if value="{{ mt.b.winner }}" hint-placeholder-val="{{ false }}"><span style="color:var(--accent,#ff2130);font-size:14px">✔</span></sc-if>
                     </div>
                   </div>
                 </sc-for>
@@ -117,12 +124,12 @@
             </div>
           </sc-for>
           <div style="flex:1;min-width:190px;display:flex;flex-direction:column">
-            <div style="font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#ff2130);text-align:center;margin-bottom:16px">Чемпион</div>
+            <div style="font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#ff2130);text-align:center;margin-bottom:16px">Чемпион</div>
             <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
               <div style="{{ champStyle }}">
                 <div style="font-family:'Russo One',sans-serif;font-size:52px;line-height:1;color:transparent;-webkit-text-stroke:2px {{ bracket.champion.c }}">{{ bracket.champion.glyph }}</div>
                 <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:24px;text-transform:uppercase;margin-top:12px">{{ bracket.champion.name }}</div>
-                <div style="font-size:12px;color:#83838d;margin-top:4px">{{ bracket.champion.tag }}</div>
+                <div style="font-size:14px;color:#83838d;margin-top:4px">{{ bracket.champion.tag }}</div>
               </div>
             </div>
           </div>
@@ -141,7 +148,7 @@
               <span style="font-family:'Russo One',sans-serif;font-size:13px;color:#4a4a52;width:22px;flex-shrink:0">{{ sd.n }}</span>
               <span style="width:9px;height:9px;background:{{ sd.c }};transform:rotate(45deg);flex-shrink:0"></span>
               <span style="flex:1;font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;text-transform:uppercase">{{ sd.name }}</span>
-              <span style="font-size:12px;color:#83838d">{{ sd.tag }}</span>
+              <span style="font-size:14px;color:#83838d">{{ sd.tag }}</span>
             </div>
           </sc-for>
         </div>
@@ -151,7 +158,7 @@
         <div style="display:flex;flex-direction:column;gap:10px;margin-top:18px">
           <sc-for list="{{ rules }}" as="rl" hint-placeholder-count="4">
             <div style="{{ rl.style }}">
-              <div style="font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#ff2130)">{{ rl.k }}</div>
+              <div style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#ff2130)">{{ rl.k }}</div>
               <div style="font-size:14px;font-weight:300;line-height:1.55;color:#a7a7b0;margin-top:6px">{{ rl.v }}</div>
             </div>
           </sc-for>
@@ -173,7 +180,7 @@
         <a href="%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="transition:color .2s">Новости</a>
       </div>
     </div>
-    <div style="max-width:1480px;margin:30px auto 0;padding-top:20px;border-top:1px solid #ffffff10;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:11px;color:#5f5f68">
+    <div style="max-width:1480px;margin:30px auto 0;padding-top:20px;border-top:1px solid #ffffff10;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:13px;color:#5f5f68">
       <span>© 2026 BENDER X ARENA. Все права защищены.</span>
       <span style="max-width:560px;text-align:right">Bender X Arena — оригинальный вымышленный проект. Не связан с Mortal Kombat / NetherRealm Studios и не использует их персонажей.</span>
     </div>
@@ -223,7 +230,7 @@ class Component extends DCLogic {
     const ps=Array.from({length:N},()=>this.mkP(W,H));
     const draw=()=>{ ctx.clearRect(0,0,W,H); for(const p of ps){ p.y-=p.vy; p.x+=p.vx; p.life--; if(p.y<-12||p.life<0) Object.assign(p,this.mkP(W,H,true)); const a=p.alpha*Math.min(1,p.life/60); ctx.beginPath(); ctx.fillStyle='rgba('+rgb+','+a+')'; ctx.shadowColor='rgba('+rgb+',.9)'; ctx.shadowBlur=p.r*4; ctx.arc(p.x,p.y,p.r,0,6.283); ctx.fill(); } ctx.shadowBlur=0; this._raf=requestAnimationFrame(draw); }; draw();
   }
-  onMove(e){ if(this.glow) this.glow.style.transform='translate('+(e.clientX-270)+'px,'+(e.clientY-270)+'px)'; const cx=e.clientX/window.innerWidth-.5, cy=e.clientY/window.innerHeight-.5; if(this.ghost) this.ghost.style.transform='translate('+(cx*-26)+'px,'+(cy*-12)+'px)'; }
+  onMove(e){ if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; if(this.glow) this.glow.style.transform='translate('+(e.clientX-270)+'px,'+(e.clientY-270)+'px)'; const cx=e.clientX/window.innerWidth-.5, cy=e.clientY/window.innerHeight-.5; if(this.ghost) this.ghost.style.transform='translate('+(cx*-26)+'px,'+(cy*-12)+'px)'; }
   onScroll(){ if(this._st) return; this._st=requestAnimationFrame(()=>{ this._st=null; const d=document.documentElement; const max=d.scrollHeight-window.innerHeight; if(this.bar) this.bar.style.width=(max>0?(window.scrollY/max*100):0)+'%'; const s=window.scrollY>28; if(s!==this.state.scrolled) this.setState({scrolled:s}); }); }
 
   setWinner(r,m,side){ this.setState(prev=>{ const W={...prev.winners}; W[r+'-'+m]=side; Object.keys(W).forEach(k=>{ if(+k.split('-')[0]>r) delete W[k]; }); return {winners:W}; }); }
@@ -248,9 +255,9 @@ class Component extends DCLogic {
     const statBox=(bd)=>({display:'flex',flexDirection:'column',paddingLeft:bd?'clamp(14px,2.4vw,30px)':0,borderLeft:bd?'1px solid #ffffff14':'none'});
     const headStats=[{k:'бойцов в плей-офф',v:'8',color:A},{k:'раунда на вылет',v:'3',color:'#f4f4f5'},{k:'матчей всего',v:'7',color:'#f4f4f5'},{k:'призовой фонд',v:'250K',color:'#f4f4f5'}].map((d,i)=>({k:d.k,v:d.v,color:d.color,style:statBox(i>0)}));
     const seedList=this.seeds.map((f,i)=>({n:String(i+1).padStart(2,'0'),name:f.name,tag:f.tag,c:f.c,
-      style:{display:'flex',alignItems:'center',gap:'12px',padding:'12px 15px',background:'#101015',border:'1px solid #ffffff12',clipPath:'polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))'}}));
+      style:{display:'flex',alignItems:'center',gap:'12px',padding:'12px 15px',background:'rgba(22,22,28,.12)',backdropFilter:'blur(14px)',border:'1px solid #ffffff12',clipPath:'polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))'}}));
     const ruleSrc=[['Формат','Single elimination: одно поражение — и боец выбывает из сетки.'],['Серии','Четвертьфиналы и полуфиналы — Bo5, гранд-финал — Bo7 на главной сцене.'],['Посев','Места 1–8 определяет рейтинг сезона: первый сеяный встречается с восьмым.'],['Замены','Дисквалификация или неявка засчитывает техническое поражение 0:3.']];
-    const rules=ruleSrc.map(r=>({k:r[0],v:r[1],style:{padding:'16px 18px',background:'#101015',border:'1px solid #ffffff12',clipPath:'polygon(0 0,100% 0,100% 100%,10px 100%,0 calc(100% - 10px))'}}));
+    const rules=ruleSrc.map(r=>({k:r[0],v:r[1],style:{padding:'16px 18px',background:'rgba(22,22,28,.12)',backdropFilter:'blur(14px)',border:'1px solid #ffffff12',clipPath:'polygon(0 0,100% 0,100% 100%,10px 100%,0 calc(100% - 10px))'}}));
     return {
       rootStyle:{'--accent':'#ff2130',position:'relative',minHeight:'100vh',background:'#08080a',overflowX:'hidden'},
       navStyle:{position:'fixed',top:'3px',left:0,right:0,zIndex:120,display:'flex',alignItems:'center',justifyContent:'space-between',gap:'clamp(12px,1.8vw,26px)',height:'60px',padding:'0 clamp(18px,4vw,44px)',background:S.scrolled?'rgba(8,8,10,.9)':'rgba(8,8,10,.1)',borderBottom:'1px solid '+(S.scrolled?'#ffffff14':'#ffffff00'),backdropFilter:'blur(12px)',transition:'background .3s,border-color .3s'},
@@ -259,8 +266,8 @@ class Component extends DCLogic {
       shineStyle:shine, headStats, seedList, rules, bracket,
       pickedCount:Object.keys(S.winners).length,
       resetBracket:()=>this.resetBracket(), autoFill:()=>this.autoFill(),
-      ghostBtn:{fontFamily:"'Oswald',sans-serif",fontWeight:600,fontSize:'12px',letterSpacing:'.12em',textTransform:'uppercase',padding:'11px 18px',cursor:'pointer',color:'#c9c9d0',background:'#0e0e12',border:'1px solid #ffffff1f',clipPath:'polygon(0 0,100% 0,100% 100%,7px 100%,0 calc(100% - 7px))',transition:'all .2s'},
-      champStyle:{textAlign:'center',padding:'26px 18px',background:bracket.champion.filled?'linear-gradient(180deg,color-mix(in srgb,var(--accent,#ff2130) 14%, #0d0d11),#0d0d11)':'#0d0d11',border:'1px solid '+(bracket.champion.filled?'color-mix(in srgb,var(--accent,#ff2130) 55%, transparent)':'#ffffff14'),clipPath:'polygon(0 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%)',transition:'all .4s'}
+      ghostBtn:{fontFamily:"'Oswald',sans-serif",fontWeight:600,fontSize:'14px',letterSpacing:'.12em',textTransform:'uppercase',padding:'11px 18px',cursor:'pointer',color:'#c9c9d0',background:'#0e0e12',border:'1px solid #ffffff1f',clipPath:'polygon(0 0,100% 0,100% 100%,7px 100%,0 calc(100% - 7px))',transition:'all .2s'},
+      champStyle:{textAlign:'center',padding:'26px 18px',background:bracket.champion.filled?'linear-gradient(180deg,color-mix(in srgb,var(--accent,#ff2130) 14%, rgba(18,18,23,.12)),rgba(18,18,23,.12))':'rgba(18,18,23,.12)',border:'1px solid '+(bracket.champion.filled?'color-mix(in srgb,var(--accent,#ff2130) 55%, transparent)':'#ffffff14'),clipPath:'polygon(0 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%)',transition:'all .4s'}
     };
   }
 }

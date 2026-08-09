@@ -13,11 +13,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Russo+One&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;color-scheme:dark}
   body{background:#08080a;color:#f4f4f5;font-family:'Oswald',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   a:hover{color:var(--accent,#ff2130)}
   input,button{font-family:inherit}
+  button,a,input,select,textarea{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  :focus-visible{outline:2px solid var(--accent,#ff2130);outline-offset:3px}
+  nav a:hover{transform:translateY(-2px)}
   ::selection{background:#ff2130;color:#fff}
   ::-webkit-scrollbar{width:11px;height:11px}
   ::-webkit-scrollbar-track{background:#0c0c0f}
@@ -31,7 +34,10 @@
   [data-stagger]>[data-reveal]:nth-child(5){transition-delay:.24s}
   [data-stagger]>[data-reveal]:nth-child(6){transition-delay:.3s}
   [data-stagger]>[data-reveal]:nth-child(n+7){transition-delay:.34s}
-  @media (prefers-reduced-motion:reduce){[data-reveal]{transition:none;opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  [data-reveal]{opacity:1!important;transform:none!important}
+}
   @keyframes heroRise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
   @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
   @keyframes shine{0%{left:-60%}60%,100%{left:130%}}
@@ -52,15 +58,16 @@
       <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="Bender X Arena" style="height:40px;width:auto;display:block;filter:drop-shadow(0 0 12px color-mix(in srgb,var(--accent,#ff2130) 55%, transparent))">
       <span style="font-family:'Russo One',sans-serif;font-size:16px;letter-spacing:.05em;white-space:nowrap">BENDER<span style="color:var(--accent,#ff2130)"> X </span>ARENA</span>
     </a>
-    <div style="display:flex;align-items:center;gap:clamp(14px,2vw,28px);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#c1c1c9">
+    <div style="display:flex;align-items:center;gap:clamp(14px,2vw,28px);font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:#c1c1c9">
       <a href="Bender%20X%20Arena.dc.html#hero" style="transition:color .2s">Главная</a>
-      <span style="color:var(--accent,#ff2130);border-bottom:1px solid var(--accent,#ff2130);padding-bottom:2px">Бойцы</span>
       <a href="Расписание%20стримов.dc.html" style="transition:color .2s">Стримы</a>
-      <a href="Топ%20игроков.dc.html" style="transition:color .2s">Топ</a>
-      <a href="Bender%20X%20Arena.dc.html#bracket" style="transition:color .2s">Сетка</a>
       <a href="Новости%20арены.dc.html" style="transition:color .2s">Новости</a>
+      <span style="color:var(--accent,#ff2130);border-bottom:1px solid var(--accent,#ff2130);padding-bottom:2px">Бойцы</span>
+      <a href="Топ%20игроков.dc.html" style="transition:color .2s">Топ</a>
+      <a href="%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D0%BD%D0%B0%D1%8F%20%D1%81%D0%B5%D1%82%D0%BA%D0%B0.dc.html" style="transition:color .2s">Сетка</a>
+      <a href="%D0%9E%20%D0%B0%D1%80%D0%B5%D0%BD%D0%B5.dc.html" style="transition:color .2s">О арене</a>
     </div>
-    <a href="Bender%20X%20Arena.dc.html#register" style="position:relative;overflow:hidden;flex-shrink:0;font-family:'Oswald',sans-serif;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:var(--accent,#ff2130);padding:11px 20px;clip-path:polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))" style-before="{{ shineStyle }}">Регистрация</a>
+    <a href="Bender%20X%20Arena.dc.html#register" style="position:relative;overflow:hidden;flex-shrink:0;font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:var(--accent,#ff2130);padding:11px 20px;clip-path:polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))" style-before="{{ shineStyle }}">Регистрация</a>
   </nav>
 
   <header style="position:relative;z-index:3;overflow:hidden;padding:clamp(112px,14vh,150px) clamp(18px,4vw,44px) clamp(30px,4vw,46px);border-bottom:1px solid #ffffff10">
@@ -69,8 +76,8 @@
       <div style="position:absolute;left:-1%;bottom:-14%;font-family:'Russo One',sans-serif;font-size:17vw;line-height:.78;color:transparent;-webkit-text-stroke:1px #ffffff0a;white-space:nowrap">ROSTER</div>
     </div>
     <div style="position:relative;z-index:2;max-width:1480px;margin:0 auto">
-      <a href="Bender%20X%20Arena.dc.html#hero" style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#83838d;transition:color .2s;animation:heroRise .6s both">← На главную</a>
-      <div style="display:flex;align-items:center;gap:12px;margin-top:16px;font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent,#ff2130);animation:heroRise .6s .06s both">
+      <a href="Bender%20X%20Arena.dc.html#hero" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#83838d;transition:color .2s;animation:heroRise .6s both">← На главную</a>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:16px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent,#ff2130);animation:heroRise .6s .06s both">
         <span style="font-family:'Russo One',sans-serif;font-size:13px;color:#4a4a52">01</span>
         <span style="width:44px;height:1px;background:color-mix(in srgb,var(--accent,#ff2130) 60%, transparent)"></span>Ростер · сезон 4
       </div>
@@ -80,7 +87,7 @@
         <sc-for list="{{ headStats }}" as="hs" hint-placeholder-count="4">
           <div style="{{ hs.style }}">
             <div style="font-family:'Russo One',sans-serif;font-size:clamp(19px,2.1vw,27px);line-height:1;color:{{ hs.color }}">{{ hs.v }}</div>
-            <div style="font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:#83838d;margin-top:6px">{{ hs.k }}</div>
+            <div style="font-size:14px;letter-spacing:.17em;text-transform:uppercase;color:#83838d;margin-top:6px">{{ hs.k }}</div>
           </div>
         </sc-for>
       </div>
@@ -96,7 +103,7 @@
           </sc-for>
         </div>
         <div style="display:flex;align-items:center;gap:14px">
-          <span style="font-size:12px;color:#83838d;letter-spacing:.04em">Найдено: <span style="font-family:'Russo One',sans-serif;color:#f4f4f5">{{ foundCount }}</span></span>
+          <span style="font-size:14px;color:#83838d;letter-spacing:.04em">Найдено: <span style="font-family:'Russo One',sans-serif;color:#f4f4f5">{{ foundCount }}</span></span>
           <div style="display:flex;gap:6px">
             <sc-for list="{{ sorts }}" as="so" hint-placeholder-count="3">
               <button style="{{ so.style }}" onClick="{{ so.onClick }}">{{ so.label }}</button>
@@ -123,11 +130,11 @@
       <div style="display:flex;flex-wrap:wrap;gap:20px;font-size:13px;color:#83838d">
         <a href="Bender%20X%20Arena.dc.html#schedule" style="transition:color .2s">Расписание</a>
         <a href="Топ%20игроков.dc.html" style="transition:color .2s">Топ игроков</a>
-        <a href="Bender%20X%20Arena.dc.html#bracket" style="transition:color .2s">Сетка</a>
+        <a href="%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D0%BD%D0%B0%D1%8F%20%D1%81%D0%B5%D1%82%D0%BA%D0%B0.dc.html" style="transition:color .2s">Сетка</a>
         <a href="Bender%20X%20Arena.dc.html#register" style="transition:color .2s">Регистрация</a>
       </div>
     </div>
-    <div style="max-width:1480px;margin:30px auto 0;padding-top:20px;border-top:1px solid #ffffff10;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:11px;color:#5f5f68">
+    <div style="max-width:1480px;margin:30px auto 0;padding-top:20px;border-top:1px solid #ffffff10;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:13px;color:#5f5f68">
       <span>© 2026 BENDER X ARENA. Все права защищены.</span>
       <span style="max-width:560px;text-align:right">Bender X Arena — оригинальный вымышленный проект. Не связан с Mortal Kombat / NetherRealm Studios и не использует их персонажей.</span>
     </div>
@@ -188,15 +195,15 @@ class Component extends DCLogic {
     const ps=Array.from({length:N},()=>this.mkP(W,H));
     const draw=()=>{ ctx.clearRect(0,0,W,H); for(const p of ps){ p.y-=p.vy; p.x+=p.vx; p.life--; if(p.y<-12||p.life<0) Object.assign(p,this.mkP(W,H,true)); const a=p.alpha*Math.min(1,p.life/60); ctx.beginPath(); ctx.fillStyle='rgba('+rgb+','+a+')'; ctx.shadowColor='rgba('+rgb+',.9)'; ctx.shadowBlur=p.r*4; ctx.arc(p.x,p.y,p.r,0,6.283); ctx.fill(); } ctx.shadowBlur=0; this._raf=requestAnimationFrame(draw); }; draw();
   }
-  onMove(e){ if(this.glow) this.glow.style.transform='translate('+(e.clientX-270)+'px,'+(e.clientY-270)+'px)'; const cx=e.clientX/window.innerWidth-.5, cy=e.clientY/window.innerHeight-.5; if(this.ghost) this.ghost.style.transform='translate('+(cx*-26)+'px,'+(cy*-12)+'px)'; }
+  onMove(e){ if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; if(this.glow) this.glow.style.transform='translate('+(e.clientX-270)+'px,'+(e.clientY-270)+'px)'; const cx=e.clientX/window.innerWidth-.5, cy=e.clientY/window.innerHeight-.5; if(this.ghost) this.ghost.style.transform='translate('+(cx*-26)+'px,'+(cy*-12)+'px)'; }
   onScroll(){ if(this._st) return; this._st=requestAnimationFrame(()=>{ this._st=null; const d=document.documentElement; const max=d.scrollHeight-window.innerHeight; if(this.bar) this.bar.style.width=(max>0?(window.scrollY/max*100):0)+'%'; const s=window.scrollY>28; if(s!==this.state.scrolled) this.setState({scrolled:s}); }); }
   ov(f){ return Math.round((f.pow+f.spd+f.tech+f.def)/4); }
 
   renderVals(){
     const S=this.state, A='var(--accent,#ff2130)';
     const shine={content:"''",position:'absolute',top:0,left:'-60%',width:'46%',height:'100%',background:'linear-gradient(90deg,transparent,#ffffff5c,transparent)',transform:'skewX(-22deg)',animation:'shine 3.6s ease-in-out infinite',pointerEvents:'none'};
-    const chip=(active)=>({fontFamily:"'Oswald',sans-serif",fontWeight:600,fontSize:'12px',letterSpacing:'.12em',textTransform:'uppercase',padding:'9px 16px',cursor:'pointer',border:'1px solid '+(active?'transparent':'#ffffff1f'),background:active?A:'#0e0e12',color:active?'#0b0b0e':'#c9c9d0',clipPath:'polygon(0 0,100% 0,100% 100%,7px 100%,0 calc(100% - 7px))',transition:'all .2s'});
-    const small=(active)=>({fontFamily:"'Oswald',sans-serif",fontWeight:600,fontSize:'10px',letterSpacing:'.12em',textTransform:'uppercase',padding:'7px 11px',cursor:'pointer',border:'1px solid '+(active?'color-mix(in srgb,var(--accent,#ff2130) 55%, transparent)':'#ffffff1a'),background:active?'color-mix(in srgb,var(--accent,#ff2130) 16%, #0e0e12)':'#0e0e12',color:active?A:'#83838d',transition:'all .2s'});
+    const chip=(active)=>({fontFamily:"'Oswald',sans-serif",fontWeight:600,fontSize:'14px',letterSpacing:'.12em',textTransform:'uppercase',padding:'9px 16px',cursor:'pointer',border:'1px solid '+(active?'transparent':'#ffffff1f'),background:active?A:'#0e0e12',color:active?'#0b0b0e':'#c9c9d0',clipPath:'polygon(0 0,100% 0,100% 100%,7px 100%,0 calc(100% - 7px))',transition:'all .2s'});
+    const small=(active)=>({fontFamily:"'Oswald',sans-serif",fontWeight:600,fontSize:'14px',letterSpacing:'.12em',textTransform:'uppercase',padding:'7px 11px',cursor:'pointer',border:'1px solid '+(active?'color-mix(in srgb,var(--accent,#ff2130) 55%, transparent)':'#ffffff1a'),background:active?'color-mix(in srgb,var(--accent,#ff2130) 16%, #0e0e12)':'#0e0e12',color:active?A:'#83838d',transition:'all .2s'});
     const classList=['Все','Ассасин','Берсерк','Танк','Колдун','Стрелок'];
     const classes=classList.map(c=>({label:c,onClick:()=>this.setState({filter:c}),style:chip(S.filter===c)}));
     const sortList=['Рейтинг','Имя','Винрейт'];
