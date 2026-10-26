@@ -842,7 +842,7 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
   }
 
 
-  /* Full-body hero art with oversized typography behind the fighters */
+  /* Clean fighter composition: use the official transparent character assets, never watermarked thumbnails */
   #hero .bx-fighters{
     width:min(59vw,790px)!important;
     height:min(86vh,820px)!important;
@@ -864,7 +864,6 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
     letter-spacing:-.055em!important;
     color:rgba(255,255,255,.055)!important;
     white-space:nowrap!important;
-    text-shadow:0 0 45px rgba(255,30,45,.08)!important;
     pointer-events:none!important;
   }
   #hero .bx-fighters:after{
@@ -879,24 +878,15 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
     white-space:nowrap!important;
     pointer-events:none!important;
   }
-  #hero .bx-fighter{
-    z-index:2!important;
-    overflow:visible!important;
-  }
+  #hero .bx-fighter{z-index:2!important;overflow:visible!important}
   #hero .bx-fighter img{
-    width:100%!important;
-    height:100%!important;
-    object-fit:contain!important;
-    object-position:center bottom!important;
-    mix-blend-mode:normal!important;
-    mask-image:none!important;
-    -webkit-mask-image:none!important;
+    display:block!important;width:100%!important;height:100%!important;
+    object-fit:contain!important;object-position:center bottom!important;
+    mix-blend-mode:normal!important;mask-image:none!important;-webkit-mask-image:none!important;
     filter:drop-shadow(0 14px 28px rgba(0,0,0,.6)) drop-shadow(0 0 22px rgba(255,35,48,.16))!important;
   }
   #hero .bx-fighter-scorpion{width:59%!important;right:31%!important}
   #hero .bx-fighter-subzero{width:55%!important;right:-1%!important;opacity:1!important}
-  #hero .bx-fighter-glow{z-index:1!important;right:8%!important;bottom:1%!important;width:80%!important;height:75%!important}
-  #hero .bx-fighter-label{z-index:3!important;right:1%!important;bottom:7px!important}
   @media(max-width:850px){
     #hero .bx-fighters{width:min(78vw,620px)!important;height:530px!important;min-height:0!important;right:-3%!important;top:auto!important;bottom:4px!important}
     #hero .bx-fighters:before{font-size:clamp(88px,17vw,140px)!important;top:12%!important}
@@ -987,8 +977,8 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
       </div>
     </div>
     <div class="bx-fighters" aria-label="Персонажи Mortal Kombat">
-      <div class="bx-fighter bx-fighter-scorpion"><img src="https://www.mortalkombatwarehouse.com/mk12/renders/ekk/K1_ScorpionRender_Hero-pose.png" alt="Scorpion из Mortal Kombat" loading="eager"></div>
-      <div class="bx-fighter bx-fighter-subzero"><img src="https://www.mortalkombatwarehouse.com/mk12/renders/ekk/K1_SubZeroRenders_Hero-pose.png" alt="Sub-Zero из Mortal Kombat" loading="eager"></div>
+      <div class="bx-fighter bx-fighter-scorpion"><img src="https://cdn-mk1.mortalkombat.com/roster/scorpion.webp" alt="Scorpion из Mortal Kombat" loading="eager"></div>
+      <div class="bx-fighter bx-fighter-subzero"><img src="https://cdn-mk1.mortalkombat.com/roster/sub-zero.webp" alt="Sub-Zero из Mortal Kombat" loading="eager"></div>
       <div class="bx-fighter-glow"></div><div class="bx-fighter-label"><i></i> FIGHT FOR GLORY</div>
     </div>
     <div class="hero-scroll" style="position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:14px;letter-spacing:.3em;text-transform:uppercase;color:#6b6b73">Листай ↓</div>
