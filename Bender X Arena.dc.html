@@ -207,6 +207,16 @@
   @keyframes sparkFloat{0%,100%{transform:translate(0,0);opacity:.4}50%{transform:translate(14px,-26px);opacity:.85}}
 
 
+
+  /* Strong, explicit gaps between the three hero wordmark parts */
+  #hero h1.hero-title{display:flex!important;flex-wrap:wrap!important;align-items:baseline!important;justify-content:flex-start!important;column-gap:clamp(14px,2.4vw,34px)!important;row-gap:.12em!important;letter-spacing:0!important;word-spacing:normal!important;line-height:1.02!important}
+  #hero h1.hero-title>span{margin:0!important;letter-spacing:.015em!important}
+  #hero h1.hero-title>span+span{margin-left:0!important}
+  @media(max-width:700px){
+    #hero h1.hero-title{column-gap:clamp(10px,3vw,18px)!important;row-gap:.18em!important;line-height:1.06!important}
+    #hero h1.hero-title>span{letter-spacing:0!important}
+  }
+
   /* Give the BX_ARENA hero wordmark deliberate breathing room */
   #hero h1.hero-title{letter-spacing:.015em!important;word-spacing:.16em!important;line-height:.94!important}
   #hero h1.hero-title>span{margin-right:.055em}
