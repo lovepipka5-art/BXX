@@ -37,6 +37,39 @@
   @keyframes shine{0%{left:-60%}60%,100%{left:130%}}
   @keyframes bgLogoPulse{0%,100%{opacity:.05}50%{opacity:.1}}
   @keyframes xBlink{0%,90%,100%{opacity:1;filter:none}92%{opacity:.28}94%{opacity:1;filter:drop-shadow(0 0 22px var(--accent,#ff2130))}96%{opacity:.42}98%{opacity:1;filter:drop-shadow(0 0 28px var(--accent,#ff2130))}}
+
+  /* Editorial tournament bracket: clear rounds, sharp match cards, champion spotlight */
+  #bracket{padding-top:clamp(52px,7vw,96px)!important;padding-bottom:clamp(60px,8vw,110px)!important;background:linear-gradient(180deg,#09090b,#101014 48%,#09090b)!important}
+  #bracket>div{max-width:1560px!important}
+  #bracket h2{font-size:clamp(34px,5vw,66px)!important;letter-spacing:-.04em!important;line-height:.92!important}
+  #bracket p{font-size:12px!important;letter-spacing:.08em!important;text-transform:uppercase}
+  #bracket p span{font-size:17px!important}
+  #bracket button{border-radius:0!important;clip-path:none!important;border:1px solid rgba(255,255,255,.18)!important;background:#141417!important;color:#ededf0!important;padding:12px 16px!important;font-size:11px!important;letter-spacing:.1em!important;transition:all .22s!important}
+  #bracket button:hover{border-color:#ff2638!important;color:#fff!important;transform:translateY(-2px);background:#1d1114!important}
+  #bracket>div>div:nth-child(2){border:1px solid rgba(255,255,255,.1);background:linear-gradient(135deg,rgba(255,255,255,.025),transparent 50%);padding:clamp(12px,2vw,24px)!important}
+  #bracket>div>div:nth-child(2)>div{scrollbar-width:thin;scrollbar-color:#ff2638 #111114}
+  #bracket>div>div:nth-child(2)>div>div{position:relative}
+  #bracket>div>div:nth-child(2)>div>div>div:first-child{font-size:11px!important;letter-spacing:.2em!important;color:#a8a8af!important;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.14);margin-bottom:18px!important}
+  #bracket>div>div:nth-child(2)>div>div>div:nth-child(2)>div{position:relative;background:#121215!important;border:1px solid rgba(255,255,255,.13)!important;clip-path:none!important;box-shadow:0 8px 20px rgba(0,0,0,.2);overflow:hidden;transition:border-color .2s,transform .2s}
+  #bracket>div>div:nth-child(2)>div>div>div:nth-child(2)>div:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:#ff2638;opacity:.55;pointer-events:none}
+  #bracket>div>div:nth-child(2)>div>div>div:nth-child(2)>div>div{min-height:48px!important;padding:11px 12px!important;gap:10px!important;transition:background .2s,opacity .2s!important}
+  #bracket>div>div:nth-child(2)>div>div>div:nth-child(2)>div>div:hover{background:rgba(255,38,56,.09)!important}
+  #bracket>div>div:nth-child(2)>div>div>div:nth-child(2)>div>div span:nth-child(2){font-size:12px!important;letter-spacing:.06em!important}
+  #bracket>div>div:nth-child(2)>div>div>div:nth-child(2)>div>div span:first-child{width:7px!important;height:7px!important}
+  #bracket>div>div:nth-child(2)>div>div:last-child>div:nth-child(2)>div{background:linear-gradient(145deg,rgba(255,38,56,.13),#111114 75%)!important;border:1px solid rgba(255,38,56,.4)!important;clip-path:none!important;min-height:210px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+  #bracket>div>div:nth-child(2)>div>div:last-child>div:nth-child(2)>div:before{content:"";position:absolute;inset:8px;border:1px solid rgba(255,255,255,.09);pointer-events:none}
+  #bracket>div>div:nth-child(2)>div>div:last-child>div:nth-child(2)>div>div:first-child{font-size:64px!important}
+  #bracket>div>div:nth-child(2)>div>div:last-child>div:nth-child(2)>div>div:nth-child(2){font-size:22px!important;letter-spacing:.02em}
+  #bracket>div>div:nth-child(2)>div>div:last-child>div:first-child{color:#ff5260!important}
+  @media(max-width:760px){
+    #bracket>div>div:nth-child(2){padding:10px!important;margin:0 -2px}
+    #bracket>div>div:nth-child(2)>div{min-width:780px!important;gap:14px!important}
+    #bracket>div>div:nth-child(2)>div>div{min-width:176px!important}
+    #bracket>div>div:nth-child(2)>div>div>div:nth-child(2)>div>div{padding:10px!important;min-height:44px!important}
+    #bracket button{flex:1;min-width:145px}
+  }
+  @media(prefers-reduced-motion:reduce){#bracket button,#bracket>div>div:nth-child(2)>div>div>div:nth-child(2)>div{transition:none!important}}
+
 </style>
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}">
