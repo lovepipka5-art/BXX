@@ -790,6 +790,57 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
     }
   }
 
+
+  /* Prevent the hero artwork area itself from clipping fighter renders */
+  #hero.arena-hero{overflow:hidden}
+  #hero .bx-fighters{
+    overflow:visible!important;
+    height:min(84vh,800px)!important;
+    min-height:560px!important;
+    top:47%!important;
+    right:clamp(-12px,1vw,20px)!important;
+    width:min(59vw,800px)!important;
+  }
+  #hero .bx-fighter{
+    overflow:visible!important;
+    height:100%!important;
+    bottom:0!important;
+    align-items:flex-end!important;
+  }
+  #hero .bx-fighter img{
+    display:block!important;
+    width:100%!important;
+    height:100%!important;
+    object-fit:contain!important;
+    object-position:center bottom!important;
+    padding:0!important;
+    top:0!important;
+    mask-image:none!important;
+    -webkit-mask-image:none!important;
+  }
+  #hero .bx-fighter-scorpion{width:68%!important;right:26%!important}
+  #hero .bx-fighter-subzero{width:62%!important;right:-1%!important}
+  @media(max-width:850px){
+    #hero .bx-fighters{
+      width:min(82vw,620px)!important;
+      height:500px!important;
+      min-height:0!important;
+      right:-4%!important;
+      bottom:6px!important;
+      top:auto!important;
+    }
+  }
+  @media(max-width:560px){
+    #hero .bx-fighters{
+      width:108vw!important;
+      height:420px!important;
+      min-height:0!important;
+      right:-18vw!important;
+      bottom:0!important;
+      top:auto!important;
+    }
+  }
+
 </style>
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}" class="{{ rootClass }}">
