@@ -70,6 +70,64 @@
   }
   @media(prefers-reduced-motion:reduce){#bracket button,#bracket>div>div:nth-child(2)>div>div>div:nth-child(2)>div{transition:none!important}}
 
+
+  /* MAJOR VISUAL PASS — broadcast-style tournament control room */
+  #bracket.bracket-section{position:relative;isolation:isolate;overflow:hidden;padding:clamp(64px,8vw,124px) 0!important;background:#070708!important}
+  #bracket.bracket-section:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 50% 45%,rgba(255,28,48,.12),transparent 42%),linear-gradient(115deg,transparent 0 49.8%,rgba(255,255,255,.025) 50%,transparent 50.2%),linear-gradient(180deg,#08080a,#111114 50%,#08080a)}
+  #bracket.bracket-section:after{content:"BX / 04";position:absolute;z-index:-1;right:-.03em;top:4%;font-family:'Russo One',sans-serif;font-size:clamp(100px,20vw,290px);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.055);white-space:nowrap;pointer-events:none}
+  #bracket .bracket-wrap{max-width:1660px!important}
+  #bracket .bracket-toolbar{position:relative;align-items:flex-end!important;padding-bottom:24px;margin-bottom:26px!important;border-bottom:1px solid rgba(255,255,255,.14)}
+  #bracket .bracket-toolbar:after{content:"";position:absolute;left:0;bottom:-1px;width:110px;height:2px;background:#ff2638;box-shadow:0 0 20px #ff263855}
+  #bracket .bracket-kicker{font-size:10px;letter-spacing:.24em;font-weight:700;color:#ff3647;margin-bottom:13px}
+  #bracket .bracket-kicker span{color:#777780}
+  #bracket h2{font-size:clamp(42px,6.4vw,86px)!important;line-height:.83!important;letter-spacing:-.055em!important;text-transform:uppercase}
+  #bracket p{margin-top:14px!important;font-size:11px!important;letter-spacing:.13em!important;color:#92929b!important;text-transform:uppercase}
+  #bracket p span{font-size:19px!important}
+  #bracket .bracket-toolbar>div:last-child{gap:10px!important}
+  #bracket button{position:relative;overflow:hidden;border-radius:0!important;clip-path:none!important;border:1px solid rgba(255,255,255,.19)!important;background:#151518!important;color:#f2f2f3!important;padding:15px 19px!important;font-size:10px!important;font-weight:700!important;letter-spacing:.13em!important;text-transform:uppercase;transition:transform .25s,border-color .25s,background .25s!important}
+  #bracket button:first-child{background:#ff2638!important;border-color:#ff2638!important;color:#fff!important}
+  #bracket button:hover{transform:translateY(-3px)!important;border-color:#ff2638!important;background:#241014!important;box-shadow:0 10px 28px #ff26381f}
+  #bracket .bracket-viewport{position:relative;padding:clamp(16px,2.3vw,30px)!important;border:1px solid rgba(255,255,255,.13);background:linear-gradient(130deg,rgba(255,255,255,.045),rgba(255,255,255,.008) 38%,rgba(255,38,56,.035));box-shadow:0 30px 100px #0008}
+  #bracket .bracket-viewport:before{content:"TOURNAMENT TREE / LIVE PREDICTION";position:absolute;top:0;left:0;padding:8px 12px;background:#ff2638;color:#fff;font-size:8px;font-weight:700;letter-spacing:.2em;z-index:2}
+  #bracket .bracket-board{gap:clamp(20px,3vw,48px)!important;min-width:1060px!important;padding-top:18px}
+  #bracket .bracket-round{min-width:205px!important;position:relative}
+  #bracket .bracket-round:not(:last-child):after{content:"";position:absolute;right:calc(clamp(20px,3vw,48px)*-.53);top:52%;height:1px;width:clamp(20px,3vw,48px);background:linear-gradient(90deg,#ff2638aa,#ffffff22);pointer-events:none}
+  #bracket .round-heading{display:flex;flex-direction:column;align-items:center;gap:10px!important;margin:0 0 20px!important;padding:18px 10px 13px!important;text-align:center!important;border-bottom:1px solid #ffffff19;color:#e8e8eb!important}
+  #bracket .round-heading span{font-size:12px;letter-spacing:.22em}
+  #bracket .round-heading i{display:block;width:26px;height:3px;background:#ff2638;box-shadow:0 0 14px #ff263855}
+  #bracket .champion-heading{color:#ff4a59!important}
+  #bracket .bracket-round>div:nth-child(2){gap:18px!important;justify-content:space-around!important}
+  #bracket .bracket-match{position:relative!important;background:#101013!important;border:1px solid #ffffff1c!important;clip-path:none!important;overflow:hidden!important;box-shadow:0 14px 30px #0006;transition:transform .28s,border-color .28s,box-shadow .28s!important}
+  #bracket .bracket-match:before{content:"MATCH";position:absolute;right:0;top:0;padding:4px 7px;background:#202024;color:#777780;font-size:7px;font-weight:700;letter-spacing:.16em;z-index:2;pointer-events:none}
+  #bracket .bracket-match:hover{transform:translateY(-3px);border-color:#ff26386b!important;box-shadow:0 20px 36px #0009,0 0 24px #ff26380b}
+  #bracket .bracket-match>div{position:relative;min-height:57px!important;padding:13px 12px!important;gap:10px!important;background:transparent!important;transition:background .22s,opacity .22s!important}
+  #bracket .bracket-match>div:hover{background:#ff263810!important}
+  #bracket .bracket-match>div:first-of-type{padding-top:19px!important}
+  #bracket .bracket-match>div span:first-child{width:7px!important;height:7px!important;transform:rotate(45deg);box-shadow:0 0 10px currentColor}
+  #bracket .bracket-match>div span:nth-child(2){font-size:12px!important;letter-spacing:.075em!important}
+  #bracket .bracket-match>div span:last-child{font-weight:800;text-shadow:0 0 14px #ff263855}
+  #bracket .bracket-match>div[style*="color-mix"]{background:linear-gradient(90deg,#ff26382c,transparent)!important}
+  #bracket .champion-round{min-width:225px!important}
+  #bracket .bracket-champion{min-height:300px!important;align-self:stretch;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative!important;overflow:hidden;background:radial-gradient(ellipse at 50% 28%,#ff263826,transparent 48%),linear-gradient(145deg,#1b1114,#0c0c0f 65%)!important;border:1px solid #ff263878!important;clip-path:none!important;box-shadow:0 20px 60px #0008,0 0 42px #ff26380c!important;padding:30px 18px!important}
+  #bracket .bracket-champion:before{content:"";position:absolute;inset:8px;border:1px solid #ffffff18;pointer-events:none}
+  #bracket .bracket-champion:after{content:"CHAMPION";position:absolute;top:0;left:0;right:0;padding:9px;background:#ff2638;color:#fff;font-size:9px;font-weight:800;letter-spacing:.28em;text-align:center}
+  #bracket .bracket-champion>div:first-child{font-size:clamp(66px,6vw,92px)!important;line-height:1!important;margin-top:22px;filter:drop-shadow(0 0 22px #ff263822)}
+  #bracket .bracket-champion>div:nth-child(2){font-size:clamp(20px,2vw,27px)!important;line-height:1!important;letter-spacing:-.02em}
+  #bracket .bracket-champion>div:nth-child(3){font-size:11px!important;letter-spacing:.12em;text-transform:uppercase}
+  #bracket .bracket-round:last-child:after{display:none}
+  @media(max-width:760px){
+    #bracket.bracket-section{padding:58px 0 70px!important}
+    #bracket .bracket-toolbar{align-items:flex-start!important}
+    #bracket .bracket-toolbar>div:last-child{width:100%}
+    #bracket button{flex:1;min-width:130px;padding:14px 10px!important;font-size:9px!important}
+    #bracket .bracket-viewport{margin:0 -5px;padding:14px 10px!important}
+    #bracket .bracket-board{min-width:1030px!important;gap:22px!important}
+    #bracket .bracket-round{min-width:190px!important}
+    #bracket .bracket-round:not(:last-child):after{right:-14px;width:12px}
+    #bracket .bracket-champion{min-height:270px!important}
+  }
+  @media(prefers-reduced-motion:reduce){#bracket .bracket-match,#bracket button{transition:none!important}}
+
 </style>
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}">
@@ -120,11 +178,11 @@
     </div>
   </header>
 
-  <section id="bracket" data-reveal style="{{ revealStyle }}">
-    <div style="max-width:1480px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
-      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:clamp(20px,2.6vw,32px)">
+  <section id="bracket" class="bracket-section" data-reveal style="{{ revealStyle }}">
+    <div class="bracket-wrap" style="max-width:1480px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
+      <div class="bracket-toolbar" style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:clamp(20px,2.6vw,32px)">
         <div>
-          <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,50px);line-height:.92;text-transform:uppercase">Твой прогноз</h2>
+          <div class="bracket-kicker">BX_ARENA <span> / PLAYOFF SYSTEM</span></div><h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,50px);line-height:.92;text-transform:uppercase">Твой прогноз</h2>
           <p style="font-size:13px;color:#83838d;margin-top:10px">Выбрано пар: <span style="font-family:'Russo One',sans-serif;color:var(--accent,#ff2130)">{{ pickedCount }}</span> из 7</p>
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:8px">
@@ -132,14 +190,14 @@
           <button style="{{ ghostBtn }}" onClick="{{ resetBracket }}">↺ Сбросить сетку</button>
         </div>
       </div>
-      <div style="overflow-x:auto;padding-bottom:10px">
-        <div style="display:flex;gap:clamp(16px,2.5vw,40px);align-items:stretch;min-width:820px">
+      <div class="bracket-viewport" style="overflow-x:auto;padding-bottom:10px">
+        <div class="bracket-board" style="display:flex;gap:clamp(16px,2.5vw,40px);align-items:stretch;min-width:820px">
           <sc-for list="{{ bracket.rounds }}" as="rd" hint-placeholder-count="3">
-            <div style="flex:1;min-width:190px;display:flex;flex-direction:column">
-              <div style="font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#83838d;text-align:center;margin-bottom:16px">{{ rd.title }}</div>
+            <div class="bracket-round" style="flex:1;min-width:190px;display:flex;flex-direction:column">
+              <div class="round-heading" style="font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#83838d;text-align:center;margin-bottom:16px"><span>{{ rd.title }}</span><i></i></div>
               <div style="flex:1;display:flex;flex-direction:column;justify-content:space-around;gap:14px">
                 <sc-for list="{{ rd.matches }}" as="mt" hint-placeholder-count="2">
-                  <div style="background:rgba(18,18,23,.12);backdrop-filter:blur(14px);border:1px solid #ffffff14;clip-path:polygon(0 0,100% 0,100% 100%,8px 100%,0 calc(100% - 8px))">
+                  <div class="bracket-match" style="background:rgba(18,18,23,.12);backdrop-filter:blur(14px);border:1px solid #ffffff14;clip-path:polygon(0 0,100% 0,100% 100%,8px 100%,0 calc(100% - 8px))">
                     <div style="{{ mt.a.style }}" onClick="{{ mt.a.onPick }}">
                       <span style="width:9px;height:9px;background:{{ mt.a.c }};transform:rotate(45deg);flex-shrink:0"></span>
                       <span style="flex:1;font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ mt.a.name }}</span>
@@ -156,10 +214,10 @@
               </div>
             </div>
           </sc-for>
-          <div style="flex:1;min-width:190px;display:flex;flex-direction:column">
-            <div style="font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#ff2130);text-align:center;margin-bottom:16px">Чемпион</div>
+          <div class="bracket-round champion-round" style="flex:1;min-width:190px;display:flex;flex-direction:column">
+            <div class="round-heading champion-heading" style="font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#ff2130);text-align:center;margin-bottom:16px"><span>Чемпион</span><i></i></div>
             <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
-              <div style="{{ champStyle }}">
+              <div class="bracket-champion" style="{{ champStyle }}">
                 <div style="font-family:'Russo One',sans-serif;font-size:52px;line-height:1;color:transparent;-webkit-text-stroke:2px {{ bracket.champion.c }}">{{ bracket.champion.glyph }}</div>
                 <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:24px;text-transform:uppercase;margin-top:12px">{{ bracket.champion.name }}</div>
                 <div style="font-size:14px;color:#83838d;margin-top:4px">{{ bracket.champion.tag }}</div>
