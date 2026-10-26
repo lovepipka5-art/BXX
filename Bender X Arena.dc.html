@@ -746,6 +746,50 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
     #hero .bx-fighter-subzero{width:61%!important;right:-5%!important}
   }
 
+
+  /* Use full roster renders and give them enough room to breathe */
+  #hero .bx-fighters{
+    height:min(78vh,760px)!important;
+    min-height:520px!important;
+    top:49%!important;
+    right:clamp(0px,2.5vw,42px)!important;
+    width:min(57vw,760px)!important;
+  }
+  #hero .bx-fighter{
+    height:100%!important;
+    overflow:visible!important;
+  }
+  #hero .bx-fighter img{
+    top:0!important;
+    height:100%!important;
+    padding-top:0!important;
+    object-fit:contain!important;
+    object-position:center bottom!important;
+    mask-image:linear-gradient(to bottom,#000 0%,#000 94%,transparent 100%)!important;
+  }
+  #hero .bx-fighter-scorpion{width:68%!important;right:25%!important}
+  #hero .bx-fighter-subzero{width:62%!important;right:-2%!important}
+  @media(max-width:850px){
+    #hero .bx-fighters{
+      width:min(78vw,600px)!important;
+      height:480px!important;
+      min-height:0!important;
+      right:-3%!important;
+      bottom:12px!important;
+      top:auto!important;
+    }
+  }
+  @media(max-width:560px){
+    #hero .bx-fighters{
+      width:105vw!important;
+      height:400px!important;
+      min-height:0!important;
+      right:-16vw!important;
+      bottom:0!important;
+      top:auto!important;
+    }
+  }
+
 </style>
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}" class="{{ rootClass }}">
@@ -824,8 +868,8 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
       </div>
     </div>
     <div class="bx-fighters" aria-label="Персонажи Mortal Kombat">
-      <div class="bx-fighter bx-fighter-scorpion"><img src="https://cdn-mk1.mortalkombat.com/roster/kameos/scorpion.webp" alt="Scorpion из Mortal Kombat" loading="eager"></div>
-      <div class="bx-fighter bx-fighter-subzero"><img src="https://cdn-mk1.mortalkombat.com/roster/kameos/sub-zero.webp" alt="Sub-Zero из Mortal Kombat" loading="eager"></div>
+      <div class="bx-fighter bx-fighter-scorpion"><img src="https://cdn-mk1.mortalkombat.com/roster/scorpion.webp" alt="Scorpion из Mortal Kombat" loading="eager"></div>
+      <div class="bx-fighter bx-fighter-subzero"><img src="https://cdn-mk1.mortalkombat.com/roster/sub-zero.webp" alt="Sub-Zero из Mortal Kombat" loading="eager"></div>
       <div class="bx-fighter-glow"></div><div class="bx-fighter-label"><i></i> FIGHT FOR GLORY</div>
     </div>
     <div class="hero-scroll" style="position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:14px;letter-spacing:.3em;text-transform:uppercase;color:#6b6b73">Листай ↓</div>
