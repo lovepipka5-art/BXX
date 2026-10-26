@@ -206,6 +206,16 @@
   @keyframes bgRotate{to{transform:rotate(360deg)}}
   @keyframes sparkFloat{0%,100%{transform:translate(0,0);opacity:.4}50%{transform:translate(14px,-26px);opacity:.85}}
 
+
+  /* Give the BX_ARENA hero wordmark deliberate breathing room */
+  #hero h1.hero-title{letter-spacing:.015em!important;word-spacing:.16em!important;line-height:.94!important}
+  #hero h1.hero-title>span{margin-right:.055em}
+  #hero h1.hero-title>span:last-child{margin-right:0}
+  @media(max-width:700px){
+    #hero h1.hero-title{font-size:clamp(48px,12.2vw,78px)!important;letter-spacing:.005em!important;word-spacing:.11em!important;line-height:1!important}
+    #hero h1.hero-title>span{margin-right:.025em}
+  }
+
   /* BX_ARENA motion system: crisp, cinematic, staggered, and reduced-motion aware */
   [data-reveal]{opacity:0;transform:translate3d(0,30px,0) scale(.985)!important;filter:blur(5px);transform-origin:50% 70%;transition:opacity .72s cubic-bezier(.22,1,.36,1),transform .82s cubic-bezier(.22,1,.36,1),filter .72s cubic-bezier(.22,1,.36,1)!important;will-change:opacity,transform,filter}
   [data-reveal].r-in{opacity:1;transform:translate3d(0,0,0) scale(1)!important;filter:blur(0)}
