@@ -16,7 +16,7 @@
 <title>BX_ARENA — Турниры, бойцы и стримы</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Russo+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Russo+One&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;color-scheme:dark}
@@ -208,6 +208,33 @@
 
 
 
+
+
+  /* BX_ARENA typography refresh: stronger weights, larger sizes, easier reading */
+  body{font-family:'Inter','Arial',sans-serif!important;font-size:17px!important;font-weight:500!important;line-height:1.65!important;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  h1,h2,h3,h4,.hero-title,nav>a:first-child span{font-family:'Russo One','Arial Black',sans-serif!important;font-weight:400!important}
+  p,li,label,input,select,textarea{font-weight:500!important}
+  nav a{font-size:14px!important;font-weight:700!important;letter-spacing:.045em!important}
+  #hero .hero-title{font-size:clamp(58px,9vw,124px)!important;line-height:1.02!important;letter-spacing:.005em!important}
+  #hero .hero-sub{font-size:clamp(13px,1.1vw,16px)!important;font-weight:700!important;letter-spacing:.12em!important}
+  #hero .hero-text{font-size:clamp(18px,1.5vw,21px)!important;font-weight:500!important;line-height:1.7!important;color:#e0e0e5!important}
+  .hero-cta .ih-btn{font-size:15px!important;font-weight:800!important;letter-spacing:.055em!important}
+  #news h2,#schedule h2,#bracket h2,#register h2{font-size:clamp(34px,4vw,54px)!important;line-height:1.1!important}
+  #news h3,#schedule h3,#bracket h3,#register h3{font-weight:800!important}
+  #news p,#schedule p,#bracket p,#register p{font-size:16px!important;line-height:1.65!important}
+  #news [data-stagger]>div>a,#schedule [data-stagger]>div>div{font-size:16px!important;font-weight:600!important}
+  #news small,#schedule small,#bracket small,#register small{font-size:13px!important;font-weight:600!important}
+  #register input,#register select,#register textarea{font-size:16px!important;font-weight:500!important;min-height:48px}
+  @media(max-width:700px){
+    body{font-size:16px!important;line-height:1.65!important}
+    nav a{font-size:13px!important}
+    #hero .hero-title{font-size:clamp(46px,11.5vw,76px)!important;line-height:1.08!important}
+    #hero .hero-sub{font-size:12px!important;letter-spacing:.07em!important}
+    #hero .hero-text{font-size:17px!important;line-height:1.65!important}
+    .hero-cta .ih-btn{font-size:15px!important;letter-spacing:.035em!important}
+    #news h2,#schedule h2,#bracket h2,#register h2{font-size:clamp(30px,8vw,40px)!important}
+    #news p,#schedule p,#bracket p,#register p{font-size:16px!important}
+  }
 
   /* BX_ARENA signature buttons: sharp, high-contrast, tactile */
   .hero-cta{gap:14px!important}
