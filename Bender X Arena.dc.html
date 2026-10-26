@@ -645,6 +645,80 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
 @media(max-width:560px){#hero.arena-hero{min-height:820px!important;padding:110px 20px 350px!important}#hero .hero-title{font-size:clamp(49px,11.5vw,68px)!important}#hero .hero-text{font-size:14px!important;max-width:330px!important}#hero .bx-fighters{width:100vw;height:365px;right:-18vw;bottom:0;opacity:.78}#hero .bx-fighter{width:66%}#hero .bx-fighter-scorpion{right:26%}#hero .bx-fighter-subzero{right:-5%}#hero .bx-fighter-label{right:18vw;bottom:12px;font-size:8px!important}#hero .hero-cta{gap:10px!important}#hero .hero-cta a{position:relative;z-index:5}}
 @media(prefers-reduced-motion:reduce){#hero .bx-fighter,#hero .bx-fighter-glow,#hero .bx-fighters:after,#hero .bx-fighter-label i{animation:none!important}}
 
+
+  /* BX_ARENA navigation refresh: larger type, cleaner rhythm, subtle glass */
+  nav{
+    min-height:76px!important;
+    height:auto!important;
+    padding:0 clamp(20px,4.5vw,68px)!important;
+    gap:clamp(16px,2vw,30px)!important;
+    background:rgba(7,7,10,.86)!important;
+    border-bottom:1px solid rgba(255,255,255,.12)!important;
+    box-shadow:0 12px 34px rgba(0,0,0,.16);
+    backdrop-filter:blur(22px) saturate(140%)!important;
+  }
+  nav>a:first-child{flex-shrink:0!important;gap:10px!important}
+  nav>a:first-child img{height:40px!important}
+  nav>a:first-child span{font-size:18px!important;letter-spacing:.045em!important}
+  nav>div:first-of-type{
+    gap:clamp(8px,1.1vw,18px)!important;
+    font-size:14px!important;
+    letter-spacing:.075em!important;
+    color:#d1d1d8!important;
+    padding:8px 0!important;
+  }
+  nav>div:first-of-type a{
+    position:relative!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    min-height:42px!important;
+    padding:0 4px!important;
+    font-weight:600!important;
+    transition:color .2s ease,transform .2s ease!important;
+  }
+  nav>div:first-of-type a:after{
+    content:"";position:absolute;left:4px;right:4px;bottom:2px;height:2px;
+    background:var(--accent,#ff2130);transform:scaleX(0);transform-origin:left;
+    transition:transform .22s ease;box-shadow:0 0 12px rgba(255,33,48,.45);
+  }
+  nav>div:first-of-type a:hover{color:#fff!important;transform:translateY(-1px)}
+  nav>div:first-of-type a:hover:after{transform:scaleX(1)}
+  nav>div:first-of-type a[style*="color:var(--accent"]{color:#fff!important}
+  nav>div:first-of-type a[style*="color:var(--accent"]:after{transform:scaleX(1)}
+  nav>div:nth-of-type(2){flex-shrink:0!important}
+  nav>div:nth-of-type(2)>a{
+    display:inline-flex!important;align-items:center!important;justify-content:center!important;
+    min-height:46px!important;padding:0 22px!important;font-size:14px!important;
+    letter-spacing:.09em!important;border:1px solid rgba(255,33,48,.75)!important;
+    box-shadow:0 7px 22px rgba(255,33,48,.18);
+    transition:transform .2s ease,box-shadow .2s ease,filter .2s ease!important;
+  }
+  nav>div:nth-of-type(2)>a:hover{transform:translateY(-2px)!important;box-shadow:0 10px 28px rgba(255,33,48,.3)!important;filter:brightness(1.08)}
+  @media(max-width:1100px){
+    nav{gap:14px!important;padding-inline:18px!important}
+    nav>div:first-of-type{gap:10px!important;font-size:13px!important;letter-spacing:.035em!important}
+    nav>div:nth-of-type(2)>a{padding-inline:15px!important;font-size:13px!important}
+  }
+  @media(max-width:760px){
+    nav{min-height:66px!important;padding:7px 14px!important;gap:12px!important}
+    nav>a:first-child img{height:34px!important}
+    nav>a:first-child span{font-size:15px!important}
+    nav>div:first-of-type{gap:14px!important;font-size:13px!important;letter-spacing:.045em!important}
+    nav>div:first-of-type a{min-height:38px!important}
+    nav>div:nth-of-type(2)>a{min-height:40px!important;padding:0 13px!important;font-size:12px!important;letter-spacing:.045em!important}
+  }
+  @media(max-width:520px){
+    nav{min-height:62px!important;gap:10px!important;padding-inline:12px!important}
+    nav>a:first-child span{display:none!important}
+    nav>a:first-child img{height:32px!important}
+    nav>div:first-of-type{gap:13px!important;font-size:12px!important;flex:1!important}
+    nav>div:first-of-type a{min-height:36px!important}
+    nav>div:nth-of-type(2)>a{min-height:38px!important;padding:0 10px!important;font-size:11px!important}
+  }
+  @media(prefers-reduced-motion:reduce){
+    nav>div:first-of-type a,nav>div:first-of-type a:after,nav>div:nth-of-type(2)>a{transition:none!important}
+  }
+
 </style>
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}" class="{{ rootClass }}">
