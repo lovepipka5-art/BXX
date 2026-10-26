@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#08080a">
-<meta name="description" content="Bender X Arena — турнирная арена: бойцы, новости, расписание стримов, рейтинг игроков и турнирная сетка. Собери матч мечты и поборись за титул чемпиона.">
+<meta name="description" content="BX_ARENA — турнирная арена: бойцы, новости, расписание стримов, рейтинг игроков и турнирная сетка. Собери матч мечты и поборись за титул чемпиона.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Bender X Arena — Вход на арену">
+<meta property="og:title" content="BX_ARENA — Вход на арену">
 <meta property="og:description" content="16 бойцов. Один трон. Следи за турниром, расписанием стримов и рейтингом игроков Bender X Arena.">
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<title>Bender X Arena — Турниры, бойцы и стримы</title>
+<title>BX_ARENA — Турниры, бойцы и стримы</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Russo+One&display=swap" rel="stylesheet">
@@ -105,6 +105,47 @@
   @media(hover:none){
     .ih-btn{animation:none!important}
     #news [data-stagger]>div>a:hover{transform:none!important}
+  }
+
+
+  /* BX_ARENA cinematic combat landing page */
+  :root{--bx-ink:#08080b;--bx-panel:#17171e;--bx-edge:rgba(255,255,255,.13)}
+  body{background:#08080b!important}
+  nav{background:rgba(8,8,11,.92)!important;backdrop-filter:blur(18px);border-bottom:1px solid var(--bx-edge)!important}
+  nav>a:first-child span{font-family:'Russo One',sans-serif!important;letter-spacing:.02em!important}
+  #hero{min-height:clamp(680px,92svh,920px)!important;align-items:flex-start!important;text-align:left!important;padding:clamp(125px,15vh,175px) clamp(22px,7vw,112px) 90px!important;background:linear-gradient(90deg,rgba(8,8,11,.98) 0%,rgba(8,8,11,.91) 38%,rgba(8,8,11,.38) 72%,rgba(8,8,11,.18) 100%),radial-gradient(ellipse at 78% 34%,rgba(255,33,48,.16),transparent 42%)!important}
+  #hero:before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(135deg,transparent 0 58%,rgba(255,33,48,.13) 58.1%,transparent 58.8%),linear-gradient(180deg,transparent 72%,#08080b 100%)}
+  #hero:after{inset:7% 3% 8% 4%!important;border:1px solid rgba(255,255,255,.08)!important;background:linear-gradient(110deg,rgba(255,255,255,.025),transparent 55%,rgba(255,33,48,.035))!important;clip-path:polygon(0 0,100% 0,100% 84%,91% 100%,0 100%)}
+  #hero>div[style*="max-width:1240px"]{max-width:1160px!important;margin:0!important}
+  #hero h1{max-width:850px;text-align:left!important;font-size:clamp(60px,10vw,138px)!important;line-height:.82!important;letter-spacing:-.035em!important;margin:30px 0 22px!important;text-shadow:0 12px 44px #000!important}
+  #hero .hero-badge{justify-content:flex-start!important;letter-spacing:.24em!important;border:0!important;border-left:3px solid var(--accent,#ff2130)!important;background:rgba(255,255,255,.045)!important;padding:10px 15px!important}
+  #hero .hero-sub{justify-content:flex-start!important;letter-spacing:.22em!important}
+  #hero .hero-text{margin-left:0!important;max-width:560px!important;color:#c1c1ca!important;font-size:clamp(16px,1.5vw,20px)!important}
+  #hero .hero-cta{justify-content:flex-start!important}
+  #hero .hero-cta a{clip-path:none!important;border-radius:2px!important}
+  #hero .hero-cta a:first-child{box-shadow:0 10px 35px rgba(255,33,48,.2)!important}
+  #hero .hero-cta a.ghost{background:rgba(12,12,16,.7)!important}
+  #hero [style*="font-size:27vw"]{font-size:clamp(110px,21vw,300px)!important;-webkit-text-stroke:1px rgba(255,255,255,.07)!important}
+  #hero [style*="left:50%;top:72%"]{left:74%!important;top:55%!important;width:min(90vw,1120px)!important;opacity:.27!important;filter:contrast(1.18) saturate(1.1)!important}
+  #hero .hero-scroll{left:auto!important;right:clamp(22px,7vw,112px)!important;transform:none!important;color:#a0a0aa!important}
+  #news,#schedule,#bracket,#register{padding-top:clamp(64px,8vw,110px)!important;padding-bottom:clamp(64px,8vw,110px)!important}
+  #news,#schedule,#bracket{background:linear-gradient(180deg,#0b0b10,#111117 50%,#0a0a0e)!important}
+  #news h2,#schedule h2,#bracket h2,#register h2{letter-spacing:-.025em!important}
+  #news [data-stagger]>div>a{position:relative!important;min-height:230px!important;padding:26px!important;background:linear-gradient(145deg,#1a1a22,#101015)!important;border:0!important;border-left:3px solid var(--accent,#ff2130)!important;clip-path:polygon(0 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%)!important;transition:transform .28s,background .28s!important}
+  #news [data-stagger]>div>a:hover{transform:translateY(-6px)!important;background:linear-gradient(145deg,#25232b,#111116)!important}
+  #schedule [data-stagger]>div>div{background:linear-gradient(145deg,#1a1a22,#101015)!important;border:1px solid var(--bx-edge)!important;border-top:2px solid var(--accent,#ff2130)!important}
+  #register{background:radial-gradient(ellipse at 80% 20%,rgba(255,33,48,.1),transparent 40%),#0c0c11!important}
+  #register input,#register select,#register textarea{background:#14141b!important;border:1px solid rgba(255,255,255,.16)!important;color:#fff!important}
+  @media(max-width:700px){
+    #hero{min-height:780px!important;min-height:88svh!important;padding:120px 22px 90px!important;background:linear-gradient(90deg,rgba(8,8,11,.95),rgba(8,8,11,.66)),linear-gradient(180deg,transparent 65%,#08080b)!important}
+    #hero h1{font-size:clamp(52px,13vw,84px)!important;line-height:.9!important;margin:24px 0 18px!important}
+    #hero .hero-sub{font-size:11px!important;letter-spacing:.12em!important;gap:8px!important}
+    #hero .hero-text{font-size:16px!important}
+    #hero .hero-cta{align-items:stretch!important;flex-direction:column!important;width:min(100%,360px);gap:12px!important}
+    #hero .hero-cta a{width:100%;justify-content:center!important;padding:15px 18px!important;font-size:14px!important}
+    #hero [style*="left:50%;top:72%"]{left:65%!important;top:48%!important;width:130vw!important;opacity:.16!important}
+    #hero .hero-scroll{right:22px!important;font-size:10px!important}
+    #news [data-stagger]{grid-template-columns:minmax(0,1fr)!important}
   }
 
   @keyframes heroRise{from{opacity:0;transform:translateY(46px)}to{opacity:1;transform:translateY(0)}}
@@ -206,7 +247,7 @@
   <nav style="{{ navStyle }}">
     <a href="#hero" style="display:flex;align-items:center;gap:11px">
       <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="Bender X Arena" style="height:42px;width:auto;display:block;filter:drop-shadow(0 0 12px color-mix(in srgb,var(--accent,#ff2130) 55%, transparent))">
-      <span style="font-family:'Russo One',sans-serif;font-size:17px;letter-spacing:.06em;white-space:nowrap">BENDER<span style="color:var(--accent,#ff2130)"> X </span>ARENA</span>
+      <span style="font-family:'Russo One',sans-serif;font-size:17px;letter-spacing:.06em;white-space:nowrap">BX_ARENA</span>
     </a>
     <div style="display:flex;align-items:center;gap:26px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#c1c1c9">
       <a href="#hero" style="color:var(--accent,#ff2130);border-bottom:1px solid var(--accent,#ff2130);padding-bottom:2px;transition:color .2s,transform .2s cubic-bezier(.16,1,.3,1)">Главная</a>
