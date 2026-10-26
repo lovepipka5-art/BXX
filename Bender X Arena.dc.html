@@ -575,6 +575,27 @@ nav>div:nth-of-type(2)>a:hover{background:#ff3546!important;transform:translateY
 }
 @media(prefers-reduced-motion:reduce){#register *,#hero .hero-cta a,nav>div:nth-of-type(2)>a{animation:none!important;transition:none!important}}
 
+
+/* BX_ARENA registration layout correction — prevent hero/form collision */
+#register{box-sizing:border-box!important;width:100%!important;overflow:hidden!important}
+#register>div{box-sizing:border-box!important;width:100%!important;max-width:1440px!important;margin-inline:auto!important;padding-inline:clamp(18px,4vw,64px)!important}
+#register>div>div{display:block!important;width:100%!important;max-width:none!important;min-width:0!important;box-sizing:border-box!important;overflow:hidden!important}
+#register>div>div>div[style*="display:grid"]{display:grid!important;position:relative!important;width:100%!important;max-width:none!important;min-width:0!important;box-sizing:border-box!important;grid-column:auto!important;grid-template-columns:minmax(0,1fr) minmax(320px,430px)!important;gap:clamp(28px,5vw,72px)!important;align-items:center!important}
+#register>div>div>div[style*="display:grid"]>div:first-child{min-width:0!important;width:auto!important;max-width:100%!important}
+#register>div>div>div[style*="display:grid"]>div:first-child h2,#register h2{max-width:100%!important;overflow-wrap:normal!important;word-break:normal!important}
+#register>div>div>div[style*="display:grid"]>div[aria-live="polite"]{position:relative!important;z-index:2!important;width:100%!important;min-width:0!important;max-width:100%!important;box-sizing:border-box!important;margin:0!important;justify-self:stretch!important}
+#register [aria-live="polite"]>div[style*="display:flex;gap:10px"]{min-width:0!important}
+#register [aria-live="polite"]>div[style*="display:flex;gap:10px"] button{min-width:0!important;white-space:normal!important}
+@media(max-width:760px){
+ #register>div{padding-inline:18px!important}
+ #register>div>div>div[style*="display:grid"]{grid-template-columns:minmax(0,1fr)!important;gap:30px!important}
+ #register>div>div>div[style*="display:grid"]>div[aria-live="polite"]{max-width:520px!important;justify-self:start!important}
+}
+@media(max-width:460px){
+ #register>div{padding-inline:12px!important}
+ #register>div>div>div[style*="display:grid"]{padding:22px!important}
+}
+
 </style>
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}" class="{{ rootClass }}">
