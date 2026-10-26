@@ -618,6 +618,33 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
 @media(max-width:700px){#hero .hero-cta a[href="#register"],#hero .hero-cta a[href*="Расписание"]{min-height:56px!important;padding:0 20px!important;width:100%!important;justify-content:center!important}}
 @media(prefers-reduced-motion:reduce){#hero .hero-cta a[href*="Расписание"]:before,#hero .hero-cta a[href*="Расписание"]:after{animation:none!important}}
 
+
+/* BX_ARENA fighter showcase — cinematic right-side character animation */
+#hero.arena-hero{align-items:stretch!important;text-align:left!important;justify-content:center!important;min-height:min(900px,100svh)!important;padding:clamp(110px,10vw,165px) clamp(22px,6.5vw,112px) 92px!important}
+#hero.arena-hero>div[style*="max-width:1240px"]{max-width:1240px!important;margin:0 auto!important;pointer-events:none}
+#hero .hero-badge,#hero .hero-title,#hero .hero-sub,#hero .hero-text,#hero .hero-cta{position:relative;z-index:4;pointer-events:auto}
+#hero .hero-title{max-width:720px!important;font-size:clamp(58px,7.2vw,118px)!important;line-height:.88!important;text-align:left!important}
+#hero .hero-text{margin-left:0!important;margin-right:0!important;max-width:430px!important;text-align:left!important}
+#hero .hero-sub{justify-content:flex-start!important}#hero .hero-cta{justify-content:flex-start!important}
+#hero .bx-fighters{position:absolute;z-index:2;right:clamp(0px,4vw,70px);top:50%;transform:translateY(-43%);width:min(54vw,690px);height:min(72vh,680px);min-height:400px;pointer-events:none;isolation:isolate}
+#hero .bx-fighter{position:absolute;bottom:0;width:61%;height:100%;display:flex;align-items:flex-end;justify-content:center;filter:drop-shadow(0 18px 40px #000b);will-change:transform;animation:bxFighterFloat 5.4s ease-in-out infinite}
+#hero .bx-fighter img{width:100%;height:100%;object-fit:contain;object-position:center bottom;mix-blend-mode:screen;filter:drop-shadow(0 0 18px #ff263826);mask-image:linear-gradient(to bottom,#000 0%,#000 78%,transparent 100%)}
+#hero .bx-fighter-scorpion{right:28%;z-index:2;animation:bxScorpionEnter 1.2s cubic-bezier(.16,1,.3,1) both,bxFighterFloat 5.4s 1.2s ease-in-out infinite}
+#hero .bx-fighter-subzero{right:-1%;z-index:1;transform:scale(.88);opacity:.86;animation:bxSubzeroEnter 1.35s .12s cubic-bezier(.16,1,.3,1) both,bxFighterFloat 6.1s 1.45s ease-in-out infinite}
+#hero .bx-fighter span{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font:800 10px 'Inter',sans-serif;letter-spacing:.22em;color:#fff;text-shadow:0 2px 12px #000;white-space:nowrap}
+#hero .bx-fighter-glow{position:absolute;z-index:-1;right:10%;bottom:3%;width:70%;height:70%;border-radius:50%;background:radial-gradient(ellipse,#ff26382e 0%,#a80e1b12 42%,transparent 72%);filter:blur(24px);animation:bxArenaGlow 4s ease-in-out infinite}
+#hero .bx-fighter-label{position:absolute;right:0;bottom:12px;display:flex;align-items:center;gap:10px;color:#8d8d96;font:700 9px 'Inter',sans-serif;letter-spacing:.22em}
+#hero .bx-fighter-label i{width:7px;height:7px;border-radius:50%;background:#ff2638;box-shadow:0 0 12px #ff2638;animation:bxLivePulse 1.7s ease-in-out infinite}
+#hero .bx-fighters:after{content:"";position:absolute;right:9%;top:12%;width:65%;height:76%;border:1px solid #ff26381c;clip-path:polygon(20% 0,100% 0,80% 100%,0 100%);transform:rotate(7deg);animation:bxFrameBreath 6s ease-in-out infinite}
+@keyframes bxFighterFloat{0%,100%{translate:0 0}50%{translate:0 -13px}}
+@keyframes bxScorpionEnter{from{opacity:0;transform:translateX(70px) scale(.94);filter:blur(8px)}to{opacity:1;transform:translateX(0) scale(1);filter:blur(0)}}
+@keyframes bxSubzeroEnter{from{opacity:0;transform:translateX(90px) scale(.78);filter:blur(8px)}to{opacity:.86;transform:translateX(0) scale(.88);filter:blur(0)}}
+@keyframes bxArenaGlow{0%,100%{opacity:.6;scale:.94}50%{opacity:1;scale:1.08}}
+@keyframes bxFrameBreath{0%,100%{opacity:.45;transform:rotate(7deg) translateY(0)}50%{opacity:1;transform:rotate(5deg) translateY(-8px)}}
+@media(max-width:850px){#hero.arena-hero{padding-top:110px!important;min-height:850px!important}#hero .bx-fighters{right:-5%;top:auto;bottom:20px;transform:none;width:min(72vw,540px);height:440px;min-height:0;opacity:.78}#hero .hero-title{font-size:clamp(56px,9vw,86px)!important}#hero .hero-text{max-width:380px!important}#hero .hero-cta{position:relative;z-index:5}}
+@media(max-width:560px){#hero.arena-hero{min-height:820px!important;padding:110px 20px 350px!important}#hero .hero-title{font-size:clamp(49px,11.5vw,68px)!important}#hero .hero-text{font-size:14px!important;max-width:330px!important}#hero .bx-fighters{width:100vw;height:365px;right:-18vw;bottom:0;opacity:.78}#hero .bx-fighter{width:66%}#hero .bx-fighter-scorpion{right:26%}#hero .bx-fighter-subzero{right:-5%}#hero .bx-fighter-label{right:18vw;bottom:12px;font-size:8px!important}#hero .hero-cta{gap:10px!important}#hero .hero-cta a{position:relative;z-index:5}}
+@media(prefers-reduced-motion:reduce){#hero .bx-fighter,#hero .bx-fighter-glow,#hero .bx-fighters:after,#hero .bx-fighter-label i{animation:none!important}}
+
 </style>
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}" class="{{ rootClass }}">
@@ -694,6 +721,11 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
         <a href="#register" class="ih-btn" style="position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:12px;font-family:'Oswald',sans-serif;font-weight:700;font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:#0b0b0e;background:linear-gradient(135deg,var(--accent,#ff2130),#ff5a3c);padding:17px 34px;animation:ctaPulse 2.6s ease-in-out infinite;clip-path:polygon(0 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%);transition:transform .25s cubic-bezier(.16,1,.3,1),filter .25s" style-before="{{ shineStyle }}" style-hover="{{ ctaHover }}">Участвовать в турнире<svg class="ih-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0b0b0e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
         <a href="%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%81%D1%82%D1%80%D0%B8%D0%BC%D0%BE%D0%B2.dc.html" class="ih-btn ghost" style="position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:12px;font-family:'Oswald',sans-serif;font-weight:700;font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:#f4f4f5;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.22);padding:17px 34px;backdrop-filter:blur(8px);clip-path:polygon(0 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%);transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s,background .3s,box-shadow .3s"><svg class="ih-arrow" width="18" height="18" viewBox="0 0 24 24" fill="var(--accent,#ff2130)" style="flex-shrink:0"><path d="M8 5v14l11-7z"/></svg>Смотреть стрим</a>
       </div>
+    </div>
+    <div class="bx-fighters" aria-label="Персонажи Mortal Kombat">
+      <div class="bx-fighter bx-fighter-scorpion"><img src="https://cdn-mk1.mortalkombat.com/roster/kameos/scorpion.webp" alt="Scorpion из Mortal Kombat" loading="eager"><span>SCORPION</span></div>
+      <div class="bx-fighter bx-fighter-subzero"><img src="https://cdn-mk1.mortalkombat.com/roster/kameos/sub-zero.webp" alt="Sub-Zero из Mortal Kombat" loading="eager"><span>SUB-ZERO</span></div>
+      <div class="bx-fighter-glow"></div><div class="bx-fighter-label"><i></i> CHOOSE YOUR FIGHTER</div>
     </div>
     <div class="hero-scroll" style="position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:14px;letter-spacing:.3em;text-transform:uppercase;color:#6b6b73">Листай ↓</div>
   </section>
