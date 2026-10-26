@@ -205,6 +205,28 @@
   @keyframes logoFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(1.5deg)}}
   @keyframes bgRotate{to{transform:rotate(360deg)}}
   @keyframes sparkFloat{0%,100%{transform:translate(0,0);opacity:.4}50%{transform:translate(14px,-26px);opacity:.85}}
+
+  /* BX_ARENA motion system: crisp, cinematic, staggered, and reduced-motion aware */
+  [data-reveal]{opacity:0;transform:translate3d(0,30px,0) scale(.985)!important;filter:blur(5px);transform-origin:50% 70%;transition:opacity .72s cubic-bezier(.22,1,.36,1),transform .82s cubic-bezier(.22,1,.36,1),filter .72s cubic-bezier(.22,1,.36,1)!important;will-change:opacity,transform,filter}
+  [data-reveal].r-in{opacity:1;transform:translate3d(0,0,0) scale(1)!important;filter:blur(0)}
+  [data-stagger] [data-reveal]{transition-duration:.68s,.78s,.68s!important}
+  .hero-badge,.hero-title,.hero-sub,.hero-text,.hero-cta,.hero-scroll{animation-timing-function:cubic-bezier(.16,1,.3,1)!important}
+  .loaded .hero-badge{animation:bxFadeUp .65s .08s both!important}
+  .loaded .hero-title{animation:bxTitleIn .95s .16s both!important}
+  .loaded .hero-sub{animation:bxFadeUp .7s .34s both!important}
+  .loaded .hero-text{animation:bxFadeUp .72s .43s both!important}
+  .loaded .hero-cta{animation:bxFadeUp .72s .54s both!important}
+  .loaded .hero-scroll{animation:bxFadeOnly .8s .8s both!important}
+  @keyframes bxFadeUp{from{opacity:0;transform:translate3d(0,24px,0);filter:blur(7px)}to{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}}
+  @keyframes bxTitleIn{0%{opacity:0;transform:translate3d(0,34px,0) scale(.97);filter:blur(10px);letter-spacing:.025em}70%{opacity:1;filter:blur(0)}100%{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0);letter-spacing:-.035em}}
+  @keyframes bxFadeOnly{from{opacity:0}to{opacity:1}}
+  #news [data-stagger]>div>a,#schedule [data-stagger]>div>div{transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,background .35s,box-shadow .35s!important}
+  #news [data-stagger]>div>a:hover,#schedule [data-stagger]>div>div:hover{transform:translateY(-4px)!important;box-shadow:0 16px 38px rgba(0,0,0,.2)!important}
+  @media(prefers-reduced-motion:reduce){
+    [data-reveal], [data-reveal].r-in{opacity:1!important;transform:none!important;filter:none!important;transition:none!important;will-change:auto!important}
+    .loaded .hero-badge,.loaded .hero-title,.loaded .hero-sub,.loaded .hero-text,.loaded .hero-cta,.loaded .hero-scroll{animation:none!important;opacity:1!important;filter:none!important;transform:none!important}
+  }
+
 </style>
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}" class="{{ rootClass }}">
@@ -609,7 +631,7 @@ class Component extends DCLogic {
   }
   revealScan(){
     if(!this.root||!this._io) return;
-    this.root.querySelectorAll('[data-reveal]').forEach(el=>{ if(el.dataset.revealed) return; const r=el.getBoundingClientRect(); if(r.top<window.innerHeight*0.92 && r.bottom>0){ el.classList.add('r-in'); el.dataset.revealed='1'; this._io.unobserve(el); } else { this._io.observe(el); } });
+    this.root.querySelectorAll('[data-reveal]').forEach(el=>{ if(el.dataset.revealed) return; if(!el.dataset.motionDelay){ const group=el.closest('[data-stagger]'); if(group){ const items=Array.from(group.querySelectorAll('[data-reveal]')); const index=items.indexOf(el); el.style.transitionDelay=(Math.min(Math.max(index,0),6)*75)+'ms'; } else { el.style.transitionDelay='0ms'; } el.dataset.motionDelay='1'; } const r=el.getBoundingClientRect(); if(r.top<window.innerHeight*0.92 && r.bottom>0){ el.classList.add('r-in'); el.dataset.revealed='1'; this._io.unobserve(el); } else { this._io.observe(el); } });
   }
   tick(){ const c=Math.max(0,this.deadline-Date.now()); const pad=n=>String(n).padStart(2,'0'); this.setState({cd:{d:pad(Math.floor(c/86400000)),h:pad(Math.floor(c/3600000)%24),m:pad(Math.floor(c/60000)%60),s:pad(Math.floor(c/1000)%60)}}); }
   shuffle(){
