@@ -1300,6 +1300,52 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
       clip-path:none!important;will-change:auto!important;
     }
   }
+
+  /* Fix corrupted fighter artwork: replace the noisy raster with clean cinematic atmosphere */
+  #hero .bx-generated-fighters{
+    background:
+      radial-gradient(ellipse at 54% 48%,rgba(126,12,28,.24) 0%,rgba(70,8,18,.16) 26%,transparent 61%),
+      radial-gradient(ellipse at 70% 68%,rgba(220,24,45,.12) 0%,transparent 40%),
+      linear-gradient(110deg,transparent 0%,rgba(255,255,255,.018) 48%,transparent 100%)!important;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 13%,#000 83%,transparent 100%)!important;
+    mask-image:linear-gradient(90deg,transparent 0%,#000 13%,#000 83%,transparent 100%)!important;
+    filter:none!important;
+  }
+  #hero .bx-generated-fighters .bx-fighter-art{
+    display:none!important;
+    visibility:hidden!important;
+    opacity:0!important;
+    content:none!important;
+  }
+  #hero .bx-generated-fighters:before{
+    content:"FIGHT"!important;
+    position:absolute!important;inset:0!important;
+    display:flex!important;align-items:center!important;justify-content:center!important;
+    right:auto!important;top:auto!important;
+    font:700 clamp(88px,13vw,190px)/.8 'Oswald',sans-serif!important;
+    letter-spacing:.13em!important;
+    color:rgba(255,255,255,.035)!important;
+    -webkit-text-stroke:1px rgba(255,255,255,.045)!important;
+    text-shadow:0 0 55px rgba(229,27,43,.08)!important;
+    z-index:0!important;white-space:nowrap!important;
+  }
+  #hero .bx-generated-fighters:after{
+    content:""!important;display:block!important;position:absolute!important;inset:10% 5%!important;
+    border:1px solid rgba(229,27,43,.11)!important;
+    clip-path:polygon(8% 0,100% 0,100% 78%,84% 100%,0 100%,0 18%)!important;
+    background:
+      linear-gradient(115deg,transparent 0 48%,rgba(229,27,43,.07) 48.2%,transparent 48.8%),
+      repeating-linear-gradient(0deg,transparent 0 35px,rgba(255,255,255,.018) 36px,transparent 37px)!important;
+    pointer-events:none!important;z-index:1!important;
+  }
+  #hero .bx-generated-fighters .bx-fighter-glow{display:none!important}
+  @media(max-width:850px){
+    #hero .bx-generated-fighters{
+      -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 70%,transparent 100%)!important;
+      mask-image:linear-gradient(180deg,#000 0%,#000 70%,transparent 100%)!important;
+    }
+    #hero .bx-generated-fighters:before{font-size:clamp(70px,18vw,130px)!important}
+  }
 </style>
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}" class="{{ rootClass }}">
