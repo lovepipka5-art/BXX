@@ -1346,6 +1346,50 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
     }
     #hero .bx-generated-fighters:before{font-size:clamp(70px,18vw,130px)!important}
   }
+
+  /* Restore visible transparent fighter artwork with clean vector asset */
+  #hero .bx-generated-fighters{
+    display:block!important;visibility:visible!important;opacity:1!important;
+    width:min(66vw,880px)!important;aspect-ratio:900/620!important;
+    right:clamp(-30px,0vw,18px)!important;top:52%!important;bottom:auto!important;
+    transform:translateY(-44%)!important;overflow:visible!important;
+    background:radial-gradient(ellipse at 48% 53%,rgba(167,13,32,.23),transparent 67%)!important;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 7%,#000 93%,transparent 100%)!important;
+    mask-image:linear-gradient(90deg,transparent 0%,#000 7%,#000 93%,transparent 100%)!important;
+  }
+  #hero .bx-generated-fighters .bx-fighter-art{
+    display:block!important;visibility:visible!important;opacity:1!important;content:normal!important;
+    position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+    object-fit:contain!important;object-position:center!important;z-index:2!important;
+    filter:drop-shadow(0 22px 30px rgba(0,0,0,.78)) drop-shadow(0 0 24px rgba(185,13,34,.16))!important;
+    -webkit-mask-image:none!important;mask-image:none!important;
+  }
+  #hero .bx-generated-fighters:before{
+    content:""!important;display:none!important;
+  }
+  #hero .bx-generated-fighters:after{
+    content:""!important;display:block!important;position:absolute!important;inset:12% 5%!important;z-index:0!important;
+    border:1px solid rgba(229,27,43,.12)!important;pointer-events:none!important;
+    background:radial-gradient(ellipse at 50% 60%,rgba(229,27,43,.1),transparent 65%)!important;
+  }
+  #hero .bx-generated-fighters .bx-fighter-glow{
+    display:block!important;position:absolute!important;z-index:0!important;right:6%!important;bottom:8%!important;
+    width:82%!important;height:55%!important;
+    background:radial-gradient(ellipse,rgba(180,14,30,.24),rgba(255,255,255,.025) 40%,transparent 72%)!important;
+  }
+  #hero .bx-generated-fighters .bx-fighter-label{display:none!important}
+  @media(max-width:850px){
+    #hero .bx-generated-fighters{
+      display:block!important;width:min(94vw,700px)!important;aspect-ratio:900/620!important;
+      right:-7vw!important;top:auto!important;bottom:8px!important;transform:none!important;opacity:.96!important;
+      -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 84%,transparent 100%)!important;
+      mask-image:linear-gradient(180deg,#000 0%,#000 84%,transparent 100%)!important;
+    }
+    #hero .bx-generated-fighters .bx-fighter-art{object-fit:contain!important}
+  }
+  @media(max-width:560px){
+    #hero .bx-generated-fighters{width:112vw!important;right:-17vw!important;bottom:4px!important}
+  }
 </style>
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}" class="{{ rootClass }}">
@@ -1424,7 +1468,7 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
       </div>
     </div>
     <div class="bx-fighters bx-generated-fighters" aria-label="Сгенерированные бойцы арены">
-      <img class="bx-fighter-art" src="uploads/arena-fighters.svg?v=9c408fc" alt="Два бойца: воин огня с цепным копьём и ледяной воин" loading="eager" fetchpriority="high">
+      <img class="bx-fighter-art" src="uploads/arena-fighters-clean.svg" alt="Два бойца: воин огня с цепным копьём и ледяной воин" loading="eager" fetchpriority="high">
       <div class="bx-fighter-glow"></div><div class="bx-fighter-label"><i></i> FIGHT FOR GLORY</div>
     </div>
     <div class="hero-scroll" style="position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:14px;letter-spacing:.3em;text-transform:uppercase;color:#6b6b73">Листай ↓</div>
