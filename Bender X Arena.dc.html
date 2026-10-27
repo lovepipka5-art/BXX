@@ -1004,6 +1004,13 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
     #hero .bx-generated-fighters .bx-fighter-label{right:24%!important;bottom:3%!important;font-size:8px!important}
   }
 
+
+  /* Remove the distracting angled red outline behind the homepage fighters */
+  #hero .bx-fighters:after{display:none!important;content:none!important;animation:none!important;border:0!important}
+  #hero .bx-fighter-glow{background:radial-gradient(ellipse,rgba(255,255,255,.07) 0%,rgba(255,255,255,.025) 38%,transparent 72%)!important;animation:none!important}
+  #hero.arena-hero{background:linear-gradient(90deg,#070708 0%,#070708f2 38%,#070708a8 72%,#07070870 100%)!important}
+  #hero.arena-hero:before{background:repeating-linear-gradient(90deg,transparent 0 9.9%,#ffffff05 10%,transparent 10.1%),linear-gradient(180deg,transparent 62%,#070708 100%)!important}
+
 </style>
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}" class="{{ rootClass }}">
