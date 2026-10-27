@@ -16,7 +16,7 @@
 <title>BX_ARENA — Турниры, бойцы и стримы</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Russo+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&family=Russo+One&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;color-scheme:dark}
@@ -1078,6 +1078,172 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
   }
   @media(prefers-reduced-motion:reduce){
     #hero .hero-title,#hero .hero-title span,#hero .hero-cta a{animation:none!important;transition:none!important}
+  }
+
+
+  
+  /* DESUF-inspired direction: cinematic black, restrained crimson, steel highlights */
+  :root{
+    --accent:#e51b2b!important;
+    --bx-red:#e51b2b;
+    --arena-line:rgba(255,255,255,.13);
+    --arena-panel:rgba(12,12,15,.88);
+    --arena-muted:#a7a7ad;
+  }
+  html{background:#070708}
+  body{
+    background:
+      radial-gradient(ellipse at 50% 0%,rgba(111,13,23,.14),transparent 38%),
+      repeating-linear-gradient(115deg,rgba(255,255,255,.012) 0 1px,transparent 1px 5px),
+      #070708!important;
+  }
+  #hero.arena-hero{
+    min-height:min(900px,100svh)!important;
+    min-height:max(720px,100svh)!important;
+    align-items:stretch!important;
+    justify-content:center!important;
+    text-align:left!important;
+    padding:clamp(120px,15vh,170px) clamp(22px,6.2vw,100px) 100px!important;
+    background:
+      radial-gradient(ellipse at 76% 44%,rgba(166,15,31,.22),transparent 34%),
+      radial-gradient(ellipse at 88% 76%,rgba(255,255,255,.045),transparent 34%),
+      linear-gradient(110deg,#050506 0%,#09090c 48%,#100b0e 76%,#060607 100%)!important;
+    isolation:isolate!important;
+  }
+  #hero.arena-hero:before{
+    content:""!important;
+    position:absolute!important;inset:0!important;z-index:0!important;pointer-events:none!important;
+    background:
+      repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 4px),
+      repeating-linear-gradient(90deg,transparent 0 79px,rgba(255,255,255,.025) 80px),
+      linear-gradient(90deg,#050506 0%,rgba(5,5,6,.92) 28%,rgba(5,5,6,.25) 68%,rgba(5,5,6,.12) 100%),
+      linear-gradient(180deg,rgba(0,0,0,.15) 0%,transparent 55%,#070708 100%)!important;
+    opacity:.72!important;
+    -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 70%,transparent 100%);
+    mask-image:linear-gradient(90deg,#000 0%,#000 70%,transparent 100%);
+  }
+  #hero.arena-hero:after{
+    display:block!important;content:""!important;position:absolute!important;inset:18px!important;z-index:0!important;
+    border:1px solid rgba(255,255,255,.055)!important;pointer-events:none!important;
+    clip-path:polygon(0 0,100% 0,100% 88%,94% 100%,0 100%)!important;
+    background:linear-gradient(135deg,rgba(255,255,255,.025),transparent 28%,rgba(229,27,43,.035))!important;
+  }
+  #hero>div[style*="max-width:1240px"]{
+    max-width:1240px!important;width:100%!important;margin:0 auto!important;
+    text-align:left!important;z-index:3!important;
+  }
+  #hero .hero-badge{
+    min-height:28px!important;padding:7px 11px!important;margin-bottom:8px!important;
+    border-left:3px solid var(--accent)!important;background:rgba(229,27,43,.08)!important;
+    color:#ff4654!important;letter-spacing:.25em!important;
+  }
+  #hero .hero-title{
+    max-width:760px!important;font-size:clamp(54px,8.1vw,116px)!important;
+    line-height:.88!important;letter-spacing:-.035em!important;margin:16px 0 16px!important;
+    text-align:left!important;text-wrap:balance!important;
+    text-shadow:0 12px 42px rgba(0,0,0,.85)!important;
+  }
+  #hero .hero-title span:first-child,#hero .hero-title span:last-child{color:#f1f1f2!important}
+  #hero .hero-title span:nth-child(2){
+    color:var(--accent)!important;
+    text-shadow:0 0 28px rgba(229,27,43,.22)!important;
+  }
+  #hero .hero-sub{justify-content:flex-start!important;text-align:left!important;color:#b6b6bd!important}
+  #hero .hero-text{
+    max-width:470px!important;margin:18px 0 0!important;color:#b0b0b8!important;
+    font-size:clamp(15px,1.3vw,18px)!important;line-height:1.65!important;
+  }
+  #hero .hero-cta{justify-content:flex-start!important;margin-top:30px!important;gap:12px!important}
+  #hero .hero-cta a:first-child{
+    background:linear-gradient(120deg,#d91628,#a80d1c)!important;color:#fff!important;
+    box-shadow:0 10px 35px rgba(180,10,27,.2)!important;
+  }
+  #hero .hero-cta a:first-child svg{stroke:#fff!important}
+  #hero .hero-cta a.ghost{
+    background:rgba(255,255,255,.025)!important;border-color:rgba(255,255,255,.24)!important;
+    color:#e9e9ec!important;backdrop-filter:blur(5px)!important;
+  }
+  #hero .hero-cta a.ghost svg{fill:#e51b2b!important}
+  #hero .bx-fighters,#hero .bx-generated-fighters{
+    display:block!important;position:absolute!important;z-index:1!important;
+    width:min(62vw,850px)!important;height:auto!important;aspect-ratio:540/304!important;
+    top:52%!important;right:clamp(-70px,0vw,10px)!important;bottom:auto!important;
+    transform:translateY(-45%)!important;opacity:.97!important;pointer-events:none!important;
+    overflow:visible!important;
+  }
+  #hero .bx-generated-fighters .bx-fighter-art{
+    display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+    object-fit:contain!important;object-position:center!important;mix-blend-mode:normal!important;
+    filter:drop-shadow(0 28px 38px rgba(0,0,0,.8)) saturate(.9) contrast(1.08)!important;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 12%,#000 88%,transparent 100%)!important;
+    mask-image:linear-gradient(90deg,transparent 0%,#000 12%,#000 88%,transparent 100%)!important;
+  }
+  #hero .bx-generated-fighters:before{
+    content:"ARENA"!important;position:absolute!important;right:2%!important;top:1%!important;
+    font:700 clamp(70px,10vw,150px)/.8 'Oswald',sans-serif!important;letter-spacing:.06em!important;
+    color:rgba(255,255,255,.045)!important;z-index:-1!important;white-space:nowrap!important;
+  }
+  #hero .bx-generated-fighters:after{content:""!important;display:block!important}
+  #hero .bx-generated-fighters .bx-fighter-glow{
+    display:block!important;z-index:-1!important;right:8%!important;bottom:0!important;
+    width:82%!important;height:60%!important;
+    background:radial-gradient(ellipse,rgba(180,14,30,.25),rgba(255,255,255,.035) 38%,transparent 72%)!important;
+  }
+  #hero .bx-generated-fighters .bx-fighter-label{
+    display:none!important;
+  }
+  #hero .hero-scroll{
+    left:clamp(22px,6.2vw,100px)!important;transform:none!important;
+    color:#77777f!important;letter-spacing:.22em!important;
+  }
+  .arena-ticker{
+    background:#a90f1e!important;color:#fff!important;
+    border-top:1px solid rgba(255,255,255,.12)!important;border-bottom:1px solid rgba(0,0,0,.8)!important;
+  }
+  .arena-stats{
+    background:linear-gradient(180deg,#09090b,#0d0d11 60%,#080809)!important;
+    border-bottom-color:rgba(255,255,255,.09)!important;
+  }
+  .arena-stats [style*="backdrop-filter"],
+  .arena-stats [style*="background:rgba(22,22,28"]{
+    backdrop-filter:none!important;
+  }
+  .arena-stats [style*="font-size:clamp(30px"]{
+    text-shadow:0 4px 24px rgba(255,255,255,.06)!important;
+  }
+  .ih-btn{transition:transform .22s ease,filter .22s ease,border-color .22s ease,box-shadow .22s ease!important}
+  .ih-btn:hover{filter:brightness(1.1)!important}
+  @media(max-width:850px){
+    #hero.arena-hero{
+      min-height:760px!important;min-height:100svh!important;
+      padding:120px 26px 330px!important;justify-content:flex-start!important;
+      background:
+        radial-gradient(ellipse at 70% 72%,rgba(166,15,31,.2),transparent 38%),
+        linear-gradient(180deg,#050506 0%,#09090c 62%,#070708 100%)!important;
+    }
+    #hero>div[style*="max-width:1240px"]{margin:0!important}
+    #hero .hero-title{font-size:clamp(52px,10.5vw,88px)!important;max-width:650px!important}
+    #hero .bx-fighters,#hero .bx-generated-fighters{
+      width:min(94vw,650px)!important;right:-8vw!important;top:auto!important;bottom:8px!important;
+      transform:none!important;opacity:.9!important;
+    }
+    #hero .bx-generated-fighters .bx-fighter-art{
+      -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 70%,transparent 100%)!important;
+      mask-image:linear-gradient(180deg,#000 0%,#000 70%,transparent 100%)!important;
+    }
+    #hero .hero-scroll{left:26px!important;bottom:18px!important}
+  }
+  @media(max-width:560px){
+    #hero.arena-hero{padding:112px 20px 290px!important;min-height:850px!important;min-height:100svh!important}
+    #hero .hero-title{font-size:clamp(46px,12vw,64px)!important;line-height:.93!important}
+    #hero .hero-text{max-width:340px!important}
+    #hero .hero-cta{align-items:stretch!important;max-width:360px!important}
+    #hero .hero-cta a{width:100%!important;justify-content:center!important;font-size:14px!important;padding:15px 18px!important}
+    #hero .bx-fighters,#hero .bx-generated-fighters{width:115vw!important;right:-19vw!important;bottom:6px!important}
+    #hero.arena-hero:after{inset:9px!important}
+  }
+  @media(prefers-reduced-motion:reduce){
+    #hero .bx-generated-fighters,#hero .bx-generated-fighters *{animation:none!important;transition:none!important}
   }
 
 </style>
