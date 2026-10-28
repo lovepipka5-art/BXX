@@ -1445,8 +1445,10 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
       <a href="%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D0%BD%D0%B0%D1%8F%20%D1%81%D0%B5%D1%82%D0%BA%D0%B0.dc.html" style="transition:color .2s,transform .2s cubic-bezier(.16,1,.3,1)">Сетка</a>
       <a href="%D0%9E%20%D0%B0%D1%80%D0%B5%D0%BD%D0%B5.dc.html" style="transition:color .2s,transform .2s cubic-bezier(.16,1,.3,1)">О арене</a>
     </div>
-    <div style="display:flex;align-items:center;gap:16px">
-      <a href="#register" style="position:relative;overflow:hidden;font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:var(--accent,#ff2130);padding:11px 20px;clip-path:polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))" style-before="{{ shineStyle }}">Регистрация</a>
+    <div class="bxx-nav-actions" style="display:flex;align-items:center;gap:10px">
+      <a href="#register" class="bxx-register-link" style="position:relative;overflow:hidden;font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:var(--accent,#ff2130);padding:11px 20px;clip-path:polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))" style-before="{{ shineStyle }}">Регистрация</a>
+      <button type="button" class="bxx-nav-icon" id="bxx-profile-open" aria-label="Профиль игрока" title="Профиль игрока"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c.5-4 3-6 7.5-6s7 2 7.5 6"/></svg></button>
+      <button type="button" class="bxx-nav-icon bxx-bell" id="bxx-notifications-open" aria-label="Уведомления" title="Уведомления"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg><span class="bxx-notif-dot" id="bxx-notif-dot" hidden></span></button>
     </div>
   </nav>
 
