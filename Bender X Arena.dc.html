@@ -1381,6 +1381,46 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
 
 
 
+
+  /* Cinematic BX logo entrance: drop-in, impact, then controlled idle motion */
+  #bxx-cinematic-intro>div[style*="padding:14vh 20px 0"]>div:first-child>div:nth-child(2){
+    opacity:1!important;
+    animation:bxxLogoEntrance 1.65s cubic-bezier(.16,1,.3,1) .12s both!important;
+    transform-origin:50% 55%!important;
+    will-change:transform,opacity,filter;
+  }
+  #bxx-cinematic-intro>div[style*="padding:14vh 20px 0"]>div:first-child>div:nth-child(2)>div{
+    animation:bxxLogoSettle 4.8s ease-in-out 1.85s infinite!important;
+    transform-origin:50% 50%!important;
+    will-change:transform;
+  }
+  #bxx-cinematic-intro>div[style*="padding:14vh 20px 0"]>div:first-child>div:nth-child(2) img{
+    animation:bxxLogoPower 3.6s ease-in-out 1.65s infinite!important;
+    will-change:filter;
+  }
+  @keyframes bxxLogoEntrance{
+    0%{opacity:0;transform:translate3d(0,58px,0) scale(.68) rotate(-7deg);filter:blur(13px) brightness(.45)}
+    48%{opacity:1;transform:translate3d(0,-7px,0) scale(1.045) rotate(1.2deg);filter:blur(0) brightness(1.35)}
+    68%{opacity:1;transform:translate3d(0,3px,0) scale(.985) rotate(-.35deg);filter:blur(0) brightness(1.08)}
+    84%{opacity:1;transform:translate3d(0,-1px,0) scale(1.008) rotate(0);filter:blur(0) brightness(1.16)}
+    100%{opacity:1;transform:translate3d(0,0,0) scale(1) rotate(0);filter:blur(0) brightness(1)}
+  }
+  @keyframes bxxLogoSettle{
+    0%,100%{transform:translate3d(0,0,0) rotate(0) scale(1)}
+    50%{transform:translate3d(0,-7px,0) rotate(.45deg) scale(1.008)}
+  }
+  @keyframes bxxLogoPower{
+    0%,100%{filter:brightness(1.03) drop-shadow(0 0 24px rgba(255,33,48,.48)) drop-shadow(0 0 62px rgba(255,33,48,.22))}
+    50%{filter:brightness(1.18) drop-shadow(0 0 34px rgba(255,33,48,.72)) drop-shadow(0 0 86px rgba(255,33,48,.34))}
+  }
+  @media(prefers-reduced-motion:reduce){
+    #bxx-cinematic-intro>div[style*="padding:14vh 20px 0"]>div:first-child>div:nth-child(2),
+    #bxx-cinematic-intro>div[style*="padding:14vh 20px 0"]>div:first-child>div:nth-child(2)>div,
+    #bxx-cinematic-intro>div[style*="padding:14vh 20px 0"]>div:first-child>div:nth-child(2) img{
+      animation:none!important;opacity:1!important;transform:none!important;filter:none!important;
+    }
+  }
+
   /* Intro background: remove the visible hard edge in the upper-right light falloff */
   #bxx-cinematic-intro>div[style*="radial-gradient(80% 75% at 50% 42%"]{
     background:
