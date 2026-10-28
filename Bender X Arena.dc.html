@@ -1297,6 +1297,26 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
   }
 
 
+
+  /* Replace the plain loading bar with a compact segmented arena signal */
+  #bxx-cinematic-intro [style*="width:min(300px,60vw)"]{
+    width:clamp(132px,17vw,184px)!important;height:10px!important;min-height:10px!important;
+    margin:5px auto 2px!important;padding:0!important;border:0!important;border-radius:0!important;
+    background:repeating-linear-gradient(90deg,rgba(255,35,55,.12) 0 13px,transparent 13px 19px)!important;
+    box-shadow:none!important;overflow:hidden!important;clip-path:polygon(0 0,100% 0,96% 100%,0 100%)!important;
+    animation:bxxArenaSignal 1.15s steps(1,end) infinite!important;
+  }
+  #bxx-cinematic-intro [style*="width:min(300px,60vw)"]>div{
+    display:none!important;opacity:0!important;animation:none!important;
+  }
+  @keyframes bxxArenaSignal{
+    0%,100%{background:repeating-linear-gradient(90deg,#ff263f 0 13px,transparent 13px 19px)!important;filter:drop-shadow(0 0 5px rgba(255,35,55,.35))}
+    20%{background:repeating-linear-gradient(90deg,#ff263f 0 13px,transparent 13px 19px)!important}
+    40%{background:repeating-linear-gradient(90deg,#ff263f 0 13px,transparent 13px 19px)!important;opacity:.8}
+    60%{background:repeating-linear-gradient(90deg,#ff263f 0 13px,transparent 13px 19px)!important;opacity:1}
+  }
+  @media(prefers-reduced-motion:reduce){#bxx-cinematic-intro [style*="width:min(300px,60vw)"]{animation:none!important}}
+
   /* BXX intro final composition: compact mark, visible status and progress */
   #bxx-cinematic-intro{box-sizing:border-box!important;overflow:hidden!important}
   #bxx-cinematic-intro>div[style*="padding:14vh 20px 0"]{
