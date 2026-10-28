@@ -1380,6 +1380,55 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
 
 
 
+
+  /* Intro background: remove the visible hard edge in the upper-right light falloff */
+  #bxx-cinematic-intro>div[style*="radial-gradient(80% 75% at 50% 42%"]{
+    background:
+      radial-gradient(ellipse 135% 125% at 51% 43%,
+        rgba(0,0,0,0) 20%,
+        rgba(0,0,0,.035) 43%,
+        rgba(0,0,0,.10) 61%,
+        rgba(0,0,0,.22) 77%,
+        rgba(0,0,0,.38) 91%,
+        rgba(0,0,0,.52) 100%)!important;
+    filter:blur(14px)!important;
+    transform:scale(1.035)!important;
+  }
+  #bxx-cinematic-intro>div[style*="background:rgba(0,0,0,.68)"]{
+    background:rgba(0,0,0,.30)!important;
+  }
+  /* Bring back the clean red light beam sliding across the loading line */
+  #bxx-cinematic-intro div[style*="height:8px"][style*="border-radius:2px"]{
+    width:clamp(180px,22vw,280px)!important;
+    height:7px!important;min-height:7px!important;
+    border:1px solid rgba(255,38,63,.72)!important;
+    border-radius:1px!important;
+    clip-path:none!important;
+    background:rgba(14,5,8,.82)!important;
+    box-shadow:0 0 10px rgba(255,35,55,.12)!important;
+    overflow:hidden!important;position:relative!important;
+  }
+  #bxx-cinematic-intro div[style*="height:8px"][style*="border-radius:2px"]::before{
+    content:""!important;position:absolute!important;inset:0 auto 0 0!important;
+    width:34%!important;height:100%!important;z-index:3!important;
+    background:linear-gradient(90deg,transparent 0%,rgba(255,35,55,.18) 20%,#ff263f 72%,#fff0f2 100%)!important;
+    box-shadow:0 0 9px rgba(255,35,55,.8),0 0 18px rgba(255,35,55,.38)!important;
+    transform:translateX(-115%)!important;
+    animation:bxxRedLightBeam 1.7s cubic-bezier(.45,0,.55,1) infinite!important;
+  }
+  #bxx-cinematic-intro div[style*="height:8px"][style*="border-radius:2px"]>div{
+    display:none!important;visibility:hidden!important;animation:none!important;
+  }
+  @keyframes bxxRedLightBeam{
+    0%{transform:translateX(-115%)!important;opacity:.15}
+    18%{opacity:1}
+    82%{opacity:1}
+    100%{transform:translateX(310%)!important;opacity:.15}
+  }
+  @media(prefers-reduced-motion:reduce){
+    #bxx-cinematic-intro div[style*="height:8px"][style*="border-radius:2px"]::before{animation:none!important;transform:translateX(90%)!important}
+  }
+
   /* Definitive intro loader override: target the actual inline-styled 8px bar */
   #bxx-cinematic-intro div[style*="height:8px"][style*="border-radius:2px"]{
     width:clamp(150px,20vw,210px)!important;
