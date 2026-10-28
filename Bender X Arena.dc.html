@@ -1285,6 +1285,17 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
     #bxx-cinematic-intro [style*="font-size:clamp(40px,8vw,88px)"]{font-size:clamp(26px,4vw,42px)!important}
   }
 
+
+  /* BXX desktop density: reproduce the intended 80% browser-zoom composition at normal zoom */
+  @media screen and (min-width: 1100px) {
+    html { zoom: .8; }
+  }
+  @supports not (zoom: .8) {
+    @media screen and (min-width: 1100px) {
+      body { transform: scale(.8); transform-origin: top left; width: 125%; }
+    }
+  }
+
   /* BXX ARENA // cinematic intro polish */
   #bxx-cinematic-intro{isolation:isolate!important;background-color:#030305!important}
   #bxx-cinematic-intro:before{
