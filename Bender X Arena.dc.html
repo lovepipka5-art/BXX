@@ -1759,11 +1759,11 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
     <div style="position:absolute;width:5px;height:5px;left:24%;top:66%;border-radius:50%;background:#ff7a3d;box-shadow:0 0 9px #ff7a3d;opacity:.55;animation:sparkFloat 10s .5s ease-in-out infinite;pointer-events:none"></div>
     <div style="position:absolute;inset:0;pointer-events:none;background:none!important;animation:none!important;opacity:0!important;display:none!important"></div>
     <div style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:14px;z-index:2;padding:14vh 20px 0;text-align:center">
-      <div style="position:relative;width:clamp(240px,34vw,420px);aspect-ratio:1;flex-shrink:0;transform:translateZ(0);transform-origin:center">
+      <div style="position:relative;width:clamp(320px,39vw,510px);aspect-ratio:1;flex-shrink:0;transform:translateZ(0);transform-origin:center">
         <div style="position:absolute;inset:-8%;border-radius:50%;background:radial-gradient(closest-side, color-mix(in srgb,var(--accent,#ff2130) 30%, transparent), transparent 70%);filter:blur(20px);opacity:.6;animation:bxxIntroHaloV2 3.2s ease-in-out 1.25s infinite;pointer-events:none"></div>
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;animation:bxxIntroLogoV2 1.65s cubic-bezier(.16,1,.3,1) .12s both;transform-origin:50% 55%;will-change:transform,opacity,filter">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;animation:bxxIntroLogoV2 1.85s cubic-bezier(.16,1,.3,1) .08s both;transform-origin:50% 55%;will-change:transform,opacity,filter">
           <div style="position:relative;width:92%;aspect-ratio:1;animation:bxxIntroFloatV2 5s ease-in-out 1.95s infinite;transform-origin:50% 50%;will-change:transform">
-            <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="" style="width:100%;height:auto;opacity:1;filter:brightness(1.05) drop-shadow(0 0 26px color-mix(in srgb,var(--accent,#ff2130) 58%, transparent)) drop-shadow(0 0 66px color-mix(in srgb,var(--accent,#ff2130) 30%, transparent));animation:bxxIntroGlowV2 3.6s ease-in-out 1.7s infinite;will-change:filter">
+            <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="" style="width:100%;height:auto;opacity:1;transform:scale(1.22);filter:brightness(1.08) drop-shadow(0 0 30px color-mix(in srgb,var(--accent,#ff2130) 62%, transparent)) drop-shadow(0 0 78px color-mix(in srgb,var(--accent,#ff2130) 34%, transparent));animation:bxxIntroGlowV2 3.6s ease-in-out 1.7s infinite;will-change:filter,transform">
           </div>
         </div>
       </div>
@@ -2355,11 +2355,11 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
 
 <style id="bxx-intro-motion-v2">
 @keyframes bxxIntroLogoV2{
-  0%{opacity:0;transform:translate3d(0,54px,0) scale(.72) rotate(-7deg);filter:blur(14px) brightness(.45)}
-  46%{opacity:1;transform:translate3d(0,-8px,0) scale(1.055) rotate(1.4deg);filter:blur(0) brightness(1.45)}
-  64%{opacity:1;transform:translate3d(0,4px,0) scale(.985) rotate(-.45deg);filter:blur(0) brightness(1.12)}
-  82%{opacity:1;transform:translate3d(0,-2px,0) scale(1.012) rotate(0);filter:blur(0) brightness(1.2)}
-  100%{opacity:1;transform:translate3d(0,0,0) scale(1) rotate(0);filter:blur(0) brightness(1)}
+  0%{opacity:0;transform:translate3d(0,76px,0) scale(.42) rotate(-12deg);filter:blur(18px) brightness(.25)}
+  34%{opacity:1;transform:translate3d(0,-14px,0) scale(1.09) rotate(2deg);filter:blur(0) brightness(1.8)}
+  49%{opacity:1;transform:translate3d(0,5px,0) scale(.97) rotate(-.8deg);filter:blur(0) brightness(1.3)}
+  66%{opacity:1;transform:translate3d(0,-3px,0) scale(1.025) rotate(.25deg);filter:blur(0) brightness(1.18)}
+  82%,100%{opacity:1;transform:translate3d(0,0,0) scale(1) rotate(0);filter:blur(0) brightness(1)}
 }
 @keyframes bxxIntroFloatV2{
   0%,100%{transform:translate3d(0,0,0) rotate(0) scale(1)}
@@ -2375,7 +2375,7 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
 }
 @media(max-width:620px){
   #bxx-cinematic-intro > div[style*="padding:14vh 20px 0"]{padding-top:10vh!important;gap:10px!important}
-  #bxx-cinematic-intro > div[style*="padding:14vh 20px 0"] > div:first-child{width:clamp(220px,64vw,320px)!important}
+  #bxx-cinematic-intro > div[style*="padding:14vh 20px 0"] > div:first-child{width:clamp(260px,78vw,390px)!important}
   #bxx-cinematic-intro > div[style*="padding:14vh 20px 0"] > div:nth-child(2){font-size:clamp(30px,8vw,48px)!important;margin-top:-18px!important}
 }
 @media(prefers-reduced-motion:reduce){
