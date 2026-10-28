@@ -1936,5 +1936,64 @@ class Component extends DCLogic {
 }
 </script>
 
+
+<style id="bxx-utility-ui-styles">
+nav .bxx-nav-icon{position:relative!important;flex:0 0 42px!important;width:42px!important;height:42px!important;min-width:42px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;padding:0!important;border:1px solid #493038!important;background:#111014!important;color:#f2edf0!important;cursor:pointer!important;box-sizing:border-box!important;line-height:1!important}
+nav .bxx-nav-icon svg{display:block!important;width:21px!important;height:21px!important;min-width:21px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important;overflow:visible!important}
+nav .bxx-nav-icon:hover,nav .bxx-nav-icon:focus-visible{background:#341019!important;border-color:#ff3048!important;color:#ff5366!important;outline:2px solid #ff304866!important;outline-offset:2px!important}
+nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!important;width:7px!important;height:7px!important;border-radius:50%!important;background:#ff3048!important;box-shadow:0 0 10px #ff3048!important}
+.bxx-util-panel{position:fixed;inset:0;z-index:10020;display:none;align-items:center;justify-content:center;padding:18px;background:#050507d9;backdrop-filter:blur(8px);color:#f6f3f5;font-family:Inter,Arial,sans-serif}
+.bxx-util-panel.open{display:flex}
+.bxx-util-card{width:min(520px,100%);max-height:85vh;overflow:auto;background:#101014;border:1px solid #493038;box-shadow:0 24px 80px #000b}
+.bxx-util-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px;border-bottom:1px solid #30242a}
+.bxx-util-head h2{font:700 22px 'Oswald',sans-serif;letter-spacing:.08em;margin:0}
+.bxx-util-close{width:36px;height:36px;border:1px solid #493038;background:#191318;color:#fff;font-size:22px;cursor:pointer}
+.bxx-util-body{padding:20px}
+.bxx-util-body label{display:grid;gap:7px;margin-bottom:13px;color:#bdb4ba;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.bxx-util-body input,.bxx-util-body select{width:100%;box-sizing:border-box;background:#08080b;border:1px solid #423039;color:#fff;padding:12px;min-height:44px;font:14px Inter,Arial,sans-serif}
+.bxx-util-button{border:1px solid #ff3048;background:#d81932;color:white;padding:12px 16px;font-weight:700;cursor:pointer}
+.bxx-util-secondary{border:1px solid #493038;background:#171318;color:#eee;padding:11px 14px;cursor:pointer}
+.bxx-util-muted{font-size:13px;line-height:1.6;color:#a99fa5}
+.bxx-util-item{padding:13px 0;border-bottom:1px solid #2c2329}
+@media(max-width:1050px){nav .bxx-nav-actions{gap:6px!important}nav .bxx-register-link{padding:10px 12px!important}nav .bxx-nav-icon{flex-basis:38px!important;width:38px!important;height:38px!important;min-width:38px!important}}
+@media(max-width:700px){nav .bxx-register-link{display:none!important}nav .bxx-nav-actions{gap:5px!important}nav .bxx-nav-icon{flex-basis:34px!important;width:34px!important;height:34px!important;min-width:34px!important}}
+</style>
+<div class="bxx-util-panel" id="bxx-profile-panel" aria-hidden="true"><section class="bxx-util-card" role="dialog" aria-modal="true" aria-labelledby="bxx-profile-title"><header class="bxx-util-head"><h2 id="bxx-profile-title">ПРОФИЛЬ БОЙЦА</h2><button class="bxx-util-close" data-bxx-close="bxx-profile-panel" aria-label="Закрыть">×</button></header><div class="bxx-util-body" id="bxx-profile-body"></div></section></div>
+<div class="bxx-util-panel" id="bxx-notifications-panel" aria-hidden="true"><section class="bxx-util-card" role="dialog" aria-modal="true" aria-labelledby="bxx-notifications-title"><header class="bxx-util-head"><h2 id="bxx-notifications-title">УВЕДОМЛЕНИЯ</h2><button class="bxx-util-close" data-bxx-close="bxx-notifications-panel" aria-label="Закрыть">×</button></header><div class="bxx-util-body" id="bxx-notifications-body"></div></section></div>
+<script id="bxx-utility-ui-script">
+(function(){
+ const $=id=>document.getElementById(id);
+ if(!$('bxx-profile-open')||!$('bxx-notifications-open'))return;
+ const safe=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const get=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(_){return d}};
+ const set=(k,v)=>{try{if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,JSON.stringify(v))}catch(_){}};
+ const profilePanel=$('bxx-profile-panel'), notifPanel=$('bxx-notifications-panel');
+ function openPanel(p){p.classList.add('open');p.setAttribute('aria-hidden','false')}
+ function closePanel(p){p.classList.remove('open');p.setAttribute('aria-hidden','true')}
+ function readProfile(){
+  const p=get('bxx_player_profile',null), body=$('bxx-profile-body');
+  body.innerHTML=p
+   ? '<div class="bxx-util-item"><div class="bxx-util-muted">ИГРОВОЙ НИК</div><strong style="font-size:24px;color:#ff5366">'+safe(p.nick)+'</strong></div><div class="bxx-util-item"><div class="bxx-util-muted">ПЛАТФОРМА</div>'+safe(p.platform)+'</div><p class="bxx-util-muted">Профиль сохранён в этом браузере. Для входа с других устройств понадобится серверный аккаунт.</p><button class="bxx-util-secondary" id="bxx-profile-edit">Изменить профиль</button> <button class="bxx-util-secondary" id="bxx-profile-clear">Удалить профиль</button>'
+   : '<p class="bxx-util-muted">Создай игровой профиль — ник и платформа сохранятся в этом браузере.</p><form id="bxx-profile-form"><label>Игровой ник<input name="nick" required minlength="2" maxlength="24" placeholder="BXX_Fighter"></label><label>Платформа<select name="platform"><option>PC</option><option>PlayStation</option><option>Xbox</option><option>Nintendo Switch</option></select></label><button class="bxx-util-button" type="submit">Сохранить профиль</button></form><p class="bxx-util-muted">Это локальный профиль без пароля, не общий аккаунт.</p>';
+  const f=$('bxx-profile-form');if(f)f.onsubmit=e=>{e.preventDefault();const d=new FormData(f);set('bxx_player_profile',{nick:d.get('nick').trim(),platform:d.get('platform')});readProfile()};
+  const edit=$('bxx-profile-edit');if(edit)edit.onclick=()=>{const p=get('bxx_player_profile',{});set('bxx_player_profile',null);readProfile();const f2=$('bxx-profile-form');f2.elements.nick.value=p.nick||'';f2.elements.platform.value=p.platform||'PC'};
+  const clear=$('bxx-profile-clear');if(clear)clear.onclick=()=>{set('bxx_player_profile',null);readProfile()};
+ }
+ function readNotifications(){
+  const items=get('bxx_local_notifications',[]), body=$('bxx-notifications-body');
+  if(!items.length){body.innerHTML='<div class="bxx-util-item"><strong>Добро пожаловать на BXX ARENA</strong><p class="bxx-util-muted">Здесь будут отображаться локальные объявления. Серверные уведомления и push ещё не подключены.</p></div><p class="bxx-util-muted">Пока нет новых уведомлений.</p>';return}
+  body.innerHTML=items.map(n=>'<div class="bxx-util-item"><strong>'+safe(n.title)+'</strong><p class="bxx-util-muted">'+safe(n.body)+'</p><small class="bxx-util-muted">'+safe(n.date)+'</small></div>').join('')+'<button class="bxx-util-secondary" id="bxx-notif-clear" style="margin-top:14px">Очистить уведомления</button>';
+  const c=$('bxx-notif-clear');if(c)c.onclick=()=>{set('bxx_local_notifications',[]);updateDot();readNotifications()};
+ }
+ function updateDot(){const items=get('bxx_local_notifications',[]);$('bxx-notif-dot').hidden=!items.length}
+ $('bxx-profile-open').addEventListener('click',()=>{readProfile();openPanel(profilePanel)});
+ $('bxx-notifications-open').addEventListener('click',()=>{readNotifications();openPanel(notifPanel)});
+ document.querySelectorAll('[data-bxx-close]').forEach(b=>b.addEventListener('click',()=>closePanel($(b.dataset.bxxClose))));
+ [profilePanel,notifPanel].forEach(p=>p.addEventListener('click',e=>{if(e.target===p)closePanel(p)}));
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')[profilePanel,notifPanel].forEach(closePanel)});
+ updateDot();
+})();
+</script>
+
 </body>
 </html>
