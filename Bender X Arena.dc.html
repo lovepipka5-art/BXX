@@ -1379,6 +1379,37 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
   }
 
 
+
+  /* Definitive intro loader override: target the actual inline-styled 8px bar */
+  #bxx-cinematic-intro div[style*="height:8px"][style*="border-radius:2px"]{
+    width:clamp(150px,20vw,210px)!important;
+    height:8px!important;min-height:8px!important;
+    border:0!important;border-radius:0!important;
+    box-shadow:none!important;clip-path:polygon(0 0,100% 0,97% 100%,0 100%)!important;
+    background:repeating-linear-gradient(90deg,#401018 0 8px,#12070a 8px 13px)!important;
+    overflow:hidden!important;position:relative!important;
+  }
+  #bxx-cinematic-intro div[style*="height:8px"][style*="border-radius:2px"]::before{
+    content:""!important;position:absolute!important;inset:0!important;z-index:2!important;
+    background:repeating-linear-gradient(90deg,#ff263f 0 8px,transparent 8px 13px)!important;
+    background-size:210px 100%!important;
+    transform:translateX(-100%)!important;
+    animation:bxxLoaderSweep 1.65s cubic-bezier(.65,0,.35,1) infinite!important;
+    box-shadow:0 0 12px rgba(255,35,55,.55)!important;
+  }
+  #bxx-cinematic-intro div[style*="height:8px"][style*="border-radius:2px"]>div{
+    display:none!important;visibility:hidden!important;animation:none!important;
+  }
+  @keyframes bxxLoaderSweep{
+    0%{transform:translateX(-100%)!important;opacity:.35}
+    20%{opacity:1}
+    75%{opacity:1}
+    100%{transform:translateX(100%)!important;opacity:.45}
+  }
+  @media(prefers-reduced-motion:reduce){
+    #bxx-cinematic-intro div[style*="height:8px"][style*="border-radius:2px"]::before{animation:none!important;transform:translateX(0)!important}
+  }
+
   /* BXX intro polish: cinematic logo motion and a smoother, seamless light field */
   #bxx-cinematic-intro>div[style*="background:rgba(0,0,0,.68)"]{
     background:rgba(0,0,0,.42)!important;
