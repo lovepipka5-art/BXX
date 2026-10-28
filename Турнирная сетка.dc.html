@@ -13,11 +13,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Russo+One&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;color-scheme:dark}
   body{background:#08080a;color:#f4f4f5;font-family:'Oswald',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   a:hover{color:var(--accent,#ff2130)}
   input,button{font-family:inherit}
+  button,a,input,select,textarea{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  :focus-visible{outline:2px solid var(--accent,#ff2130);outline-offset:3px}
+  nav a:hover{transform:translateY(-2px)}
   ::selection{background:#ff2130;color:#fff}
   ::-webkit-scrollbar{width:11px;height:11px}
   ::-webkit-scrollbar-track{background:#0c0c0f}
@@ -25,12 +28,147 @@
   ::-webkit-scrollbar-thumb:hover{background:var(--accent,#ff2130)}
   [data-reveal]{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
   [data-reveal].r-in{opacity:1;transform:none}
-  @media (prefers-reduced-motion:reduce){[data-reveal]{transition:none;opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  [data-reveal]{opacity:1!important;transform:none!important}
+}
   @keyframes heroRise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
   @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
   @keyframes shine{0%{left:-60%}60%,100%{left:130%}}
   @keyframes bgLogoPulse{0%,100%{opacity:.05}50%{opacity:.1}}
   @keyframes xBlink{0%,90%,100%{opacity:1;filter:none}92%{opacity:.28}94%{opacity:1;filter:drop-shadow(0 0 22px var(--accent,#ff2130))}96%{opacity:.42}98%{opacity:1;filter:drop-shadow(0 0 28px var(--accent,#ff2130))}}
+
+  /* Editorial tournament bracket: clear rounds, sharp match cards, champion spotlight */
+  #bracket{padding-top:clamp(52px,7vw,96px)!important;padding-bottom:clamp(60px,8vw,110px)!important;background:linear-gradient(180deg,#09090b,#101014 48%,#09090b)!important}
+  #bracket>div{max-width:1560px!important}
+  #bracket h2{font-size:clamp(34px,5vw,66px)!important;letter-spacing:-.04em!important;line-height:.92!important}
+  #bracket p{font-size:12px!important;letter-spacing:.08em!important;text-transform:uppercase}
+  #bracket p span{font-size:17px!important}
+  #bracket button{border-radius:0!important;clip-path:none!important;border:1px solid rgba(255,255,255,.18)!important;background:#141417!important;color:#ededf0!important;padding:12px 16px!important;font-size:11px!important;letter-spacing:.1em!important;transition:all .22s!important}
+  #bracket button:hover{border-color:#ff2638!important;color:#fff!important;transform:translateY(-2px);background:#1d1114!important}
+  #bracket>div>div:nth-child(2){border:1px solid rgba(255,255,255,.1);background:linear-gradient(135deg,rgba(255,255,255,.025),transparent 50%);padding:clamp(12px,2vw,24px)!important}
+  #bracket>div>div:nth-child(2)>div{scrollbar-width:thin;scrollbar-color:#ff2638 #111114}
+  #bracket>div>div:nth-child(2)>div>div{position:relative}
+  #bracket>div>div:nth-child(2)>div>div>div:first-child{font-size:11px!important;letter-spacing:.2em!important;color:#a8a8af!important;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.14);margin-bottom:18px!important}
+  #bracket>div>div:nth-child(2)>div>div>div:nth-child(2)>div{position:relative;background:#121215!important;border:1px solid rgba(255,255,255,.13)!important;clip-path:none!important;box-shadow:0 8px 20px rgba(0,0,0,.2);overflow:hidden;transition:border-color .2s,transform .2s}
+  #bracket>div>div:nth-child(2)>div>div>div:nth-child(2)>div:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:#ff2638;opacity:.55;pointer-events:none}
+  #bracket>div>div:nth-child(2)>div>div>div:nth-child(2)>div>div{min-height:48px!important;padding:11px 12px!important;gap:10px!important;transition:background .2s,opacity .2s!important}
+  #bracket>div>div:nth-child(2)>div>div>div:nth-child(2)>div>div:hover{background:rgba(255,38,56,.09)!important}
+  #bracket>div>div:nth-child(2)>div>div>div:nth-child(2)>div>div span:nth-child(2){font-size:12px!important;letter-spacing:.06em!important}
+  #bracket>div>div:nth-child(2)>div>div>div:nth-child(2)>div>div span:first-child{width:7px!important;height:7px!important}
+  #bracket>div>div:nth-child(2)>div>div:last-child>div:nth-child(2)>div{background:linear-gradient(145deg,rgba(255,38,56,.13),#111114 75%)!important;border:1px solid rgba(255,38,56,.4)!important;clip-path:none!important;min-height:210px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+  #bracket>div>div:nth-child(2)>div>div:last-child>div:nth-child(2)>div:before{content:"";position:absolute;inset:8px;border:1px solid rgba(255,255,255,.09);pointer-events:none}
+  #bracket>div>div:nth-child(2)>div>div:last-child>div:nth-child(2)>div>div:first-child{font-size:64px!important}
+  #bracket>div>div:nth-child(2)>div>div:last-child>div:nth-child(2)>div>div:nth-child(2){font-size:22px!important;letter-spacing:.02em}
+  #bracket>div>div:nth-child(2)>div>div:last-child>div:first-child{color:#ff5260!important}
+  @media(max-width:760px){
+    #bracket>div>div:nth-child(2){padding:10px!important;margin:0 -2px}
+    #bracket>div>div:nth-child(2)>div{min-width:780px!important;gap:14px!important}
+    #bracket>div>div:nth-child(2)>div>div{min-width:176px!important}
+    #bracket>div>div:nth-child(2)>div>div>div:nth-child(2)>div>div{padding:10px!important;min-height:44px!important}
+    #bracket button{flex:1;min-width:145px}
+  }
+  @media(prefers-reduced-motion:reduce){#bracket button,#bracket>div>div:nth-child(2)>div>div>div:nth-child(2)>div{transition:none!important}}
+
+
+  /* MAJOR VISUAL PASS — broadcast-style tournament control room */
+  #bracket.bracket-section{position:relative;isolation:isolate;overflow:hidden;padding:clamp(64px,8vw,124px) 0!important;background:#070708!important}
+  #bracket.bracket-section:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 50% 45%,rgba(255,28,48,.12),transparent 42%),linear-gradient(115deg,transparent 0 49.8%,rgba(255,255,255,.025) 50%,transparent 50.2%),linear-gradient(180deg,#08080a,#111114 50%,#08080a)}
+  #bracket.bracket-section:after{content:"BX / 04";position:absolute;z-index:-1;right:-.03em;top:4%;font-family:'Russo One',sans-serif;font-size:clamp(100px,20vw,290px);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.055);white-space:nowrap;pointer-events:none}
+  #bracket .bracket-wrap{max-width:1660px!important}
+  #bracket .bracket-toolbar{position:relative;align-items:flex-end!important;padding-bottom:24px;margin-bottom:26px!important;border-bottom:1px solid rgba(255,255,255,.14)}
+  #bracket .bracket-toolbar:after{content:"";position:absolute;left:0;bottom:-1px;width:110px;height:2px;background:#ff2638;box-shadow:0 0 20px #ff263855}
+  #bracket .bracket-kicker{font-size:10px;letter-spacing:.24em;font-weight:700;color:#ff3647;margin-bottom:13px}
+  #bracket .bracket-kicker span{color:#777780}
+  #bracket h2{font-size:clamp(42px,6.4vw,86px)!important;line-height:.83!important;letter-spacing:-.055em!important;text-transform:uppercase}
+  #bracket p{margin-top:14px!important;font-size:11px!important;letter-spacing:.13em!important;color:#92929b!important;text-transform:uppercase}
+  #bracket p span{font-size:19px!important}
+  #bracket .bracket-toolbar>div:last-child{gap:10px!important}
+  #bracket button{position:relative;overflow:hidden;border-radius:0!important;clip-path:none!important;border:1px solid rgba(255,255,255,.19)!important;background:#151518!important;color:#f2f2f3!important;padding:15px 19px!important;font-size:10px!important;font-weight:700!important;letter-spacing:.13em!important;text-transform:uppercase;transition:transform .25s,border-color .25s,background .25s!important}
+  #bracket button:first-child{background:#ff2638!important;border-color:#ff2638!important;color:#fff!important}
+  #bracket button:hover{transform:translateY(-3px)!important;border-color:#ff2638!important;background:#241014!important;box-shadow:0 10px 28px #ff26381f}
+  #bracket .bracket-viewport{position:relative;padding:clamp(16px,2.3vw,30px)!important;border:1px solid rgba(255,255,255,.13);background:linear-gradient(130deg,rgba(255,255,255,.045),rgba(255,255,255,.008) 38%,rgba(255,38,56,.035));box-shadow:0 30px 100px #0008}
+  #bracket .bracket-viewport:before{content:"TOURNAMENT TREE / LIVE PREDICTION";position:absolute;top:0;left:0;padding:8px 12px;background:#ff2638;color:#fff;font-size:8px;font-weight:700;letter-spacing:.2em;z-index:2}
+  #bracket .bracket-board{gap:clamp(20px,3vw,48px)!important;min-width:1060px!important;padding-top:18px}
+  #bracket .bracket-round{min-width:205px!important;position:relative}
+  #bracket .bracket-round:not(:last-child):after{content:"";position:absolute;right:calc(clamp(20px,3vw,48px)*-.53);top:52%;height:1px;width:clamp(20px,3vw,48px);background:linear-gradient(90deg,#ff2638aa,#ffffff22);pointer-events:none}
+  #bracket .round-heading{display:flex;flex-direction:column;align-items:center;gap:10px!important;margin:0 0 20px!important;padding:18px 10px 13px!important;text-align:center!important;border-bottom:1px solid #ffffff19;color:#e8e8eb!important}
+  #bracket .round-heading span{font-size:12px;letter-spacing:.22em}
+  #bracket .round-heading i{display:block;width:26px;height:3px;background:#ff2638;box-shadow:0 0 14px #ff263855}
+  #bracket .champion-heading{color:#ff4a59!important}
+  #bracket .bracket-round>div:nth-child(2){gap:18px!important;justify-content:space-around!important}
+  #bracket .bracket-match{position:relative!important;background:#101013!important;border:1px solid #ffffff1c!important;clip-path:none!important;overflow:hidden!important;box-shadow:0 14px 30px #0006;transition:transform .28s,border-color .28s,box-shadow .28s!important}
+  #bracket .bracket-match:before{content:"MATCH";position:absolute;right:0;top:0;padding:4px 7px;background:#202024;color:#777780;font-size:7px;font-weight:700;letter-spacing:.16em;z-index:2;pointer-events:none}
+  #bracket .bracket-match:hover{transform:translateY(-3px);border-color:#ff26386b!important;box-shadow:0 20px 36px #0009,0 0 24px #ff26380b}
+  #bracket .bracket-match>div{position:relative;min-height:57px!important;padding:13px 12px!important;gap:10px!important;background:transparent!important;transition:background .22s,opacity .22s!important}
+  #bracket .bracket-match>div:hover{background:#ff263810!important}
+  #bracket .bracket-match>div:first-of-type{padding-top:19px!important}
+  #bracket .bracket-match>div span:first-child{width:7px!important;height:7px!important;transform:rotate(45deg);box-shadow:0 0 10px currentColor}
+  #bracket .bracket-match>div span:nth-child(2){font-size:12px!important;letter-spacing:.075em!important}
+  #bracket .bracket-match>div span:last-child{font-weight:800;text-shadow:0 0 14px #ff263855}
+  #bracket .bracket-match>div[style*="color-mix"]{background:linear-gradient(90deg,#ff26382c,transparent)!important}
+  #bracket .champion-round{min-width:225px!important}
+  #bracket .bracket-champion{min-height:300px!important;align-self:stretch;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative!important;overflow:hidden;background:radial-gradient(ellipse at 50% 28%,#ff263826,transparent 48%),linear-gradient(145deg,#1b1114,#0c0c0f 65%)!important;border:1px solid #ff263878!important;clip-path:none!important;box-shadow:0 20px 60px #0008,0 0 42px #ff26380c!important;padding:30px 18px!important}
+  #bracket .bracket-champion:before{content:"";position:absolute;inset:8px;border:1px solid #ffffff18;pointer-events:none}
+  #bracket .bracket-champion:after{content:"CHAMPION";position:absolute;top:0;left:0;right:0;padding:9px;background:#ff2638;color:#fff;font-size:9px;font-weight:800;letter-spacing:.28em;text-align:center}
+  #bracket .bracket-champion>div:first-child{font-size:clamp(66px,6vw,92px)!important;line-height:1!important;margin-top:22px;filter:drop-shadow(0 0 22px #ff263822)}
+  #bracket .bracket-champion>div:nth-child(2){font-size:clamp(20px,2vw,27px)!important;line-height:1!important;letter-spacing:-.02em}
+  #bracket .bracket-champion>div:nth-child(3){font-size:11px!important;letter-spacing:.12em;text-transform:uppercase}
+  #bracket .bracket-round:last-child:after{display:none}
+  @media(max-width:760px){
+    #bracket.bracket-section{padding:58px 0 70px!important}
+    #bracket .bracket-toolbar{align-items:flex-start!important}
+    #bracket .bracket-toolbar>div:last-child{width:100%}
+    #bracket button{flex:1;min-width:130px;padding:14px 10px!important;font-size:9px!important}
+    #bracket .bracket-viewport{margin:0 -5px;padding:14px 10px!important}
+    #bracket .bracket-board{min-width:1030px!important;gap:22px!important}
+    #bracket .bracket-round{min-width:190px!important}
+    #bracket .bracket-round:not(:last-child):after{right:-14px;width:12px}
+    #bracket .bracket-champion{min-height:270px!important}
+  }
+  @media(prefers-reduced-motion:reduce){#bracket .bracket-match,#bracket button{transition:none!important}}
+
+
+  /* BX_ARENA PLAYOFF EXPERIENCE — editorial sports broadcast */
+  .bracket-hero{min-height:430px;background:radial-gradient(ellipse at 78% 48%,rgba(255,38,56,.13),transparent 32%),linear-gradient(90deg,#080809 0%,#080809 48%,rgba(8,8,9,.58) 100%)!important;padding:clamp(120px,14vh,164px) clamp(22px,6vw,92px) 56px!important}
+  .bracket-hero>div:last-child{max-width:1600px!important}
+  .bracket-hero h1{font-size:clamp(56px,9.2vw,132px)!important;letter-spacing:-.055em!important;line-height:.8!important;max-width:1000px;text-shadow:0 20px 70px #000!important}
+  .bracket-hero h1 span{color:#ff2638!important}
+  .bracket-hero p{max-width:470px!important;font-size:16px!important;line-height:1.65!important;color:#c0c0c6!important}
+  .bracket-hero>div>div[style*="display:flex;flex-wrap:wrap;align-items:stretch"]{gap:0!important;border-top:1px solid #ffffff1c;border-bottom:1px solid #ffffff1c;margin-top:34px!important;width:min(100%,800px)}
+  .bracket-hero>div>div[style*="display:flex;flex-wrap:wrap;align-items:stretch"]>div{padding:18px 24px 18px 0!important;margin-right:24px;border-right:1px solid #ffffff18}
+  .bracket-hero>div>div[style*="display:flex;flex-wrap:wrap;align-items:stretch"]>div:last-child{border:0}
+  .bracket-hero>div>div[style*="display:flex;flex-wrap:wrap;align-items:stretch"]>div>div:first-child{font-size:32px!important}
+  .bracket-hero>div>div[style*="display:flex;flex-wrap;align-items:stretch"]>div>div:last-child{font-size:10px!important;letter-spacing:.17em!important}
+  .bracket-hero img{right:0!important;width:min(42vw,640px)!important;opacity:.28!important;filter:grayscale(1) contrast(1.3)!important}
+  #bracket.bracket-section{padding:clamp(62px,8vw,116px) 0!important;background:#080809!important}
+  #bracket .bracket-toolbar h2{font-size:clamp(46px,6vw,76px)!important;letter-spacing:-.05em!important}
+  #bracket .bracket-viewport{border-color:#ffffff20!important;background:linear-gradient(145deg,#121215,#09090b 70%)!important;padding:clamp(18px,2.6vw,36px)!important}
+  #bracket .bracket-board{min-width:1180px!important;gap:38px!important}
+  #bracket .bracket-round{min-width:220px!important}
+  #bracket .round-heading{padding:20px 12px 16px!important;align-items:flex-start!important;text-align:left!important;border-bottom:1px solid #ffffff22!important}
+  #bracket .round-heading span{font-size:13px!important;letter-spacing:.2em!important}
+  #bracket .round-heading i{width:44px!important;height:2px!important}
+  #bracket .bracket-round:not(:last-child):after{right:-23px!important;width:20px!important;background:linear-gradient(90deg,#ff2638,#ffffff30)!important}
+  #bracket .bracket-match{background:linear-gradient(135deg,#1b1b20,#101013)!important;border:1px solid #ffffff20!important;box-shadow:0 16px 36px #0007!important}
+  #bracket .bracket-match:before{content:"FIGHT CARD"!important;background:#29292f!important;color:#b4b4bd!important}
+  #bracket .bracket-match>div{min-height:62px!important;padding:16px 14px!important}
+  #bracket .bracket-match>div:nth-child(2){border-top:1px solid #ffffff0d}
+  #bracket .bracket-match>div span:nth-child(2){font-size:13px!important;font-weight:700!important;letter-spacing:.035em!important}
+  #bracket .bracket-match>div[style*="color-mix"]{background:linear-gradient(90deg,#ff26382e,#ff263806)!important;box-shadow:inset 3px 0 #ff2638}
+  #bracket .bracket-champion{min-height:330px!important;background:radial-gradient(ellipse at 50% 35%,#ff26382c,transparent 46%),linear-gradient(150deg,#241116,#0c0c0f 72%)!important}
+  #bracket .bracket-champion>div:first-child{font-size:clamp(80px,7vw,110px)!important;color:#fff!important;text-shadow:0 0 40px #ff263833}
+  #bracket .bracket-champion>div:nth-child(2){font-size:clamp(23px,2.2vw,31px)!important}
+  @media(max-width:760px){
+    .bracket-hero{padding:112px 22px 40px!important;min-height:0!important}
+    .bracket-hero h1{font-size:clamp(48px,12vw,78px)!important;line-height:.9!important}
+    .bracket-hero p{font-size:14px!important}
+    .bracket-hero img{width:78vw!important;right:-18%!important;top:28%!important;opacity:.12!important}
+    .bracket-hero>div>div[style*="display:flex;flex-wrap:wrap;align-items:stretch"]>div{padding:14px 12px 14px 0!important;margin-right:12px!important}
+    #bracket .bracket-board{min-width:1120px!important;gap:26px!important}
+    #bracket .bracket-round{min-width:205px!important}
+  }
+
 </style>
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}">
@@ -45,25 +183,26 @@
       <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="Bender X Arena" style="height:40px;width:auto;display:block;filter:drop-shadow(0 0 12px color-mix(in srgb,var(--accent,#ff2130) 55%, transparent))">
       <span style="font-family:'Russo One',sans-serif;font-size:16px;letter-spacing:.05em;white-space:nowrap">BENDER<span style="color:var(--accent,#ff2130)"> X </span>ARENA</span>
     </a>
-    <div style="display:flex;align-items:center;gap:clamp(12px,1.8vw,26px);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#c1c1c9">
+    <div style="display:flex;align-items:center;gap:clamp(12px,1.8vw,26px);font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:#c1c1c9">
       <a href="Bender%20X%20Arena.dc.html#hero" style="transition:color .2s">Главная</a>
-      <a href="%D0%91%D0%BE%D0%B9%D1%86%D1%8B%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="transition:color .2s">Бойцы</a>
       <a href="%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%81%D1%82%D1%80%D0%B8%D0%BC%D0%BE%D0%B2.dc.html" style="transition:color .2s">Стримы</a>
+      <a href="%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="transition:color .2s">Новости</a>
+      <a href="%D0%91%D0%BE%D0%B9%D1%86%D1%8B%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="transition:color .2s">Бойцы</a>
       <a href="%D0%A2%D0%BE%D0%BF%20%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2.dc.html" style="transition:color .2s">Топ</a>
       <span style="color:var(--accent,#ff2130);border-bottom:1px solid var(--accent,#ff2130);padding-bottom:2px">Сетка</span>
-      <a href="%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="transition:color .2s">Новости</a>
+      <a href="%D0%9E%20%D0%B0%D1%80%D0%B5%D0%BD%D0%B5.dc.html" style="transition:color .2s">О арене</a>
     </div>
-    <a href="Bender%20X%20Arena.dc.html#register" style="position:relative;overflow:hidden;flex-shrink:0;font-family:'Oswald',sans-serif;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:var(--accent,#ff2130);padding:11px 20px;clip-path:polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))" style-before="{{ shineStyle }}">Регистрация</a>
+    <a href="Bender%20X%20Arena.dc.html#register" style="position:relative;overflow:hidden;flex-shrink:0;font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:var(--accent,#ff2130);padding:11px 20px;clip-path:polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))" style-before="{{ shineStyle }}">Регистрация</a>
   </nav>
 
-  <header style="position:relative;z-index:3;overflow:hidden;padding:clamp(112px,14vh,150px) clamp(18px,4vw,44px) clamp(30px,4vw,46px);border-bottom:1px solid #ffffff10">
+  <header class="bracket-hero" style="position:relative;z-index:3;overflow:hidden;padding:clamp(112px,14vh,150px) clamp(18px,4vw,44px) clamp(30px,4vw,46px);border-bottom:1px solid #ffffff10">
     <div ref="{{ ghostRef }}" style="position:absolute;inset:0;pointer-events:none;z-index:0">
       <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="" style="position:absolute;right:2%;top:46%;width:min(46vw,520px);height:auto;transform:translateY(-50%);animation:bgLogoPulse 8s ease-in-out infinite;mix-blend-mode:screen">
       <div style="position:absolute;left:-1%;bottom:-14%;font-family:'Russo One',sans-serif;font-size:17vw;line-height:.78;color:transparent;-webkit-text-stroke:1px #ffffff0a;white-space:nowrap">PLAYOFF</div>
     </div>
     <div style="position:relative;z-index:2;max-width:1480px;margin:0 auto">
-      <a href="Bender%20X%20Arena.dc.html#hero" style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#83838d;transition:color .2s;animation:heroRise .6s both">← На главную</a>
-      <div style="display:flex;align-items:center;gap:12px;margin-top:16px;font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent,#ff2130);animation:heroRise .6s .06s both">
+      <a href="Bender%20X%20Arena.dc.html#hero" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#83838d;transition:color .2s;animation:heroRise .6s both">← На главную</a>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:16px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent,#ff2130);animation:heroRise .6s .06s both">
         <span style="font-family:'Russo One',sans-serif;font-size:13px;color:#4a4a52">04</span>
         <span style="width:44px;height:1px;background:color-mix(in srgb,var(--accent,#ff2130) 60%, transparent)"></span>Плей-офф · топ-8
       </div>
@@ -73,18 +212,18 @@
         <sc-for list="{{ headStats }}" as="hs" hint-placeholder-count="4">
           <div style="{{ hs.style }}">
             <div style="font-family:'Russo One',sans-serif;font-size:clamp(19px,2.1vw,27px);line-height:1;color:{{ hs.color }}">{{ hs.v }}</div>
-            <div style="font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:#83838d;margin-top:6px">{{ hs.k }}</div>
+            <div style="font-size:14px;letter-spacing:.17em;text-transform:uppercase;color:#83838d;margin-top:6px">{{ hs.k }}</div>
           </div>
         </sc-for>
       </div>
     </div>
   </header>
 
-  <section id="bracket" data-reveal style="{{ revealStyle }}">
-    <div style="max-width:1480px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
-      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:clamp(20px,2.6vw,32px)">
+  <section id="bracket" class="bracket-section" data-reveal style="{{ revealStyle }}">
+    <div class="bracket-wrap" style="max-width:1480px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
+      <div class="bracket-toolbar" style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:clamp(20px,2.6vw,32px)">
         <div>
-          <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,50px);line-height:.92;text-transform:uppercase">Твой прогноз</h2>
+          <div class="bracket-kicker">BX_ARENA <span> / PLAYOFF SYSTEM</span></div><h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,50px);line-height:.92;text-transform:uppercase">Твой прогноз</h2>
           <p style="font-size:13px;color:#83838d;margin-top:10px">Выбрано пар: <span style="font-family:'Russo One',sans-serif;color:var(--accent,#ff2130)">{{ pickedCount }}</span> из 7</p>
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:8px">
@@ -92,37 +231,37 @@
           <button style="{{ ghostBtn }}" onClick="{{ resetBracket }}">↺ Сбросить сетку</button>
         </div>
       </div>
-      <div style="overflow-x:auto;padding-bottom:10px">
-        <div style="display:flex;gap:clamp(16px,2.5vw,40px);align-items:stretch;min-width:820px">
+      <div class="bracket-viewport" style="overflow-x:auto;padding-bottom:10px">
+        <div class="bracket-board" style="display:flex;gap:clamp(16px,2.5vw,40px);align-items:stretch;min-width:820px">
           <sc-for list="{{ bracket.rounds }}" as="rd" hint-placeholder-count="3">
-            <div style="flex:1;min-width:190px;display:flex;flex-direction:column">
-              <div style="font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#83838d;text-align:center;margin-bottom:16px">{{ rd.title }}</div>
+            <div class="bracket-round" style="flex:1;min-width:190px;display:flex;flex-direction:column">
+              <div class="round-heading" style="font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#83838d;text-align:center;margin-bottom:16px"><span>{{ rd.title }}</span><i></i></div>
               <div style="flex:1;display:flex;flex-direction:column;justify-content:space-around;gap:14px">
                 <sc-for list="{{ rd.matches }}" as="mt" hint-placeholder-count="2">
-                  <div style="background:#0d0d11;border:1px solid #ffffff14;clip-path:polygon(0 0,100% 0,100% 100%,8px 100%,0 calc(100% - 8px))">
+                  <div class="bracket-match" style="background:rgba(18,18,23,.12);backdrop-filter:blur(14px);border:1px solid #ffffff14;clip-path:polygon(0 0,100% 0,100% 100%,8px 100%,0 calc(100% - 8px))">
                     <div style="{{ mt.a.style }}" onClick="{{ mt.a.onPick }}">
                       <span style="width:9px;height:9px;background:{{ mt.a.c }};transform:rotate(45deg);flex-shrink:0"></span>
                       <span style="flex:1;font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ mt.a.name }}</span>
-                      <sc-if value="{{ mt.a.winner }}" hint-placeholder-val="{{ false }}"><span style="color:var(--accent,#ff2130);font-size:12px">✔</span></sc-if>
+                      <sc-if value="{{ mt.a.winner }}" hint-placeholder-val="{{ false }}"><span style="color:var(--accent,#ff2130);font-size:14px">✔</span></sc-if>
                     </div>
                     <div style="height:1px;background:#ffffff12"></div>
                     <div style="{{ mt.b.style }}" onClick="{{ mt.b.onPick }}">
                       <span style="width:9px;height:9px;background:{{ mt.b.c }};transform:rotate(45deg);flex-shrink:0"></span>
                       <span style="flex:1;font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ mt.b.name }}</span>
-                      <sc-if value="{{ mt.b.winner }}" hint-placeholder-val="{{ false }}"><span style="color:var(--accent,#ff2130);font-size:12px">✔</span></sc-if>
+                      <sc-if value="{{ mt.b.winner }}" hint-placeholder-val="{{ false }}"><span style="color:var(--accent,#ff2130);font-size:14px">✔</span></sc-if>
                     </div>
                   </div>
                 </sc-for>
               </div>
             </div>
           </sc-for>
-          <div style="flex:1;min-width:190px;display:flex;flex-direction:column">
-            <div style="font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#ff2130);text-align:center;margin-bottom:16px">Чемпион</div>
+          <div class="bracket-round champion-round" style="flex:1;min-width:190px;display:flex;flex-direction:column">
+            <div class="round-heading champion-heading" style="font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#ff2130);text-align:center;margin-bottom:16px"><span>Чемпион</span><i></i></div>
             <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
-              <div style="{{ champStyle }}">
+              <div class="bracket-champion" style="{{ champStyle }}">
                 <div style="font-family:'Russo One',sans-serif;font-size:52px;line-height:1;color:transparent;-webkit-text-stroke:2px {{ bracket.champion.c }}">{{ bracket.champion.glyph }}</div>
                 <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:24px;text-transform:uppercase;margin-top:12px">{{ bracket.champion.name }}</div>
-                <div style="font-size:12px;color:#83838d;margin-top:4px">{{ bracket.champion.tag }}</div>
+                <div style="font-size:14px;color:#83838d;margin-top:4px">{{ bracket.champion.tag }}</div>
               </div>
             </div>
           </div>
@@ -141,7 +280,7 @@
               <span style="font-family:'Russo One',sans-serif;font-size:13px;color:#4a4a52;width:22px;flex-shrink:0">{{ sd.n }}</span>
               <span style="width:9px;height:9px;background:{{ sd.c }};transform:rotate(45deg);flex-shrink:0"></span>
               <span style="flex:1;font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;text-transform:uppercase">{{ sd.name }}</span>
-              <span style="font-size:12px;color:#83838d">{{ sd.tag }}</span>
+              <span style="font-size:14px;color:#83838d">{{ sd.tag }}</span>
             </div>
           </sc-for>
         </div>
@@ -151,7 +290,7 @@
         <div style="display:flex;flex-direction:column;gap:10px;margin-top:18px">
           <sc-for list="{{ rules }}" as="rl" hint-placeholder-count="4">
             <div style="{{ rl.style }}">
-              <div style="font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#ff2130)">{{ rl.k }}</div>
+              <div style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#ff2130)">{{ rl.k }}</div>
               <div style="font-size:14px;font-weight:300;line-height:1.55;color:#a7a7b0;margin-top:6px">{{ rl.v }}</div>
             </div>
           </sc-for>
@@ -173,7 +312,7 @@
         <a href="%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="transition:color .2s">Новости</a>
       </div>
     </div>
-    <div style="max-width:1480px;margin:30px auto 0;padding-top:20px;border-top:1px solid #ffffff10;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:11px;color:#5f5f68">
+    <div style="max-width:1480px;margin:30px auto 0;padding-top:20px;border-top:1px solid #ffffff10;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:13px;color:#5f5f68">
       <span>© 2026 BENDER X ARENA. Все права защищены.</span>
       <span style="max-width:560px;text-align:right">Bender X Arena — оригинальный вымышленный проект. Не связан с Mortal Kombat / NetherRealm Studios и не использует их персонажей.</span>
     </div>
@@ -223,7 +362,7 @@ class Component extends DCLogic {
     const ps=Array.from({length:N},()=>this.mkP(W,H));
     const draw=()=>{ ctx.clearRect(0,0,W,H); for(const p of ps){ p.y-=p.vy; p.x+=p.vx; p.life--; if(p.y<-12||p.life<0) Object.assign(p,this.mkP(W,H,true)); const a=p.alpha*Math.min(1,p.life/60); ctx.beginPath(); ctx.fillStyle='rgba('+rgb+','+a+')'; ctx.shadowColor='rgba('+rgb+',.9)'; ctx.shadowBlur=p.r*4; ctx.arc(p.x,p.y,p.r,0,6.283); ctx.fill(); } ctx.shadowBlur=0; this._raf=requestAnimationFrame(draw); }; draw();
   }
-  onMove(e){ if(this.glow) this.glow.style.transform='translate('+(e.clientX-270)+'px,'+(e.clientY-270)+'px)'; const cx=e.clientX/window.innerWidth-.5, cy=e.clientY/window.innerHeight-.5; if(this.ghost) this.ghost.style.transform='translate('+(cx*-26)+'px,'+(cy*-12)+'px)'; }
+  onMove(e){ if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; if(this.glow) this.glow.style.transform='translate('+(e.clientX-270)+'px,'+(e.clientY-270)+'px)'; const cx=e.clientX/window.innerWidth-.5, cy=e.clientY/window.innerHeight-.5; if(this.ghost) this.ghost.style.transform='translate('+(cx*-26)+'px,'+(cy*-12)+'px)'; }
   onScroll(){ if(this._st) return; this._st=requestAnimationFrame(()=>{ this._st=null; const d=document.documentElement; const max=d.scrollHeight-window.innerHeight; if(this.bar) this.bar.style.width=(max>0?(window.scrollY/max*100):0)+'%'; const s=window.scrollY>28; if(s!==this.state.scrolled) this.setState({scrolled:s}); }); }
 
   setWinner(r,m,side){ this.setState(prev=>{ const W={...prev.winners}; W[r+'-'+m]=side; Object.keys(W).forEach(k=>{ if(+k.split('-')[0]>r) delete W[k]; }); return {winners:W}; }); }
@@ -248,9 +387,9 @@ class Component extends DCLogic {
     const statBox=(bd)=>({display:'flex',flexDirection:'column',paddingLeft:bd?'clamp(14px,2.4vw,30px)':0,borderLeft:bd?'1px solid #ffffff14':'none'});
     const headStats=[{k:'бойцов в плей-офф',v:'8',color:A},{k:'раунда на вылет',v:'3',color:'#f4f4f5'},{k:'матчей всего',v:'7',color:'#f4f4f5'},{k:'призовой фонд',v:'250K',color:'#f4f4f5'}].map((d,i)=>({k:d.k,v:d.v,color:d.color,style:statBox(i>0)}));
     const seedList=this.seeds.map((f,i)=>({n:String(i+1).padStart(2,'0'),name:f.name,tag:f.tag,c:f.c,
-      style:{display:'flex',alignItems:'center',gap:'12px',padding:'12px 15px',background:'#101015',border:'1px solid #ffffff12',clipPath:'polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))'}}));
+      style:{display:'flex',alignItems:'center',gap:'12px',padding:'12px 15px',background:'rgba(22,22,28,.12)',backdropFilter:'blur(14px)',border:'1px solid #ffffff12',clipPath:'polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))'}}));
     const ruleSrc=[['Формат','Single elimination: одно поражение — и боец выбывает из сетки.'],['Серии','Четвертьфиналы и полуфиналы — Bo5, гранд-финал — Bo7 на главной сцене.'],['Посев','Места 1–8 определяет рейтинг сезона: первый сеяный встречается с восьмым.'],['Замены','Дисквалификация или неявка засчитывает техническое поражение 0:3.']];
-    const rules=ruleSrc.map(r=>({k:r[0],v:r[1],style:{padding:'16px 18px',background:'#101015',border:'1px solid #ffffff12',clipPath:'polygon(0 0,100% 0,100% 100%,10px 100%,0 calc(100% - 10px))'}}));
+    const rules=ruleSrc.map(r=>({k:r[0],v:r[1],style:{padding:'16px 18px',background:'rgba(22,22,28,.12)',backdropFilter:'blur(14px)',border:'1px solid #ffffff12',clipPath:'polygon(0 0,100% 0,100% 100%,10px 100%,0 calc(100% - 10px))'}}));
     return {
       rootStyle:{'--accent':'#ff2130',position:'relative',minHeight:'100vh',background:'#08080a',overflowX:'hidden'},
       navStyle:{position:'fixed',top:'3px',left:0,right:0,zIndex:120,display:'flex',alignItems:'center',justifyContent:'space-between',gap:'clamp(12px,1.8vw,26px)',height:'60px',padding:'0 clamp(18px,4vw,44px)',background:S.scrolled?'rgba(8,8,10,.9)':'rgba(8,8,10,.1)',borderBottom:'1px solid '+(S.scrolled?'#ffffff14':'#ffffff00'),backdropFilter:'blur(12px)',transition:'background .3s,border-color .3s'},
@@ -259,8 +398,8 @@ class Component extends DCLogic {
       shineStyle:shine, headStats, seedList, rules, bracket,
       pickedCount:Object.keys(S.winners).length,
       resetBracket:()=>this.resetBracket(), autoFill:()=>this.autoFill(),
-      ghostBtn:{fontFamily:"'Oswald',sans-serif",fontWeight:600,fontSize:'12px',letterSpacing:'.12em',textTransform:'uppercase',padding:'11px 18px',cursor:'pointer',color:'#c9c9d0',background:'#0e0e12',border:'1px solid #ffffff1f',clipPath:'polygon(0 0,100% 0,100% 100%,7px 100%,0 calc(100% - 7px))',transition:'all .2s'},
-      champStyle:{textAlign:'center',padding:'26px 18px',background:bracket.champion.filled?'linear-gradient(180deg,color-mix(in srgb,var(--accent,#ff2130) 14%, #0d0d11),#0d0d11)':'#0d0d11',border:'1px solid '+(bracket.champion.filled?'color-mix(in srgb,var(--accent,#ff2130) 55%, transparent)':'#ffffff14'),clipPath:'polygon(0 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%)',transition:'all .4s'}
+      ghostBtn:{fontFamily:"'Oswald',sans-serif",fontWeight:600,fontSize:'14px',letterSpacing:'.12em',textTransform:'uppercase',padding:'11px 18px',cursor:'pointer',color:'#c9c9d0',background:'#0e0e12',border:'1px solid #ffffff1f',clipPath:'polygon(0 0,100% 0,100% 100%,7px 100%,0 calc(100% - 7px))',transition:'all .2s'},
+      champStyle:{textAlign:'center',padding:'26px 18px',background:bracket.champion.filled?'linear-gradient(180deg,color-mix(in srgb,var(--accent,#ff2130) 14%, rgba(18,18,23,.12)),rgba(18,18,23,.12))':'rgba(18,18,23,.12)',border:'1px solid '+(bracket.champion.filled?'color-mix(in srgb,var(--accent,#ff2130) 55%, transparent)':'#ffffff14'),clipPath:'polygon(0 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%)',transition:'all .4s'}
     };
   }
 }

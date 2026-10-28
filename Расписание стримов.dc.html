@@ -13,11 +13,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Russo+One&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;color-scheme:dark}
   body{background:#08080a;color:#f4f4f5;font-family:'Oswald',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   a:hover{color:var(--accent,#ff2130)}
   input,button{font-family:inherit}
+  button,a,input,select,textarea{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  :focus-visible{outline:2px solid var(--accent,#ff2130);outline-offset:3px}
+  nav a:hover{transform:translateY(-2px)}
   ::selection{background:#ff2130;color:#fff}
   ::-webkit-scrollbar{width:11px;height:11px}
   ::-webkit-scrollbar-track{background:#0c0c0f}
@@ -30,7 +33,10 @@
   [data-stagger]>[data-reveal]:nth-child(4){transition-delay:.2s}
   [data-stagger]>[data-reveal]:nth-child(5){transition-delay:.26s}
   [data-stagger]>[data-reveal]:nth-child(n+6){transition-delay:.3s}
-  @media (prefers-reduced-motion:reduce){[data-reveal]{transition:none;opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  [data-reveal]{opacity:1!important;transform:none!important}
+}
   @keyframes heroRise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
   @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
   @keyframes shine{0%{left:-60%}60%,100%{left:130%}}
@@ -52,15 +58,16 @@
       <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="Bender X Arena" style="height:40px;width:auto;display:block;filter:drop-shadow(0 0 12px color-mix(in srgb,var(--accent,#ff2130) 55%, transparent))">
       <span style="font-family:'Russo One',sans-serif;font-size:16px;letter-spacing:.05em;white-space:nowrap">BENDER<span style="color:var(--accent,#ff2130)"> X </span>ARENA</span>
     </a>
-    <div style="display:flex;align-items:center;gap:clamp(12px,1.8vw,26px);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#c1c1c9">
+    <div style="display:flex;align-items:center;gap:clamp(12px,1.8vw,26px);font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:#c1c1c9">
       <a href="Bender%20X%20Arena.dc.html#hero" style="transition:color .2s">Главная</a>
-      <a href="%D0%91%D0%BE%D0%B9%D1%86%D1%8B%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="transition:color .2s">Бойцы</a>
       <span style="color:var(--accent,#ff2130);border-bottom:1px solid var(--accent,#ff2130);padding-bottom:2px">Стримы</span>
-      <a href="%D0%A2%D0%BE%D0%BF%20%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2.dc.html" style="transition:color .2s">Топ</a>
-      <a href="Bender%20X%20Arena.dc.html#bracket" style="transition:color .2s">Сетка</a>
       <a href="%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="transition:color .2s">Новости</a>
+      <a href="%D0%91%D0%BE%D0%B9%D1%86%D1%8B%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="transition:color .2s">Бойцы</a>
+      <a href="%D0%A2%D0%BE%D0%BF%20%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2.dc.html" style="transition:color .2s">Топ</a>
+      <a href="%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D0%BD%D0%B0%D1%8F%20%D1%81%D0%B5%D1%82%D0%BA%D0%B0.dc.html" style="transition:color .2s">Сетка</a>
+      <a href="%D0%9E%20%D0%B0%D1%80%D0%B5%D0%BD%D0%B5.dc.html" style="transition:color .2s">О арене</a>
     </div>
-    <a href="Bender%20X%20Arena.dc.html#register" style="position:relative;overflow:hidden;flex-shrink:0;font-family:'Oswald',sans-serif;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:var(--accent,#ff2130);padding:11px 20px;clip-path:polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))" style-before="{{ shineStyle }}">Регистрация</a>
+    <a href="Bender%20X%20Arena.dc.html#register" style="position:relative;overflow:hidden;flex-shrink:0;font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:var(--accent,#ff2130);padding:11px 20px;clip-path:polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))" style-before="{{ shineStyle }}">Регистрация</a>
   </nav>
 
   <header style="position:relative;z-index:3;overflow:hidden;padding:clamp(112px,14vh,150px) clamp(18px,4vw,44px) clamp(30px,4vw,46px);border-bottom:1px solid #ffffff10">
@@ -69,8 +76,8 @@
       <div style="position:absolute;left:-1%;bottom:-14%;font-family:'Russo One',sans-serif;font-size:17vw;line-height:.78;color:transparent;-webkit-text-stroke:1px #ffffff0a;white-space:nowrap">ON AIR</div>
     </div>
     <div style="position:relative;z-index:2;max-width:1480px;margin:0 auto">
-      <a href="Bender%20X%20Arena.dc.html#hero" style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#83838d;transition:color .2s;animation:heroRise .6s both">← На главную</a>
-      <div style="display:flex;align-items:center;gap:12px;margin-top:16px;font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent,#ff2130);animation:heroRise .6s .06s both">
+      <a href="Bender%20X%20Arena.dc.html#hero" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#83838d;transition:color .2s;animation:heroRise .6s both">← На главную</a>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:16px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent,#ff2130);animation:heroRise .6s .06s both">
         <span style="font-family:'Russo One',sans-serif;font-size:13px;color:#4a4a52">03</span>
         <span style="width:44px;height:1px;background:color-mix(in srgb,var(--accent,#ff2130) 60%, transparent)"></span>Эфир · неделя финалов
       </div>
@@ -80,7 +87,7 @@
         <sc-for list="{{ headStats }}" as="hs" hint-placeholder-count="4">
           <div style="{{ hs.style }}">
             <div style="font-family:'Russo One',sans-serif;font-size:clamp(19px,2.1vw,27px);line-height:1;color:{{ hs.color }}">{{ hs.v }}</div>
-            <div style="font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:#83838d;margin-top:6px">{{ hs.k }}</div>
+            <div style="font-size:14px;letter-spacing:.17em;text-transform:uppercase;color:#83838d;margin-top:6px">{{ hs.k }}</div>
           </div>
         </sc-for>
       </div>
@@ -90,7 +97,7 @@
   <section data-reveal style="{{ revealStyle }}">
     <div style="max-width:1480px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
       <div style="display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:clamp(20px,3vw,40px);align-items:stretch">
-        <div style="position:relative;overflow:hidden;background:#0d0d11;border:1px solid color-mix(in srgb,var(--accent,#ff2130) 45%, transparent);clip-path:polygon(0 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%)">
+        <div style="position:relative;overflow:hidden;background:rgba(18,18,23,.12);backdrop-filter:blur(14px);border:1px solid color-mix(in srgb,var(--accent,#ff2130) 45%, transparent);clip-path:polygon(0 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%)">
           <div style="position:relative;aspect-ratio:16/9;overflow:hidden;background:radial-gradient(120% 90% at 30% 0%, color-mix(in srgb,var(--accent,#ff2130) 34%, transparent), #0b0b0e 62%)">
             <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,#0000 0 2px,#00000047 2px 3px);opacity:.55;pointer-events:none"></div>
             <div style="position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:clamp(14px,2.4vw,32px);pointer-events:none">
@@ -99,15 +106,15 @@
               <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(22px,3.4vw,46px);text-transform:uppercase;color:#f4f4f5">ВАЙПЕР</span>
             </div>
             <div style="position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:9px">
-              <span style="display:inline-flex;align-items:center;gap:6px;font-family:'Oswald',sans-serif;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:var(--accent,#ff2130);padding:5px 10px;animation:livePulse 2.4s ease-in-out infinite"><span style="width:6px;height:6px;border-radius:50%;background:#fff;animation:blink 1s infinite"></span>LIVE</span>
-              <span style="font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#d0d0d6;background:#0b0b0ecc;border:1px solid #ffffff1f;padding:5px 10px">Гранд-финал · группа A</span>
+              <span style="display:inline-flex;align-items:center;gap:6px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:var(--accent,#ff2130);padding:5px 10px;animation:livePulse 2.4s ease-in-out infinite"><span style="width:6px;height:6px;border-radius:50%;background:#fff;animation:blink 1s infinite"></span>LIVE</span>
+              <span style="font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#d0d0d6;background:#0b0b0ecc;border:1px solid #ffffff1f;padding:5px 10px">Гранд-финал · группа A</span>
             </div>
             <div style="position:absolute;bottom:14px;left:14px;display:flex;align-items:flex-end;gap:3px;height:22px">
               <sc-for list="{{ eqBars }}" as="eb" hint-placeholder-count="7">
                 <span style="{{ eb.style }}"></span>
               </sc-for>
             </div>
-            <div style="position:absolute;bottom:14px;right:14px;font-family:'Russo One',sans-serif;font-size:12px;letter-spacing:.1em;color:#c1c1c9">{{ liveViewers }} смотрят</div>
+            <div style="position:absolute;bottom:14px;right:14px;font-family:'Russo One',sans-serif;font-size:14px;letter-spacing:.1em;color:#c1c1c9">{{ liveViewers }} смотрят</div>
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;padding:18px 20px">
             <div style="min-width:0">
@@ -118,13 +125,13 @@
           </div>
         </div>
         <div style="display:flex;flex-direction:column;gap:12px">
-          <div style="font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:#83838d">Кастеры недели</div>
+          <div style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:#83838d">Кастеры недели</div>
           <sc-for list="{{ casters }}" as="ct" hint-placeholder-count="3">
             <div style="{{ ct.style }}" style-hover="{{ casterHover }}">
               <div style="{{ ct.avatar }}">{{ ct.initial }}</div>
               <div style="flex:1;min-width:0">
                 <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;text-transform:uppercase;line-height:1">{{ ct.name }}</div>
-                <div style="font-size:12px;color:#83838d;margin-top:4px">{{ ct.role }}</div>
+                <div style="font-size:14px;color:#83838d;margin-top:4px">{{ ct.role }}</div>
               </div>
               <div style="text-align:right;flex-shrink:0">
                 <div style="font-family:'Russo One',sans-serif;font-size:14px;color:#f4f4f5">{{ ct.shows }}</div>
@@ -156,7 +163,7 @@
           <sc-for list="{{ streams }}" as="s" hint-placeholder-count="7">
             <div data-reveal style="position:relative">
               <div style="{{ s.timeStyle }}">
-                <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;letter-spacing:.12em;color:#83838d;text-transform:uppercase">{{ s.day }}</div>
+                <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.12em;color:#83838d;text-transform:uppercase">{{ s.day }}</div>
                 <div style="font-family:'Russo One',sans-serif;font-size:clamp(16px,1.7vw,21px);color:#f4f4f5;margin-top:2px">{{ s.time }}</div>
               </div>
               <div style="{{ s.dotStyle }}"></div>
@@ -164,15 +171,15 @@
                 <div style="flex:1;min-width:0">
                   <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">
                     <span style="font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(15px,1.6vw,18px);text-transform:uppercase;letter-spacing:.02em">{{ s.title }}</span>
-                    <sc-if value="{{ s.live }}" hint-placeholder-val="{{ true }}"><span style="display:inline-flex;align-items:center;gap:5px;font-family:'Oswald',sans-serif;font-size:10px;font-weight:700;letter-spacing:.14em;color:#fff;background:var(--accent,#ff2130);padding:3px 8px"><span style="width:6px;height:6px;border-radius:50%;background:#fff;animation:blink 1s infinite"></span>LIVE</span></sc-if>
+                    <sc-if value="{{ s.live }}" hint-placeholder-val="{{ true }}"><span style="display:inline-flex;align-items:center;gap:5px;font-family:'Oswald',sans-serif;font-size:14px;font-weight:700;letter-spacing:.14em;color:#fff;background:var(--accent,#ff2130);padding:3px 8px"><span style="width:6px;height:6px;border-radius:50%;background:#fff;animation:blink 1s infinite"></span>LIVE</span></sc-if>
                   </div>
-                  <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:6px;font-size:12px;color:#83838d">
+                  <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:6px;font-size:14px;color:#83838d">
                     <span>каст: {{ s.casters }}</span>
                     <span>{{ s.stage }}</span>
                   </div>
                 </div>
                 <span style="{{ s.platStyle }}">{{ s.platform }}</span>
-                <button style="{{ s.bellStyle }}" onClick="{{ s.onRemind }}" title="Напомнить">{{ s.bell }}</button>
+                <button style="{{ s.bellStyle }}" onClick="{{ s.onRemind }}" title="Напомнить" aria-label="Напомнить о стриме">{{ s.bell }}</button>
               </div>
             </div>
           </sc-for>
@@ -194,7 +201,7 @@
         <a href="%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="transition:color .2s">Новости</a>
       </div>
     </div>
-    <div style="max-width:1480px;margin:30px auto 0;padding-top:20px;border-top:1px solid #ffffff10;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:11px;color:#5f5f68">
+    <div style="max-width:1480px;margin:30px auto 0;padding-top:20px;border-top:1px solid #ffffff10;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:13px;color:#5f5f68">
       <span>© 2026 BENDER X ARENA. Все права защищены.</span>
       <span style="max-width:560px;text-align:right">Bender X Arena — оригинальный вымышленный проект. Не связан с Mortal Kombat / NetherRealm Studios и не использует их персонажей.</span>
     </div>
@@ -246,14 +253,14 @@ class Component extends DCLogic {
     const ps=Array.from({length:N},()=>this.mkP(W,H));
     const draw=()=>{ ctx.clearRect(0,0,W,H); for(const p of ps){ p.y-=p.vy; p.x+=p.vx; p.life--; if(p.y<-12||p.life<0) Object.assign(p,this.mkP(W,H,true)); const a=p.alpha*Math.min(1,p.life/60); ctx.beginPath(); ctx.fillStyle='rgba('+rgb+','+a+')'; ctx.shadowColor='rgba('+rgb+',.9)'; ctx.shadowBlur=p.r*4; ctx.arc(p.x,p.y,p.r,0,6.283); ctx.fill(); } ctx.shadowBlur=0; this._raf=requestAnimationFrame(draw); }; draw();
   }
-  onMove(e){ if(this.glow) this.glow.style.transform='translate('+(e.clientX-270)+'px,'+(e.clientY-270)+'px)'; const cx=e.clientX/window.innerWidth-.5, cy=e.clientY/window.innerHeight-.5; if(this.ghost) this.ghost.style.transform='translate('+(cx*-26)+'px,'+(cy*-12)+'px)'; }
+  onMove(e){ if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; if(this.glow) this.glow.style.transform='translate('+(e.clientX-270)+'px,'+(e.clientY-270)+'px)'; const cx=e.clientX/window.innerWidth-.5, cy=e.clientY/window.innerHeight-.5; if(this.ghost) this.ghost.style.transform='translate('+(cx*-26)+'px,'+(cy*-12)+'px)'; }
   onScroll(){ if(this._st) return; this._st=requestAnimationFrame(()=>{ this._st=null; const d=document.documentElement; const max=d.scrollHeight-window.innerHeight; if(this.bar) this.bar.style.width=(max>0?(window.scrollY/max*100):0)+'%'; const s=window.scrollY>28; if(s!==this.state.scrolled) this.setState({scrolled:s}); }); }
 
   renderVals(){
     const S=this.state, A='var(--accent,#ff2130)';
     const shine={content:"''",position:'absolute',top:0,left:'-60%',width:'46%',height:'100%',background:'linear-gradient(90deg,transparent,#ffffff5c,transparent)',transform:'skewX(-22deg)',animation:'shine 3.6s ease-in-out infinite',pointerEvents:'none'};
     const platC={Twitch:'#9146ff',YouTube:'#ff2b2b'};
-    const chip=(active)=>({fontFamily:"'Oswald',sans-serif",fontWeight:600,fontSize:'12px',letterSpacing:'.12em',textTransform:'uppercase',padding:'9px 16px',cursor:'pointer',border:'1px solid '+(active?'transparent':'#ffffff1f'),background:active?A:'#0e0e12',color:active?'#0b0b0e':'#c9c9d0',clipPath:'polygon(0 0,100% 0,100% 100%,7px 100%,0 calc(100% - 7px))',transition:'all .2s'});
+    const chip=(active)=>({fontFamily:"'Oswald',sans-serif",fontWeight:600,fontSize:'14px',letterSpacing:'.12em',textTransform:'uppercase',padding:'9px 16px',cursor:'pointer',border:'1px solid '+(active?'transparent':'#ffffff1f'),background:active?A:'#0e0e12',color:active?'#0b0b0e':'#c9c9d0',clipPath:'polygon(0 0,100% 0,100% 100%,7px 100%,0 calc(100% - 7px))',transition:'all .2s'});
     const platforms=['Все','Twitch','YouTube'].map(p=>({label:p,onClick:()=>this.setState({plat:p}),style:chip(S.plat===p)}));
     const filtered=this.data.map((d,i)=>({d,i})).filter(x=>S.plat==='Все'||x.d.platform===S.plat);
     const streams=filtered.map(({d,i})=>({
@@ -261,13 +268,13 @@ class Component extends DCLogic {
       bell:S.reminded[i]?'★':'☆', onRemind:()=>this.setState(s=>({reminded:{...s.reminded,[i]:!s.reminded[i]}})),
       timeStyle:{position:'absolute',left:'calc(-1 * clamp(84px,7.5vw,112px))',top:0,bottom:0,width:'clamp(70px,6.6vw,96px)',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'flex-end',textAlign:'right'},
       dotStyle:{position:'absolute',left:'-5px',top:'50%',width:'10px',height:'10px',marginTop:'-5px',background:d.live?A:'#2a2a30',border:'2px solid #08080a',borderRadius:'50%',boxShadow:d.live?'0 0 12px '+A:'none',zIndex:2},
-      rowStyle:{display:'flex',alignItems:'center',gap:'14px',padding:'15px 18px',background:d.live?'color-mix(in srgb,var(--accent,#ff2130) 10%, #101015)':'#101015',border:'1px solid '+(d.live?'color-mix(in srgb,var(--accent,#ff2130) 45%, transparent)':'#ffffff12'),clipPath:'polygon(0 0,100% 0,100% 100%,10px 100%,0 calc(100% - 10px))',transition:'transform .25s,border-color .25s'},
-      platStyle:{fontFamily:"'Oswald',sans-serif",fontSize:'11px',fontWeight:600,letterSpacing:'.08em',textTransform:'uppercase',color:'#fff',background:platC[d.platform],padding:'5px 9px',whiteSpace:'nowrap',flexShrink:0},
+      rowStyle:{display:'flex',alignItems:'center',gap:'14px',padding:'15px 18px',background:d.live?'color-mix(in srgb,var(--accent,#ff2130) 10%, rgba(22,22,28,.12))':'rgba(22,22,28,.12)',border:'1px solid '+(d.live?'color-mix(in srgb,var(--accent,#ff2130) 45%, transparent)':'#ffffff12'),clipPath:'polygon(0 0,100% 0,100% 100%,10px 100%,0 calc(100% - 10px))',transition:'transform .25s,border-color .25s'},
+      platStyle:{fontFamily:"'Oswald',sans-serif",fontSize:'13px',fontWeight:600,letterSpacing:'.08em',textTransform:'uppercase',color:'#fff',background:platC[d.platform],padding:'5px 9px',whiteSpace:'nowrap',flexShrink:0},
       bellStyle:{width:'34px',height:'34px',flexShrink:0,fontSize:'15px',color:S.reminded[i]?A:'#83838d',background:'transparent',border:'1px solid '+(S.reminded[i]?'color-mix(in srgb,var(--accent,#ff2130) 50%, transparent)':'#ffffff1f'),cursor:'pointer',transition:'all .2s'}
     }));
     const casterSrc=[['Мираж','главный кастер · play-by-play',128,'#ff2130'],['DENVER','аналитик · разбор комбо',96,'#cdd6df'],['SALEM','ведущий студии',74,'#ff5a3c']];
     const casters=casterSrc.map(c=>({name:c[0],role:c[1],shows:c[2],initial:c[0][0],
-      style:{display:'flex',alignItems:'center',gap:'13px',padding:'14px 16px',background:'#101015',border:'1px solid #ffffff12',clipPath:'polygon(0 0,100% 0,100% 100%,10px 100%,0 calc(100% - 10px))',transition:'transform .25s,border-color .25s'},
+      style:{display:'flex',alignItems:'center',gap:'13px',padding:'14px 16px',background:'rgba(22,22,28,.12)',backdropFilter:'blur(14px)',border:'1px solid #ffffff12',clipPath:'polygon(0 0,100% 0,100% 100%,10px 100%,0 calc(100% - 10px))',transition:'transform .25s,border-color .25s'},
       avatar:{width:'42px',height:'42px',flexShrink:0,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:"'Russo One',sans-serif",fontSize:'17px',color:'#0b0b0e',background:c[3],clipPath:'polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)'}}));
     const eqBars=[0,1,2,3,4,5,6].map(i=>({style:{width:'4px',height:'100%',background:A,transformOrigin:'bottom',animation:'eqBar '+(0.6+i*0.13)+'s ease-in-out infinite alternate',opacity:.85}}));
     const statBox=(bd)=>({display:'flex',flexDirection:'column',paddingLeft:bd?'clamp(14px,2.4vw,30px)':0,borderLeft:bd?'1px solid #ffffff14':'none'});

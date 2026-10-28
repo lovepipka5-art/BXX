@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Russo+One&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;color-scheme:dark}
+  body{background:#08080a;color:#f4f4f5;font-family:'Oswald',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  a:hover{color:var(--accent,#ff2130)}
+  input,button{font-family:inherit}
+  button,a,input,select,textarea{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  :focus-visible{outline:2px solid var(--accent,#ff2130);outline-offset:3px}
+  nav a:hover{transform:translateY(-2px)}
+  ::selection{background:#ff2130;color:#fff}
+  ::-webkit-scrollbar{width:11px;height:11px}
+  ::-webkit-scrollbar-track{background:#0c0c0f}
+  ::-webkit-scrollbar-thumb{background:#26262c;border:2px solid #0c0c0f}
+  ::-webkit-scrollbar-thumb:hover{background:var(--accent,#ff2130)}
+  [data-reveal]{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+  [data-reveal].r-in{opacity:1;transform:none}
+  [data-stagger]>[data-reveal]:nth-child(2){transition-delay:.07s}
+  [data-stagger]>[data-reveal]:nth-child(3){transition-delay:.14s}
+  [data-stagger]>[data-reveal]:nth-child(4){transition-delay:.2s}
+  [data-stagger]>[data-reveal]:nth-child(5){transition-delay:.26s}
+  [data-stagger]>[data-reveal]:nth-child(n+6){transition-delay:.3s}
+  @media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  [data-reveal]{opacity:1!important;transform:none!important}
+}
+  @keyframes heroRise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+  @keyframes shine{0%{left:-60%}60%,100%{left:130%}}
+  @keyframes bgLogoPulse{0%,100%{opacity:.05}50%{opacity:.1}}
+  @keyframes xBlink{0%,90%,100%{opacity:1;filter:none}92%{opacity:.28}94%{opacity:1;filter:drop-shadow(0 0 22px var(--accent,#ff2130))}96%{opacity:.42}98%{opacity:1;filter:drop-shadow(0 0 28px var(--accent,#ff2130))}}
+</style>
+</helmet>
+<div style="{{ rootStyle }}" ref="{{ rootRef }}">
+  <canvas ref="{{ fxRef }}" style="position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none"></canvas>
+  <div style="position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(75% 45% at 50% 0%, color-mix(in srgb,var(--accent,#ff2130) 10%, transparent), transparent 70%)"></div>
+  <div style="position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(120% 120% at 50% 40%, transparent 58%, #000 130%)"></div>
+  <div ref="{{ glowRef }}" style="position:fixed;top:0;left:0;width:540px;height:540px;border-radius:50%;z-index:2;pointer-events:none;background:radial-gradient(closest-side, color-mix(in srgb,var(--accent,#ff2130) 13%, transparent), transparent);mix-blend-mode:screen"></div>
+  <div ref="{{ barRef }}" style="position:fixed;top:0;left:0;height:3px;width:0%;z-index:130;background:linear-gradient(90deg,var(--accent,#ff2130),#ff7a3d);box-shadow:0 0 12px var(--accent,#ff2130)"></div>
+
+  <nav style="{{ navStyle }}">
+    <a href="Bender%20X%20Arena.dc.html#hero" style="display:flex;align-items:center;gap:11px;flex-shrink:0">
+      <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="Bender X Arena" style="height:40px;width:auto;display:block;filter:drop-shadow(0 0 12px color-mix(in srgb,var(--accent,#ff2130) 55%, transparent))">
+      <span style="font-family:'Russo One',sans-serif;font-size:16px;letter-spacing:.05em;white-space:nowrap">BENDER<span style="color:var(--accent,#ff2130)"> X </span>ARENA</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:clamp(12px,1.8vw,26px);font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:#c1c1c9">
+      <a href="Bender%20X%20Arena.dc.html#hero" style="transition:color .2s">Главная</a>
+      <a href="%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%81%D1%82%D1%80%D0%B8%D0%BC%D0%BE%D0%B2.dc.html" style="transition:color .2s">Стримы</a>
+      <a href="%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="transition:color .2s">Новости</a>
+      <a href="%D0%91%D0%BE%D0%B9%D1%86%D1%8B%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="transition:color .2s">Бойцы</a>
+      <a href="%D0%A2%D0%BE%D0%BF%20%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2.dc.html" style="transition:color .2s">Топ</a>
+      <a href="%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D0%BD%D0%B0%D1%8F%20%D1%81%D0%B5%D1%82%D0%BA%D0%B0.dc.html" style="transition:color .2s">Сетка</a>
+      <span style="color:var(--accent,#ff2130);border-bottom:1px solid var(--accent,#ff2130);padding-bottom:2px">О арене</span>
+    </div>
+    <a href="Bender%20X%20Arena.dc.html#register" style="position:relative;overflow:hidden;flex-shrink:0;font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:var(--accent,#ff2130);padding:11px 20px;clip-path:polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))" style-before="{{ shineStyle }}">Регистрация</a>
+  </nav>
+
+  <header style="position:relative;z-index:3;overflow:hidden;padding:clamp(112px,14vh,150px) clamp(18px,4vw,44px) clamp(30px,4vw,46px);border-bottom:1px solid #ffffff10">
+    <div ref="{{ ghostRef }}" style="position:absolute;inset:0;pointer-events:none;z-index:0">
+      <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="" style="position:absolute;right:2%;top:46%;width:min(46vw,520px);height:auto;transform:translateY(-50%);animation:bgLogoPulse 8s ease-in-out infinite;mix-blend-mode:screen">
+      <div style="position:absolute;left:-1%;bottom:-14%;font-family:'Russo One',sans-serif;font-size:17vw;line-height:.78;color:transparent;-webkit-text-stroke:1px #ffffff0a;white-space:nowrap">ARENA</div>
+    </div>
+    <div style="position:relative;z-index:2;max-width:1480px;margin:0 auto">
+      <a href="Bender%20X%20Arena.dc.html#hero" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#83838d;transition:color .2s;animation:heroRise .6s both">← На главную</a>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:16px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent,#ff2130);animation:heroRise .6s .06s both">
+        <span style="font-family:'Russo One',sans-serif;font-size:13px;color:#4a4a52">01</span>
+        <span style="width:44px;height:1px;background:color-mix(in srgb,var(--accent,#ff2130) 60%, transparent)"></span>О проекте
+      </div>
+      <h1 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(42px,7vw,104px);line-height:.86;text-transform:uppercase;letter-spacing:-.022em;margin-top:12px;text-shadow:0 8px 40px #000;animation:heroRise .7s .12s both">О <span style="display:inline-block;color:var(--accent,#ff2130);animation:xBlink 6s 2.4s infinite">арене</span></h1>
+      <p style="max-width:560px;margin-top:16px;font-size:clamp(14px,1.4vw,17px);font-weight:300;line-height:1.6;color:#9a9aa4;animation:heroRise .7s .18s both">Bender X Arena — это турнирная платформа, где сходятся лучшие бойцы. Что мы такое, во что играем и как всё устроено.</p>
+    </div>
+  </header>
+
+  <section data-reveal style="{{ revealStyle }}">
+    <div style="max-width:1480px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+        <sc-for list="{{ stats }}" as="st" hint-placeholder-count="3">
+          <div data-reveal style="position:relative;overflow:hidden;background:rgba(22,22,28,.12);backdrop-filter:blur(14px);border:1px solid #ffffff12;padding:clamp(24px,3vw,38px);clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%)">
+            <div style="position:absolute;right:-10%;bottom:-18%;font-family:'Russo One',sans-serif;font-size:min(16vw,170px);line-height:.8;color:transparent;-webkit-text-stroke:1px #ffffff0a;pointer-events:none">{{ st.glyph }}</div>
+            <div style="position:relative;z-index:2">
+              <div style="font-family:'Russo One',sans-serif;font-size:clamp(34px,4.4vw,56px);line-height:1;color:var(--accent,#ff2130)">{{ st.value }}</div>
+              <div style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#83838d;margin-top:8px">{{ st.label }}</div>
+              <p style="font-size:14px;font-weight:300;line-height:1.55;color:#9a9aa4;margin-top:12px">{{ st.text }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal style="{{ revealStyle }}">
+    <div style="max-width:1480px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
+      <div style="max-width:760px">
+        <div style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--accent,#ff2130)">Кто мы</div>
+        <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,50px);line-height:.92;text-transform:uppercase;margin-top:12px">Дом соревновательных файтов</h2>
+      </div>
+      <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:clamp(22px,3vw,36px)">
+        <sc-for list="{{ features }}" as="f" hint-placeholder-count="4">
+          <div data-reveal style="position:relative;overflow:hidden;background:linear-gradient(150deg,rgba(24,20,28,.12),rgba(15,15,20,.10));backdrop-filter:blur(14px);border:1px solid #ffffff12;padding:clamp(24px,3vw,34px);clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%);transition:border-color .3s,transform .3s" style-hover="{{ cardHover }}">
+            <div style="font-family:'Russo One',sans-serif;font-size:30px;line-height:1;color:var(--accent,#ff2130)">{{ f.num }}</div>
+            <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:21px;line-height:1.08;text-transform:uppercase;margin-top:16px">{{ f.title }}</div>
+            <p style="font-size:14px;font-weight:300;line-height:1.55;color:#9a9aa4;margin-top:10px">{{ f.text }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal style="{{ revealStyle }}">
+    <div style="max-width:1480px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
+      <div style="position:relative;overflow:hidden;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;background:linear-gradient(120deg,rgba(24,20,28,.12),rgba(17,17,22,.12));backdrop-filter:blur(14px);border:1px solid color-mix(in srgb,var(--accent,#ff2130) 38%, transparent);padding:clamp(28px,3.6vw,44px);clip-path:polygon(0 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%)">
+        <div style="position:absolute;top:-50%;right:8%;width:36px;height:200%;background:var(--accent,#ff2130);opacity:.14;transform:rotate(20deg);filter:blur(2px);pointer-events:none"></div>
+        <div style="position:relative;z-index:2;min-width:260px">
+          <div style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--accent,#ff2130)">Сообщество</div>
+          <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(24px,3vw,38px);line-height:.96;text-transform:uppercase;margin-top:10px">Мы в Discord</div>
+          <p style="font-size:14px;font-weight:300;line-height:1.55;color:#9a9aa4;margin-top:10px;max-width:400px">Анонсы эфиров, обсуждение матчей, поиск соперников и прямые трансляции — всё в одном месте.</p>
+        </div>
+        <div style="position:relative;z-index:2;min-width:280px">
+          <a href="#" style="display:inline-flex;align-items:center;gap:10px;font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:#5865f2;padding:15px 28px;clip-path:polygon(0 0,100% 0,100% 100%,11px 100%,0 calc(100% - 11px))">Вступить в Discord</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="position:relative;z-index:3;border-top:1px solid #ffffff12;background:#0a0a0d;padding:clamp(38px,4.6vw,60px) clamp(18px,4vw,44px) 28px">
+    <div style="max-width:1480px;margin:0 auto;display:flex;flex-wrap:wrap;gap:26px;align-items:center;justify-content:space-between">
+      <a href="Bender%20X%20Arena.dc.html#hero" style="display:inline-flex;align-items:center;gap:10px">
+        <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="Bender X Arena" style="height:44px;width:auto;display:block;filter:drop-shadow(0 0 14px color-mix(in srgb,var(--accent,#ff2130) 45%, transparent))">
+        <span style="font-family:'Russo One',sans-serif;font-size:16px;letter-spacing:.05em">BENDER<span style="color:var(--accent,#ff2130)"> X </span>ARENA</span>
+      </a>
+      <div style="display:flex;flex-wrap:wrap;gap:20px;font-size:13px;color:#83838d">
+        <a href="%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%81%D1%82%D1%80%D0%B8%D0%BC%D0%BE%D0%B2.dc.html" style="transition:color .2s">Расписание</a>
+        <a href="%D0%91%D0%BE%D0%B9%D1%86%D1%8B%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="transition:color .2s">Бойцы арены</a>
+        <a href="%D0%A2%D0%BE%D0%BF%20%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2.dc.html" style="transition:color .2s">Топ игроков</a>
+        <a href="%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D0%BD%D0%B0%D1%8F%20%D1%81%D0%B5%D1%82%D0%BA%D0%B0.dc.html" style="transition:color .2s">Сетка</a>
+      </div>
+    </div>
+    <div style="max-width:1480px;margin:30px auto 0;padding-top:20px;border-top:1px solid #ffffff10;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:13px;color:#5f5f68">
+      <span>© 2026 BENDER X ARENA. Все права защищены.</span>
+      <span style="max-width:560px;text-align:right">Bender X Arena — оригинальный вымышленный проект. Не связан с Mortal Kombat / NetherRealm Studios и не использует их персонажей.</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#ff2130&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#ff2130&quot;,&quot;#e10600&quot;,&quot;#ff3b1f&quot;,&quot;#c60011&quot;],&quot;section&quot;:&quot;Стиль&quot;},&quot;particles&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Эффекты&quot;}}">
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.fxRef=el=>{this.fx=el}; this.glowRef=el=>{this.glow=el}; this.rootRef=el=>{this.root=el}; this.ghostRef=el=>{this.ghost=el}; this.barRef=el=>{this.bar=el};
+  }
+  state={ scrolled:false };
+
+  componentDidMount(){
+    if(this.root && this.props.accent) this.root.style.setProperty('--accent',this.props.accent);
+    this.initFX();
+    this._move=e=>this.onMove(e); window.addEventListener('mousemove',this._move,{passive:true});
+    this._scroll=()=>this.onScroll(); window.addEventListener('scroll',this._scroll,{passive:true});
+    setTimeout(()=>this.setupReveals(),40);
+  }
+  componentWillUnmount(){ cancelAnimationFrame(this._raf); window.removeEventListener('mousemove',this._move); window.removeEventListener('scroll',this._scroll); if(this._fxResize) window.removeEventListener('resize',this._fxResize); if(this._io) this._io.disconnect(); }
+  setupReveals(){
+    if(!this.root) return;
+    if(!('IntersectionObserver' in window)){ this.root.querySelectorAll('[data-reveal]').forEach(el=>el.classList.add('r-in')); return; }
+    this._io=new IntersectionObserver(ents=>{ ents.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('r-in'); e.target.dataset.revealed='1'; this._io.unobserve(e.target); } }); },{threshold:0.08,rootMargin:'0px 0px -6% 0px'});
+    this.revealScan();
+  }
+  revealScan(){
+    if(!this.root||!this._io) return;
+    this.root.querySelectorAll('[data-reveal]').forEach(el=>{ if(el.dataset.revealed) return; const r=el.getBoundingClientRect(); if(r.top<window.innerHeight*0.92&&r.bottom>0){ el.classList.add('r-in'); el.dataset.revealed='1'; this._io.unobserve(el); } else { this._io.observe(el); } });
+  }
+  hexRgb(h){ h=(h||'#ff2130').replace('#',''); if(h.length===3) h=h.split('').map(x=>x+x).join(''); const n=parseInt(h,16); return (n>>16&255)+','+(n>>8&255)+','+(n&255); }
+  mkP(W,H,bottom){ const max=220+Math.random()*280; return {x:Math.random()*W,y:bottom?H+Math.random()*40:Math.random()*H,vy:.25+Math.random()*.95,vx:(Math.random()-.5)*.3,r:.6+Math.random()*2.3,alpha:.2+Math.random()*.5,life:max,max}; }
+  initFX(){ const cv=this.fx; if(!cv) return; const ctx=cv.getContext('2d'); let W=1,H=1; const resize=()=>{ const dpr=Math.min(2,window.devicePixelRatio||1); W=cv.clientWidth||window.innerWidth; H=cv.clientHeight||window.innerHeight; cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }; resize(); this._fxResize=resize; window.addEventListener('resize',resize);
+    const rgb=this.hexRgb(this.props.accent||'#ff2130'); const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches; const N=(reduced||this.props.particles===false)?0:70;
+    const ps=Array.from({length:N},()=>this.mkP(W,H));
+    const draw=()=>{ ctx.clearRect(0,0,W,H); for(const p of ps){ p.y-=p.vy; p.x+=p.vx; p.life--; if(p.y<-12||p.life<0) Object.assign(p,this.mkP(W,H,true)); const a=p.alpha*Math.min(1,p.life/60); ctx.beginPath(); ctx.fillStyle='rgba('+rgb+','+a+')'; ctx.shadowColor='rgba('+rgb+',.9)'; ctx.shadowBlur=p.r*4; ctx.arc(p.x,p.y,p.r,0,6.283); ctx.fill(); } ctx.shadowBlur=0; this._raf=requestAnimationFrame(draw); }; draw();
+  }
+  onMove(e){ if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; if(this.glow) this.glow.style.transform='translate('+(e.clientX-270)+'px,'+(e.clientY-270)+'px)'; const cx=e.clientX/window.innerWidth-.5, cy=e.clientY/window.innerHeight-.5; if(this.ghost) this.ghost.style.transform='translate('+(cx*-26)+'px,'+(cy*-12)+'px)'; }
+  onScroll(){ if(this._st) return; this._st=requestAnimationFrame(()=>{ this._st=null; const d=document.documentElement; const max=d.scrollHeight-window.innerHeight; if(this.bar) this.bar.style.width=(max>0?(window.scrollY/max*100):0)+'%'; const s=window.scrollY>28; if(s!==this.state.scrolled) this.setState({scrolled:s}); }); }
+
+  renderVals(){
+    const S=this.state, A='var(--accent,#ff2130)';
+    const shine={content:"''",position:'absolute',top:0,left:'-60%',width:'46%',height:'100%',background:'linear-gradient(90deg,transparent,#ffffff5c,transparent)',transform:'skewX(-22deg)',animation:'shine 3.6s ease-in-out infinite',pointerEvents:'none'};
+    const stats=[
+      {glyph:'4',value:'4',label:'сезона',text:'Четыре полных турнирных сезона пройдено. Пятый уже готовит новых бойцов.'},
+      {glyph:'3',value:'120+',label:'бойцов',text:'Ростер пополняется каждые полгода: от брутальных танков до хитрых колдунов.'},
+      {glyph:'6',value:'24/7',label:'режим',text:'Рейтинговые дуэли, турниры и тренировочная зона работают без выходных.'}
+    ];
+    const features=[
+      {num:'01',title:'Турниры',text:'Еженедельные сетки, плей-офф и гранд-финал. Каждый может заявиться на квалификацию.'},
+      {num:'02',title:'Рейтинги',text:'Прозрачный ладдер с очками, дивизионами и сезонными наградами за топ.'},
+      {num:'03',title:'Стримы',text:'Официальные эфиры с комментаторами, повторами и разборами ключевых моментов.'},
+      {num:'04',title:'Сообщество',text:'Discord-комьюнити, где обсуждают мету, ищут напарников и следят за новостями.'}
+    ];
+    return {
+      rootStyle:{'--accent':'#ff2130',position:'relative',minHeight:'100vh',background:'#08080a',overflowX:'hidden'},
+      navStyle:{position:'fixed',top:'3px',left:0,right:0,zIndex:120,display:'flex',alignItems:'center',justifyContent:'space-between',gap:'clamp(12px,1.8vw,26px)',height:'60px',padding:'0 clamp(18px,4vw,44px)',background:S.scrolled?'rgba(8,8,10,.9)':'rgba(8,8,10,.1)',borderBottom:'1px solid '+(S.scrolled?'#ffffff14':'#ffffff00'),backdropFilter:'blur(12px)',transition:'background .3s,border-color .3s'},
+      revealStyle:{position:'relative',zIndex:3,padding:'clamp(34px,4vw,58px) 0'},
+      fxRef:this.fxRef, glowRef:this.glowRef, rootRef:this.rootRef, ghostRef:this.ghostRef, barRef:this.barRef,
+      shineStyle:shine, stats, features,
+      cardHover:{transform:'translateY(-6px)',borderColor:'color-mix(in srgb,var(--accent,#ff2130) 45%, transparent)'}
+    };
+  }
+}
+</script>
+</body>
+</html>
