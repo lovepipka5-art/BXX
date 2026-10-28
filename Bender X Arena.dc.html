@@ -1286,6 +1286,21 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
   }
 
 
+
+  /* Give the hero/header enough vertical room so the red arena ticker sits at the viewport bottom */
+  @media screen and (min-width:1100px) {
+    #hero.arena-hero{
+      min-height:calc(100svh + 220px)!important;
+      min-height:calc(100vh + 220px)!important;
+      box-sizing:border-box!important;
+      flex-shrink:0!important;
+    }
+    .arena-ticker{position:relative!important;z-index:4!important;margin-top:0!important}
+  }
+  @media screen and (max-width:1099px) {
+    #hero.arena-hero{min-height:calc(100svh + 70px)!important}
+  }
+
   /* BXX desktop density: reproduce the intended 80% browser-zoom composition at normal zoom */
   @media screen and (min-width: 1100px) {
     html { zoom: .8; }
