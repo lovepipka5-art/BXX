@@ -1248,6 +1248,43 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
 
 
 
+
+  /* BXX intro viewport fix: keep the complete logo, wordmark and progress bar visible */
+  #bxx-cinematic-intro{min-height:100vh!important;min-height:100svh!important;justify-content:center!important}
+  #bxx-cinematic-intro>div[style*="padding:14vh 20px 0"]{
+    box-sizing:border-box!important;width:100%!important;height:100%!important;min-height:100vh!important;min-height:100svh!important;
+    padding:clamp(18px,4vh,42px) 20px clamp(22px,5vh,48px)!important;
+    gap:clamp(8px,1.6vh,16px)!important;justify-content:center!important;overflow:hidden!important;
+  }
+  #bxx-cinematic-intro [style*="width:clamp(300px,46vw,560px)"]{
+    width:clamp(150px,32vh,300px)!important;max-width:72vw!important;flex:0 1 auto!important;
+    aspect-ratio:1!important;height:auto!important;transform:none!important;margin:0 auto!important;
+  }
+  #bxx-cinematic-intro [style*="width:clamp(300px,46vw,560px)"]>div[style*="width:92%"]{
+    width:100%!important;animation:none!important;
+  }
+  #bxx-cinematic-intro [style*="font-size:clamp(40px,8vw,88px)"]{
+    display:flex!important;flex-wrap:nowrap!important;justify-content:center!important;align-items:center!important;
+    width:100%!important;max-width:100%!important;box-sizing:border-box!important;white-space:nowrap!important;
+    font-size:clamp(25px,5.3vw,64px)!important;line-height:1!important;letter-spacing:.055em!important;
+    margin:0!important;padding:0 2px!important;
+  }
+  #bxx-cinematic-intro [style*="width:min(300px,60vw)"]{flex:none!important;margin-top:4px!important}
+  #bxx-cinematic-intro .bxx-intro-kicker{margin:0!important}
+  #bxx-cinematic-intro .bxx-intro-status{margin-top:0!important}
+  @media(max-width:600px){
+    #bxx-cinematic-intro>div[style*="padding:14vh 20px 0"]{padding:20px 14px 28px!important;gap:10px!important}
+    #bxx-cinematic-intro [style*="width:clamp(300px,46vw,560px)"]{width:clamp(150px,27vh,230px)!important;max-width:64vw!important}
+    #bxx-cinematic-intro [style*="font-size:clamp(40px,8vw,88px)"]{font-size:clamp(21px,6.6vw,38px)!important;letter-spacing:.015em!important}
+    #bxx-cinematic-intro .bxx-intro-kicker{font-size:9px!important;letter-spacing:.2em!important;text-align:center}
+    #bxx-cinematic-intro .bxx-intro-status{font-size:9px!important;letter-spacing:.16em!important}
+  }
+  @media(max-height:650px) and (min-width:601px){
+    #bxx-cinematic-intro>div[style*="padding:14vh 20px 0"]{padding:12px 20px!important;gap:6px!important}
+    #bxx-cinematic-intro [style*="width:clamp(300px,46vw,560px)"]{width:clamp(120px,27vh,190px)!important}
+    #bxx-cinematic-intro [style*="font-size:clamp(40px,8vw,88px)"]{font-size:clamp(26px,4vw,42px)!important}
+  }
+
   /* BXX ARENA // cinematic intro polish */
   #bxx-cinematic-intro{isolation:isolate!important;background-color:#030305!important}
   #bxx-cinematic-intro:before{
