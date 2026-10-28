@@ -1759,11 +1759,11 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
     <div style="position:absolute;width:5px;height:5px;left:24%;top:66%;border-radius:50%;background:#ff7a3d;box-shadow:0 0 9px #ff7a3d;opacity:.55;animation:sparkFloat 10s .5s ease-in-out infinite;pointer-events:none"></div>
     <div style="position:absolute;inset:0;pointer-events:none;background:none!important;animation:none!important;opacity:0!important;display:none!important"></div>
     <div style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:14px;z-index:2;padding:14vh 20px 0;text-align:center">
-      <div style="position:relative;width:clamp(300px,46vw,560px);aspect-ratio:1;flex-shrink:0;transform:scale(1.28);transform-origin:center">
-        <div style="position:absolute;inset:-8%;border-radius:50%;background:radial-gradient(closest-side, color-mix(in srgb,var(--accent,#ff2130) 30%, transparent), transparent 70%);filter:blur(20px);opacity:.6;animation:logoGlow 3.4s ease-in-out infinite;pointer-events:none"></div>
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;animation:logoIn 1.3s cubic-bezier(.22,1,.36,1) both">
-          <div style="position:relative;width:92%;aspect-ratio:1;animation:logoHover 4.5s ease-in-out 1.3s infinite">
-            <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="" style="width:100%;height:auto;opacity:1;filter:brightness(1.08) drop-shadow(0 0 34px color-mix(in srgb,var(--accent,#ff2130) 60%, transparent)) drop-shadow(0 0 90px color-mix(in srgb,var(--accent,#ff2130) 35%, transparent))">
+      <div style="position:relative;width:clamp(240px,34vw,420px);aspect-ratio:1;flex-shrink:0;transform:translateZ(0);transform-origin:center">
+        <div style="position:absolute;inset:-8%;border-radius:50%;background:radial-gradient(closest-side, color-mix(in srgb,var(--accent,#ff2130) 30%, transparent), transparent 70%);filter:blur(20px);opacity:.6;animation:bxxIntroHaloV2 3.2s ease-in-out 1.25s infinite;pointer-events:none"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;animation:bxxIntroLogoV2 1.65s cubic-bezier(.16,1,.3,1) .12s both;transform-origin:50% 55%;will-change:transform,opacity,filter">
+          <div style="position:relative;width:92%;aspect-ratio:1;animation:bxxIntroFloatV2 5s ease-in-out 1.95s infinite;transform-origin:50% 50%;will-change:transform">
+            <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="" style="width:100%;height:auto;opacity:1;filter:brightness(1.05) drop-shadow(0 0 26px color-mix(in srgb,var(--accent,#ff2130) 58%, transparent)) drop-shadow(0 0 66px color-mix(in srgb,var(--accent,#ff2130) 30%, transparent));animation:bxxIntroGlowV2 3.6s ease-in-out 1.7s infinite;will-change:filter">
           </div>
         </div>
       </div>
@@ -2350,42 +2350,39 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
 </script>
 
 
-<style id="bxx-intro-logo-motion-fix">
-/* Target the real logo elements in the intro DOM (not the former guessed selector). */
-#bxx-cinematic-intro [style*="animation:logoIn"]{
-  opacity:1!important;
-  animation:bxxLogoEntranceReal 1.75s cubic-bezier(.16,1,.3,1) .12s both!important;
-  transform-origin:50% 55%!important;
-  will-change:transform,opacity,filter;
-}
-#bxx-cinematic-intro [style*="animation:logoHover"]{
-  animation:bxxLogoIdleReal 4.8s ease-in-out 1.95s infinite!important;
-  transform-origin:50% 50%!important;
-  will-change:transform;
-}
-#bxx-cinematic-intro [style*="animation:logoIn"] img{
-  animation:bxxLogoGlowReal 3.8s ease-in-out 1.7s infinite!important;
-  will-change:filter;
-}
-@keyframes bxxLogoEntranceReal{
-  0%{opacity:0;transform:translate3d(0,68px,0) scale(.64) rotate(-8deg);filter:blur(16px) brightness(.35)}
-  48%{opacity:1;transform:translate3d(0,-9px,0) scale(1.055) rotate(1.5deg);filter:blur(0) brightness(1.4)}
-  67%{opacity:1;transform:translate3d(0,4px,0) scale(.98) rotate(-.5deg);filter:blur(0) brightness(1.12)}
-  84%{opacity:1;transform:translate3d(0,-2px,0) scale(1.012) rotate(0);filter:blur(0) brightness(1.2)}
+
+
+
+<style id="bxx-intro-motion-v2">
+@keyframes bxxIntroLogoV2{
+  0%{opacity:0;transform:translate3d(0,54px,0) scale(.72) rotate(-7deg);filter:blur(14px) brightness(.45)}
+  46%{opacity:1;transform:translate3d(0,-8px,0) scale(1.055) rotate(1.4deg);filter:blur(0) brightness(1.45)}
+  64%{opacity:1;transform:translate3d(0,4px,0) scale(.985) rotate(-.45deg);filter:blur(0) brightness(1.12)}
+  82%{opacity:1;transform:translate3d(0,-2px,0) scale(1.012) rotate(0);filter:blur(0) brightness(1.2)}
   100%{opacity:1;transform:translate3d(0,0,0) scale(1) rotate(0);filter:blur(0) brightness(1)}
 }
-@keyframes bxxLogoIdleReal{
+@keyframes bxxIntroFloatV2{
   0%,100%{transform:translate3d(0,0,0) rotate(0) scale(1)}
-  50%{transform:translate3d(0,-7px,0) rotate(.45deg) scale(1.008)}
+  50%{transform:translate3d(0,-6px,0) rotate(.35deg) scale(1.006)}
 }
-@keyframes bxxLogoGlowReal{
-  0%,100%{filter:brightness(1.04) drop-shadow(0 0 24px rgba(255,33,48,.5)) drop-shadow(0 0 60px rgba(255,33,48,.2))}
-  50%{filter:brightness(1.2) drop-shadow(0 0 38px rgba(255,33,48,.78)) drop-shadow(0 0 90px rgba(255,33,48,.36))}
+@keyframes bxxIntroGlowV2{
+  0%,100%{opacity:.42;transform:scale(.97);filter:blur(20px)}
+  50%{opacity:.82;transform:scale(1.04);filter:blur(25px)}
+}
+@keyframes bxxIntroHaloV2{
+  0%,100%{opacity:.45;transform:scale(.96)}
+  50%{opacity:.78;transform:scale(1.04)}
+}
+@media(max-width:620px){
+  #bxx-cinematic-intro > div[style*="padding:14vh 20px 0"]{padding-top:10vh!important;gap:10px!important}
+  #bxx-cinematic-intro > div[style*="padding:14vh 20px 0"] > div:first-child{width:clamp(220px,64vw,320px)!important}
+  #bxx-cinematic-intro > div[style*="padding:14vh 20px 0"] > div:nth-child(2){font-size:clamp(30px,8vw,48px)!important;margin-top:-18px!important}
 }
 @media(prefers-reduced-motion:reduce){
-  #bxx-cinematic-intro [style*="animation:logoIn"],
-  #bxx-cinematic-intro [style*="animation:logoHover"],
-  #bxx-cinematic-intro [style*="animation:logoIn"] img{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}
+ #bxx-cinematic-intro [style*="bxxIntroLogoV2"],
+ #bxx-cinematic-intro [style*="bxxIntroFloatV2"],
+ #bxx-cinematic-intro [style*="bxxIntroGlowV2"],
+ #bxx-cinematic-intro [style*="bxxIntroHaloV2"]{animation:none!important;filter:none!important}
 }
 </style>
 
