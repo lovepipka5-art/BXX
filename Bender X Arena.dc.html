@@ -1378,6 +1378,49 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
     #bxx-cinematic-intro [style*="font-size:clamp(40px,8vw,88px)"]{font-size:clamp(20px,3.7vw,36px)!important}
   }
 
+
+  /* BXX intro polish: cinematic logo motion and a smoother, seamless light field */
+  #bxx-cinematic-intro>div[style*="background:rgba(0,0,0,.68)"]{
+    background:rgba(0,0,0,.42)!important;
+  }
+  #bxx-cinematic-intro>div[style*="radial-gradient(80% 75% at 50% 42%"]{
+    background:
+      radial-gradient(ellipse 72% 68% at 50% 42%,transparent 34%,rgba(0,0,0,.18) 72%,rgba(0,0,0,.48) 100%),
+      linear-gradient(180deg,rgba(0,0,0,.12),transparent 24%,transparent 74%,rgba(0,0,0,.28))!important;
+  }
+  #bxx-cinematic-intro [style*="width:clamp(300px,46vw,560px)"]{
+    transform:none!important;
+    filter:drop-shadow(0 0 20px rgba(255,25,48,.14));
+  }
+  #bxx-cinematic-intro [style*="width:clamp(300px,46vw,560px)"]>div[style*="width:92%"]{
+    transform-origin:50% 52%!important;
+    animation:bxxLogoFloat 4.8s cubic-bezier(.45,0,.55,1) 1.3s infinite!important;
+  }
+  #bxx-cinematic-intro [style*="width:clamp(300px,46vw,560px)"] img{
+    animation:bxxLogoLight 3.8s ease-in-out 1.2s infinite!important;
+    will-change:filter,transform;
+  }
+  #bxx-cinematic-intro:after{
+    width:36%!important;left:-45%!important;
+    background:linear-gradient(90deg,transparent 0%,rgba(255,35,55,.045) 25%,rgba(255,255,255,.055) 48%,rgba(255,35,55,.09) 62%,transparent 100%)!important;
+    filter:blur(18px)!important;
+    animation:bxxIntroSweep 3.8s cubic-bezier(.16,1,.3,1) .2s both!important;
+  }
+  @keyframes bxxLogoFloat{
+    0%,100%{transform:translateY(0) scale(1) rotate(0deg)}
+    30%{transform:translateY(-5px) scale(1.012) rotate(-.35deg)}
+    68%{transform:translateY(2px) scale(1.006) rotate(.25deg)}
+  }
+  @keyframes bxxLogoLight{
+    0%,100%{filter:brightness(1.04) drop-shadow(0 0 24px rgba(255,33,48,.38)) drop-shadow(0 0 58px rgba(255,33,48,.18))}
+    50%{filter:brightness(1.15) drop-shadow(0 0 34px rgba(255,33,48,.58)) drop-shadow(0 0 78px rgba(255,33,48,.27))}
+  }
+  @media(prefers-reduced-motion:reduce){
+    #bxx-cinematic-intro [style*="width:clamp(300px,46vw,560px)"]>div[style*="width:92%"],
+    #bxx-cinematic-intro [style*="width:clamp(300px,46vw,560px)"] img{animation:none!important}
+    #bxx-cinematic-intro:after{animation:none!important}
+  }
+
   /* BXX ARENA // cinematic intro polish */
   #bxx-cinematic-intro{isolation:isolate!important;background-color:#030305!important}
   #bxx-cinematic-intro:before{
