@@ -1747,6 +1747,76 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
 /* Characters removed from hero; leave room for custom artwork later. */
   #hero .bx-generated-fighters{display:none!important;visibility:hidden!important;opacity:0!important;}
   </style>
+
+<style id="bxx-footer-mobile-fix">
+/* Footer: prevent the desktop four-column grid from collapsing on phones. */
+@media (max-width: 700px) {
+  footer > div:first-child {
+    width: 100% !important;
+    min-width: 0 !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    column-gap: 18px !important;
+    row-gap: 28px !important;
+  }
+  footer > div:first-child > div:first-child {
+    grid-column: 1 / -1 !important;
+    min-width: 0 !important;
+  }
+  footer > div:first-child > div {
+    min-width: 0 !important;
+    overflow-wrap: anywhere !important;
+  }
+  footer > div:first-child > div:first-child > a {
+    max-width: 100% !important;
+    flex-wrap: wrap !important;
+  }
+  footer > div:first-child > div:first-child > a img {
+    max-width: 48px !important;
+    height: 44px !important;
+    object-fit: contain !important;
+  }
+  footer > div:first-child > div:first-child > a span {
+    font-size: clamp(15px, 4.2vw, 18px) !important;
+    overflow-wrap: anywhere !important;
+  }
+  footer > div:first-child > div:not(:first-child) > div:first-child {
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+    letter-spacing: .1em !important;
+    overflow-wrap: anywhere !important;
+  }
+  footer > div:first-child > div:not(:first-child) a {
+    display: block !important;
+    max-width: 100% !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    overflow-wrap: anywhere !important;
+  }
+  footer > div:last-child {
+    width: 100% !important;
+    margin-top: 30px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    line-height: 1.7 !important;
+    overflow-wrap: anywhere !important;
+  }
+  footer > div:last-child > span {
+    max-width: 100% !important;
+    text-align: left !important;
+  }
+}
+@media (max-width: 380px) {
+  footer > div:first-child {
+    column-gap: 14px !important;
+  }
+  footer > div:first-child > div:not(:first-child) > div:first-child {
+    font-size: 11px !important;
+  }
+}
+</style>
+
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}" class="{{ rootClass }}">
   <div id="bxx-cinematic-intro" style="{{ introStyle }}" class="{{ introClass }}" aria-hidden="true">
