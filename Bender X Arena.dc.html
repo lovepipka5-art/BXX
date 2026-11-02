@@ -3280,9 +3280,28 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
  function close(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}
  function msg(t){const el=$('bxx-account-message');if(el)el.textContent=t||''}
  function renderAuth(){
-  content.innerHTML='<div class="bxx-account-switch"><button type="button" data-mode="signup" class="'+(mode==='signup'?'active':'')+'">СОЗДАТЬ АККАУНТ</button><button type="button" data-mode="signin" class="'+(mode==='signin'?'active':'')+'">ВОЙТИ</button></div><form id="bxx-account-form" novalidate><label>Электронная почта<input name="email" type="email" autocomplete="email" placeholder="name@example.com" required maxlength="254"></label><label>Пароль<input name="password" type="password" autocomplete="'+(mode==='signup'?'new-password':'current-password')+'" placeholder="Минимум 8 символов" minlength="8" required></label>'+(mode==='signup'?'<label>Повтори пароль<input name="confirm" type="password" autocomplete="new-password" placeholder="Повтори пароль" minlength="8" required></label>':'')+'<button class="bxx-account-primary" type="submit">'+(mode==='signup'?'СОЗДАТЬ АККАУНТ':'ВОЙТИ В АККАУНТ')+'</button></form><p class="bxx-account-message" id="bxx-account-message" role="status" aria-live="polite"></p><p class="bxx-account-muted" style="margin-top:14px">Пароль используется только для входа в твой аккаунт BXX ARENA. Не сообщай его другим.</p>';
+  content.innerHTML='<div class="bxx-account-switch"><button type="button" data-mode="signup" class="'+(mode==='signup'?'active':'')+'">СОЗДАТЬ АККАУНТ</button><button type="button" data-mode="signin" class="'+(mode==='signin'?'active':'')+'">ВОЙТИ</button></div><form id="bxx-account-form" novalidate><label>Электронная почта<input name="email" type="email" autocomplete="email" placeholder="name@example.com" required maxlength="254"></label><label>Пароль<input name="password" type="password" autocomplete="'+(mode==='signup'?'new-password':'current-password')+'" placeholder="Минимум 8 символов" minlength="8" required></label>'+(mode==='signup'?'<label>Повтори пароль<input name="confirm" type="password" autocomplete="new-password" placeholder="Повтори пароль" minlength="8" required></label>':'')+'<button class="bxx-account-primary" type="submit">'+(mode==='signup'?'СОЗДАТЬ АККАУНТ':'ВОЙТИ В АККАУНТ')+'</button></form><button type="button" class="bxx-account-secondary" id="bxx-resend-confirm" style="width:100%;margin-top:12px">ПОВТОРНО ОТПРАВИТЬ ПИСЬМО</button><p class="bxx-account-message" id="bxx-account-message" role="status" aria-live="polite"></p><p class="bxx-account-muted" style="margin-top:14px">Пароль используется только для входа в твой аккаунт BXX ARENA. Не сообщай его другим.</p>';
   content.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.mode;renderAuth()}));
   $('bxx-account-form').addEventListener('submit',submitAuth);
+  $('bxx-resend-confirm').addEventListener('click',resendConfirmation);
+ }
+ let resendUntil=0;
+ async function resendConfirmation(){
+  if(busy)return;
+  const email=$('bxx-account-form')?.elements.email?.value?.trim().toLowerCase();
+  if(!email||!/^\\S+@\\S+\\.\\S+$/.test(email)){msg('Сначала введи адрес электронной почты в поле выше.');return}
+  if(Date.now()<resendUntil){msg('Подожди немного перед следующей отправкой письма.');return}
+  busy=true;const btn=$('bxx-resend-confirm');btn.disabled=true;btn.textContent='ОТПРАВЛЯЕМ…';
+  try{
+   const {error}=await supa().auth.resend({type:'signup',email,options:{emailRedirectTo:window.location.origin+window.location.pathname}});
+   if(error)throw error;
+   resendUntil=Date.now()+60000;
+   msg('Запрос принят. Проверь входящие, «Спам» и освободи место в почтовом ящике. Если письмо не пришло, подожди перед следующей попыткой.');
+  }catch(err){
+   const s=(err&&err.message)||'Не удалось отправить письмо.';
+   if(/rate limit|too many requests/i.test(s))msg('Supabase временно ограничил отправку писем. Подожди 10–15 минут и попробуй ещё раз. Частые запросы не помогут.');
+   else msg(authError(err));
+  }finally{busy=false;if(btn.isConnected){btn.disabled=false;btn.textContent='ПОВТОРНО ОТПРАВИТЬ ПИСЬМО'}}
  }
  async function submitAuth(e){
   e.preventDefault();if(busy)return;
