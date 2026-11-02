@@ -2497,5 +2497,91 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
 }
 </style>
 
+
+<style id="bxx-register-mobile-layout-fix">
+/* Registration section: stack copy and form instead of squeezing two desktop columns on phones. */
+@media (max-width: 760px) {
+  #register > div {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+    box-sizing: border-box !important;
+  }
+  #register > div > div > div[style*="display:grid"] {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 24px !important;
+    padding: 30px 20px 26px !important;
+    box-sizing: border-box !important;
+    align-items: stretch !important;
+  }
+  #register > div > div > div[style*="display:grid"] > div {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  #register h2 {
+    font-size: clamp(38px, 10vw, 58px) !important;
+    line-height: .98 !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    margin: 12px 0 16px !important;
+  }
+  #register p {
+    max-width: 100% !important;
+    font-size: 15px !important;
+    line-height: 1.65 !important;
+  }
+  #register > div > div > div[style*="display:grid"] > div[aria-live="polite"] {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 20px 16px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    animation: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    clip-path: none !important;
+  }
+  #register input[type="email"] {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    clip-path: none !important;
+  }
+  #register button {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    line-height: 1.3 !important;
+  }
+  #register > div > div > div[style*="display:grid"] > div[aria-live="polite"] > div[style*="display:flex;gap:10px"] {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(92px, .55fr) !important;
+    gap: 10px !important;
+  }
+  #register > div > div > div[style*="display:grid"] > div[aria-live="polite"] > div[style*="display:flex;gap:10px"] > button {
+    width: 100% !important;
+    padding: 14px 10px !important;
+    font-size: 12px !important;
+    letter-spacing: .07em !important;
+  }
+}
+@media (max-width: 390px) {
+  #register > div > div > div[style*="display:grid"] {
+    padding: 24px 14px 20px !important;
+    gap: 20px !important;
+  }
+  #register > div > div > div[style*="display:grid"] > div[aria-live="polite"] {
+    padding: 17px 12px !important;
+  }
+  #register > div > div > div[style*="display:grid"] > div[aria-live="polite"] > div[style*="display:flex;gap:10px"] {
+    grid-template-columns: minmax(0, 1fr) 96px !important;
+  }
+}
+</style>
+
 </body>
 </html>
