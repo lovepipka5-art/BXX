@@ -2314,12 +2314,12 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
             <sc-if value="{{ notRegistered }}" hint-placeholder-val="{{ true }}">
               <div class="bxx-auth-methods">
                 <button class="bxx-auth-button bxx-auth-discord" onClick="{{ onDiscordLogin }}" type="button">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19.6 4.6A17 17 0 0 0 15.3 3.3l-.2.4a12.7 12.7 0 0 1 3.7 1.9c-3.9-1.8-8.6-1.8-12.5 0a12.7 12.7 0 0 1 3.7-1.9l-.2-.4A17 17 0 0 0 4.4 4.6C1.7 8.6 1 12.6 1.3 16.5a17 17 0 0 0 5.2 2.6l.4-.6a11 11 0 0 1-1.9-.9l.5-.4a12.2 12.2 0 0 0 10.4 0l.5.4c-.6.4-1.2.7-1.9.9l.4.6a17 17 0 0 0 5.2-2.6c.5-4.5-.7-8.5-2.9-11.9ZM8.5 14.3c-1 0-1.9-.9-1.9-2.1 0-1.2.8-2.1 1.9-2.1s1.9 1 1.9 2.1c0 1.2-.8 2.1-1.9 2.1Zm7 0c-1 0-1.9-.9-1.9-2.1 0-1.2.8-2.1 1.9-2.1s1.9 1 1.9 2.1c0 1.2-.8 2.1-1.9 2.1Z"/></svg>
-                  <span>ЗАРЕГИСТРИРОВАТЬСЯ ЧЕРЕЗ DISCORD</span><b>›</b>
+                  <svg class="bxx-discord-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.6 4.6A17 17 0 0 0 15.3 3.3l-.2.4a12.7 12.7 0 0 1 3.7 1.9c-3.9-1.8-8.6-1.8-12.5 0a12.7 12.7 0 0 1 3.7-1.9l-.2-.4A17 17 0 0 0 4.4 4.6C1.7 8.6 1 12.6 1.3 16.5a17 17 0 0 0 5.2 2.6l.4-.6a11 11 0 0 1-1.9-.9l.5-.4a12.2 12.2 0 0 0 10.4 0l.5.4c-.6.4-1.2.7-1.9.9l.4.6a17 17 0 0 0 5.2-2.6c.5-4.5-.7-8.5-2.9-11.9ZM8.5 14.3c-1 0-1.9-.9-1.9-2.1 0-1.2.8-2.1 1.9-2.1s1.9 1 1.9 2.1c0 1.2-.8 2.1-1.9 2.1Zm7 0c-1 0-1.9-.9-1.9-2.1 0-1.2.8-2.1 1.9-2.1s1.9 1 1.9 2.1c0 1.2-.8 2.1-1.9 2.1Z"/></svg>
+                  <span>БЫСТРЫЙ ВХОД ЧЕРЕЗ DISCORD</span><b>›</b>
                 </button>
                 <button class="bxx-auth-button bxx-auth-email" onClick="{{ onEmailLogin }}" type="button">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5h18v13H3z"/><path d="m3.5 6 8.5 7 8.5-7"/></svg>
-                  <span>ЗАРЕГИСТРИРОВАТЬСЯ ЧЕРЕЗ ПОЧТУ</span><b>›</b>
+                  <span>ВОЙТИ ПО ПОЧТЕ</span><b>›</b>
                 </button>
               </div>
               <div class="bxx-auth-notice" role="status" aria-live="polite">{{ registerNotice }}</div>
@@ -2861,6 +2861,34 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
 #register .bxx-discord-invite-wrap>small{color:#8f8991;font:11px/1.5 Inter,sans-serif;text-align:center}
 @media(max-width:760px){#register .bxx-auth-button{min-height:68px;padding:13px;font-size:12px}#register .bxx-discord-invite-wrap{margin-top:14px;padding-top:13px}}
 @media(prefers-reduced-motion:reduce){#register .bxx-auth-button,#register .bxx-discord-invite{transition:none}}
+</style>
+
+
+<style id="bxx-compact-auth-refresh">
+/* Compact, focused authentication card and a crisp Discord mark. */
+#register .bxx-auth-methods{gap:8px!important}
+#register .bxx-auth-button{min-height:48px!important;padding:10px 13px!important;gap:11px!important;font-size:12px!important;clip-path:none!important;border-radius:3px!important}
+#register .bxx-auth-button .bxx-discord-mark{width:25px!important;height:25px!important;min-width:25px!important;flex:0 0 25px!important;display:block!important;fill:#fff!important;stroke:none!important;overflow:visible!important}
+#register .bxx-auth-button .bxx-discord-mark path{fill:#fff!important;stroke:none!important}
+#register .bxx-auth-button:not(.bxx-auth-discord) svg{width:21px!important;height:21px!important;flex:0 0 21px!important;stroke-width:1.7!important}
+#register .bxx-auth-button b{font-size:19px!important}
+#register .bxx-discord-invite-wrap{gap:7px!important;margin-top:12px!important;padding-top:11px!important}
+#register .bxx-discord-invite{min-height:43px!important;padding:9px 12px!important;font-size:11px!important;clip-path:none!important;border-radius:3px!important}
+#register .bxx-discord-invite svg{fill:#fff!important;stroke:none!important}
+#register .bxx-discord-invite svg path{fill:#fff!important;stroke:none!important}
+#register .bxx-discord-invite-wrap>small{font-size:10px!important;line-height:1.35!important}
+@media(max-width:760px){
+ #register>div>div>div[style*="display:grid"]{padding:15px 14px!important;gap:0!important}
+ #register>div>div>div[style*="display:grid"]>div:first-child{display:none!important}
+ #register>div>div>div[style*="display:grid"]>div[aria-live="polite"]{padding:12px!important;border:0!important;background:transparent!important}
+ #register>div>div>div[style*="display:grid"]>div[aria-live="polite"]>div:first-child{margin-bottom:12px!important}
+ #register .bxx-auth-button{min-height:46px!important;padding:9px 11px!important;font-size:11px!important}
+ #register .bxx-live-profile{padding:15px 10px!important}
+}
+@media(max-width:390px){
+ #register>div>div>div[style*="display:grid"]{padding:12px 10px!important}
+ #register .bxx-auth-button{font-size:10px!important;letter-spacing:.01em!important}
+}
 </style>
 
 </body>
