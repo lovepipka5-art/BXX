@@ -2095,6 +2095,28 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
     overflow-wrap:normal !important;
   }
 }
+
+/* v5: justify the legal disclaimer paragraph on mobile only */
+@media screen and (max-width:700px) {
+  footer > div:last-child > span.bxx-legal-disclaimer {
+    display:block !important;
+    flex:1 1 100% !important;
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    text-align:justify !important;
+    text-align-last:left !important;
+    text-justify:inter-word !important;
+    white-space:normal !important;
+    overflow-wrap:break-word !important;
+    word-break:normal !important;
+    line-height:1.7 !important;
+  }
+  footer > div:last-child > span:first-child {
+    width:100% !important;
+    text-align:left !important;
+  }
+}
 </style>
 
 </helmet>
@@ -2443,7 +2465,7 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
     </div>
     <div style="max-width:1280px;margin:40px auto 0;padding-top:22px;border-top:1px solid #ffffff10;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:13px;color:#5f5f68;letter-spacing:.04em">
       <span>© 2026 BENDER X ARENA. Все права защищены.</span>
-      <span style="max-width:560px;text-align:right">Bender X Arena — оригинальный вымышленный проект. Не связан с Mortal Kombat / NetherRealm Studios и не использует их персонажей.</span>
+      <span class="bxx-legal-disclaimer" style="max-width:560px;text-align:right">Bender X Arena — оригинальный вымышленный проект. Не связан с Mortal Kombat / NetherRealm Studios и не использует их персонажей.</span>
     </div>
   </footer>
 </div>
