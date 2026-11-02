@@ -1955,25 +1955,49 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
   }
   footer { padding:36px 18px 26px !important; }
   footer > div:first-child {
-    display:flex !important;
-    flex-direction:column !important;
-    gap:28px !important;
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    align-items:start !important;
+    column-gap:18px !important;
+    row-gap:30px !important;
     width:100% !important;
     min-width:0 !important;
   }
-  footer > div:first-child > div:first-child { width:100% !important; min-width:0 !important; }
+  footer > div:first-child > div:first-child {
+    grid-column:1 / -1 !important;
+    width:100% !important;
+    min-width:0 !important;
+  }
   footer > div:first-child > div:first-child > a { display:flex !important; flex-wrap:nowrap !important; gap:9px !important; max-width:100% !important; }
   footer > div:first-child > div:first-child > a img { width:46px !important; height:46px !important; object-fit:contain !important; }
   footer > div:first-child > div:first-child > a span { font-size:clamp(15px,4vw,18px) !important; white-space:normal !important; }
   footer > div:first-child > div:first-child p { max-width:340px !important; font-size:14px !important; line-height:1.65 !important; }
   footer > div:first-child > sc-for {
-    display:grid !important;
-    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-    gap:24px 16px !important;
-    width:100% !important;
+    display:contents !important;
+    width:auto !important;
     min-width:0 !important;
   }
-  footer > div:first-child > sc-for > div { min-width:0 !important; overflow-wrap:anywhere !important; }
+  footer > div:first-child > sc-for > div {
+    display:block !important;
+    width:100% !important;
+    min-width:0 !important;
+    margin:0 !important;
+    overflow-wrap:anywhere !important;
+  }
+  footer > div:first-child > sc-for > div > div:first-child {
+    margin-bottom:14px !important;
+    font-size:14px !important;
+  }
+  footer > div:first-child > sc-for > div > div:last-child {
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    gap:10px !important;
+  }
+  footer > div:first-child > sc-for > div a {
+    font-size:13px !important;
+    line-height:1.5 !important;
+  }
   footer > div:first-child > sc-for > div > div:first-child {
     margin-bottom:10px !important;
     font-size:12px !important;
