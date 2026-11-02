@@ -9,6 +9,7 @@
 <meta property="og:title" content="BX_ARENA — Вход на арену">
 <meta property="og:description" content="16 бойцов. Один трон. Следи за турниром, расписанием стримов и рейтингом игроков Bender X Arena.">
 <script src="./support.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js"></script>
 </head>
 <body>
 <x-dc>
@@ -2522,7 +2523,8 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
           <div class="bxx-register-copy">
             <div class="bxx-register-kicker"><span></span> НАБОР ОТКРЫТ <i></i></div>
             <h2>ВСТУПАЙ<br>В <span>БИТВУ</span></h2>
-            <p>Заходи через Discord, забирай стартовый набор BX-кредитов и место в квалификации Сезона 4.</p>
+            <p class="bxx-register-copy-desktop">Заходи через Discord, забирай стартовый набор BX-кредитов и место в квалификации Сезона 4.</p>
+            <p class="bxx-register-copy-mobile">Зарегистрируйся на турнир. Получи место в квалификации Сезона 4.</p>
             <div class="bxx-register-stats">
               <sc-for list="{{ gateChips }}" as="ch" hint-placeholder-count="3">
                 <div class="bxx-register-stat">
@@ -2535,27 +2537,28 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
           </div>
 
           <div class="bxx-register-card" aria-live="polite">
-            <div class="bxx-register-card-heading"><span></span> ВХОД НА АРЕНУ</div>
+            <div class="bxx-register-card-heading"><span></span><span class="bxx-register-heading-desktop">ВХОД НА АРЕНУ</span><span class="bxx-register-heading-mobile">ВЫБЕРИ СПОСОБ ВХОДА</span></div>
             <sc-if value="{{ registered }}" hint-placeholder-val="{{ false }}">
               <div class="bxx-register-success">
                 <span>✓</span>
-                <strong>ТЫ В ДЕЛЕ!</strong>
-                <small>Проверь Discord — там инвайт в арену.</small>
+                <strong>ТЫ В АРЕНЕ!</strong>
+                <small>Авторизация прошла успешно. Аккаунт BX ARENA подключён.</small>
               </div>
             </sc-if>
             <sc-if value="{{ notRegistered }}" hint-placeholder-val="{{ true }}">
               <div class="bxx-register-methods">
-                <button class="bxx-register-method bxx-register-method-discord" onClick="{{ onRegister }}">
+                <button class="bxx-register-method bxx-register-method-discord" onClick="{{ onDiscordLogin }}" type="button">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19.6 4.6A17 17 0 0 0 15.3 3.3l-.2.4a12.7 12.7 0 0 1 3.7 1.9c-3.9-1.8-8.6-1.8-12.5 0a12.7 12.7 0 0 1 3.7-1.9l-.2-.4A17 17 0 0 0 4.4 4.6C1.7 8.6 1 12.6 1.3 16.5a17 17 0 0 0 5.2 2.6l.4-.6a11 11 0 0 1-1.9-.9l.5-.4a12.2 12.2 0 0 0 10.4 0l.5.4c-.6.4-1.2.7-1.9.9l.4.6a17 17 0 0 0 5.2-2.6c.5-4.5-.7-8.5-2.9-11.9ZM8.5 14.3c-1 0-1.9-.9-1.9-2.1 0-1.2.8-2.1 1.9-2.1s1.9 1 1.9 2.1c0 1.2-.8 2.1-1.9 2.1Zm7 0c-1 0-1.9-.9-1.9-2.1 0-1.2.8-2.1 1.9-2.1s1.9 1 1.9 2.1c0 1.2-.8 2.1-1.9 2.1Z"/></svg>
-                  <span><small>ВОЙТИ ЧЕРЕЗ</small><strong>DISCORD</strong></span>
-                  <b>›</b>
+                  <span><small><span class="bxx-method-desktop">ВОЙТИ ЧЕРЕЗ</span><span class="bxx-method-mobile">БЫСТРЫЙ ВХОД</span></small><strong>DISCORD</strong></span>
+                  <b aria-hidden="true">›</b>
                 </button>
-                <button class="bxx-register-method bxx-register-method-email" onClick="{{ onRegister }}">
+                <button class="bxx-register-method bxx-register-method-email" onClick="{{ onEmailLogin }}" type="button">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5h18v13H3z"/><path d="m3.5 6 8.5 7 8.5-7"/></svg>
-                  <span><small>ВОЙТИ ЧЕРЕЗ</small><strong>ПОЧТУ</strong></span>
-                  <b>›</b>
+                  <span><small><span class="bxx-method-desktop">ВОЙТИ ЧЕРЕЗ</span><span class="bxx-method-mobile">АЛЬТЕРНАТИВНЫЙ ВХОД</span></small><strong>ПОЧТУ</strong></span>
+                  <b aria-hidden="true">›</b>
                 </button>
               </div>
+              <div class="bxx-register-notice" aria-live="polite" role="status">{{ registerNotice }}</div>
               <div class="bxx-register-or"><span></span> ИЛИ <span></span></div>
               <button class="bxx-register-create" onClick="{{ onRegister }}">
                 <span class="bxx-register-check">✓</span>
@@ -2563,6 +2566,15 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
                 <b>›</b>
               </button>
             </sc-if>
+            <div class="bxx-discord-invite-wrap">
+              <span class="bxx-discord-invite-caption">ОТДЕЛЬНО ОТ АККАУНТА BX ARENA</span>
+              <a class="bxx-discord-invite" href="https://discord.com/invite/qqctMjCTeg" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19.6 4.6A17 17 0 0 0 15.3 3.3l-.2.4a12.7 12.7 0 0 1 3.7 1.9c-3.9-1.8-8.6-1.8-12.5 0a12.7 12.7 0 0 1 3.7-1.9l-.2-.4A17 17 0 0 0 4.4 4.6C1.7 8.6 1 12.6 1.3 16.5a17 17 0 0 0 5.2 2.6l.4-.6a11 11 0 0 1-1.9-.9l.5-.4a12.2 12.2 0 0 0 10.4 0l.5.4c-.6.4-1.2.7-1.9.9l.4.6a17 17 0 0 0 5.2-2.6c.5-4.5-.7-8.5-2.9-11.9ZM8.5 14.3c-1 0-1.9-.9-1.9-2.1 0-1.2.8-2.1 1.9-2.1s1.9 1 1.9 2.1c0 1.2-.8 2.1-1.9 2.1Zm7 0c-1 0-1.9-.9-1.9-2.1 0-1.2.8-2.1 1.9-2.1s1.9 1 1.9 2.1c0 1.2-.8 2.1-1.9 2.1Z"/></svg>
+                <span>ВСТУПИТЬ В DISCORD</span>
+                <b aria-hidden="true">↗</b>
+              </a>
+              <small>Вступление в Discord не требуется для создания профиля на сайте.</small>
+            </div>
           </div>
         </div>
       </div>
@@ -2642,9 +2654,39 @@ class Component extends DCLogic {
     this.deadline=Date.now()+17*86400000+9*3600000+42*60000+11*1000;
     this.fxRef=el=>{this.fx=el}; this.glowRef=el=>{this.glow=el}; this.rootRef=el=>{this.root=el}; this.ghostRef=el=>{this.ghost=el};
   }
-  state={ intro:!this._introShown, filter:'Все', p1:0, p2:1, cd:{d:'--',h:'--',m:'--',s:'--'}, players:[], winners:{}, cart:0, cartPop:false, scrolled:false, stats:{prize:0,teams:0,viewers:0}, reminded:{}, registered:false };
+  state={ intro:!this._introShown, filter:'Все', p1:0, p2:1, cd:{d:'--',h:'--',m:'--',s:'--'}, players:[], winners:{}, cart:0, cartPop:false, scrolled:false, stats:{prize:0,teams:0,viewers:0}, reminded:{}, registered:false, registerNotice:'' };
 
+  getAuthClient(){
+    if(!window.supabase||typeof window.supabase.createClient!=='function') throw new Error('Не удалось загрузить модуль авторизации. Обнови страницу и попробуй снова.');
+    if(!this._authClient) this._authClient=window.supabase.createClient('https://rospclqxeijwvvrixdza.supabase.co','sb_publishable_V_gUdsAQ8zaiVW7zcwM7pg_3eSFbGoP',{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+    return this._authClient;
+  }
+  async startDiscordLogin(){
+    try{
+      this.setState({registerNotice:'Переходим к Discord…'});
+      const client=this.getAuthClient();
+      const {error}=await client.auth.signInWithOAuth({provider:'discord',options:{redirectTo:window.location.href.split('#')[0]}});
+      if(error) throw error;
+    }catch(error){this.setState({registerNotice:'Не удалось открыть Discord: '+(error.message||'попробуй ещё раз')});}
+  }
+  async startEmailLogin(){
+    const email=window.prompt('Введи email — мы отправим тебе ссылку для входа:');
+    if(!email) return;
+    try{
+      this.setState({registerNotice:'Отправляем ссылку на почту…'});
+      const client=this.getAuthClient();
+      const {error}=await client.auth.signInWithOtp({email:email.trim(),options:{emailRedirectTo:window.location.href.split('#')[0],shouldCreateUser:true,data:{display_name:email.trim().split('@')[0]}}});
+      if(error) throw error;
+      this.setState({registerNotice:'Ссылка для входа отправлена на '+email.trim()+'. Проверь почту и открой письмо на этом устройстве.'});
+    }catch(error){this.setState({registerNotice:'Не удалось отправить письмо: '+(error.message||'проверь адрес и попробуй ещё раз')});}
+  }
   componentDidMount(){
+    try{
+      const client=this.getAuthClient();
+      client.auth.getSession().then(({data,error})=>{if(!error&&data.session&&!this._unmounted)this.setState({registered:true,registerNotice:''});});
+      const {data}=client.auth.onAuthStateChange((event,session)=>{if(!this._unmounted&&session)this.setState({registered:true,registerNotice:''});});
+      this._authSubscription=data&&data.subscription;
+    }catch(error){this.setState({registerNotice:error.message||'Авторизация временно недоступна.'});}
     if(this.root){ if(this.props.accent) this.root.style.setProperty('--accent',this.props.accent); if(this.props.accent2) this.root.style.setProperty('--steel',this.props.accent2); }
     this.tick(); this._cdT=setInterval(()=>this.tick(),1000);
     this._lbT=setInterval(()=>this.shuffle(),3200);
@@ -2657,7 +2699,7 @@ class Component extends DCLogic {
     const fonts=(document.fonts&&document.fonts.ready)?document.fonts.ready:Promise.resolve();
     Promise.all([minWait,fonts]).then(()=>{ if(this._unmounted) return; try{ localStorage.setItem('bxa_intro','1'); }catch(e){} this.setState({intro:false}); });
   }
-  componentWillUnmount(){ this._unmounted=true; clearInterval(this._cdT); clearInterval(this._lbT); clearTimeout(this._flashT); clearTimeout(this._cartT); cancelAnimationFrame(this._raf); cancelAnimationFrame(this._statRaf); window.removeEventListener('mousemove',this._move); window.removeEventListener('scroll',this._scroll); if(this._fxResize) window.removeEventListener('resize',this._fxResize); if(this._io) this._io.disconnect(); }
+  componentWillUnmount(){ this._unmounted=true; if(this._authSubscription)this._authSubscription.unsubscribe(); clearInterval(this._cdT); clearInterval(this._lbT); clearTimeout(this._flashT); clearTimeout(this._cartT); cancelAnimationFrame(this._raf); cancelAnimationFrame(this._statRaf); window.removeEventListener('mousemove',this._move); window.removeEventListener('scroll',this._scroll); if(this._fxResize) window.removeEventListener('resize',this._fxResize); if(this._io) this._io.disconnect(); }
   componentDidUpdate(){ if(this._lastFilter!==undefined && this._lastFilter!==this.state.filter){ this._lastFilter=this.state.filter; this.revealScan(); } if(!this._orderChanged) return; this._orderChanged=false; const first=this._first||{}; for(const id in this.rowRefs){ const el=this.rowRefs[id]; if(!el) continue; const last=el.getBoundingClientRect().top; const dy=(first[id]==null?last:first[id])-last; if(dy){ el.style.transition='none'; el.style.transform='translateY('+dy+'px)'; requestAnimationFrame(()=>{ el.style.transition='transform .55s cubic-bezier(.16,1,.3,1)'; el.style.transform=''; }); } } }
 
   setupReveals(){
@@ -2800,7 +2842,7 @@ class Component extends DCLogic {
       players, streams, skins, news, gateChips,
       podium, podiumHover:{transform:'translateY(-8px)',boxShadow:'0 28px 60px rgba(0,0,0,.6)'},
       bracket:this.buildBracket(), resetBracket:()=>this.resetBracket(),
-      cart:S.cart, slots:(256-24-S.cart), registered:S.registered, notRegistered:!S.registered, onRegister:()=>this.setState({registered:true}),
+      cart:S.cart, slots:(256-24-S.cart), registered:S.registered, notRegistered:!S.registered, registerNotice:S.registerNotice||'', onRegister:()=>this.setState({registerNotice:'Чтобы войти на арену, выбери Discord или почту выше.'}), onDiscordLogin:()=>this.startDiscordLogin(), onEmailLogin:()=>this.startEmailLogin(), 
       socials:['DC','YT','TG','TW'],
       footerCols:[{title:'Игра',links:['Бойцы','Классы','Патчноуты','Гайды']},{title:'Турнир',links:['Расписание','Сетка','Призы','Правила']},{title:'Комьюнити',links:['Discord','Форум','Стримеры','Мерч']}]
     };
@@ -3029,6 +3071,158 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
     grid-template-columns: minmax(0, 1fr) 96px !important;
   }
 }
+</style>
+
+
+<style id="bxx-register-mobile-refresh-v3">
+/* Mobile-only registration refinement. Desktop styles and layout remain untouched. */
+#register .bxx-register-card-heading > span:not(:first-child){width:auto!important;height:auto!important;background:none!important;flex:0 1 auto!important}
+.bxx-register-copy-mobile,.bxx-register-heading-mobile,.bxx-method-mobile{display:none}
+@media(max-width:760px){
+  #register{padding:52px 0 58px!important}
+  #register .bxx-register-wrap{padding:0 14px!important}
+  #register .bxx-register-shell{
+    border-color:rgba(255,48,66,.34)!important;
+    background:linear-gradient(145deg,#101014 0%,#09090c 68%,#140b10 100%)!important;
+    box-shadow:0 18px 54px rgba(0,0,0,.34),inset 0 0 0 1px rgba(255,255,255,.025)!important;
+  }
+  #register .bxx-register-layout{
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:23px!important;
+    padding:26px 17px 20px!important;
+    align-items:stretch!important;
+  }
+  #register .bxx-register-art{right:-22%;width:86%;opacity:.075!important}
+  #register .bxx-register-kicker{font-size:11px!important;letter-spacing:.19em!important;gap:10px!important}
+  #register .bxx-register-copy h2{
+    margin:14px 0 13px!important;
+    font-size:clamp(43px,12.4vw,62px)!important;
+    line-height:.96!important;
+    letter-spacing:-.035em!important;
+    text-wrap:balance;
+  }
+  #register .bxx-register-copy-desktop{display:none!important}
+  #register .bxx-register-copy-mobile{
+    display:block!important;
+    max-width:34ch!important;
+    margin:0!important;
+    color:#bdb8c0!important;
+    font-size:15px!important;
+    line-height:1.55!important;
+  }
+  #register .bxx-register-stats{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:9px!important;
+    margin-top:19px!important;
+  }
+  #register .bxx-register-stat{
+    min-height:72px!important;
+    padding:12px 13px!important;
+    gap:5px!important;
+    border:1px solid rgba(255,255,255,.12)!important;
+    border-left:2px solid rgba(255,48,66,.82)!important;
+    background:linear-gradient(135deg,rgba(24,20,25,.92),rgba(9,9,12,.94))!important;
+    clip-path:polygon(0 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%)!important;
+  }
+  #register .bxx-register-stat-value{font-size:25px!important;line-height:1!important}
+  #register .bxx-register-stat-label{font-size:10px!important;letter-spacing:.13em!important}
+  #register .bxx-register-stat:nth-child(3){
+    grid-column:1/-1!important;
+    min-height:54px!important;
+    flex-direction:row!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    gap:10px!important;
+  }
+  #register .bxx-register-stat:nth-child(3) .bxx-register-stat-value{
+    font-size:14px!important;
+    line-height:1.25!important;
+    letter-spacing:.055em!important;
+  }
+  #register .bxx-register-footnote{font-size:10px!important;margin-top:8px!important}
+  #register .bxx-register-card{
+    padding:17px 13px 13px!important;
+    border-color:rgba(255,48,66,.52)!important;
+    background:rgba(7,7,10,.94)!important;
+    box-shadow:0 12px 34px rgba(0,0,0,.28),inset 0 0 24px rgba(255,33,48,.035)!important;
+    clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%)!important;
+  }
+  #register .bxx-register-card-heading{
+    min-height:25px!important;
+    margin-bottom:14px!important;
+    font-size:13px!important;
+    letter-spacing:.14em!important;
+  }
+  #register .bxx-register-heading-desktop{display:none!important}
+  #register .bxx-register-heading-mobile{display:inline!important}
+  #register .bxx-register-methods{grid-template-columns:minmax(0,1fr)!important;gap:10px!important}
+  #register .bxx-register-method{
+    width:100%!important;
+    min-height:78px!important;
+    padding:13px 14px!important;
+    gap:13px!important;
+    border:1px solid rgba(255,255,255,.16)!important;
+    clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% calc(100% - 11px),calc(100% - 11px) 100%,0 100%)!important;
+    transition:transform .18s ease,border-color .18s ease,filter .18s ease!important;
+    -webkit-tap-highlight-color:transparent;
+  }
+  #register .bxx-register-method-discord{
+    color:#fff!important;
+    border-color:#ff3548!important;
+    background:linear-gradient(112deg,#e51d35 0%,#b90d27 100%)!important;
+    box-shadow:0 7px 22px rgba(229,29,53,.22),inset 0 1px rgba(255,255,255,.18)!important;
+  }
+  #register .bxx-register-method-email{
+    color:#f5f3f5!important;
+    border-color:rgba(255,48,66,.48)!important;
+    background:linear-gradient(145deg,#171319,#0d0c10)!important;
+  }
+  #register .bxx-register-method svg{width:34px!important;height:34px!important;flex:0 0 34px!important}
+  #register .bxx-register-method span{gap:4px!important}
+  #register .bxx-register-method small{font-size:9px!important;letter-spacing:.12em!important;color:rgba(255,255,255,.76)!important}
+  #register .bxx-register-method strong{font-size:19px!important;line-height:1.1!important;letter-spacing:.025em!important}
+  #register .bxx-register-method>b{font-size:28px!important;color:#fff!important}
+  #register .bxx-method-mobile{display:inline!important}
+  #register .bxx-method-desktop{display:none!important}
+  #register .bxx-register-method:active{transform:translateY(1px)!important;filter:brightness(.94)!important}
+  #register .bxx-register-method:focus-visible,
+  #register .bxx-register-create:focus-visible{
+    outline:2px solid #fff!important;
+    outline-offset:3px!important;
+  }
+  #register .bxx-register-notice{
+    margin-top:11px!important;
+    padding:10px 12px!important;
+    border:1px solid rgba(255,48,66,.32)!important;
+    background:rgba(255,33,48,.07)!important;
+    color:#d7cbd0!important;
+    font:12px/1.5 Inter,sans-serif!important;
+  }
+  #register .bxx-register-notice:empty{display:none!important}
+  #register .bxx-register-or,#register .bxx-register-create{display:none!important}
+  #register .bxx-register-success{padding:22px 12px!important}
+}
+@media(max-width:390px){
+  #register .bxx-register-layout{padding:23px 14px 17px!important;gap:20px!important}
+  #register .bxx-register-copy h2{font-size:clamp(40px,12vw,50px)!important}
+  #register .bxx-register-card{padding:15px 11px 11px!important}
+  #register .bxx-register-method{min-height:74px!important;padding:12px!important;gap:11px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #register .bxx-register-method{transition:none!important}
+}
+</style>
+
+<style id="bxx-discord-invite-separate">
+.bxx-discord-invite-wrap{display:grid;gap:9px;margin-top:16px;padding-top:15px;border-top:1px solid rgba(255,255,255,.1)}
+.bxx-discord-invite-caption{color:#a9a2aa;font:700 9px/1.4 Inter,sans-serif;letter-spacing:.16em;text-align:center}
+.bxx-discord-invite{display:flex;align-items:center;justify-content:center;gap:11px;min-height:52px;padding:12px 16px;border:1px solid rgba(255,255,255,.22);background:linear-gradient(110deg,#202027,#121217);color:#fff;font:700 13px/1.2 Inter,sans-serif;letter-spacing:.07em;transition:border-color .18s,background .18s,transform .18s}
+.bxx-discord-invite svg{width:22px;height:22px;flex:0 0 22px}
+.bxx-discord-invite b{margin-left:auto;font-size:18px;color:#ff5366}
+.bxx-discord-invite:hover{color:#fff;border-color:#ff3548;background:linear-gradient(110deg,#292027,#171217);transform:translateY(-1px)}
+.bxx-discord-invite-wrap>small{color:#8f8991;font:11px/1.5 Inter,sans-serif;text-align:center}
+@media(max-width:760px){.bxx-discord-invite-wrap{margin-top:13px;padding-top:13px}.bxx-discord-invite{min-height:56px;font-size:12px}}
+@media(prefers-reduced-motion:reduce){.bxx-discord-invite{transition:none}}
 </style>
 
 </body>
