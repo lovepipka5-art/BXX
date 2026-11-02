@@ -2658,7 +2658,7 @@ class Component extends DCLogic {
 
   getAuthClient(){
     if(!window.supabase||typeof window.supabase.createClient!=='function') throw new Error('Не удалось загрузить модуль авторизации. Обнови страницу и попробуй снова.');
-    if(!this._authClient) this._authClient=window.supabase.createClient('https://rospclqxeijwvvrixdza.supabase.co','sb_publishable_V_gUdsAQ8zaiVW7zcwM7pg_3eSFbGoP',{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+    if(!this._authClient) this._authClient=window.BXX_AUTH_CLIENT||(window.BXX_AUTH_CLIENT=window.supabase.createClient('https://rospclqxeijwvvrixdza.supabase.co','sb_publishable_V_gUdsAQ8zaiVW7zcwM7pg_3eSFbGoP',{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}));
     return this._authClient;
   }
   async startDiscordLogin(){
@@ -3229,5 +3229,131 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
 #register .bxx-discord-invite .bxx-discord-logo{width:22px;height:17px;flex:0 0 22px;object-fit:contain;display:block}
 </style>
 
+
+<style id="bxx-account-system-v2">
+.bxx-account-modal{position:fixed;inset:0;z-index:10050;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.bxx-account-modal.open{display:flex}
+.bxx-account-dialog{width:min(100%,520px);max-height:min(88svh,780px);overflow:auto;position:relative;border:1px solid rgba(255,48,66,.48);background:linear-gradient(145deg,#171217,#09090d 72%);box-shadow:0 28px 90px #000b,0 0 55px #ff213012}
+.bxx-account-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:21px 23px;border-bottom:1px solid #ffffff16}
+.bxx-account-head h2{font:700 23px/1.1 Oswald,sans-serif;letter-spacing:.08em;color:#fff}
+.bxx-account-close{width:38px;height:38px;border:1px solid #ffffff25;background:#ffffff08;color:#fff;font-size:25px;cursor:pointer}
+.bxx-account-content{padding:23px}
+.bxx-account-content label{display:grid;gap:8px;margin:0 0 15px;color:#bdb4ba;font:600 11px Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.bxx-account-content input,.bxx-account-content select{width:100%;min-height:48px;padding:12px 14px;border:1px solid #514047;background:#08080c;color:#fff;font:14px Inter,sans-serif;outline:none}
+.bxx-account-content input:focus,.bxx-account-content select:focus{border-color:#ff4055;box-shadow:0 0 0 3px #ff304822}
+.bxx-account-primary{width:100%;min-height:50px;margin-top:5px;border:1px solid #ff4055;background:linear-gradient(110deg,#ed203b,#a90e27);color:#fff;font:700 14px Oswald,sans-serif;letter-spacing:.12em;cursor:pointer}
+.bxx-account-secondary{min-height:42px;padding:10px 14px;border:1px solid #59414a;background:#171217;color:#eee;font:600 12px Inter,sans-serif;cursor:pointer}
+.bxx-account-switch{display:flex;gap:8px;margin-bottom:20px}
+.bxx-account-switch button{flex:1;min-height:42px;border:1px solid #44343b;background:#0c0b10;color:#aaa;font:700 12px Oswald,sans-serif;letter-spacing:.1em;cursor:pointer}
+.bxx-account-switch button.active{border-color:#ff4055;background:#ff304218;color:#fff}
+.bxx-account-message{margin:12px 0 0;padding:11px 12px;border:1px solid #ff405544;background:#ff304410;color:#e6cbd0;font:12px/1.55 Inter,sans-serif}
+.bxx-account-message:empty{display:none}
+.bxx-account-muted{color:#9d959d;font:12px/1.6 Inter,sans-serif}
+.bxx-profile-hero{display:flex;align-items:center;gap:17px;margin-bottom:22px;padding:15px;border:1px solid #ffffff16;background:linear-gradient(120deg,#21161c,#0c0b10)}
+.bxx-profile-avatar{width:82px;height:82px;flex:0 0 82px;display:grid;place-items:center;overflow:hidden;border:2px solid #ff4055;background:#21151c;color:#ff6878;font:700 27px Oswald,sans-serif;clip-path:polygon(0 0,100% 0,100% 82%,82% 100%,0 100%)}
+.bxx-profile-avatar img{width:100%;height:100%;object-fit:cover}
+.bxx-profile-name{font:700 25px/1.1 Oswald,sans-serif;color:#fff;overflow-wrap:anywhere}
+.bxx-profile-email{margin-top:6px;color:#aaa1aa;font:12px Inter,sans-serif;overflow-wrap:anywhere}
+.bxx-profile-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:18px 0}
+.bxx-profile-stat{padding:13px 10px;border:1px solid #ffffff16;background:#ffffff06;text-align:center}
+.bxx-profile-stat strong{display:block;color:#ff596d;font:700 20px Oswald,sans-serif}
+.bxx-profile-stat span{display:block;margin-top:4px;color:#a9a0a8;font:9px Inter,sans-serif;letter-spacing:.08em}
+.bxx-profile-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+@media(max-width:520px){.bxx-account-modal{padding:10px}.bxx-account-dialog{max-height:92svh}.bxx-account-head{padding:17px}.bxx-account-content{padding:18px 15px}.bxx-account-head h2{font-size:20px}.bxx-profile-avatar{width:68px;height:68px;flex-basis:68px}.bxx-profile-name{font-size:22px}}
+</style>
+<script id="bxx-account-system-v2-script">
+(function(){
+ const $=id=>document.getElementById(id);
+ const safe=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const supa=()=>{
+   if(window.BXX_AUTH_CLIENT)return window.BXX_AUTH_CLIENT;
+   if(!window.supabase||!window.supabase.createClient)throw new Error('Сервис аккаунтов пока не загрузился. Обнови страницу.');
+   return window.BXX_AUTH_CLIENT=window.supabase.createClient('https://rospclqxeijwvvrixdza.supabase.co','sb_publishable_V_gUdsAQ8zaiVW7zcwM7pg_3eSFbGoP',{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+ };
+ const modal=document.createElement('div');
+ modal.className='bxx-account-modal';modal.id='bxx-account-modal';modal.setAttribute('aria-hidden','true');
+ modal.innerHTML='<section class="bxx-account-dialog" role="dialog" aria-modal="true" aria-labelledby="bxx-account-title"><header class="bxx-account-head"><h2 id="bxx-account-title">АККАУНТ BXX ARENA</h2><button type="button" class="bxx-account-close" aria-label="Закрыть">×</button></header><div class="bxx-account-content" id="bxx-account-content"></div></section>';
+ document.body.appendChild(modal);
+ const content=$('bxx-account-content');
+ let mode='signup',busy=false,currentUser=null;
+ function open(){modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';renderAuth();}
+ function close(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+ function msg(t){const el=$('bxx-account-message');if(el)el.textContent=t||''}
+ function renderAuth(){
+  content.innerHTML='<div class="bxx-account-switch"><button type="button" data-mode="signup" class="'+(mode==='signup'?'active':'')+'">СОЗДАТЬ АККАУНТ</button><button type="button" data-mode="signin" class="'+(mode==='signin'?'active':'')+'">ВОЙТИ</button></div><form id="bxx-account-form" novalidate><label>Электронная почта<input name="email" type="email" autocomplete="email" placeholder="name@example.com" required maxlength="254"></label><label>Пароль<input name="password" type="password" autocomplete="'+(mode==='signup'?'new-password':'current-password')+'" placeholder="Минимум 8 символов" minlength="8" required></label>'+(mode==='signup'?'<label>Повтори пароль<input name="confirm" type="password" autocomplete="new-password" placeholder="Повтори пароль" minlength="8" required></label>':'')+'<button class="bxx-account-primary" type="submit">'+(mode==='signup'?'СОЗДАТЬ АККАУНТ':'ВОЙТИ В АККАУНТ')+'</button></form><p class="bxx-account-message" id="bxx-account-message" role="status" aria-live="polite"></p><p class="bxx-account-muted" style="margin-top:14px">Пароль используется только для входа в твой аккаунт BXX ARENA. Не сообщай его другим.</p>';
+  content.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.mode;renderAuth()}));
+  $('bxx-account-form').addEventListener('submit',submitAuth);
+ }
+ async function submitAuth(e){
+  e.preventDefault();if(busy)return;
+  const f=e.currentTarget,email=f.elements.email.value.trim().toLowerCase(),password=f.elements.password.value;
+  if(!email||!f.elements.email.checkValidity()){msg('Проверь адрес электронной почты.');return}
+  if(password.length<8){msg('Пароль должен содержать минимум 8 символов.');return}
+  if(mode==='signup'&&password!==f.elements.confirm.value){msg('Пароли не совпадают.');return}
+  busy=true;const btn=f.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='ПОДОЖДИ…';
+  try{
+   const client=supa();
+   if(mode==='signup'){
+    const {data,error}=await client.auth.signUp({email,password,options:{data:{display_name:email.split('@')[0],nickname:email.split('@')[0]}}});
+    if(error)throw error;
+    if(data.session){currentUser=data.user;close();await renderProfile();openProfilePanel();}
+    else msg('Почти готово! Мы отправили письмо для подтверждения на '+email+'. Перейди по ссылке в письме, затем войди здесь.');
+   }else{
+    const {data,error}=await client.auth.signInWithPassword({email,password});
+    if(error)throw error;
+    currentUser=data.user;close();await renderProfile();openProfilePanel();
+   }
+  }catch(err){msg(authError(err));}
+  finally{busy=false;if(btn.isConnected){btn.disabled=false;btn.textContent=mode==='signup'?'СОЗДАТЬ АККАУНТ':'ВОЙТИ В АККАУНТ';}}
+ }
+ function authError(e){
+  const s=(e&&e.message)||'Не удалось выполнить запрос.';
+  if(/already registered|already been registered/i.test(s))return 'Этот email уже зарегистрирован. Переключись на вкладку «Войти».';
+  if(/invalid login credentials/i.test(s))return 'Неверная почта или пароль.';
+  if(/password should be at least/i.test(s))return 'Пароль слишком короткий — нужно минимум 8 символов.';
+  if(/email not confirmed/i.test(s))return 'Сначала подтверди почту по ссылке в письме.';
+  return s;
+ }
+ const profilePanel=$('bxx-profile-panel'),profileBody=$('bxx-profile-body');
+ function openProfilePanel(){if(profilePanel){profilePanel.classList.add('open');profilePanel.setAttribute('aria-hidden','false')}}
+ function closeProfilePanel(){if(profilePanel){profilePanel.classList.remove('open');profilePanel.setAttribute('aria-hidden','true')}}
+ async function getUser(){
+  const {data,error}=await supa().auth.getUser();if(error)throw error;currentUser=data.user;return currentUser;
+ }
+ async function renderProfile(){
+  if(!profileBody)return;
+  try{
+   const user=await getUser();
+   if(!user){profileBody.innerHTML='<p class="bxx-util-muted">Чтобы открыть личный профиль, сначала войди или создай аккаунт.</p><button class="bxx-util-button" id="bxx-profile-login">ВОЙТИ / СОЗДАТЬ АККАУНТ</button>';const b=$('bxx-profile-login');if(b)b.onclick=open;return}
+   const md=user.user_metadata||{},nick=md.nickname||md.display_name||user.email.split('@')[0],avatar=md.avatar_url||'',platform=md.platform||'PC';
+   profileBody.innerHTML='<div class="bxx-profile-hero"><div class="bxx-profile-avatar" id="bxx-profile-avatar">'+(avatar?'<img src="'+safe(avatar)+'" alt="Аватар игрока">':safe((nick||'B').slice(0,1).toUpperCase()))+'</div><div style="min-width:0"><div class="bxx-profile-name">'+safe(nick)+'</div><div class="bxx-profile-email">'+safe(user.email)+'</div></div></div><div class="bxx-profile-actions"><label class="bxx-util-secondary" for="bxx-avatar-file" style="display:inline-flex;align-items:center;cursor:pointer">ЗАГРУЗИТЬ АВАТАР<input id="bxx-avatar-file" type="file" accept="image/png,image/jpeg,image/webp" style="display:none"></label><button class="bxx-account-secondary" id="bxx-avatar-remove" type="button">УБРАТЬ ФОТО</button></div><div class="bxx-profile-stats"><div class="bxx-profile-stat"><strong>—</strong><span>МАТЧИ</span></div><div class="bxx-profile-stat"><strong>—</strong><span>ПОБЕДЫ</span></div><div class="bxx-profile-stat"><strong>—</strong><span>РЕЙТИНГ</span></div></div><form id="bxx-profile-edit-form"><label>ИГРОВОЙ НИК<input name="nickname" minlength="2" maxlength="24" required value="'+safe(nick)+'" placeholder="BXX_Fighter"></label><label>ПЛАТФОРМА<select name="platform">'+['PC','PlayStation','Xbox','Nintendo Switch'].map(x=>'<option'+(x===platform?' selected':'')+'>'+x+'</option>').join('')+'</select></label><button class="bxx-account-primary" type="submit">СОХРАНИТЬ ПРОФИЛЬ</button></form><p class="bxx-account-message" id="bxx-profile-message" role="status" aria-live="polite"></p><div class="bxx-profile-actions"><button class="bxx-account-secondary" id="bxx-account-signout" type="button">ВЫЙТИ ИЗ АККАУНТА</button></div><p class="bxx-account-muted" style="margin-top:15px">Статистика игрока появится здесь после подключения турнирных данных.</p>';
+   $('bxx-profile-edit-form').addEventListener('submit',async e=>{e.preventDefault();const b=e.currentTarget.querySelector('button');b.disabled=true;try{const d=new FormData(e.currentTarget);const {error}=await supa().auth.updateUser({data:{nickname:String(d.get('nickname')).trim(),display_name:String(d.get('nickname')).trim(),platform:String(d.get('platform'))}});if(error)throw error;const m=$('bxx-profile-message');if(m)m.textContent='Профиль сохранён.';await renderProfile();}catch(err){const m=$('bxx-profile-message');if(m)m.textContent=authError(err)}finally{if(b.isConnected)b.disabled=false}});
+   $('bxx-avatar-file').addEventListener('change',async e=>{const file=e.target.files&&e.target.files[0];if(!file)return;if(!/^image\/(png|jpeg|webp)$/.test(file.type)){alert('Выбери PNG, JPG или WebP.');return}try{const data=await compressImage(file);const {error}=await supa().auth.updateUser({data:{avatar_url:data}});if(error)throw error;await renderProfile()}catch(err){const m=$('bxx-profile-message');if(m)m.textContent='Не удалось сохранить аватар: '+authError(err)}});
+   $('bxx-avatar-remove').addEventListener('click',async()=>{try{const {error}=await supa().auth.updateUser({data:{avatar_url:null}});if(error)throw error;await renderProfile()}catch(err){const m=$('bxx-profile-message');if(m)m.textContent=authError(err)}});
+   $('bxx-account-signout').addEventListener('click',async()=>{try{const {error}=await supa().auth.signOut();if(error)throw error;currentUser=null;closeProfilePanel();await renderProfile()}catch(err){alert(authError(err))}});
+  }catch(err){profileBody.innerHTML='<p class="bxx-util-muted">'+safe(authError(err))+'</p><button class="bxx-util-button" id="bxx-profile-login">ВОЙТИ / СОЗДАТЬ АККАУНТ</button>';$('bxx-profile-login').onclick=open}
+ }
+ async function compressImage(file){
+  const img=await createImageBitmap(file),size=320,scale=Math.min(1,size/Math.max(img.width,img.height)),w=Math.max(1,Math.round(img.width*scale)),h=Math.max(1,Math.round(img.height*scale)),canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;canvas.getContext('2d').drawImage(img,0,0,w,h);img.close();return canvas.toDataURL('image/webp',.76);
+ }
+ document.addEventListener('click',e=>{
+  const create=e.target.closest('.bxx-register-create');
+  if(create){e.preventDefault();e.stopImmediatePropagation();mode='signup';open();return}
+  const profile=e.target.closest('#bxx-profile-open');
+  if(profile){e.preventDefault();e.stopImmediatePropagation();renderProfile().then(openProfilePanel);return}
+  const login=e.target.closest('.bxx-register-method-email');
+  if(login){e.preventDefault();e.stopImmediatePropagation();mode='signin';open();return}
+ },true);
+ modal.querySelector('.bxx-account-close').addEventListener('click',close);
+ modal.addEventListener('click',e=>{if(e.target===modal)close()});
+ if(profilePanel){profilePanel.addEventListener('click',e=>{if(e.target===profilePanel)closeProfilePanel()});const x=profilePanel.querySelector('[data-bxx-close]');if(x)x.addEventListener('click',closeProfilePanel)}
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+ try{
+  const client=supa();
+  client.auth.getSession().then(({data})=>{currentUser=data.session?.user||null;});
+  client.auth.onAuthStateChange((_event,session)=>{currentUser=session?.user||null;});
+ }catch(e){console.warn('BXX account init:',e)}
+})();
+</script>
 </body>
 </html>
