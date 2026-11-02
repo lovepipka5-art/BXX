@@ -9,6 +9,7 @@
 <meta property="og:title" content="BX_ARENA — Вход на арену">
 <meta property="og:description" content="16 бойцов. Один трон. Следи за турниром, расписанием стримов и рейтингом игроков Bender X Arena.">
 <script src="./support.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0"></script>
 </head>
 <body>
 <x-dc>
@@ -2540,8 +2541,8 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
             <sc-if value="{{ registered }}" hint-placeholder-val="{{ false }}">
               <div class="bxx-register-success">
                 <span>✓</span>
-                <strong>ТЫ В ДЕЛЕ!</strong>
-                <small>Проверь Discord — там инвайт в арену.</small>
+                <strong>ТЫ В АРЕНЕ!</strong>
+                <small>Авторизация прошла успешно. Аккаунт BX ARENA подключён.</small>
               </div>
             </sc-if>
             <sc-if value="{{ notRegistered }}" hint-placeholder-val="{{ true }}">
@@ -2646,7 +2647,37 @@ class Component extends DCLogic {
   }
   state={ intro:!this._introShown, filter:'Все', p1:0, p2:1, cd:{d:'--',h:'--',m:'--',s:'--'}, players:[], winners:{}, cart:0, cartPop:false, scrolled:false, stats:{prize:0,teams:0,viewers:0}, reminded:{}, registered:false, registerNotice:'' };
 
+  getAuthClient(){
+    if(!window.supabase||typeof window.supabase.createClient!=='function') throw new Error('Не удалось загрузить модуль авторизации. Обнови страницу и попробуй снова.');
+    if(!this._authClient) this._authClient=window.supabase.createClient('https://rospclqxeijwvvrixdza.supabase.co','sb_publishable_V_gUdsAQ8zaiVW7zcwM7pg_3eSFbGoP',{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+    return this._authClient;
+  }
+  async startDiscordLogin(){
+    try{
+      this.setState({registerNotice:'Переходим к Discord…'});
+      const client=this.getAuthClient();
+      const {error}=await client.auth.signInWithOAuth({provider:'discord',options:{redirectTo:window.location.href.split('#')[0]}});
+      if(error) throw error;
+    }catch(error){this.setState({registerNotice:'Не удалось открыть Discord: '+(error.message||'попробуй ещё раз')});}
+  }
+  async startEmailLogin(){
+    const email=window.prompt('Введи email — мы отправим тебе ссылку для входа:');
+    if(!email) return;
+    try{
+      this.setState({registerNotice:'Отправляем ссылку на почту…'});
+      const client=this.getAuthClient();
+      const {error}=await client.auth.signInWithOtp({email:email.trim(),options:{emailRedirectTo:window.location.href.split('#')[0],shouldCreateUser:true,data:{display_name:email.trim().split('@')[0]}}});
+      if(error) throw error;
+      this.setState({registerNotice:'Ссылка для входа отправлена на '+email.trim()+'. Проверь почту и открой письмо на этом устройстве.'});
+    }catch(error){this.setState({registerNotice:'Не удалось отправить письмо: '+(error.message||'проверь адрес и попробуй ещё раз')});}
+  }
   componentDidMount(){
+    try{
+      const client=this.getAuthClient();
+      client.auth.getSession().then(({data,error})=>{if(!error&&data.session&&!this._unmounted)this.setState({registered:true,registerNotice:''});});
+      const {data}=client.auth.onAuthStateChange((event,session)=>{if(!this._unmounted&&session)this.setState({registered:true,registerNotice:''});});
+      this._authSubscription=data&&data.subscription;
+    }catch(error){this.setState({registerNotice:error.message||'Авторизация временно недоступна.'});}
     if(this.root){ if(this.props.accent) this.root.style.setProperty('--accent',this.props.accent); if(this.props.accent2) this.root.style.setProperty('--steel',this.props.accent2); }
     this.tick(); this._cdT=setInterval(()=>this.tick(),1000);
     this._lbT=setInterval(()=>this.shuffle(),3200);
@@ -2659,7 +2690,7 @@ class Component extends DCLogic {
     const fonts=(document.fonts&&document.fonts.ready)?document.fonts.ready:Promise.resolve();
     Promise.all([minWait,fonts]).then(()=>{ if(this._unmounted) return; try{ localStorage.setItem('bxa_intro','1'); }catch(e){} this.setState({intro:false}); });
   }
-  componentWillUnmount(){ this._unmounted=true; clearInterval(this._cdT); clearInterval(this._lbT); clearTimeout(this._flashT); clearTimeout(this._cartT); cancelAnimationFrame(this._raf); cancelAnimationFrame(this._statRaf); window.removeEventListener('mousemove',this._move); window.removeEventListener('scroll',this._scroll); if(this._fxResize) window.removeEventListener('resize',this._fxResize); if(this._io) this._io.disconnect(); }
+  componentWillUnmount(){ this._unmounted=true; if(this._authSubscription)this._authSubscription.unsubscribe(); clearInterval(this._cdT); clearInterval(this._lbT); clearTimeout(this._flashT); clearTimeout(this._cartT); cancelAnimationFrame(this._raf); cancelAnimationFrame(this._statRaf); window.removeEventListener('mousemove',this._move); window.removeEventListener('scroll',this._scroll); if(this._fxResize) window.removeEventListener('resize',this._fxResize); if(this._io) this._io.disconnect(); }
   componentDidUpdate(){ if(this._lastFilter!==undefined && this._lastFilter!==this.state.filter){ this._lastFilter=this.state.filter; this.revealScan(); } if(!this._orderChanged) return; this._orderChanged=false; const first=this._first||{}; for(const id in this.rowRefs){ const el=this.rowRefs[id]; if(!el) continue; const last=el.getBoundingClientRect().top; const dy=(first[id]==null?last:first[id])-last; if(dy){ el.style.transition='none'; el.style.transform='translateY('+dy+'px)'; requestAnimationFrame(()=>{ el.style.transition='transform .55s cubic-bezier(.16,1,.3,1)'; el.style.transform=''; }); } } }
 
   setupReveals(){
@@ -2802,7 +2833,7 @@ class Component extends DCLogic {
       players, streams, skins, news, gateChips,
       podium, podiumHover:{transform:'translateY(-8px)',boxShadow:'0 28px 60px rgba(0,0,0,.6)'},
       bracket:this.buildBracket(), resetBracket:()=>this.resetBracket(),
-      cart:S.cart, slots:(256-24-S.cart), registered:S.registered, notRegistered:!S.registered, registerNotice:S.registerNotice||'', onRegister:()=>this.setState({registered:true}), onDiscordLogin:()=>{if(window.matchMedia&&window.matchMedia('(max-width:760px)').matches){this.setState({registerNotice:'Вход через Discord пока не подключён. Скоро откроем авторизацию.'})}else{this.setState({registered:true})}}, onEmailLogin:()=>{if(window.matchMedia&&window.matchMedia('(max-width:760px)').matches){this.setState({registerNotice:'Вход по электронной почте пока не подключён. Скоро откроем авторизацию.'})}else{this.setState({registered:true})}}, 
+      cart:S.cart, slots:(256-24-S.cart), registered:S.registered, notRegistered:!S.registered, registerNotice:S.registerNotice||'', onRegister:()=>this.setState({registerNotice:'Чтобы войти на арену, выбери Discord или почту выше.'}), onDiscordLogin:()=>this.startDiscordLogin(), onEmailLogin:()=>this.startEmailLogin(), 
       socials:['DC','YT','TG','TW'],
       footerCols:[{title:'Игра',links:['Бойцы','Классы','Патчноуты','Гайды']},{title:'Турнир',links:['Расписание','Сетка','Призы','Правила']},{title:'Комьюнити',links:['Discord','Форум','Стримеры','Мерч']}]
     };
