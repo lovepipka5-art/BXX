@@ -1817,6 +1817,194 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
 }
 </style>
 
+
+<style id="bxx-mobile-layout-v2">
+/* Mobile-only layout: compact top bar, real tap-friendly menu, and stacked content. */
+.bxx-mobile-menu { display:none; }
+@media (max-width:700px) {
+  nav {
+    height:64px !important;
+    min-height:64px !important;
+    padding:0 14px !important;
+    gap:10px !important;
+    justify-content:space-between !important;
+    background:rgba(8,8,11,.97) !important;
+    -webkit-backdrop-filter:blur(16px) !important;
+    backdrop-filter:blur(16px) !important;
+  }
+  nav > a:first-child { flex:0 0 auto !important; min-width:42px !important; }
+  nav > a:first-child img { width:40px !important; height:40px !important; object-fit:contain !important; }
+  nav > a:first-child span { display:none !important; }
+  nav > div:first-of-type { display:none !important; }
+  .bxx-mobile-menu { display:block !important; position:static !important; flex:0 0 auto !important; }
+  .bxx-mobile-menu > summary {
+    list-style:none !important;
+    display:flex !important;
+    width:44px !important;
+    height:44px !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:5px !important;
+    border:1px solid rgba(255,255,255,.2) !important;
+    background:#111116 !important;
+    cursor:pointer !important;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .bxx-mobile-menu > summary::-webkit-details-marker { display:none !important; }
+  .bxx-mobile-menu > summary span {
+    display:block !important;
+    width:19px !important;
+    height:2px !important;
+    border-radius:2px !important;
+    background:#f4f4f5 !important;
+    transition:transform .2s ease,opacity .2s ease !important;
+  }
+  .bxx-mobile-menu[open] > summary span:first-child { transform:translateY(7px) rotate(45deg) !important; }
+  .bxx-mobile-menu[open] > summary span:nth-child(2) { opacity:0 !important; }
+  .bxx-mobile-menu[open] > summary span:last-child { transform:translateY(-7px) rotate(-45deg) !important; }
+  .bxx-mobile-menu-panel {
+    position:absolute !important;
+    top:calc(100% + 8px) !important;
+    left:12px !important;
+    right:12px !important;
+    z-index:140 !important;
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:8px !important;
+    padding:14px !important;
+    border:1px solid rgba(255,33,48,.38) !important;
+    background:rgba(10,10,14,.98) !important;
+    box-shadow:0 18px 48px rgba(0,0,0,.72),0 0 28px rgba(255,33,48,.10) !important;
+    -webkit-backdrop-filter:blur(18px) !important;
+    backdrop-filter:blur(18px) !important;
+  }
+  .bxx-mobile-menu-panel a {
+    display:flex !important;
+    align-items:center !important;
+    min-height:46px !important;
+    padding:10px 12px !important;
+    border:1px solid rgba(255,255,255,.09) !important;
+    background:#111116 !important;
+    color:#e7e7eb !important;
+    font-family:'Oswald',sans-serif !important;
+    font-size:13px !important;
+    font-weight:600 !important;
+    letter-spacing:.09em !important;
+    line-height:1.25 !important;
+    text-transform:uppercase !important;
+    overflow-wrap:anywhere !important;
+  }
+  .bxx-mobile-menu-panel a:active { border-color:#ff2130 !important; color:#ff5360 !important; }
+  .bxx-mobile-menu-panel .bxx-mobile-menu-register {
+    grid-column:1/-1 !important;
+    justify-content:space-between !important;
+    min-height:50px !important;
+    border-color:#ff2130 !important;
+    background:#ed1d32 !important;
+    color:#fff !important;
+    padding:12px 15px !important;
+  }
+  .bxx-nav-actions { margin-left:auto !important; gap:7px !important; flex:0 0 auto !important; }
+  .bxx-nav-actions .bxx-register-link { display:none !important; }
+  .bxx-nav-icon { width:42px !important; height:42px !important; }
+  .bxx-nav-icon svg { width:21px !important; height:21px !important; }
+  #register > div { padding-left:14px !important; padding-right:14px !important; }
+  #register > div > div {
+    clip-path:none !important;
+    overflow:hidden !important;
+  }
+  #register > div > div > div[style*="display:grid"] {
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) !important;
+    align-items:stretch !important;
+    gap:24px !important;
+    padding:28px 20px !important;
+  }
+  #register > div > div > div[style*="display:grid"] > div {
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    box-sizing:border-box !important;
+  }
+  #register h2 { font-size:clamp(42px,11vw,62px) !important; line-height:.98 !important; margin:12px 0 16px !important; }
+  #register p { max-width:100% !important; font-size:15px !important; line-height:1.6 !important; }
+  #register > div > div > div[style*="display:grid"] > div[aria-live="polite"] {
+    width:100% !important;
+    min-width:0 !important;
+    margin:0 !important;
+    padding:20px 16px !important;
+    box-sizing:border-box !important;
+    animation:none !important;
+    -webkit-backdrop-filter:none !important;
+    backdrop-filter:none !important;
+    clip-path:none !important;
+  }
+  #register input[type="email"] { width:100% !important; min-width:0 !important; box-sizing:border-box !important; }
+  #register button { min-width:0 !important; max-width:100% !important; white-space:normal !important; line-height:1.3 !important; }
+  #register > div > div > div[style*="display:grid"] > div[aria-live="polite"] > div[style*="display:flex;gap:10px"] {
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) 96px !important;
+    gap:10px !important;
+  }
+  #register > div > div > div[style*="display:grid"] > div[aria-live="polite"] > div[style*="display:flex;gap:10px"] > button {
+    width:100% !important;
+    padding:14px 9px !important;
+    font-size:12px !important;
+    letter-spacing:.06em !important;
+  }
+  footer { padding:36px 18px 26px !important; }
+  footer > div:first-child {
+    display:flex !important;
+    flex-direction:column !important;
+    gap:28px !important;
+    width:100% !important;
+    min-width:0 !important;
+  }
+  footer > div:first-child > div:first-child { width:100% !important; min-width:0 !important; }
+  footer > div:first-child > div:first-child > a { display:flex !important; flex-wrap:nowrap !important; gap:9px !important; max-width:100% !important; }
+  footer > div:first-child > div:first-child > a img { width:46px !important; height:46px !important; object-fit:contain !important; }
+  footer > div:first-child > div:first-child > a span { font-size:clamp(15px,4vw,18px) !important; white-space:normal !important; }
+  footer > div:first-child > div:first-child p { max-width:340px !important; font-size:14px !important; line-height:1.65 !important; }
+  footer > div:first-child > sc-for {
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:24px 16px !important;
+    width:100% !important;
+    min-width:0 !important;
+  }
+  footer > div:first-child > sc-for > div { min-width:0 !important; overflow-wrap:anywhere !important; }
+  footer > div:first-child > sc-for > div > div:first-child {
+    margin-bottom:10px !important;
+    font-size:12px !important;
+    line-height:1.35 !important;
+    letter-spacing:.10em !important;
+  }
+  footer > div:first-child > sc-for a { display:block !important; font-size:13px !important; line-height:1.6 !important; overflow-wrap:anywhere !important; }
+  footer > div:last-child {
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    gap:12px !important;
+    margin-top:28px !important;
+    padding-top:20px !important;
+    text-align:left !important;
+    line-height:1.7 !important;
+  }
+  footer > div:last-child > span { max-width:100% !important; text-align:left !important; }
+}
+@media(max-width:390px) {
+  nav { padding:0 10px !important; }
+  .bxx-nav-actions { gap:5px !important; }
+  .bxx-nav-icon { width:38px !important; height:40px !important; }
+  .bxx-mobile-menu-panel { left:8px !important; right:8px !important; gap:6px !important; padding:10px !important; }
+  .bxx-mobile-menu-panel a { padding:9px 10px !important; font-size:12px !important; }
+  #register > div > div > div[style*="display:grid"] { padding:24px 14px !important; gap:20px !important; }
+  #register > div > div > div[style*="display:grid"] > div[aria-live="polite"] { padding:17px 12px !important; }
+  footer > div:first-child > sc-for { column-gap:12px !important; }
+}
+</style>
+
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}" class="{{ rootClass }}">
   <div id="bxx-cinematic-intro" style="{{ introStyle }}" class="{{ introClass }}" aria-hidden="true">
@@ -1869,6 +2057,21 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
       <a href="%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D0%BD%D0%B0%D1%8F%20%D1%81%D0%B5%D1%82%D0%BA%D0%B0.dc.html" style="transition:color .2s,transform .2s cubic-bezier(.16,1,.3,1)">Сетка</a>
       <a href="%D0%9E%20%D0%B0%D1%80%D0%B5%D0%BD%D0%B5.dc.html" style="transition:color .2s,transform .2s cubic-bezier(.16,1,.3,1)">О арене</a>
     </div>
+    <details class="bxx-mobile-menu" id="bxx-mobile-nav-v2">
+      <summary aria-label="Открыть меню" title="Меню">
+        <span></span><span></span><span></span>
+      </summary>
+      <div class="bxx-mobile-menu-panel">
+        <a href="#hero">Главная</a>
+        <a href="%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%81%D1%82%D1%80%D0%B8%D0%BC%D0%BE%D0%B2.dc.html">Стримы</a>
+        <a href="%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html">Новости</a>
+        <a href="%D0%91%D0%BE%D0%B9%D1%86%D1%8B%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html">Бойцы</a>
+        <a href="%D0%A2%D0%BE%D0%BF%20%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2.dc.html">Топ игроков</a>
+        <a href="%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D0%BD%D0%B0%D1%8F%20%D1%81%D0%B5%D1%82%D0%BA%D0%B0.dc.html">Турнирная сетка</a>
+        <a href="%D0%9E%20%D0%B0%D1%80%D0%B5%D0%BD%D0%B5.dc.html">Об арене</a>
+        <a class="bxx-mobile-menu-register" href="#register">Регистрация на арену <span>↗</span></a>
+      </div>
+    </details>
     <div class="bxx-nav-actions" style="display:flex;align-items:center;gap:10px">
       <a href="#register" class="bxx-register-link" style="position:relative;overflow:hidden;font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:var(--accent,#ff2130);padding:11px 20px;clip-path:polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))" style-before="{{ shineStyle }}">Регистрация</a>
       <button type="button" class="bxx-nav-icon" id="bxx-profile-open" aria-label="Профиль игрока" title="Профиль игрока"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c.5-4 3-6 7.5-6s7 2 7.5 6"/></svg></button>
