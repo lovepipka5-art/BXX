@@ -362,5 +362,21 @@ class Component extends DCLogic {
   }
 }
 </script>
+
+<script id="bxx-streams-published-v1">
+(function(){
+ const db=window.supabase.createClient('https://fewfpimbfgxlzghfqkmc.supabase.co','sb_publishable_5Pgf3aTIsP_HwmrO5RakEA_H4DF7Mny');
+ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const date=s=>s?new Date(s).toLocaleDateString('ru-RU',{weekday:'short',day:'2-digit',month:'long'}):'Дата уточняется';
+ const time=s=>s?new Date(s).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}):'—';
+ async function load(){const section=document.querySelector('#schedule [data-stagger]');if(!section)return;
+  try{const {data,error}=await db.from('stream_events').select('id,title,description,platform,stream_url,starts_at,status').eq('is_published',true).order('starts_at',{ascending:true}).limit(100);if(error)throw error;
+   const fake=document.querySelector('header + section');if(fake)fake.style.display='none';
+   section.innerHTML=data?.length?data.map(s=>'<article style="position:relative;display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 20px;background:linear-gradient(145deg,#191d26,#101219);border:1px solid #ffffff18;border-left:3px solid '+(s.status==='live'?'#e33445':'#9c2936')+';min-width:0"><div style="min-width:112px"><div style="font:700 11px Inter,sans-serif;color:#9295a0;text-transform:uppercase">'+esc(date(s.starts_at))+'</div><div style="font:22px Russo One,sans-serif;margin-top:5px">'+esc(time(s.starts_at))+'</div></div><div style="flex:1;min-width:180px"><div style="font:700 20px Oswald,sans-serif;text-transform:uppercase">'+esc(s.title)+'</div><p style="font:13px/1.6 Inter,sans-serif;color:#a5a7b0;margin-top:5px">'+esc(s.description||'')+'</p></div><span style="font:800 10px Inter,sans-serif;color:'+(s.status==='live'?'#ff6470':'#c3c5cd')+'">'+(s.status==='live'?'● LIVE':esc(s.platform||'ЭФИР'))+'</span>'+(s.stream_url&&/^https?:\/\//i.test(s.stream_url)?'<a href="'+esc(s.stream_url)+'" target="_blank" rel="noopener noreferrer" style="color:#ff6470;font-size:10px;font-weight:800;letter-spacing:.1em">СМОТРЕТЬ ↗</a>':'')+'</article>').join(''):'<p style="padding:24px;color:#a5a7b0;background:#171b24;border:1px solid #ffffff18">Пока нет опубликованных эфиров. Следи за анонсами BENDER X ARENA.</p>';
+  }catch(e){console.warn('BXX streams:',e);section.innerHTML='<p style="color:#ff9ba3">Не удалось загрузить расписание. Обнови страницу позже.</p>'}
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(load,250),{once:true});else setTimeout(load,250);
+})();
+</script>
 </body>
 </html>
