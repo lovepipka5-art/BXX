@@ -3779,11 +3779,11 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
     linear-gradient(180deg,rgba(5,5,7,.08),transparent 55%,#070708 100%)!important;
   animation:bxxHeroAtmosphere 9s ease-in-out infinite!important;
 }
+/* The former ghost-logo artwork is intentionally hidden by the existing hero cleanup.
+   Keep it hidden; the cinematic background is carried by the layered hero atmosphere below. */
 #hero > div[style*="perspective:1500px"] > img{
-  opacity:.24!important;
-  filter:grayscale(1) contrast(1.42) brightness(.82) drop-shadow(0 0 34px rgba(255,28,48,.12))!important;
-  animation:bxxHeroArtworkReveal 1.5s .12s cubic-bezier(.16,1,.3,1) both,bxxHeroArtworkDrift 26s 1.7s ease-in-out infinite!important;
-  will-change:transform,opacity,filter;
+  display:none!important;
+  animation:none!important;
 }
 #hero .hero-title{
   text-shadow:0 12px 42px rgba(0,0,0,.72),0 0 70px rgba(255,38,56,.08)!important;
@@ -3843,10 +3843,7 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
   100%{left:135%;opacity:0}
 }
 @media(max-width:760px){
-  #hero > div[style*="perspective:1500px"] > img{
-    opacity:.15!important;
-    filter:grayscale(1) contrast(1.3) brightness(.72)!important;
-  }
+  #hero > div[style*="perspective:1500px"] > img{display:none!important;animation:none!important}
   #hero.arena-hero:before{
     background:
       radial-gradient(ellipse 80% 42% at 72% 45%,rgba(255,38,56,.12),transparent 75%),
