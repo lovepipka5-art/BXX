@@ -44,6 +44,63 @@
   @keyframes crownFloat{0%,100%{transform:translateX(-50%) translateY(0) rotate(-7deg)}50%{transform:translateX(-50%) translateY(-6px) rotate(7deg)}}
   @keyframes podiumGlow{0%,100%{opacity:.45}50%{opacity:1}}
   @keyframes xBlink{0%,90%,100%{opacity:1;filter:none}92%{opacity:.28}94%{opacity:1;filter:drop-shadow(0 0 22px var(--accent,#ff2130))}96%{opacity:.42}98%{opacity:1;filter:drop-shadow(0 0 28px var(--accent,#ff2130))}}
+
+  /* BXX mobile pass: keep leaderboard readable without horizontal page overflow */
+  @media (max-width: 760px){
+    nav{gap:10px!important;padding:0 14px!important}
+    nav>a:first-child{gap:0!important}
+    nav>a:first-child img{height:34px!important}
+    nav>a:first-child span{display:none!important}
+    nav>div:first-of-type{flex:1;min-width:0;overflow-x:auto;white-space:nowrap;scrollbar-width:none;gap:14px!important;font-size:11px!important;letter-spacing:.09em!important;padding:0 2px 4px}
+    nav>div:first-of-type::-webkit-scrollbar{display:none}
+    nav>a:last-child{padding:9px 12px!important;font-size:11px!important;letter-spacing:.08em!important}
+    header{padding-top:104px!important}
+    header>div[style*="max-width:1480px"]>p{max-width:460px}
+    #podium [data-stagger]{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important}
+    #podium [data-stagger]>div{min-width:0}
+    #podium [data-stagger]>div>div{min-width:0}
+    #podium [data-stagger] [style*="padding:16px 16px 18px"]{padding:12px 8px 14px!important}
+    #podium [data-stagger] [style*="font-size:14px"]{font-size:12px!important}
+    #ladder>div>div:nth-child(2),
+    #ladder>div>div:nth-child(3)>div{
+      grid-template-columns:30px minmax(0,1fr) 68px 48px 36px!important;
+      gap:8px!important;
+    }
+    #ladder>div>div:nth-child(2){font-size:11px!important;padding:0 8px 9px!important}
+    #ladder>div>div:nth-child(3)>div{padding:11px 8px!important}
+  }
+  @media (max-width: 520px){
+    nav{height:56px!important}
+    nav>a:first-child img{height:30px!important}
+    nav>div:first-of-type{gap:12px!important;font-size:10px!important}
+    nav>a:last-child{padding:8px 9px!important;font-size:10px!important}
+    header{padding:96px 16px 28px!important}
+    header h1{font-size:clamp(42px,12vw,64px)!important}
+    header>div[style*="max-width:1480px"]>div[style*="display:flex"]{gap:12px!important}
+    header>div[style*="max-width:1480px"]>div[style*="display:flex"]>div{padding-left:0!important;border-left:0!important}
+    #podium [data-stagger]{grid-template-columns:minmax(0,1fr)!important;max-width:380px!important}
+    #podium [data-stagger]>div{width:100%}
+    #podium [data-stagger] [style*="height:"]{max-height:230px}
+    #podium [data-stagger]>div:nth-child(2){order:-1}
+    #podium>div>div:first-child>div:last-child{text-align:left!important;max-width:100%!important}
+    #ladder>div{padding-left:14px!important;padding-right:14px!important}
+    #ladder>div>div:nth-child(2),
+    #ladder>div>div:nth-child(3)>div{
+      grid-template-columns:26px minmax(0,1fr) 58px 40px 30px!important;
+      gap:6px!important;
+    }
+    #ladder>div>div:nth-child(2){font-size:9px!important;letter-spacing:.06em!important;padding:0 6px 8px!important}
+    #ladder>div>div:nth-child(3)>div{padding:10px 6px!important}
+    #ladder>div>div:nth-child(3)>div>div:first-child{font-size:15px!important}
+    #ladder>div>div:nth-child(3)>div>div:nth-child(2)>div:first-child{font-size:14px!important}
+    #ladder>div>div:nth-child(3)>div>div:nth-child(2)>div:nth-child(2){font-size:11px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    #ladder>div>div:nth-child(3)>div>div:nth-child(3)>div:first-child{font-size:13px!important}
+    #ladder>div>div:nth-child(3)>div>div:nth-child(4){font-size:12px!important}
+    #ladder>div>div:nth-child(3)>div>div:nth-child(5){font-size:11px!important}
+    footer>div:first-child{align-items:flex-start!important;flex-direction:column!important}
+    footer>div:first-child>div{gap:12px!important}
+    footer>div:last-child>span:last-child{text-align:left!important}
+  }
 </style>
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}">
