@@ -4133,5 +4133,62 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
 }
 </style>
 
+
+<style id="bxx-intro-hero-motion-fix-2026">
+/* Restore the actual intro artwork; keep it dark enough for the logo. */
+#bxx-cinematic-intro{
+ background-color:#050507!important;
+ background-image:
+  linear-gradient(180deg,rgba(3,4,7,.28),rgba(3,4,7,.34) 52%,rgba(0,0,0,.72)),
+  radial-gradient(ellipse 48% 58% at 50% 42%,rgba(145,12,28,.18),transparent 72%),
+  url('uploads/intro-bg2.png')!important;
+ background-position:center,center,center!important;
+ background-size:cover,cover,cover!important;
+ background-repeat:no-repeat!important;
+}
+/* Replace the dramatic logo entrance with a short, clean reveal; no floating or pulsing. */
+#bxx-cinematic-intro [style*="animation:bxxIntroLogoV2"]{
+ animation:bxxIntroLogoCalm .58s ease-out .08s both!important;
+ filter:none!important;will-change:opacity,transform!important;
+}
+#bxx-cinematic-intro [style*="animation:bxxIntroFloatV2"]{
+ animation:none!important;transform:none!important;will-change:auto!important;
+}
+#bxx-cinematic-intro [style*="animation:bxxIntroGlowV2"]{
+ animation:none!important;opacity:1!important;filter:brightness(1.06) drop-shadow(0 0 18px rgba(255,35,51,.28))!important;
+}
+#bxx-cinematic-intro [style*="animation:bxxIntroHaloV2"]{
+ animation:none!important;opacity:.22!important;filter:none!important;
+}
+@keyframes bxxIntroLogoCalm{
+ 0%{opacity:0;transform:translate3d(0,12px,0) scale(.97)}
+ 100%{opacity:1;transform:translate3d(0,0,0) scale(1)}
+}
+/* The ARENA word on the homepage should arrive quickly, not drift in slowly. */
+.loaded #hero .hero-title span{
+ animation-duration:.72s!important;
+ animation-timing-function:cubic-bezier(.2,.8,.2,1)!important;
+}
+.loaded #hero .hero-title span:nth-child(1){animation-delay:.08s!important}
+.loaded #hero .hero-title span:nth-child(2){
+ animation-name:bxxHeroCrossRevealFast!important;animation-duration:.78s!important;animation-delay:.2s!important;
+}
+.loaded #hero .hero-title span:nth-child(3){animation-delay:.32s!important}
+@keyframes bxxHeroCrossRevealFast{
+ 0%{opacity:0;transform:translateY(8px) scale(1.02);filter:blur(2px)}
+ 100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+}
+@media(max-width:760px){
+ .loaded #hero .hero-title span{animation-duration:.62s!important}
+ .loaded #hero .hero-title span:nth-child(1){animation-delay:.06s!important}
+ .loaded #hero .hero-title span:nth-child(2){animation-duration:.66s!important;animation-delay:.16s!important}
+ .loaded #hero .hero-title span:nth-child(3){animation-delay:.26s!important}
+}
+@media(prefers-reduced-motion:reduce){
+ #bxx-cinematic-intro [style*="animation:bxxIntroLogoV2"]{animation:none!important;opacity:1!important;transform:none!important}
+ .loaded #hero .hero-title span{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}
+}
+</style>
+
 </body>
 </html>
