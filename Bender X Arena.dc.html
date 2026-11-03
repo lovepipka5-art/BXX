@@ -2532,7 +2532,7 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
       <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px">
         <sc-for list="{{ news }}" as="n" hint-placeholder-count="3">
           <div data-reveal>
-          <a href="#news" style="display:block;background:rgba(22,22,28,.12);backdrop-filter:blur(14px);border:1px solid #ffffff12;padding:24px;clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%);transition:border-color .3s,transform .3s" style-hover="{{ newsHover }}">
+          <a href="%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="display:block;background:rgba(22,22,28,.12);backdrop-filter:blur(14px);border:1px solid #ffffff12;padding:24px;clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%);transition:border-color .3s,transform .3s" style-hover="{{ newsHover }}">
             <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
               <span style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:var(--accent,#ff2130);padding:4px 9px">{{ n.tag }}</span>
               <span style="font-size:14px;color:#6b6b73;letter-spacing:.06em">{{ n.date }}</span>
@@ -2550,7 +2550,7 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
   <section id="schedule" class="arena-schedule" data-reveal style="{{ revealStyle }}">
     <div style="max-width:1180px;margin:0 auto;padding:0 clamp(18px,4vw,40px)">
       <div style="text-align:center;margin-bottom:clamp(22px,3vw,38px)">
-        <div style="font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent,#ff2130)">Эфир · неделя финалов</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent,#ff2130)">РАСПИСАНИЕ · АНОНСЫ ЭФИРОВ</div>
         <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(34px,5vw,64px);line-height:.9;text-transform:uppercase;margin-top:8px">Расписание стримов</h2>
       </div>
       <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fill,minmax(370px,1fr));gap:12px">
@@ -2892,8 +2892,7 @@ class Component extends DCLogic {
     }catch(error){this.setState({registerNotice:error.message||'Авторизация временно недоступна.'});}
     if(this.root){ if(this.props.accent) this.root.style.setProperty('--accent',this.props.accent); if(this.props.accent2) this.root.style.setProperty('--steel',this.props.accent2); }
     this.tick(); this._cdT=setInterval(()=>this.tick(),1000);
-    this._lbT=setInterval(()=>this.shuffle(),3200);
-    this.animateStats(); this.initFX();
+    this.initFX();
     this._move=e=>this.onMove(e); window.addEventListener('mousemove',this._move,{passive:true});
     this._scroll=()=>this.onScroll(); window.addEventListener('scroll',this._scroll,{passive:true});
     setTimeout(()=>this.setupReveals(),40);
@@ -3002,7 +3001,7 @@ class Component extends DCLogic {
       pedNum:{fontFamily:"'Russo One',sans-serif",fontSize:first?'40px':'30px',color:mc,opacity:.85,lineHeight:1}
     };});
     const platC={Twitch:'#9146ff',YouTube:'#ff2b2b',Telegram:'#2aabee'};
-    const streams=[['СЕГОДНЯ','21:00','Гранд-финал · группа A','Мираж & DENVER','Twitch',true],['ЗАВТРА','19:30','1/2 финала · верхняя сетка','SALEM','YouTube',false],['СБ','18:00','Шоу-матч звёзд','Мираж','YouTube',false],['ВС','20:00','Нижняя сетка · Revenge','DENVER & SALEM','Twitch',false],['ПН','21:30','Великий финал','вся студия','Twitch',false]].map((r,i)=>({id:i,day:r[0],time:r[1],title:r[2],casters:r[3],platform:r[4],live:r[5],reminded:!!S.reminded[i],onRemind:()=>this.toggleRemind(i),bell:S.reminded[i]?'★':'☆',
+    const streams=[['АНОНС','—','Новые эфиры будут объявлены отдельно','Следи за обновлениями расписания','BXX',false]].map((r,i)=>({id:i,day:r[0],time:r[1],title:r[2],casters:r[3],platform:r[4],live:r[5],reminded:!!S.reminded[i],onRemind:()=>this.toggleRemind(i),bell:S.reminded[i]?'★':'☆',
       rowStyle:{display:'flex',alignItems:'center',gap:'14px',padding:'14px 16px',background:r[5]?'color-mix(in srgb,var(--accent,#ff2130) 10%, rgba(22,22,28,.12))':'rgba(22,22,28,.12)',border:'1px solid '+(r[5]?'color-mix(in srgb,var(--accent,#ff2130) 45%, transparent)':'#ffffff12'),clipPath:'polygon(0 0,100% 0,100% 100%,10px 100%,0 calc(100% - 10px))',transition:'transform .25s,border-color .25s'},
       platStyle:{fontFamily:"'Oswald',sans-serif",fontSize:'13px',fontWeight:600,letterSpacing:'.08em',textTransform:'uppercase',color:'#fff',background:platC[r[4]],padding:'5px 9px',whiteSpace:'nowrap'},
       bellStyle:{width:'34px',height:'34px',flexShrink:0,fontSize:'15px',color:S.reminded[i]?'var(--accent,#ff2130)':'#83838d',background:'transparent',border:'1px solid '+(S.reminded[i]?'color-mix(in srgb,var(--accent,#ff2130) 50%, transparent)':'#ffffff1f'),cursor:'pointer',transition:'all .2s'}}));
@@ -3012,7 +3011,7 @@ class Component extends DCLogic {
       glyph:this.glyphS({c:r[4],glyph:g},'clamp(80px,9vw,130px)'),
       rarStyle:{position:'absolute',top:'12px',left:'12px',fontFamily:"'Oswald',sans-serif",fontSize:'14px',fontWeight:700,letterSpacing:'.14em',textTransform:'uppercase',color:'#0b0b0e',background:rarC[r[2]],padding:'4px 9px'},
       addStyle:{fontFamily:"'Oswald',sans-serif",fontWeight:600,fontSize:'14px',letterSpacing:'.1em',textTransform:'uppercase',color:'#f4f4f5',background:'rgba(22,22,28,.14)',border:'1px solid #ffffff26',padding:'9px 14px',cursor:'pointer',transition:'all .2s'}}; });
-    const news=[['ПАТЧ 4.2','12 июня','Ребаланс берсерков','Урон «Багрового Разлома» снижен на 8%. ХАОС получил новую цепочку комбо и увеличенный стан.'],['ИВЕНТ','8 июня','Ночь кровавой луны','Лимитированный режим 2v2 с модификаторами. Эксклюзивный скин за 10 побед подряд.'],['РОАДМАП','1 июня','Сезон 5: что дальше','Два новых бойца, кроссплей и режим рейтинговых дуэлей уже этой осенью.']].map((r,i)=>({id:i,tag:r[0],date:r[1],title:r[2],excerpt:r[3]}));
+    const news=[['АРЕНА','АНОНСЫ','Новости и события BENDER X ARENA','Актуальные публикации, объявления турниров и обновления проекта будут появляться в разделе новостей.']].map((r,i)=>({id:i,tag:r[0],date:r[1],title:r[2],excerpt:r[3]}));
     const gateChips=[{k:'мест осталось',v:(256-24-S.cart),color:'var(--accent,#ff2130)'},{k:'призовой фонд',v:'$250K',color:'#f4f4f5'},{k:'',v:'РАЗНЫЕ ФОРМАТЫ ТУРНИРОВ*',color:'#f4f4f5'}].map((c,i)=>({k:c.k,v:c.v,color:c.color}));
     return {
       rootStyle:{'--accent':'#ff2130','--steel':'#cdd6df',position:'relative',minHeight:'100vh',background:'#08080a',overflowX:'hidden'},
