@@ -4164,24 +4164,26 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
  0%{opacity:0;transform:translate3d(0,12px,0) scale(.97)}
  100%{opacity:1;transform:translate3d(0,0,0) scale(1)}
 }
-/* The ARENA word on the homepage should arrive quickly, not drift in slowly. */
+/* Restore a reliable, staggered entrance for the full BENDER X ARENA title. */
 .loaded #hero .hero-title span{
- animation-duration:.72s!important;
- animation-timing-function:cubic-bezier(.2,.8,.2,1)!important;
+ display:inline-block!important;
+ opacity:0;
+ animation:bxxHeroTitleReveal .82s cubic-bezier(.2,.8,.2,1) both!important;
 }
 .loaded #hero .hero-title span:nth-child(1){animation-delay:.08s!important}
 .loaded #hero .hero-title span:nth-child(2){
- animation-name:bxxHeroCrossRevealFast!important;animation-duration:.78s!important;animation-delay:.2s!important;
+ animation:bxxHeroCrossRevealFast .9s .2s cubic-bezier(.2,.8,.2,1) both!important;
 }
 .loaded #hero .hero-title span:nth-child(3){animation-delay:.32s!important}
 @keyframes bxxHeroCrossRevealFast{
- 0%{opacity:0;transform:translateY(8px) scale(1.02);filter:blur(2px)}
- 100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+ 0%{opacity:0;transform:translateY(13px) rotate(-5deg) scale(1.035);filter:blur(4px)}
+ 72%{opacity:1;transform:translateY(-1px) rotate(1deg) scale(.995);filter:blur(0)}
+ 100%{opacity:1;transform:translateY(0) rotate(0) scale(1);filter:blur(0)}
 }
 @media(max-width:760px){
- .loaded #hero .hero-title span{animation-duration:.62s!important}
+ .loaded #hero .hero-title span{animation-duration:.68s!important}
  .loaded #hero .hero-title span:nth-child(1){animation-delay:.06s!important}
- .loaded #hero .hero-title span:nth-child(2){animation-duration:.66s!important;animation-delay:.16s!important}
+ .loaded #hero .hero-title span:nth-child(2){animation-duration:.74s!important;animation-delay:.16s!important}
  .loaded #hero .hero-title span:nth-child(3){animation-delay:.26s!important}
 }
 @media(prefers-reduced-motion:reduce){
