@@ -4844,6 +4844,162 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
   animation-play-state: running !important;
 }
 
+
+/* BXX intro visual pass: stronger crimson arena, clean logo, no micro-copy. */
+#bxx-cinematic-intro .bxx-v3-world {
+  background:
+    radial-gradient(ellipse 48% 44% at 50% 48%, rgba(255,18,45,.34) 0%, rgba(170,8,28,.22) 34%, transparent 72%),
+    radial-gradient(ellipse 78% 65% at 50% 112%, rgba(238,12,38,.32) 0%, transparent 72%),
+    radial-gradient(ellipse 34% 50% at 8% 50%, rgba(185,8,28,.2), transparent 78%),
+    radial-gradient(ellipse 34% 50% at 92% 50%, rgba(185,8,28,.2), transparent 78%),
+    linear-gradient(135deg,#050407 0%,#18070c 48%,#080609 100%) !important;
+}
+#bxx-cinematic-intro .bxx-v3-world::before {
+  content:""; position:absolute; inset:-25%;
+  background:
+    conic-gradient(from 0deg at 50% 50%, transparent 0 27%, rgba(255,28,54,.10) 31%, transparent 36% 62%, rgba(255,28,54,.08) 67%, transparent 72%),
+    radial-gradient(ellipse at center, transparent 25%, rgba(255,20,45,.17) 57%, transparent 72%);
+  filter:blur(22px); transform-origin:center;
+  animation:bxxV3CrimsonOrbit 18s linear infinite;
+}
+#bxx-cinematic-intro .bxx-v3-world::after {
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(110deg,transparent 25%,rgba(255,25,50,.10) 49%,rgba(255,90,105,.18) 50%,rgba(255,25,50,.08) 51%,transparent 75%);
+  mix-blend-mode:screen; transform:translateX(-120%);
+  animation:bxxV3ArenaSweep 4.8s cubic-bezier(.4,0,.2,1) .35s infinite;
+}
+#bxx-cinematic-intro .bxx-v3-grid {
+  opacity:.13!important;
+  background-image:linear-gradient(rgba(255,80,95,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(255,80,95,.13) 1px,transparent 1px)!important;
+}
+#bxx-cinematic-intro .bxx-v3-horizon {
+  top:56%!important;height:2px!important;
+  background:linear-gradient(90deg,transparent,rgba(255,30,55,.18),#ff243f,rgba(255,30,55,.18),transparent)!important;
+  box-shadow:0 0 24px 7px rgba(255,20,48,.35),0 0 90px 28px rgba(220,8,35,.22)!important;
+  animation:bxxV3HorizonBeat 3s ease-in-out infinite!important;
+}
+#bxx-cinematic-intro .bxx-v3-ring {
+  border-color:rgba(255,38,60,.32)!important;
+  box-shadow:0 0 32px rgba(255,18,44,.12),inset 0 0 35px rgba(255,18,44,.08)!important;
+}
+#bxx-cinematic-intro .bxx-v3-ring-b {border-color:rgba(255,115,125,.2)!important}
+#bxx-cinematic-intro .bxx-v3-particles {
+  opacity:.8!important;
+  background-image:
+    radial-gradient(2px 2px at 12% 24%,#ff6674 45%,transparent 70%),
+    radial-gradient(1px 1px at 76% 19%,#fff 45%,transparent 70%),
+    radial-gradient(2px 2px at 84% 72%,#ff3449 45%,transparent 70%),
+    radial-gradient(1px 1px at 23% 81%,#fff 45%,transparent 70%),
+    radial-gradient(1px 1px at 63% 88%,#ff3449 45%,transparent 70%),
+    radial-gradient(2px 2px at 42% 12%,#ff3449 45%,transparent 70%),
+    radial-gradient(2px 2px at 52% 35%,#ff9aa4 45%,transparent 70%),
+    radial-gradient(1px 1px at 34% 58%,#ff3449 45%,transparent 70%)!important;
+  animation:bxxV3Particles 3.2s ease-in-out infinite alternate!important;
+}
+/* Strip all tiny interface labels; keep only the logo, main title and visual progress bar. */
+#bxx-cinematic-intro .bxx-v3-topline,
+#bxx-cinematic-intro .bxx-v3-bottomline,
+#bxx-cinematic-intro .bxx-v3-eyebrow,
+#bxx-cinematic-intro .bxx-v3-tagline,
+#bxx-cinematic-intro .bxx-v3-load-head,
+#bxx-cinematic-intro .bxx-v3-load-foot {display:none!important}
+#bxx-cinematic-intro .bxx-v3-core {
+  justify-content:center!important;
+  padding-top:40px!important;padding-bottom:40px!important;
+  gap:0!important;
+}
+#bxx-cinematic-intro .bxx-v3-logo-wrap {
+  width:clamp(250px,39vh,430px)!important;
+  max-width:min(58vw,430px)!important;
+  margin:0 0 4px!important;
+  animation:bxxV3LogoImpact 1.35s cubic-bezier(.16,1,.3,1) .15s both!important;
+}
+#bxx-cinematic-intro .bxx-v3-logo-halo {
+  inset:-12%!important;
+  background:radial-gradient(circle,rgba(255,18,48,.5),rgba(255,18,48,.22) 42%,transparent 72%)!important;
+  filter:blur(28px)!important;
+  animation:bxxV3Halo 2.2s ease-in-out infinite!important;
+}
+#bxx-cinematic-intro .bxx-v3-logo-frame {
+  border:0!important;outline:0!important;box-shadow:none!important;
+}
+#bxx-cinematic-intro .bxx-v3-logo-frame::before,
+#bxx-cinematic-intro .bxx-v3-logo-frame::after {display:none!important;content:none!important}
+#bxx-cinematic-intro .bxx-v3-logo-frame img {
+  width:92%!important;height:92%!important;
+  filter:drop-shadow(0 0 18px rgba(255,22,48,.75)) drop-shadow(0 0 54px rgba(255,12,38,.48))!important;
+  animation:bxxV3LogoHover 3.2s ease-in-out 1.5s infinite!important;
+}
+#bxx-cinematic-intro .bxx-v3-title {
+  margin-top:0!important;
+  font-size:clamp(48px,7vw,92px)!important;
+  letter-spacing:.055em!important;
+  text-shadow:0 0 18px rgba(255,30,55,.2),0 10px 44px rgba(0,0,0,.9)!important;
+  animation:bxxV3TitleImpact .9s cubic-bezier(.16,1,.3,1) .65s both!important;
+}
+#bxx-cinematic-intro .bxx-v3-title i {
+  color:#ff243f!important;
+  text-shadow:0 0 18px rgba(255,30,55,.9),0 0 48px rgba(255,20,48,.65)!important;
+}
+#bxx-cinematic-intro .bxx-v3-load {
+  width:min(260px,54vw)!important;
+  margin-top:clamp(26px,4vh,42px)!important;
+  opacity:1!important;
+  animation:bxxV3BarReveal .8s ease 1.05s both!important;
+}
+#bxx-cinematic-intro .bxx-v3-track {
+  height:4px!important;
+  background:rgba(255,255,255,.13)!important;
+  box-shadow:0 0 18px rgba(255,20,45,.16)!important;
+}
+#bxx-cinematic-intro .bxx-v3-track span {
+  background:linear-gradient(90deg,#a90824,#ff263f 58%,#ffb0b8)!important;
+  box-shadow:0 0 12px #ff263f,0 0 28px rgba(255,25,50,.85)!important;
+}
+@keyframes bxxV3CrimsonOrbit {
+  0%{transform:rotate(0) scale(.96);opacity:.7}
+  50%{transform:rotate(180deg) scale(1.06);opacity:1}
+  100%{transform:rotate(360deg) scale(.96);opacity:.7}
+}
+@keyframes bxxV3ArenaSweep {
+  0%,18%{transform:translateX(-120%);opacity:0}
+  30%{opacity:1}
+  62%{transform:translateX(120%);opacity:.7}
+  100%{transform:translateX(120%);opacity:0}
+}
+@keyframes bxxV3HorizonBeat {
+  0%,100%{opacity:.55;filter:brightness(.8)}
+  50%{opacity:1;filter:brightness(1.6)}
+}
+@keyframes bxxV3LogoImpact {
+  0%{opacity:0;transform:translateY(54px) scale(.68) rotate(-7deg);filter:brightness(.35)}
+  58%{opacity:1;transform:translateY(-8px) scale(1.06) rotate(1deg);filter:brightness(1.5)}
+  78%{transform:translateY(3px) scale(.985) rotate(-.3deg)}
+  100%{opacity:1;transform:translateY(0) scale(1) rotate(0);filter:brightness(1)}
+}
+@keyframes bxxV3LogoHover {
+  0%,100%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-9px) scale(1.025)}
+}
+@keyframes bxxV3TitleImpact {
+  0%{opacity:0;transform:translateY(26px) scale(.94);filter:blur(8px)}
+  100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+}
+@keyframes bxxV3BarReveal {
+  from{opacity:0;transform:scaleX(.55)}
+  to{opacity:1;transform:scaleX(1)}
+}
+@media(max-width:700px),(pointer:coarse) {
+  #bxx-cinematic-intro .bxx-v3-logo-wrap {width:clamp(220px,35vh,310px)!important;max-width:72vw!important}
+  #bxx-cinematic-intro .bxx-v3-title {font-size:clamp(34px,9vw,54px)!important;gap:7px!important}
+  #bxx-cinematic-intro .bxx-v3-load {margin-top:24px!important;width:min(220px,58vw)!important}
+}
+@media(max-height:650px) {
+  #bxx-cinematic-intro .bxx-v3-logo-wrap {width:clamp(185px,31vh,270px)!important}
+  #bxx-cinematic-intro .bxx-v3-title {font-size:clamp(34px,6vh,58px)!important}
+  #bxx-cinematic-intro .bxx-v3-load {margin-top:16px!important}
+}
+
 </style>
 
 </body>
