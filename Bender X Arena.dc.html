@@ -5029,5 +5029,35 @@ footer{border-top:1px solid var(--bx-border)!important;background:#07080b!import
 @media(prefers-reduced-motion:reduce){.bxx-hub-card,.bxx-route-steps>a{transition:none!important}}
 </style>
 
+
+<script id="bxx-published-content-v1">
+(function(){
+ const URL='https://fewfpimbfgxlzghfqkmc.supabase.co',KEY='sb_publishable_5Pgf3aTIsP_HwmrO5RakEA_H4DF7Mny';
+ const db=window.BXX_AUTH_CLIENT||(window.BXX_AUTH_CLIENT=window.supabase.createClient(URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}));
+ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const date=s=>s?new Date(s).toLocaleDateString('ru-RU',{day:'2-digit',month:'long',year:'numeric'}):'Дата уточняется';
+ const time=s=>s?new Date(s).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}):'—';
+ const empty=(node,msg)=>{if(node)node.innerHTML='<p style="grid-column:1/-1;padding:22px;color:#a5a7b0;background:#171b24;border:1px solid #ffffff18;line-height:1.6">'+esc(msg)+'</p>'};
+ function newsCard(n){return '<article style="min-width:0;padding:22px;background:linear-gradient(145deg,#191d26,#101219);border:1px solid #ffffff18;border-left:3px solid #d92c3c;border-radius:3px"><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px"><span style="padding:4px 8px;background:#d92c3c;color:#fff;font-size:10px;font-weight:800;letter-spacing:.1em">'+esc(n.category||'НОВОСТИ')+'</span><time style="color:#8f929c;font-size:12px">'+esc(date(n.published_at))+'</time></div><h3 style="font:700 21px/1.15 Oswald,sans-serif;text-transform:uppercase">'+esc(n.title)+'</h3><p style="margin-top:10px;color:#a5a7b0;font:14px/1.65 Inter,sans-serif">'+esc(n.excerpt||'Открой публикацию в разделе новостей.')+'</p><a href="Новости%20арены.dc.html#feed" style="display:inline-block;margin-top:18px;color:#f05a66;font-size:10px;font-weight:800;letter-spacing:.12em">ЧИТАТЬ В РАЗДЕЛЕ НОВОСТЕЙ →</a></article>'}
+ function streamCard(s){const href=s.stream_url&&/^https?:\/\//i.test(s.stream_url)?s.stream_url:'';return '<article style="display:flex;align-items:center;gap:14px;min-width:0;padding:16px;background:linear-gradient(145deg,#191d26,#101219);border:1px solid #ffffff18;border-top:2px solid '+(s.status==='live'?'#e33445':'#9c2936')+';border-radius:3px"><div style="min-width:76px"><div style="font-size:10px;color:#9a9da7;font-weight:800;letter-spacing:.1em">'+esc(date(s.starts_at))+'</div><div style="font:20px Russo One, sans-serif;margin-top:5px">'+esc(time(s.starts_at))+'</div></div><div style="width:1px;align-self:stretch;background:#ffffff20"></div><div style="flex:1;min-width:0"><div style="font:700 16px/1.25 Oswald,sans-serif;text-transform:uppercase">'+esc(s.title)+'</div><div style="font:12px/1.5 Inter,sans-serif;color:#9295a0;margin-top:5px">'+esc(s.description||s.platform||'Трансляция BXX')+'</div></div><span style="font-size:10px;font-weight:800;color:'+(s.status==='live'?'#ff6470':'#bfc1c9')+'">'+(s.status==='live'?'LIVE':esc(s.platform||'ЭФИР'))+'</span>'+(href?'<a href="'+esc(href)+'" target="_blank" rel="noopener noreferrer" style="color:#f05a66;font-size:11px;font-weight:800">СМОТРЕТЬ ↗</a>':'')+'</article>'}
+ async function run(){
+  try{
+   const [nr,sr,tr]=await Promise.all([
+    db.from('news_posts').select('id,title,category,excerpt,slug,published_at').eq('is_published',true).order('published_at',{ascending:false}).limit(3),
+    db.from('stream_events').select('id,title,description,platform,stream_url,starts_at,status').eq('is_published',true).order('starts_at',{ascending:true}).limit(4),
+    db.from('tournaments').select('id,title,description,starts_at,status,registration_url,bracket_url').eq('is_published',true).in('status',['upcoming','live']).order('starts_at',{ascending:true}).limit(1)
+   ]);
+   if(nr.error)throw nr.error;if(sr.error)throw sr.error;if(tr.error)throw tr.error;
+   const nc=document.querySelector('#news [data-stagger]');if(nc)nc.innerHTML=nr.data?.length?nr.data.map(newsCard).join(''):'';
+   if(nc&&!nr.data?.length)empty(nc,'Пока нет опубликованных новостей. Следи за анонсами BENDER X ARENA.');
+   const sc=document.querySelector('#schedule [data-stagger]');if(sc)sc.innerHTML=sr.data?.length?sr.data.map(streamCard).join(''):'';
+   if(sc&&!sr.data?.length)empty(sc,'Новые эфиры пока не запланированы. Расписание появится после публикации администратором.');
+   const hub=document.querySelector('#arena-hub .bxx-hub-heading');
+   if(hub){document.querySelector('.bxx-home-tournament')?.remove();const t=tr.data?.[0];const block=document.createElement('div');block.className='bxx-home-tournament';block.style.cssText='margin-top:24px;padding:18px 20px;border:1px solid #e3344555;border-left:3px solid #e33445;background:#17151c';block.innerHTML=t?'<div style="font:800 10px Inter,sans-serif;letter-spacing:.15em;color:#f05a66">БЛИЖАЙШИЙ ТУРНИР · '+(t.status==='live'?'ИДЁТ СЕЙЧАС':'АНОНС')+'</div><div style="font:700 20px Oswald,sans-serif;margin-top:7px">'+esc(t.title)+'</div><p style="color:#a5a7b0;font:13px/1.6 Inter,sans-serif;margin-top:5px">'+esc(t.description||date(t.starts_at))+'</p>'+(t.registration_url&&/^https?:\/\//i.test(t.registration_url)?'<a href="'+esc(t.registration_url)+'" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:12px;color:#ff6470;font-size:10px;font-weight:800">РЕГИСТРАЦИЯ ↗</a>':'')+(t.bracket_url&&/^https?:\/\//i.test(t.bracket_url)?'<a href="'+esc(t.bracket_url)+'" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:12px 0 0 18px;color:#ff6470;font-size:10px;font-weight:800">ТУРНИРНАЯ СЕТКА ↗</a>':''):'<div style="font:800 10px Inter,sans-serif;letter-spacing:.15em;color:#a5a7b0">БЛИЖАЙШИЕ ТУРНИРЫ</div><p style="color:#a5a7b0;font:13px/1.6 Inter,sans-serif;margin-top:7px">Новые турниры появятся здесь после публикации администратором.</p>';hub.appendChild(block)}
+  }catch(e){console.warn('BXX published content:',e);['#news [data-stagger]','#schedule [data-stagger]'].forEach(sel=>{const n=document.querySelector(sel);if(n)empty(n,'Не удалось загрузить опубликованные материалы. Попробуй обновить страницу позже.')})}
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(run,250),{once:true});else setTimeout(run,250);
+})();
+</script>
 </body>
 </html>
