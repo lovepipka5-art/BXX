@@ -2353,6 +2353,59 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
 }
 </style>
 
+
+<style id="bxx-home-mobile-final-polish-2026">
+/* Final homepage mobile pass: prevent cramped hero/menu controls and improve compact-device flow. */
+@media(max-width:700px){
+  #hero{width:100%;max-width:100%;overflow:hidden!important}
+  #hero>div[style*="max-width:1240px"]{min-width:0!important;width:100%!important}
+  #hero h1{
+    max-width:100%!important;
+    font-size:clamp(40px,11.5vw,76px)!important;
+    line-height:.92!important;
+    letter-spacing:-.025em!important;
+    text-wrap:balance!important;
+    overflow-wrap:normal!important;
+  }
+  #hero .hero-sub{max-width:100%;font-size:clamp(13px,3.7vw,17px)!important;line-height:1.35!important;letter-spacing:.07em!important}
+  #hero .hero-text{max-width:34rem!important;line-height:1.55!important}
+  #hero .hero-scroll{bottom:20px!important}
+  .bxx-mobile-menu-panel{
+    max-height:min(72svh,520px)!important;
+    overflow-y:auto!important;
+    overscroll-behavior:contain!important;
+    -webkit-overflow-scrolling:touch!important;
+  }
+  #news h2,#schedule h2{font-size:clamp(32px,9vw,48px)!important;line-height:.98!important}
+  #news [data-stagger]>div>a{overflow-wrap:anywhere!important}
+  #schedule [data-stagger]>div>div{min-width:0!important}
+  #schedule [data-stagger]>div>div button{min-width:44px!important;min-height:44px!important}
+  #register .bxx-register-method{min-height:68px!important}
+  #register .bxx-register-create{min-height:58px!important}
+  #register .bxx-register-card{min-width:0!important}
+  footer a{min-height:38px}
+}
+@media(max-width:390px){
+  #hero{padding-left:16px!important;padding-right:16px!important}
+  #hero h1{font-size:clamp(38px,11vw,48px)!important;line-height:.96!important}
+  #hero .hero-sub{font-size:12px!important;letter-spacing:.045em!important}
+  #hero .hero-text{font-size:14px!important}
+  #hero .hero-cta a{min-height:50px!important;padding:13px 14px!important}
+  .bxx-mobile-menu-panel{grid-template-columns:minmax(0,1fr)!important}
+  .bxx-mobile-menu-panel .bxx-mobile-menu-register{grid-column:auto!important}
+  #register .bxx-register-layout{padding:22px 14px 18px!important}
+  #register .bxx-register-stats{gap:7px!important}
+}
+@media(max-height:500px) and (orientation:landscape) and (max-width:900px){
+  #hero{min-height:620px!important;padding-top:100px!important;padding-bottom:64px!important}
+  #hero [style*="left:50%;top:72%"]{opacity:.1!important}
+  .bxx-mobile-menu-panel{max-height:68vh!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #hero .hero-cta a,.bxx-mobile-menu-panel a{scroll-behavior:auto!important}
+}
+</style>
+
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}" class="{{ rootClass }}">
   <canvas ref="{{ fxRef }}" style="position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none"></canvas>
