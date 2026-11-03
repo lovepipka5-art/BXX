@@ -4528,5 +4528,111 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
 #bxx-cinematic-intro .bxx-loader-status{display:none!important}
 </style>
 
+
+<style id="bxx-intro-mobile-visibility-recovery-2026">
+/* Recover the actual intro composition on narrow screens: keep the backdrop behind a visible, centered scene. */
+#bxx-cinematic-intro{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  isolation:isolate!important;
+  position:fixed!important;
+  inset:0!important;
+  width:100%!important;
+  min-height:100vh!important;
+  min-height:100svh!important;
+  overflow:hidden!important;
+  background-color:#050609!important;
+}
+#bxx-cinematic-intro .bxx-intro-backdrop{z-index:0!important;inset:0!important}
+#bxx-cinematic-intro .bxx-intro-vignette{z-index:1!important}
+#bxx-cinematic-intro .bxx-intro-frame{z-index:2!important}
+#bxx-cinematic-intro .bxx-intro-scene{
+  display:flex!important;
+  position:relative!important;
+  z-index:5!important;
+  width:min(760px,100%)!important;
+  height:100%!important;
+  min-height:100vh!important;
+  min-height:100svh!important;
+  max-height:100svh!important;
+  box-sizing:border-box!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:24px 16px!important;
+  margin:0 auto!important;
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+  filter:none!important;
+}
+#bxx-cinematic-intro .bxx-intro-emblem{
+  display:grid!important;
+  flex:0 0 auto!important;
+  width:clamp(150px,24vh,210px)!important;
+  max-width:58vw!important;
+  height:auto!important;
+  aspect-ratio:1!important;
+  margin:0 0 12px!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+#bxx-cinematic-intro .bxx-emblem-mark,
+#bxx-cinematic-intro .bxx-emblem-mark img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+}
+#bxx-cinematic-intro .bxx-intro-wordmark{
+  display:flex!important;
+  flex:0 0 auto!important;
+  width:100%!important;
+  justify-content:center!important;
+  align-items:center!important;
+  white-space:nowrap!important;
+  font-size:clamp(27px,8vw,44px)!important;
+  line-height:1!important;
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+  filter:none!important;
+  animation:none!important;
+}
+#bxx-cinematic-intro .bxx-intro-loader{
+  display:flex!important;
+  flex:0 0 auto!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:12px!important;
+  margin-top:28px!important;
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+}
+#bxx-cinematic-intro .bxx-loader-copy{
+  display:flex!important;
+  margin:0!important;
+  transform:translateX(5px)!important;
+}
+#bxx-cinematic-intro .bxx-loader-label{
+  display:block!important;
+  color:#f1edef!important;
+  font:700 15px/1 'Oswald',sans-serif!important;
+  letter-spacing:.2em!important;
+  text-transform:uppercase!important;
+}
+@media(max-width:700px),(pointer:coarse){
+  #bxx-cinematic-intro .bxx-intro-scene{gap:0!important}
+  #bxx-cinematic-intro .bxx-intro-emblem{width:clamp(150px,22vh,190px)!important;margin-bottom:12px!important}
+  #bxx-cinematic-intro .bxx-intro-wordmark{font-size:clamp(25px,7.5vw,38px)!important;gap:5px!important}
+  #bxx-cinematic-intro .bxx-intro-loader{margin-top:26px!important}
+  #bxx-cinematic-intro .bxx-loader-orbit{width:42px!important;height:42px!important}
+}
+</style>
+
 </body>
 </html>
