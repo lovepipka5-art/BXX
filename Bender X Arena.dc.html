@@ -2578,54 +2578,7 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
     </div>
   </section>
 
-  <section id="bracket" data-reveal style="{{ revealStyle }}">
-    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,4vw,40px)">
-      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:32px">
-        <div>
-          <div style="font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent,#ff2130)">Плей-офф · топ-8</div>
-          <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(38px,5.5vw,72px);line-height:.9;text-transform:uppercase;margin-top:8px">Турнирная сетка</h2>
-          <p style="font-size:13px;color:#83838d;margin-top:10px;max-width:420px">Кликай победителя в каждой паре — сетка достроится сама вплоть до чемпиона.</p>
-        </div>
-        <button style="{{ vsActionStyle }}" onClick="{{ resetBracket }}">↺ Сбросить сетку</button>
-      </div>
-      <div style="overflow-x:auto;padding-bottom:10px">
-        <div style="display:flex;gap:clamp(16px,2.5vw,40px);align-items:stretch;min-width:760px">
-          <sc-for list="{{ bracket.rounds }}" as="rd" hint-placeholder-count="3">
-            <div style="flex:1;min-width:180px;display:flex;flex-direction:column">
-              <div style="font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#83838d;text-align:center;margin-bottom:16px">{{ rd.title }}</div>
-              <div style="flex:1;display:flex;flex-direction:column;justify-content:space-around;gap:14px">
-                <sc-for list="{{ rd.matches }}" as="mt" hint-placeholder-count="2">
-                  <div style="background:rgba(18,18,23,.12);backdrop-filter:blur(14px);border:1px solid #ffffff14;clip-path:polygon(0 0,100% 0,100% 100%,8px 100%,0 calc(100% - 8px))">
-                    <div style="{{ mt.a.style }}" onClick="{{ mt.a.onPick }}">
-                      <span style="width:9px;height:9px;background:{{ mt.a.c }};transform:rotate(45deg);flex-shrink:0"></span>
-                      <span style="flex:1;font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ mt.a.name }}</span>
-                      <sc-if value="{{ mt.a.winner }}" hint-placeholder-val="{{ false }}"><span style="color:var(--accent,#ff2130);font-size:14px">✔</span></sc-if>
-                    </div>
-                    <div style="height:1px;background:#ffffff12"></div>
-                    <div style="{{ mt.b.style }}" onClick="{{ mt.b.onPick }}">
-                      <span style="width:9px;height:9px;background:{{ mt.b.c }};transform:rotate(45deg);flex-shrink:0"></span>
-                      <span style="flex:1;font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ mt.b.name }}</span>
-                      <sc-if value="{{ mt.b.winner }}" hint-placeholder-val="{{ false }}"><span style="color:var(--accent,#ff2130);font-size:14px">✔</span></sc-if>
-                    </div>
-                  </div>
-                </sc-for>
-              </div>
-            </div>
-          </sc-for>
-          <div style="flex:1;min-width:180px;display:flex;flex-direction:column">
-            <div style="font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#ff2130);text-align:center;margin-bottom:16px">Чемпион</div>
-            <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
-              <div style="{{ champStyle }}">
-                <div style="font-family:'Russo One',sans-serif;font-size:52px;line-height:1;color:transparent;-webkit-text-stroke:2px {{ bracket.champion.c }}">{{ bracket.champion.glyph }}</div>
-                <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:24px;text-transform:uppercase;margin-top:12px">{{ bracket.champion.name }}</div>
-                <div style="font-size:14px;color:#83838d;margin-top:4px">{{ bracket.champion.tag }}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
   <section id="register" data-reveal style="{{ revealStyle }}">
     <div class="bxx-register-wrap">
