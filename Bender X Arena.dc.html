@@ -5000,6 +5000,55 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
   #bxx-cinematic-intro .bxx-v3-load {margin-top:16px!important}
 }
 
+
+/* Match the site's signature arena red (#ff2130), avoiding pink highlights. */
+#bxx-cinematic-intro .bxx-v3-world {
+  background:
+    radial-gradient(ellipse 52% 48% at 50% 48%,rgba(255,33,48,.34) 0%,rgba(170,12,25,.22) 36%,transparent 72%),
+    radial-gradient(ellipse 78% 65% at 50% 112%,rgba(255,33,48,.27) 0%,transparent 72%),
+    radial-gradient(ellipse 34% 50% at 8% 50%,rgba(170,12,25,.2),transparent 78%),
+    radial-gradient(ellipse 34% 50% at 92% 50%,rgba(170,12,25,.2),transparent 78%),
+    linear-gradient(135deg,#050407 0%,#140609 48%,#080609 100%)!important;
+}
+#bxx-cinematic-intro .bxx-v3-world::before {
+  background:
+    conic-gradient(from 0deg at 50% 50%,transparent 0 27%,rgba(255,33,48,.13) 31%,transparent 36% 62%,rgba(255,33,48,.1) 67%,transparent 72%),
+    radial-gradient(ellipse at center,transparent 25%,rgba(255,33,48,.2) 57%,transparent 72%)!important;
+}
+#bxx-cinematic-intro .bxx-v3-world::after {
+  background:linear-gradient(110deg,transparent 25%,rgba(255,33,48,.12) 49%,rgba(255,33,48,.24) 50%,rgba(255,33,48,.1) 51%,transparent 75%)!important;
+}
+#bxx-cinematic-intro .bxx-v3-grid {
+  background-image:linear-gradient(rgba(255,33,48,.11) 1px,transparent 1px),linear-gradient(90deg,rgba(255,33,48,.11) 1px,transparent 1px)!important;
+}
+#bxx-cinematic-intro .bxx-v3-horizon {
+  background:linear-gradient(90deg,transparent,rgba(255,33,48,.2),#ff2130,rgba(255,33,48,.2),transparent)!important;
+  box-shadow:0 0 24px 7px rgba(255,33,48,.4),0 0 90px 28px rgba(190,8,25,.25)!important;
+}
+#bxx-cinematic-intro .bxx-v3-ring {
+  border-color:rgba(255,33,48,.34)!important;
+  box-shadow:0 0 32px rgba(255,33,48,.14),inset 0 0 35px rgba(255,33,48,.09)!important;
+}
+#bxx-cinematic-intro .bxx-v3-ring-b {border-color:rgba(255,33,48,.22)!important}
+#bxx-cinematic-intro .bxx-v3-logo-halo {
+  background:radial-gradient(circle,rgba(255,33,48,.52),rgba(255,33,48,.23) 42%,transparent 72%)!important;
+}
+#bxx-cinematic-intro .bxx-v3-logo-frame img {
+  filter:drop-shadow(0 0 18px rgba(255,33,48,.78)) drop-shadow(0 0 54px rgba(190,8,25,.52))!important;
+}
+#bxx-cinematic-intro .bxx-v3-title i {
+  color:#ff2130!important;
+  text-shadow:0 0 18px rgba(255,33,48,.9),0 0 48px rgba(255,33,48,.62)!important;
+}
+#bxx-cinematic-intro .bxx-v3-track span {
+  background:linear-gradient(90deg,#8f0c1b,#ff2130 62%,#ff5964)!important;
+  box-shadow:0 0 12px #ff2130,0 0 28px rgba(255,33,48,.85)!important;
+}
+@keyframes bxxV3HorizonBeat {
+  0%,100%{opacity:.55;filter:brightness(.8)}
+  50%{opacity:1;filter:brightness(1.45)}
+}
+
 </style>
 
 </body>
