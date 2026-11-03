@@ -4164,27 +4164,27 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
  0%{opacity:0;transform:translate3d(0,12px,0) scale(.97)}
  100%{opacity:1;transform:translate3d(0,0,0) scale(1)}
 }
-/* Restore a reliable, staggered entrance for the full BENDER X ARENA title. */
+/* Slower, readable staggered reveal for BENDER X ARENA. */
 .loaded #hero .hero-title span{
  display:inline-block!important;
  opacity:0;
- animation:bxxHeroTitleReveal .82s cubic-bezier(.2,.8,.2,1) both!important;
+ animation:bxxHeroTitleReveal 1.35s cubic-bezier(.2,.8,.2,1) both!important;
 }
-.loaded #hero .hero-title span:nth-child(1){animation-delay:.08s!important}
+.loaded #hero .hero-title span:nth-child(1){animation-delay:.12s!important}
 .loaded #hero .hero-title span:nth-child(2){
- animation:bxxHeroCrossRevealFast .9s .2s cubic-bezier(.2,.8,.2,1) both!important;
+ animation:bxxHeroCrossRevealFast 1.4s .42s cubic-bezier(.2,.8,.2,1) both!important;
 }
-.loaded #hero .hero-title span:nth-child(3){animation-delay:.32s!important}
+.loaded #hero .hero-title span:nth-child(3){animation-delay:.78s!important}
 @keyframes bxxHeroCrossRevealFast{
  0%{opacity:0;transform:translateY(13px) rotate(-5deg) scale(1.035);filter:blur(4px)}
  72%{opacity:1;transform:translateY(-1px) rotate(1deg) scale(.995);filter:blur(0)}
  100%{opacity:1;transform:translateY(0) rotate(0) scale(1);filter:blur(0)}
 }
 @media(max-width:760px){
- .loaded #hero .hero-title span{animation-duration:.68s!important}
- .loaded #hero .hero-title span:nth-child(1){animation-delay:.06s!important}
- .loaded #hero .hero-title span:nth-child(2){animation-duration:.74s!important;animation-delay:.16s!important}
- .loaded #hero .hero-title span:nth-child(3){animation-delay:.26s!important}
+ .loaded #hero .hero-title span{animation-duration:1.15s!important}
+ .loaded #hero .hero-title span:nth-child(1){animation-delay:.1s!important}
+ .loaded #hero .hero-title span:nth-child(2){animation-duration:1.2s!important;animation-delay:.34s!important}
+ .loaded #hero .hero-title span:nth-child(3){animation-delay:.62s!important}
 }
 @media(prefers-reduced-motion:reduce){
  #bxx-cinematic-intro [style*="animation:bxxIntroLogoV2"]{animation:none!important;opacity:1!important;transform:none!important}
