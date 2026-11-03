@@ -41,6 +41,48 @@
   @keyframes shine{0%{left:-60%}60%,100%{left:130%}}
   @keyframes bgLogoPulse{0%,100%{opacity:.05}50%{opacity:.1}}
   @keyframes xBlink{0%,90%,100%{opacity:1;filter:none}92%{opacity:.28}94%{opacity:1;filter:drop-shadow(0 0 22px var(--accent,#ff2130))}96%{opacity:.42}98%{opacity:1;filter:drop-shadow(0 0 28px var(--accent,#ff2130))}}
+
+  /* bxx-about-mobile-pass-2026 */
+  @media (max-width: 900px){
+    nav[style] {height:auto!important;min-height:60px;padding:9px 18px!important;gap:12px!important;flex-wrap:wrap!important}
+    nav[style] > div {order:3;width:100%;overflow-x:auto;justify-content:flex-start!important;gap:20px!important;padding:9px 0 5px;white-space:nowrap;scrollbar-width:none;font-size:12px!important}
+    nav[style] > div::-webkit-scrollbar{display:none}
+    nav[style] > a:first-child img{height:34px!important}
+    nav[style] > a:first-child span{font-size:14px!important}
+    nav[style] > a:last-child{padding:9px 13px!important;font-size:12px!important}
+    header{padding-top:clamp(132px,19vw,166px)!important}
+    header img{opacity:.45}
+    footer > div:first-child{align-items:flex-start!important}
+  }
+  @media (max-width: 600px){
+    header{padding-left:18px!important;padding-right:18px!important;padding-bottom:28px!important}
+    header h1{font-size:clamp(46px,14vw,72px)!important;line-height:.92!important}
+    header p{max-width:100%!important;font-size:15px!important}
+    header > div > div:nth-of-type(1){letter-spacing:.2em!important}
+    section[style] > div{padding-left:18px!important;padding-right:18px!important}
+    section[style] > div > div[style*="grid-template-columns"]{grid-template-columns:1fr!important}
+    section[style] > div > div[style*="grid-template-columns"] > div{min-width:0!important}
+    section[style] > div > div[style*="flex-wrap"]{gap:18px!important;padding:24px 20px!important}
+    section[style] > div > div[style*="flex-wrap"] > div{min-width:0!important;width:100%}
+    section[style] > div > div[style*="flex-wrap"] a{width:100%;justify-content:center}
+    footer{padding-left:18px!important;padding-right:18px!important}
+    footer > div:first-child{flex-direction:column!important;gap:20px!important}
+    footer > div:first-child > div{gap:14px!important}
+    footer > div:last-child{flex-direction:column!important}
+    footer > div:last-child span:last-child{text-align:left!important}
+  }
+  @media (max-width: 380px){
+    nav[style] > a:first-child{gap:7px!important}
+    nav[style] > a:first-child img{height:29px!important}
+    nav[style] > a:first-child span{font-size:12px!important}
+    nav[style] > a:last-child{font-size:11px!important;padding:8px 10px!important}
+    header h1{font-size:44px!important}
+    section[style] > div > div[style*="grid-template-columns"] > div{padding:22px 18px!important}
+  }
+  @media (prefers-reduced-motion:reduce){
+    nav[style] > div{scroll-behavior:auto!important}
+  }
+
 </style>
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}">
