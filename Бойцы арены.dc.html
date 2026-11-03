@@ -44,6 +44,61 @@
   @keyframes spin{to{transform:rotate(360deg)}}
   @keyframes bgLogoPulse{0%,100%{opacity:.05}50%{opacity:.1}}
   @keyframes xBlink{0%,90%,100%{opacity:1;filter:none}92%{opacity:.28}94%{opacity:1;filter:drop-shadow(0 0 22px var(--accent,#ff2130))}96%{opacity:.42}98%{opacity:1;filter:drop-shadow(0 0 28px var(--accent,#ff2130))}}
+
+  /* bxx-fighters-mobile-pass-2026 */
+  @media(max-width:760px){
+    nav[style]{
+      height:auto!important;min-height:60px;flex-wrap:wrap!important;
+      gap:8px 12px!important;padding:8px 16px!important;
+      background:rgba(8,8,10,.94)!important;
+    }
+    nav[style] > a:first-child img{height:34px!important}
+    nav[style] > a:first-child span{font-size:14px!important}
+    nav[style] > div{
+      order:3;width:100%;max-width:100%;gap:18px!important;
+      overflow-x:auto;overflow-y:hidden;white-space:nowrap;
+      padding:5px 0 7px;scrollbar-width:none;
+      -webkit-overflow-scrolling:touch;
+    }
+    nav[style] > div::-webkit-scrollbar{display:none}
+    nav[style] > div a,nav[style] > div span{flex:0 0 auto;font-size:12px!important}
+    nav[style] > a:last-child{padding:9px 13px!important;font-size:12px!important}
+    header{padding-top:clamp(126px,19vh,156px)!important}
+    header > div[style*="max-width:1480px"] > div:last-child{gap:16px!important}
+    #roster > div{padding-left:16px!important;padding-right:16px!important}
+    #roster > div > div:first-child{align-items:stretch!important;gap:14px!important}
+    #roster > div > div:first-child > div:first-child{
+      display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px!important;width:100%;
+    }
+    #roster button{min-height:44px;padding:9px 8px!important;font-size:12px!important;letter-spacing:.08em!important}
+    #roster > div > div:first-child > div:last-child{
+      width:100%;justify-content:space-between!important;gap:10px!important;
+    }
+    #roster > div > div:first-child > div:last-child > div{display:flex;flex:1;gap:6px!important}
+    #roster > div > div:first-child > div:last-child > div button{flex:1}
+    #roster [data-stagger]{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+    #roster [data-stagger] > div{min-width:0}
+  }
+  @media(max-width:520px){
+    header{padding-left:16px!important;padding-right:16px!important}
+    header h1{font-size:clamp(42px,13vw,64px)!important}
+    header p{max-width:100%!important}
+    #roster [data-stagger]{grid-template-columns:minmax(0,1fr)!important;gap:14px!important}
+    #roster > div > div:first-child > div:first-child{grid-template-columns:repeat(2,minmax(0,1fr))}
+    footer > div:first-child{align-items:flex-start!important}
+    footer > div:last-child > span:last-child{text-align:left!important}
+  }
+  @media(max-width:380px){
+    nav[style] > a:first-child span{font-size:12px!important}
+    nav[style] > a:last-child{padding:8px 10px!important;font-size:11px!important}
+    header{padding-top:132px!important}
+    #roster > div{padding-left:12px!important;padding-right:12px!important}
+    #roster button{font-size:11px!important;padding:8px 6px!important}
+  }
+  @media(prefers-reduced-motion:reduce){
+    #roster [data-stagger] *,nav[style] *{scroll-behavior:auto!important}
+  }
+
 </style>
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}">
