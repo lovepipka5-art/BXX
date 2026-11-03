@@ -125,6 +125,20 @@
     nav>a:last-child{font-size:10px!important;padding:8px 9px!important}
     header h1{font-size:clamp(40px,11.5vw,52px)!important}
   }
+
+  /* bxx-news-mobile-refine-2026 */
+  @media(max-width:760px){
+    nav>div a,nav>div span{min-height:40px;display:inline-flex;align-items:center}
+    #feed [data-stagger] a>div:last-child{min-width:0!important}
+    #feed [data-stagger] a>div:last-child>p{overflow-wrap:anywhere}
+    footer>div:last-child>span:last-child{text-align:left!important}
+  }
+  @media(max-width:520px){
+    #feed [data-stagger] a>div:first-child{height:100px!important}
+    #feed [data-stagger] a>div:last-child{padding:16px!important}
+    #feed [data-stagger] a>div:last-child>div:nth-child(2){font-size:18px!important}
+  }
+  @media(max-width:380px){#feed [data-stagger] a>div:last-child>div:nth-child(2){font-size:17px!important}}
 </style>
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}">
