@@ -123,7 +123,7 @@ main{max-width:1240px;margin:0 auto;padding:48px 20px 80px}.eyebrow{color:#f0526
    payload[key]=v===''?null:v;
   }
   payload.created_by=user.id;
-  if(kind==='news'&&payload.is_published&&!payload.published_at)payload.published_at=new Date().toISOString();
+  if(kind==='news'&&payload.is_published&&!payload.published_at){const existing=rows.find(x=>x.id===editing);payload.published_at=existing?.published_at||new Date().toISOString();}
   if(kind==='news'&&!payload.is_published)payload.published_at=null;
   const result=editing?await client.from(config[kind].table).update(payload).eq('id',editing):await client.from(config[kind].table).insert(payload);
   if(result.error){say('save-message','Ошибка сохранения: '+result.error.message,'error');return}
