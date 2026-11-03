@@ -4634,5 +4634,39 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
 }
 </style>
 
+
+
+<style id="bxx-intro-mobile-emblem-motion-2026">
+/* Slightly larger BX mark with a lightweight, one-shot entrance on phones. */
+@media(max-width:700px),(pointer:coarse){
+  #bxx-cinematic-intro .bxx-intro-emblem{
+    width:clamp(178px,26vh,226px)!important;
+    max-width:62vw!important;
+    margin:0 0 12px!important;
+    animation:bxxMobileEmblemIn .62s cubic-bezier(.2,.75,.25,1) both!important;
+    transform-origin:center center;
+  }
+  #bxx-cinematic-intro .bxx-emblem-mark img{
+    filter:none!important;
+  }
+}
+@keyframes bxxMobileEmblemIn{
+  from{opacity:0;transform:translate3d(0,14px,0) scale(.94)}
+  to{opacity:1;transform:translate3d(0,0,0) scale(1)}
+}
+@media(max-height:650px) and (orientation:landscape){
+  #bxx-cinematic-intro .bxx-intro-emblem{
+    width:clamp(132px,24vh,176px)!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  #bxx-cinematic-intro .bxx-intro-emblem{
+    animation:none!important;
+    opacity:1!important;
+    transform:none!important;
+  }
+}
+</style>
+
 </body>
 </html>
