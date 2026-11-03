@@ -3767,5 +3767,105 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
   syncMenuState();
 })();
 </script>
+
+<style id="bxx-hero-cinematic-finish">
+/* BXX hero finale: reveal the arena artwork, title and tournament CTA as one deliberate beat. */
+#hero.arena-hero{isolation:isolate!important}
+#hero.arena-hero:before{
+  background:
+    radial-gradient(ellipse 44% 58% at 76% 46%,rgba(255,38,56,.17),transparent 72%),
+    linear-gradient(105deg,rgba(5,5,7,.28) 0%,transparent 42%,rgba(5,5,7,.08) 70%,rgba(5,5,7,.42) 100%),
+    repeating-linear-gradient(90deg,transparent 0 9.9%,rgba(255,255,255,.025) 10%,transparent 10.1%),
+    linear-gradient(180deg,rgba(5,5,7,.08),transparent 55%,#070708 100%)!important;
+  animation:bxxHeroAtmosphere 9s ease-in-out infinite!important;
+}
+#hero > div[style*="perspective:1500px"] > img{
+  opacity:.24!important;
+  filter:grayscale(1) contrast(1.42) brightness(.82) drop-shadow(0 0 34px rgba(255,28,48,.12))!important;
+  animation:bxxHeroArtworkReveal 1.5s .12s cubic-bezier(.16,1,.3,1) both,bxxHeroArtworkDrift 26s 1.7s ease-in-out infinite!important;
+  will-change:transform,opacity,filter;
+}
+#hero .hero-title{
+  text-shadow:0 12px 42px rgba(0,0,0,.72),0 0 70px rgba(255,38,56,.08)!important;
+}
+.loaded #hero .hero-title span{
+  animation:bxxHeroTitleReveal .95s cubic-bezier(.16,1,.3,1) both!important;
+}
+.loaded #hero .hero-title span:nth-child(1){animation-delay:.18s!important}
+.loaded #hero .hero-title span:nth-child(2){animation:bxxHeroCrossReveal 1.05s .34s cubic-bezier(.16,1,.3,1) both!important}
+.loaded #hero .hero-title span:nth-child(3){animation-delay:.5s!important}
+#hero .hero-cta a:first-child{
+  position:relative!important;
+  isolation:isolate;
+  overflow:hidden!important;
+  border:1px solid rgba(255,255,255,.18)!important;
+  box-shadow:0 10px 28px rgba(255,38,56,.2),0 0 0 1px rgba(255,38,56,.12)!important;
+  animation:none!important;
+  transition:transform .24s cubic-bezier(.16,1,.3,1),box-shadow .24s,filter .24s!important;
+}
+#hero .hero-cta a:first-child:after{
+  content:"";position:absolute;inset:-40% auto -40% -65%;width:38%;
+  transform:skewX(-20deg);pointer-events:none;z-index:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.36),rgba(255,255,255,.08),transparent);
+  opacity:0;
+}
+.loaded #hero .hero-cta a:first-child:after{animation:bxxHeroCtaSweep .9s 1.18s ease-out both}
+#hero .hero-cta a:first-child:hover{
+  transform:translateY(-3px)!important;
+  box-shadow:0 16px 38px rgba(255,38,56,.32),0 0 24px rgba(255,38,56,.13)!important;
+  filter:brightness(1.06);
+}
+#hero .hero-cta a:first-child:active{transform:translateY(-1px)!important;filter:brightness(.96)}
+#hero .hero-cta a.ghost{transition:transform .24s,border-color .24s,background .24s,box-shadow .24s!important}
+#hero .hero-cta a.ghost:hover{transform:translateY(-3px)!important;border-color:rgba(255,65,82,.72)!important;background:rgba(255,38,56,.08)!important}
+@keyframes bxxHeroAtmosphere{0%,100%{opacity:.82}50%{opacity:1}}
+@keyframes bxxHeroArtworkReveal{
+  0%{opacity:0;transform:translate(-48%,-46%) scale(1.09);filter:grayscale(1) contrast(1.7) brightness(.45) blur(8px)}
+  100%{opacity:.24;transform:translate(-50%,-50%) scale(1);filter:grayscale(1) contrast(1.42) brightness(.82) blur(0)}
+}
+@keyframes bxxHeroArtworkDrift{
+  0%,100%{transform:translate(-50%,-50%) scale(1)}
+  50%{transform:translate(-51%,-52%) scale(1.035)}
+}
+@keyframes bxxHeroTitleReveal{
+  0%{opacity:0;transform:translate3d(0,38px,0) scale(.985);filter:blur(10px)}
+  72%{opacity:1;filter:blur(0)}
+  100%{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}
+}
+@keyframes bxxHeroCrossReveal{
+  0%{opacity:0;transform:translateY(22px) rotate(-16deg) scale(1.3);filter:blur(9px)}
+  72%{opacity:1;transform:translateY(-2px) rotate(3deg) scale(.97);filter:blur(0)}
+  100%{opacity:1;transform:translateY(0) rotate(0) scale(1);filter:blur(0)}
+}
+@keyframes bxxHeroCtaSweep{
+  0%{left:-65%;opacity:0}
+  18%{opacity:1}
+  100%{left:135%;opacity:0}
+}
+@media(max-width:760px){
+  #hero > div[style*="perspective:1500px"] > img{
+    opacity:.15!important;
+    filter:grayscale(1) contrast(1.3) brightness(.72)!important;
+  }
+  #hero.arena-hero:before{
+    background:
+      radial-gradient(ellipse 80% 42% at 72% 45%,rgba(255,38,56,.12),transparent 75%),
+      linear-gradient(90deg,rgba(5,5,7,.35),rgba(5,5,7,.04) 78%),
+      linear-gradient(180deg,rgba(5,5,7,.04),transparent 48%,#070708 100%)!important;
+  }
+  #hero .hero-cta a:first-child{min-height:56px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #hero.arena-hero:before,
+  #hero > div[style*="perspective:1500px"] > img,
+  .loaded #hero .hero-title span,
+  .loaded #hero .hero-cta a:first-child:after{
+    animation:none!important;transition:none!important;filter:none!important;
+  }
+  #hero > div[style*="perspective:1500px"] > img{opacity:.15!important;transform:translate(-50%,-50%)!important}
+  #hero .hero-title span{opacity:1!important;filter:none!important;transform:none!important}
+}
+</style>
+
 </body>
 </html>
