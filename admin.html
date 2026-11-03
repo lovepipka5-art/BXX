@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08090d">
+<title>Администрирование — BENDER X ARENA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Russo+One&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js"></script>
+<style>
+:root{color-scheme:dark;--bg:#08090d;--panel:#12151d;--panel2:#191d26;--line:#ffffff18;--text:#f5f3f0;--muted:#a5a7b0;--red:#e33445}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#e3344518,transparent 34%),var(--bg);color:var(--text);font:14px Inter, sans-serif;min-height:100vh}a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}button,a,input,textarea,select{-webkit-tap-highlight-color:transparent}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid #ff6470;outline-offset:3px}
+header{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,54px);background:#08090de8;position:sticky;top:0;z-index:5;backdrop-filter:blur(16px)}.brand{font:20px 'Russo One';letter-spacing:.02em}.brand span{color:var(--red)}header a:last-child{color:#c4c5cc;font-size:11px;font-weight:800;letter-spacing:.1em}
+main{max-width:1240px;margin:0 auto;padding:48px 20px 80px}.eyebrow{color:#f05260;font-size:10px;font-weight:800;letter-spacing:.2em}.page-title{font:clamp(34px,5vw,58px)/1 'Russo One';margin:12px 0}.lead{color:var(--muted);line-height:1.7;max-width:700px;margin:0 0 30px}
+.panel{border:1px solid var(--line);background:linear-gradient(145deg,#171b24,#0f1117);padding:clamp(20px,3vw,34px);border-top:2px solid var(--red);max-width:680px}.panel h2{font:22px 'Russo One';margin:0 0 12px}.muted{color:var(--muted);line-height:1.6}.btn{border:1px solid #ffffff24;background:#1b1e27;color:#fff;padding:13px 16px;min-height:46px;font-weight:800;font-size:10px;letter-spacing:.1em;cursor:pointer}.btn.primary{background:linear-gradient(110deg,#ef3547,#b91d2d);border-color:#ff6674}.btn:disabled{opacity:.55;cursor:wait}.btn.danger{color:#ff8992;border-color:#ff667044}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{display:flex;flex-direction:column;gap:7px;min-width:0}.field.full{grid-column:1/-1}.field label{font-size:10px;font-weight:800;letter-spacing:.12em;color:#c8c9d0}.field input,.field textarea,.field select{width:100%;min-height:46px;padding:12px;background:#090b10;border:1px solid #ffffff24;color:#fff;border-radius:2px}.field textarea{min-height:120px;resize:vertical;line-height:1.55}.field input[type=checkbox]{width:18px;min-height:18px;accent-color:var(--red)}.checkline{display:flex;align-items:center;gap:10px;color:#ddd}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:28px 0 20px}.tab{padding:12px 16px;border:1px solid var(--line);background:#10131a;color:#bfc1c9;font-size:10px;font-weight:800;letter-spacing:.1em;cursor:pointer}.tab.active{background:#32151c;border-color:#e33445;color:#fff}.workspace{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);gap:18px;align-items:start}.list,.editor{border:1px solid var(--line);background:#10131a;padding:20px;min-width:0}.list h2,.editor h2{font:20px 'Russo One';margin:0 0 16px}.item{padding:15px 0;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:center;justify-content:space-between}.item:last-child{border:0}.item-title{font-weight:700;line-height:1.4}.item-meta{font-size:10px;color:var(--muted);margin-top:5px}.item-actions{display:flex;gap:7px;flex-shrink:0}.item-actions button{padding:8px 10px;font-size:9px}.status{display:inline-block;color:#f2a2a9;background:#e334451a;padding:4px 7px;font-size:9px;font-weight:800;letter-spacing:.08em}.status.published{color:#86e1b2;background:#43bd7a1a}.notice{padding:12px 14px;border:1px solid var(--line);background:#ffffff08;color:#d6d7dc;line-height:1.5;margin:14px 0}.notice.error{border-color:#e3344570;color:#ff9ba3}.notice.ok{border-color:#43bd7a70;color:#9de5bb}.hidden{display:none!important}
+@media(max-width:820px){.workspace{grid-template-columns:1fr}.editor{order:-1}}@media(max-width:520px){main{padding:34px 14px 60px}.field-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.item{align-items:flex-start}.item-actions{flex-direction:column}.item-actions button{min-width:66px}}
+</style>
+</head>
+<body>
+<header><a class="brand" href="./">BENDER<span> X </span>ARENA</a><a href="./">← НА ГЛАВНУЮ</a></header>
+<main>
+<div class="eyebrow">CONTROL ROOM · BXX</div>
+<h1 class="page-title">ПАНЕЛЬ АДМИНИСТРАТОРА</h1>
+<p class="lead">Управляй публикациями арены. Черновики видны только администраторам; опубликованные материалы появляются на сайте.</p>
+<section id="auth" class="panel">
+<h2>ВХОД В СИСТЕМУ</h2><p class="muted">Войди в аккаунт, которому выданы права администратора BENDER X ARENA.</p>
+<div class="field-grid" style="margin-top:18px">
+<div class="field full"><label for="email">EMAIL</label><input id="email" type="email" autocomplete="username" placeholder="name@example.com"></div>
+<div class="field full"><label for="password">ПАРОЛЬ</label><input id="password" type="password" autocomplete="current-password" placeholder="Пароль аккаунта"></div>
+</div>
+<div class="actions"><button id="email-login" class="btn primary">ВОЙТИ ПО EMAIL</button><button id="discord-login" class="btn">ВОЙТИ ЧЕРЕЗ DISCORD</button></div>
+<div id="auth-message" class="notice hidden" role="status" aria-live="polite"></div>
+</section>
+<section id="denied" class="panel hidden"><h2>НЕТ ДОСТУПА</h2><p class="muted">Этот аккаунт не входит в список администраторов. Попроси владельца арены выдать права.</p><div class="actions"><button id="signout-denied" class="btn">ВЫЙТИ</button></div></section>
+<section id="app" class="hidden">
+<div class="notice" id="welcome"></div>
+<div class="tabs" role="tablist">
+<button class="tab active" data-kind="news">НОВОСТИ</button><button class="tab" data-kind="tournaments">ТУРНИРЫ</button><button class="tab" data-kind="streams">ТРАНСЛЯЦИИ</button>
+</div>
+<div class="workspace">
+<section class="list"><h2 id="list-title">ПУБЛИКАЦИИ</h2><div id="items"></div></section>
+<section class="editor"><h2 id="editor-title">НОВАЯ ПУБЛИКАЦИЯ</h2><form id="editor-form"><div id="fields" class="field-grid"></div><div class="actions"><button class="btn primary" type="submit">СОХРАНИТЬ</button><button class="btn" type="button" id="reset">НОВАЯ ЗАПИСЬ</button></div><div id="save-message" class="notice hidden" role="status" aria-live="polite"></div></form></section>
+</div>
+<div class="actions"><button id="signout" class="btn">ВЫЙТИ ИЗ АККАУНТА</button></div>
+</section>
+</main>
+<script>
+(function(){
+ const URL='https://fewfpimbfgxlzghfqkmc.supabase.co';
+ const KEY='sb_publishable_5Pgf3aTIsP_HwmrO5RakEA_H4DF7Mny';
+ const $=id=>document.getElementById(id);
+ const client=window.supabase.createClient(URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+ let user=null,kind='news',editing=null,rows=[];
+ const config={
+  news:{table:'news_posts',title:'НОВОСТИ',fields:[
+   ['title','Заголовок','text',true],['slug','Адрес (slug)','text',true],['category','Категория','text',true],['excerpt','Краткое описание','textarea',false],['content','Текст публикации','textarea',false],['cover_image_url','Ссылка на обложку','url',false],['is_published','Опубликовать','checkbox',false]
+  ]},
+  tournaments:{table:'tournaments',title:'ТУРНИРЫ',fields:[
+   ['title','Название турнира','text',true],['slug','Адрес (slug)','text',true],['description','Описание','textarea',false],['game','Игра','text',true],['status','Статус','select',true,['upcoming','live','completed','cancelled']],['starts_at','Начало','datetime-local',true],['ends_at','Окончание','datetime-local',false],['registration_url','Ссылка регистрации','url',false],['bracket_url','Ссылка на сетку','url',false],['is_published','Опубликовать','checkbox',false]
+  ]},
+  streams:{table:'stream_events',title:'ТРАНСЛЯЦИИ',fields:[
+   ['title','Название эфира','text',true],['description','Описание / комментатор','textarea',false],['platform','Платформа','select',true,['Twitch','YouTube','Kick','Discord']],['stream_url','Ссылка на эфир','url',false],['starts_at','Дата и время','datetime-local',true],['status','Статус','select',true,['scheduled','live','ended','cancelled']],['is_published','Опубликовать','checkbox',false]
+  ]}
+ };
+ function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+ function slugify(v){return String(v||'').toLowerCase().trim().replace(/ё/g,'е').replace(/[^a-zа-я0-9]+/gi,'-').replace(/^-|-$/g,'')}
+ function say(id,msg,type){const el=$(id);el.textContent=msg;el.className='notice'+(type?' '+type:'')}
+ function show(which){['auth','denied','app'].forEach(id=>$(id).classList.toggle('hidden',id!==which))}
+ function localDate(v){if(!v)return '';const d=new Date(v);return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,16)}
+ async function checkAccess(){
+  const {data,error}=await client.auth.getSession();if(error)throw error;
+  user=data.session?.user||null;
+  if(!user){show('auth');return}
+  const {data:grant,error:grantError}=await client.from('admin_users').select('user_id').eq('user_id',user.id).maybeSingle();
+  if(grantError)throw grantError;
+  if(!grant){show('denied');return}
+  $('welcome').textContent='Вы вошли как '+(user.email||user.user_metadata?.full_name||'администратор')+'. Права подтверждены базой данных.';
+  show('app');await load();
+ }
+ async function load(){
+  const c=config[kind];$('list-title').textContent=c.title;$('editor-title').textContent='НОВАЯ ЗАПИСЬ';
+  $('items').innerHTML='<p class="muted">Загружаю записи…</p>';
+  const {data,error}=await client.from(c.table).select('*').order('created_at',{ascending:false}).limit(100);
+  if(error)throw error;rows=data||[];renderList();renderForm();
+ }
+ function renderList(){
+  $('items').innerHTML=rows.length?rows.map(r=>'<article class="item"><div><div class="item-title">'+esc(r.title)+'</div><div class="item-meta">'+(r.is_published?'<span class="status published">ОПУБЛИКОВАНО</span>':'<span class="status">ЧЕРНОВИК</span>')+' · '+esc(r.starts_at?new Date(r.starts_at).toLocaleString('ru-RU'):r.published_at?new Date(r.published_at).toLocaleDateString('ru-RU'):'Без даты')+'</div></div><div class="item-actions"><button class="btn" data-edit="'+r.id+'">ИЗМЕНИТЬ</button><button class="btn danger" data-delete="'+r.id+'">УДАЛИТЬ</button></div></article>').join(''):'<p class="muted">Пока записей нет. Создай первую справа.</p>';
+  $('items').querySelectorAll('[data-edit]').forEach(b=>b.addEventListener('click',()=>edit(b.dataset.edit)));
+  $('items').querySelectorAll('[data-delete]').forEach(b=>b.addEventListener('click',()=>remove(b.dataset.delete)));
+ }
+ function renderForm(row){
+  editing=row?.id||null;const c=config[kind];$('editor-title').textContent=row?'РЕДАКТИРОВАТЬ ЗАПИСЬ':'НОВАЯ ЗАПИСЬ';
+  $('fields').innerHTML=c.fields.map(([key,label,type,required,options])=>{
+   const value=row?.[key];let control='';
+   if(type==='textarea')control='<textarea name="'+key+'" '+(required?'required':'')+'>'+esc(value||'')+'</textarea>';
+   else if(type==='checkbox')control='<input name="'+key+'" type="checkbox" '+(value?'checked':'')+'>';
+   else if(type==='select')control='<select name="'+key+'">'+options.map(o=>'<option value="'+o+'" '+((value||options[0])===o?'selected':'')+'>'+o+'</option>').join('')+'</select>';
+   else control='<input name="'+key+'" type="'+type+'" value="'+esc(type==='datetime-local'?localDate(value):value||'')+'" '+(required?'required':'')+'>';
+   const full=type==='textarea'||type==='checkbox';
+   return '<div class="field '+(full?'full':'')+'"><label>'+(type==='checkbox'?'':'')+label+(required?' *':'')+'</label>'+(type==='checkbox'?'<label class="checkline">'+control+' '+label+'</label>':control)+'</div>';
+  }).join('');
+  $('save-message').classList.add('hidden');
+  const title=$('fields').querySelector('[name=title]'),slug=$('fields').querySelector('[name=slug]');
+  if(title&&slug&&!row)title.addEventListener('input',()=>{if(!slug.dataset.touched)slug.value=slugify(title.value)});
+  if(slug)slug.addEventListener('input',()=>slug.dataset.touched='1');
+ }
+ function edit(id){const row=rows.find(x=>x.id===id);if(row)renderForm(row)}
+ async function remove(id){
+  const row=rows.find(x=>x.id===id);if(!row||!confirm('Удалить запись «'+row.title+'»?'))return;
+  const {error}=await client.from(config[kind].table).delete().eq('id',id);
+  if(error){say('save-message','Не удалось удалить: '+error.message,'error');return}
+  await load();
+ }
+ $('editor-form').addEventListener('submit',async e=>{
+  e.preventDefault();const form=new FormData(e.currentTarget),payload={};
+  for(const [key] of config[kind].fields){
+   const def=config[kind].fields.find(x=>x[0]===key),type=def[2];
+   let v=type==='checkbox'?form.has(key):form.get(key);
+   if(type==='datetime-local')v=v?new Date(v).toISOString():null;
+   if(typeof v==='string')v=v.trim();
+   payload[key]=v===''?null:v;
+  }
+  payload.created_by=user.id;
+  if(kind==='news'&&payload.is_published&&!payload.published_at)payload.published_at=new Date().toISOString();
+  if(kind==='news'&&!payload.is_published)payload.published_at=null;
+  const result=editing?await client.from(config[kind].table).update(payload).eq('id',editing):await client.from(config[kind].table).insert(payload);
+  if(result.error){say('save-message','Ошибка сохранения: '+result.error.message,'error');return}
+  say('save-message',editing?'Изменения сохранены.':'Запись создана.','ok');await load();
+ });
+ $('reset').addEventListener('click',()=>renderForm());
+ document.querySelectorAll('[data-kind]').forEach(b=>b.addEventListener('click',async()=>{
+  kind=b.dataset.kind;editing=null;document.querySelectorAll('[data-kind]').forEach(x=>x.classList.toggle('active',x===b));
+  try{await load()}catch(e){say('save-message',e.message,'error')}
+ }));
+ $('email-login').addEventListener('click',async()=>{
+  const {data,error}=await client.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});
+  if(error){say('auth-message',error.message,'error');return}
+  try{await checkAccess()}catch(e){say('auth-message',e.message,'error')}
+ });
+ $('discord-login').addEventListener('click',async()=>{
+  const {error}=await client.auth.signInWithOAuth({provider:'discord',options:{redirectTo:window.location.href}});
+  if(error)say('auth-message',error.message,'error');
+ });
+ async function logout(){await client.auth.signOut();user=null;show('auth')}
+ $('signout').addEventListener('click',logout);$('signout-denied').addEventListener('click',logout);
+ client.auth.onAuthStateChange(()=>{setTimeout(()=>checkAccess().catch(e=>{show('auth');say('auth-message',e.message,'error')}),0)});
+ checkAccess().catch(e=>{show('auth');say('auth-message',e.message,'error')});
+})();
+</script>
+</body>
+</html>
