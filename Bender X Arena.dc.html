@@ -4399,5 +4399,55 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
  #bxx-cinematic-intro .bxx-intro-emblem{width:clamp(130px,28vh,180px)!important}
 }
 </style>
+
+<style id="bxx-intro-clean-big-2026">
+/* Minimal cinematic intro: remove micro-copy and give the emblem/loading more presence. */
+#bxx-cinematic-intro .bxx-intro-meta,
+#bxx-cinematic-intro .bxx-intro-subtitle,
+#bxx-cinematic-intro .bxx-intro-rule,
+#bxx-cinematic-intro .bxx-loader-copy{
+  display:none!important;
+}
+#bxx-cinematic-intro .bxx-intro-emblem{
+  width:clamp(250px,38vh,370px)!important;
+  margin:0 0 8px!important;
+}
+#bxx-cinematic-intro .bxx-intro-wordmark{
+  font-size:clamp(42px,7.2vw,82px)!important;
+  margin-top:4px!important;
+}
+#bxx-cinematic-intro .bxx-intro-loader{
+  margin-top:clamp(30px,5vh,48px)!important;
+  gap:0!important;
+}
+#bxx-cinematic-intro .bxx-loader-orbit{
+  width:76px!important;height:76px!important;
+}
+#bxx-cinematic-intro .bxx-loader-ring{
+  inset:0!important;
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3px))!important;
+  mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3px))!important;
+}
+#bxx-cinematic-intro .bxx-loader-ticks{inset:-7px!important}
+#bxx-cinematic-intro .bxx-loader-core{width:9px!important;height:9px!important}
+@media(max-width:700px),(pointer:coarse){
+  #bxx-cinematic-intro .bxx-intro-emblem{
+    width:clamp(220px,34vh,300px)!important;
+    margin:0 0 8px!important;
+  }
+  #bxx-cinematic-intro .bxx-intro-wordmark{
+    font-size:clamp(34px,9.2vw,54px)!important;
+    gap:6px!important;
+  }
+  #bxx-cinematic-intro .bxx-intro-loader{margin-top:30px!important}
+  #bxx-cinematic-intro .bxx-loader-orbit{width:64px!important;height:64px!important}
+}
+@media(max-height:650px) and (orientation:landscape){
+  #bxx-cinematic-intro .bxx-intro-emblem{width:clamp(150px,34vh,220px)!important}
+  #bxx-cinematic-intro .bxx-intro-loader{margin-top:14px!important}
+  #bxx-cinematic-intro .bxx-loader-orbit{width:48px!important;height:48px!important}
+}
+</style>
+
 </body>
 </html>
