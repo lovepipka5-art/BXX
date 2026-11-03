@@ -2381,7 +2381,7 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
       <div style="position:relative;width:min(300px,60vw);height:8px;overflow:hidden;border-radius:2px;border:1px solid color-mix(in srgb,var(--accent,#ff2130) 55%, transparent);box-shadow:inset 0 0 8px #000,0 0 14px color-mix(in srgb,var(--accent,#ff2130) 30%, transparent);z-index:1;background:#14060a">
         <div style="position:absolute;inset:0;background:linear-gradient(90deg,#8f1420,#ff2130);box-shadow:0 0 16px color-mix(in srgb,var(--accent,#ff2130) 50%, transparent);animation:introBar var(--intro-dur,2s) cubic-bezier(.16,1,.3,1) both"></div>
       </div>
-      <div style="position:relative;z-index:1;font-family:'Russo One',sans-serif;font-size:24px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;max-width:min(300px,66vw);overflow:hidden;text-overflow:ellipsis;background:linear-gradient(110deg,#ffffff 40%,#f0f0f2 45%,#ffd7d7 50%,#ffffff 55%,#ffffff 70%);background-size:200% 100%;background-clip:text;-webkit-background-clip:text;color:transparent;filter:drop-shadow(0 0 14px color-mix(in srgb,var(--accent,#ff2130) 45%, transparent));opacity:0;animation:heroFade .6s .45s both, shineText 2.4s linear infinite">ВХОД НА АРЕНУ</div>
+      <div style="position:relative;z-index:1;font-family:'Russo One',sans-serif;font-size:24px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;max-width:min(300px,66vw);overflow:hidden;text-overflow:ellipsis;background:linear-gradient(110deg,#ffffff 40%,#f0f0f2 45%,#ffd7d7 50%,#ffffff 55%,#ffffff 70%);background-size:200% 100%;background-clip:text;-webkit-background-clip:text;color:transparent;filter:drop-shadow(0 0 14px color-mix(in srgb,var(--accent,#ff2130) 45%, transparent));opacity:0;animation:heroFade .6s .45s both, shineText 2.4s linear infinite">ТВОЯ БИТВА. ТВОЯ ЛЕГЕНДА.</div>
     </div>
   </div>
   <canvas ref="{{ fxRef }}" style="position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none"></canvas>
@@ -2910,7 +2910,7 @@ class Component extends DCLogic {
     this._scroll=()=>this.onScroll(); window.addEventListener('scroll',this._scroll,{passive:true});
     setTimeout(()=>this.setupReveals(),40);
     const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const minWait=new Promise(r=>setTimeout(r,reduced?600:2000));
+    const minWait=new Promise(r=>setTimeout(r,reduced?350:1250));
     const fonts=(document.fonts&&document.fonts.ready)?document.fonts.ready:Promise.resolve();
     Promise.all([minWait,fonts]).then(()=>{ if(this._unmounted) return; try{ localStorage.setItem('bxa_intro','1'); }catch(e){} this.setState({intro:false}); });
   }
@@ -3861,6 +3861,96 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
   }
   #hero > div[style*="perspective:1500px"] > img{opacity:.15!important;transform:translate(-50%,-50%)!important}
   #hero .hero-title span{opacity:1!important;filter:none!important;transform:none!important}
+}
+</style>
+
+
+<style id="bxx-intro-relaunch-mobile-performance">
+/* New BXX intro: emblem impact, sharp arena lines, no fake loading sequence. */
+#bxx-cinematic-intro{
+  background-color:#050507!important;
+  background-image:
+    linear-gradient(180deg,rgba(4,4,7,.38),rgba(4,4,7,.08) 42%,rgba(0,0,0,.78)),
+    url('uploads/intro-bg2.png')!important;
+  background-position:center!important;
+  background-size:cover!important;
+}
+#bxx-cinematic-intro:before{
+  content:""!important;position:absolute!important;inset:0!important;z-index:0!important;
+  opacity:1!important;animation:none!important;transform:none!important;
+  background:
+    linear-gradient(90deg,transparent 8%,rgba(255,38,56,.32) 50%,transparent 92%) top 12% left/100% 1px no-repeat,
+    linear-gradient(90deg,transparent 8%,rgba(255,38,56,.2) 50%,transparent 92%) bottom 12% left/100% 1px no-repeat,
+    radial-gradient(ellipse 38% 42% at 50% 45%,rgba(190,15,32,.16),transparent 72%),
+    linear-gradient(90deg,rgba(0,0,0,.42),transparent 28%,transparent 72%,rgba(0,0,0,.42))!important;
+}
+#bxx-cinematic-intro:after{
+  filter:none!important;opacity:.85!important;width:24%!important;
+  background:linear-gradient(90deg,transparent,rgba(255,38,56,.2),rgba(255,255,255,.48),rgba(255,38,56,.2),transparent)!important;
+  animation:bxxIntroExitSlash .72s cubic-bezier(.16,1,.3,1) both!important;
+}
+#bxx-cinematic-intro>div[style*="background:conic-gradient"],
+#bxx-cinematic-intro>div[style*="sparkFloat"]{display:none!important;animation:none!important}
+#bxx-cinematic-intro>div[style*="padding:14vh 20px 0"]{
+  justify-content:center!important;padding:8vh 18px!important;gap:12px!important;
+}
+#bxx-cinematic-intro>div[style*="padding:14vh 20px 0"]>div:first-child{
+  width:clamp(190px,31vh,340px)!important;max-width:68vw!important;
+}
+#bxx-cinematic-intro [style*="animation:bxxIntroLogoV2"]{
+  animation:bxxIntroLogoV2 .95s cubic-bezier(.16,1,.3,1) .08s both!important;
+}
+#bxx-cinematic-intro [style*="animation:bxxIntroFloatV2"],
+#bxx-cinematic-intro [style*="animation:bxxIntroGlowV2"],
+#bxx-cinematic-intro [style*="animation:bxxIntroHaloV2"]{
+  animation:none!important;filter:none!important;
+}
+#bxx-cinematic-intro [style*="animation:bxxIntroGlowV2"]{opacity:1!important}
+#bxx-cinematic-intro [style*="animation:bxxIntroHaloV2"]{opacity:0!important}
+#bxx-cinematic-intro>div[style*="height:8px"][style*="border-radius:2px"]{display:none!important}
+#bxx-cinematic-intro>div[style*="font-size:clamp(40px,8vw,88px)"]{
+  margin-top:-12px!important;font-size:clamp(29px,7vw,62px)!important;
+  letter-spacing:.055em!important;text-shadow:0 4px 24px rgba(0,0,0,.9),0 0 24px rgba(255,38,56,.2)!important;
+}
+#bxx-cinematic-intro>div[style*="font-size:24px"]{
+  margin-top:8px!important;font-size:clamp(10px,2.2vw,13px)!important;
+  letter-spacing:.24em!important;color:#e8dadd!important;
+  background:none!important;-webkit-text-fill-color:#e8dadd!important;
+  filter:none!important;animation:heroFade .45s .55s both!important;
+}
+#bxx-cinematic-intro.intro-leave{transition:opacity .42s ease,visibility 0s linear .44s!important}
+#bxx-cinematic-intro.intro-leave>div[style*="padding:14vh 20px 0"]{
+  animation:bxxIntroContentExit .34s ease-in both!important;
+}
+@media(max-width:760px),(pointer:coarse){
+  #bxx-cinematic-intro{background-position:center!important}
+  #bxx-cinematic-intro:before{background:
+    linear-gradient(90deg,transparent 5%,rgba(255,38,56,.28) 50%,transparent 95%) top 15% left/100% 1px no-repeat,
+    linear-gradient(90deg,transparent 5%,rgba(255,38,56,.18) 50%,transparent 95%) bottom 15% left/100% 1px no-repeat,
+    radial-gradient(ellipse 65% 34% at 50% 44%,rgba(190,15,32,.14),transparent 75%)!important}
+  #bxx-cinematic-intro:after{display:none!important}
+  #bxx-cinematic-intro>div[style*="padding:14vh 20px 0"]{padding:5vh 12px!important;gap:9px!important}
+  #bxx-cinematic-intro>div[style*="padding:14vh 20px 0"]>div:first-child{width:clamp(170px,27vh,245px)!important;max-width:62vw!important}
+  #bxx-cinematic-intro [style*="animation:bxxIntroLogoV2"]{animation-duration:.78s!important;filter:none!important}
+  #bxx-cinematic-intro>div[style*="font-size:clamp(40px,8vw,88px)"]{font-size:clamp(26px,7.2vw,38px)!important}
+  #bxx-cinematic-intro>div[style*="font-size:24px"]{font-size:10px!important;letter-spacing:.16em!important}
+  /* Keep the reveal, remove perpetual decorative work on touch devices. */
+  #hero.arena-hero:before{animation:none!important}
+  #hero .hero-title span{filter:none!important;text-shadow:0 8px 24px rgba(0,0,0,.65)!important}
+  #hero .hero-cta a:first-child{box-shadow:0 7px 18px rgba(255,38,56,.16)!important}
+  #hero .hero-cta a:first-child:after{display:none!important;animation:none!important}
+  #hero .hero-cta a:first-child,#hero .hero-cta a.ghost{transition:transform .16s ease!important;filter:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #bxx-cinematic-intro:before,#bxx-cinematic-intro:after,
+  #bxx-cinematic-intro [style*="animation:bxxIntroLogoV2"],
+  #bxx-cinematic-intro [style*="animation:bxxIntroFloatV2"],
+  #bxx-cinematic-intro [style*="animation:bxxIntroGlowV2"],
+  #bxx-cinematic-intro [style*="animation:bxxIntroHaloV2"],
+  #bxx-cinematic-intro>div[style*="font-size:24px"]{
+    animation:none!important;transition:none!important;filter:none!important
+  }
+  #bxx-cinematic-intro [style*="animation:bxxIntroLogoV2"]{opacity:1!important;transform:none!important}
 }
 </style>
 
