@@ -369,5 +369,20 @@ class Component extends DCLogic {
   }
 }
 </script>
+
+<script id="bxx-news-published-v1">
+(function(){
+ const db=window.supabase.createClient('https://fewfpimbfgxlzghfqkmc.supabase.co','sb_publishable_5Pgf3aTIsP_HwmrO5RakEA_H4DF7Mny');
+ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const date=s=>s?new Date(s).toLocaleDateString('ru-RU',{day:'2-digit',month:'long',year:'numeric'}):'Дата не указана';
+ async function load(){const section=document.querySelector('#feed [data-stagger]');if(!section)return;
+  try{const {data,error}=await db.from('news_posts').select('id,title,category,excerpt,content,cover_image_url,published_at').eq('is_published',true).order('published_at',{ascending:false}).limit(100);if(error)throw error;
+   const feature=document.querySelector('header + section');if(feature)feature.style.display='none';
+   section.innerHTML=data?.length?data.map(n=>'<article style="padding:24px;background:linear-gradient(145deg,#191d26,#101219);border:1px solid #ffffff18;border-left:3px solid #d92c3c;min-width:0"><div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><span style="background:#d92c3c;color:white;padding:4px 8px;font-size:10px;font-weight:800;letter-spacing:.12em">'+esc(n.category||'НОВОСТИ')+'</span><time style="font-size:12px;color:#9295a0">'+esc(date(n.published_at))+'</time></div><h2 style="font:700 clamp(22px,3vw,32px)/1.1 Oswald,sans-serif;text-transform:uppercase;margin-top:16px">'+esc(n.title)+'</h2>'+(n.cover_image_url&&/^https?:\/\//i.test(n.cover_image_url)?'<img src="'+esc(n.cover_image_url)+'" alt="" loading="lazy" style="display:block;width:100%;max-height:340px;object-fit:cover;margin-top:18px">':'')+'<p style="font:14px/1.7 Inter,sans-serif;color:#b0b2bb;margin-top:14px">'+esc(n.excerpt||'')+'</p><div style="font:14px/1.8 Inter,sans-serif;color:#d2d3d8;white-space:pre-wrap;margin-top:14px">'+esc(n.content||'')+'</div></article>').join(''):'<p style="grid-column:1/-1;padding:24px;color:#a5a7b0;background:#171b24;border:1px solid #ffffff18">Пока нет опубликованных новостей. Загляни позже — анонсы появятся здесь.</p>';
+  }catch(e){console.warn('BXX news:',e);section.innerHTML='<p style="grid-column:1/-1;color:#ff9ba3">Не удалось загрузить новости. Обнови страницу позже.</p>'}
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(load,250),{once:true});else setTimeout(load,250);
+})();
+</script>
 </body>
 </html>
