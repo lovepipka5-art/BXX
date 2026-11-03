@@ -44,6 +44,75 @@
   @keyframes xBlink{0%,90%,100%{opacity:1;filter:none}92%{opacity:.28}94%{opacity:1;filter:drop-shadow(0 0 22px var(--accent,#ff2130))}96%{opacity:.42}98%{opacity:1;filter:drop-shadow(0 0 28px var(--accent,#ff2130))}}
   @keyframes livePulse{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent,#ff2130) 55%, transparent)}50%{box-shadow:0 0 0 12px color-mix(in srgb,var(--accent,#ff2130) 0%, transparent)}}
   @keyframes eqBar{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+
+  /* bxx-streams-mobile-pass-2026 */
+  @media(max-width:760px){
+    nav{
+      height:auto!important;min-height:60px!important;flex-wrap:wrap!important;
+      row-gap:5px!important;padding:8px 14px 6px!important;background:rgba(8,8,10,.94)!important;
+    }
+    nav>a:first-child img{height:34px!important}
+    nav>a:first-child span{font-size:13px!important}
+    nav>div{
+      order:3!important;flex:1 0 100%!important;width:100%!important;min-width:0!important;
+      overflow-x:auto!important;overflow-y:hidden!important;gap:18px!important;
+      padding:4px 0 7px!important;white-space:nowrap!important;scrollbar-width:none!important;
+      -webkit-overflow-scrolling:touch;
+    }
+    nav>div::-webkit-scrollbar{display:none}
+    nav>div a,nav>div span{min-height:40px;display:inline-flex;align-items:center;flex:0 0 auto}
+    nav>a:last-child{font-size:11px!important;letter-spacing:.09em!important;padding:9px 12px!important}
+    header{padding:140px 18px 30px!important}
+    header h1{font-size:clamp(40px,11.5vw,68px)!important;line-height:.94!important}
+    header p{font-size:15px!important}
+    header>div:last-child>div:last-child{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px!important}
+    header>div:last-child>div:last-child>div{padding-left:0!important;border-left:0!important}
+    header>div:last-child>div:last-child>div>div:last-child{font-size:11px!important;letter-spacing:.1em!important}
+    header+section>div>div{display:block!important}
+    header+section>div>div>div:first-child{margin-bottom:22px}
+    header+section>div>div>div:first-child>div:first-child{aspect-ratio:16/10!important}
+    header+section>div>div>div:first-child>div:first-child>div:nth-child(3){gap:10px!important}
+    header+section>div>div>div:first-child>div:first-child>div:nth-child(3)>span{font-size:clamp(17px,5vw,25px)!important}
+    header+section>div>div>div:first-child>div:last-child{gap:9px!important}
+    #schedule>div>div>div:last-child{padding-left:0!important}
+    #schedule>div>div>div:last-child>div:first-child{display:none!important}
+    #schedule [data-stagger]>div{padding-top:0!important}
+    #schedule [data-stagger]>div>div:first-child{
+      position:relative!important;left:auto!important;top:auto!important;bottom:auto!important;
+      width:auto!important;display:flex!important;flex-direction:row!important;
+      align-items:baseline!important;justify-content:flex-start!important;gap:10px!important;
+      text-align:left!important;margin:0 0 7px 2px!important;
+    }
+    #schedule [data-stagger]>div>div:first-child>div{margin-top:0!important}
+    #schedule [data-stagger]>div>div:nth-child(2){display:none!important}
+    #schedule [data-stagger]>div>div:last-child{
+      flex-wrap:wrap!important;gap:10px!important;padding:14px!important;
+    }
+    #schedule [data-stagger]>div>div:last-child>div:first-child{flex:1 1 100%!important}
+    #schedule [data-stagger]>div>div:last-child>span{margin-left:0!important}
+    #schedule [data-stagger]>div>div:last-child button{width:42px!important;height:42px!important}
+    footer>div:last-child>span:last-child{text-align:left!important}
+  }
+  @media(max-width:520px){
+    header{padding-left:16px!important;padding-right:16px!important}
+    header+section>div{padding-left:16px!important;padding-right:16px!important}
+    header+section>div>div>div:first-child>div:last-child{padding:15px!important}
+    header+section>div>div>div:first-child>div:last-child>a{width:100%;text-align:center;padding:14px 16px!important}
+    header+section>div>div>div:last-child>div:not(:first-child){padding:12px!important}
+    #schedule>div{padding-left:16px!important;padding-right:16px!important}
+    #schedule>div>div:first-child{align-items:flex-start!important;flex-direction:column!important}
+    #schedule>div>div:first-child>div:last-child{width:100%;display:flex;gap:8px!important}
+    #schedule>div>div:first-child>div:last-child button{flex:1;min-height:44px}
+    #schedule [data-stagger]>div>div:last-child>div:first-child>div:first-child{font-size:16px!important}
+  }
+  @media(max-width:380px){
+    nav>a:first-child span{font-size:12px!important}
+    nav>a:last-child{font-size:10px!important;padding:8px 9px!important}
+    header{padding-top:132px!important}
+    #schedule>div{padding-left:12px!important;padding-right:12px!important}
+    #schedule [data-stagger]>div>div:last-child{padding:12px!important}
+  }
+
 </style>
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}">
