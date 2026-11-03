@@ -3990,5 +3990,32 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
 }
 </style>
 
+
+<style id="bxx-intro-tagline-no-truncation">
+/* Keep the full intro tagline visible at every viewport width. */
+#bxx-cinematic-intro>div[style*="font-size:24px"]{
+  width:min(92vw,620px)!important;
+  max-width:92vw!important;
+  white-space:normal!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  text-align:center!important;
+  line-height:1.5!important;
+  overflow-wrap:normal!important;
+  text-wrap:balance!important;
+}
+@media(max-width:760px),(pointer:coarse){
+  #bxx-cinematic-intro>div[style*="font-size:24px"]{
+    width:92vw!important;
+    max-width:92vw!important;
+    font-size:clamp(10px,3vw,13px)!important;
+    letter-spacing:.12em!important;
+    white-space:normal!important;
+    overflow:visible!important;
+    text-overflow:clip!important;
+  }
+}
+</style>
+
 </body>
 </html>
