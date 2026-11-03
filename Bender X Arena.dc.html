@@ -14,7 +14,7 @@
 <body>
 <x-dc>
 <helmet>
-<title>BX_ARENA — Турниры, бойцы и стримы</title>
+<title>BENDER X ARENA — Турниры, бойцы и трансляции Mortal Kombat 1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&family=Russo+One&display=swap" rel="stylesheet">
@@ -2445,7 +2445,7 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
       </div>
     </details>
     <div class="bxx-nav-actions" style="display:flex;align-items:center;gap:10px">
-      <a href="#register" class="bxx-register-link" style="position:relative;overflow:hidden;font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:var(--accent,#ff2130);padding:11px 20px;clip-path:polygon(0 0,100% 0,100% 100%,9px 100%,0 calc(100% - 9px))" style-before="{{ shineStyle }}">Регистрация</a>
+>Создать профиль</a>
       <button type="button" class="bxx-nav-icon" id="bxx-profile-open" aria-label="Профиль игрока" title="Профиль игрока"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c.5-4 3-6 7.5-6s7 2 7.5 6"/></svg></button>
       <button type="button" class="bxx-nav-icon bxx-bell" id="bxx-notifications-open" aria-label="Уведомления" title="Уведомления"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg><span class="bxx-notif-dot" id="bxx-notif-dot" hidden></span></button>
     </div>
@@ -2528,7 +2528,6 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
     <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,4vw,40px)">
       <div class="bxx-section-head"><div><div class="bxx-section-kicker">АРЕНА · ОБНОВЛЕНИЯ</div>
         <h2>Последние новости</h2></div><a class="bxx-section-link" href="%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html">ВСЕ НОВОСТИ <span>↗</span></a></div>
-      </div>
       <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px">
         <sc-for list="{{ news }}" as="n" hint-placeholder-count="1">
           <div data-reveal>
@@ -2627,7 +2626,7 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
                 </div>
               </sc-for>
             </div>
-            <p class="bxx-register-footnote">*Формат зависит от конкретного турнира.</p>
+Авторизация на сайте не заменяет отдельную регистрацию на конкретный турнир.
           </div>
 
           <div class="bxx-register-card" aria-live="polite">
@@ -2867,7 +2866,7 @@ class Component extends DCLogic {
     this.deadline=Date.now()+17*86400000+9*3600000+42*60000+11*1000;
     this.fxRef=el=>{this.fx=el}; this.glowRef=el=>{this.glow=el}; this.rootRef=el=>{this.root=el}; this.ghostRef=el=>{this.ghost=el};
   }
-  state={ intro:!this._introShown, filter:'Все', p1:0, p2:1, cd:{d:'--',h:'--',m:'--',s:'--'}, players:[], winners:{}, cart:0, cartPop:false, scrolled:false, stats:{prize:0,teams:0,viewers:0}, reminded:{}, registered:false, registerNotice:'' };
+  state={ intro:!this._introShown, filter:'Все', p1:0, p2:1, cd:{d:'--',h:'--',m:'--',s:'--'}, players:[], winners:{}, cart:0, cartPop:false, scrolled:false, reminded:{}, registered:false, registerNotice:'' };
 
   getAuthClient(){
     if(!window.supabase||typeof window.supabase.createClient!=='function') throw new Error('Не удалось загрузить модуль авторизации. Обнови страницу и попробуй снова.');
@@ -2937,7 +2936,6 @@ class Component extends DCLogic {
     this.setState({players:sorted});
     clearTimeout(this._flashT); this._flashT=setTimeout(()=>this.setState(s=>({players:s.players.map(p=>({...p,_flash:false}))})),950);
   }
-  animateStats(){ const T={prize:250000,teams:256,viewers:48213}; const dur=1700,t0=performance.now(),ease=x=>1-Math.pow(1-x,3); const step=now=>{ const p=Math.min(1,(now-t0)/dur),e=ease(p); this.setState({stats:{prize:Math.round(T.prize*e),teams:Math.round(T.teams*e),viewers:Math.round(T.viewers*e)}}); if(p<1) this._statRaf=requestAnimationFrame(step); }; this._statRaf=requestAnimationFrame(step); }
   hexRgb(h){ h=(h||'#ff2130').replace('#',''); if(h.length===3) h=h.split('').map(x=>x+x).join(''); const n=parseInt(h,16); return (n>>16&255)+','+(n>>8&255)+','+(n&255); }
   mkP(W,H,bottom){ const max=220+Math.random()*280; return {x:Math.random()*W,y:bottom?H+Math.random()*40:Math.random()*H,vy:.25+Math.random()*.95,vx:(Math.random()-.5)*.3,r:.6+Math.random()*2.3,alpha:.2+Math.random()*.5,life:max,max}; }
   initFX(){ const cv=this.fx; if(!cv) return; const ctx=cv.getContext('2d'); let W=1,H=1; const mobile=window.matchMedia&&window.matchMedia('(max-width: 700px)').matches; const resize=()=>{ const dpr=Math.min(mobile?1:2,window.devicePixelRatio||1); W=cv.clientWidth||window.innerWidth; H=cv.clientHeight||window.innerHeight; cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }; resize(); this._fxResize=resize; window.addEventListener('resize',resize);
@@ -3054,7 +3052,7 @@ const gateChips=[{k:'авторизация',v:'DISCORD',color:'var(--accent,#ff
       players, streams, skins, news, gateChips,
       podium, podiumHover:{transform:'translateY(-8px)',boxShadow:'0 28px 60px rgba(0,0,0,.6)'},
       bracket:this.buildBracket(), resetBracket:()=>this.resetBracket(),
-      cart:S.cart, slots:(256-24-S.cart), registered:S.registered, notRegistered:!S.registered, registerNotice:S.registerNotice||'', onRegister:()=>this.setState({registerNotice:'Чтобы войти на арену, выбери Discord или почту выше.'}), onDiscordLogin:()=>this.startDiscordLogin(), onEmailLogin:()=>this.startEmailLogin(), 
+      cart:S.cart, registered:S.registered, notRegistered:!S.registered, registerNotice:S.registerNotice||'', onRegister:()=>this.setState({registerNotice:'Чтобы войти на арену, выбери Discord или почту выше.'}), onDiscordLogin:()=>this.startDiscordLogin(), onEmailLogin:()=>this.startEmailLogin(), 
       socials:['DC','YT','TG','TW'],
       footerCols:[{title:'Игра',links:['Бойцы','Классы','Патчноуты','Гайды']},{title:'Турнир',links:['Расписание','Сетка','Призы','Правила']},{title:'Комьюнити',links:['Discord','Форум','Стримеры','Мерч']}]
     };
@@ -5074,7 +5072,7 @@ footer{border-top:1px solid var(--bx-border)!important;background:#07080b!import
   try{
    const [nr,sr,tr]=await Promise.all([
     db.from('news_posts').select('id,title,category,excerpt,slug,published_at').eq('is_published',true).order('published_at',{ascending:false}).limit(3),
-    db.from('stream_events').select('id,title,description,platform,stream_url,starts_at,status').eq('is_published',true).order('starts_at',{ascending:true}).limit(4),
+     db.from('stream_events').select('id,title,description,platform,stream_url,starts_at,status').eq('is_published',true).in('status',['scheduled','live']).order('starts_at',{ascending:true}).limit(4),
     db.from('tournaments').select('id,title,description,starts_at,status,registration_url,bracket_url').eq('is_published',true).in('status',['upcoming','live']).order('starts_at',{ascending:true}).limit(1)
    ]);
    if(nr.error)throw nr.error;if(sr.error)throw sr.error;if(tr.error)throw tr.error;
