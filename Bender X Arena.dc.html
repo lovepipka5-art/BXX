@@ -2365,7 +2365,7 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
     <main class="bxx-intro-scene">
       <div class="bxx-intro-meta">
         <span>BENDER X ARENA</span>
-        <span class="bxx-intro-meta-right">FIGHTING NETWORK <i>—</i> 01</span>
+        <span class="bxx-intro-meta-right">ТУРНИРНОЕ СООБЩЕСТВО <i>—</i> 01</span>
       </div>
       <div class="bxx-intro-emblem">
         <div class="bxx-emblem-aura"></div>
@@ -2373,8 +2373,8 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
         <div class="bxx-emblem-cut"></div>
       </div>
       <div class="bxx-intro-wordmark"><span>BENDER</span><i>X</i><span>ARENA</span></div>
-      <div class="bxx-intro-subtitle">THE FIGHT STARTS HERE</div>
-      <div class="bxx-intro-rule"><span></span><b>EST. FOR COMPETITION</b><span></span></div>
+      <div class="bxx-intro-subtitle">ТВОЯ БИТВА. ТВОЯ АРЕНА.</div>
+      <div class="bxx-intro-rule"><span></span><b>ТУРНИРЫ • РЕЙТИНГ • ПОБЕДЫ</b><span></span></div>
       <div class="bxx-intro-loader">
         <div class="bxx-loader-orbit" aria-hidden="true">
           <div class="bxx-loader-ring"></div>
@@ -2382,7 +2382,7 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
           <div class="bxx-loader-core"><span></span></div>
         </div>
         <div class="bxx-loader-copy">
-          <span class="bxx-loader-label">ARENA INITIALIZATION</span>
+          <span class="bxx-loader-label">ЗАПУСК АРЕНЫ</span>
           <span class="bxx-loader-status">ПОДГОТОВКА К БОЮ</span>
         </div>
       </div>
@@ -4367,5 +4367,37 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
 }
 </style>
 
+
+<style id="bxx-intro-russian-and-larger-emblem-2026">
+/* Russian intro copy and a more prominent BX emblem. */
+#bxx-cinematic-intro .bxx-intro-emblem{
+ width:clamp(190px,30vh,300px)!important;
+ margin:clamp(12px,2vh,22px) 0 4px!important;
+}
+#bxx-cinematic-intro .bxx-intro-meta-right{
+ letter-spacing:.12em!important;
+}
+#bxx-cinematic-intro .bxx-intro-subtitle{
+ letter-spacing:.2em!important;
+}
+#bxx-cinematic-intro .bxx-intro-rule{
+ letter-spacing:.12em!important;
+}
+#bxx-cinematic-intro .bxx-loader-label{
+ letter-spacing:.16em!important;
+}
+@media(max-width:700px),(pointer:coarse){
+ #bxx-cinematic-intro .bxx-intro-emblem{
+  width:clamp(166px,25vh,220px)!important;
+  margin:clamp(10px,1.5vh,18px) 0 4px!important;
+ }
+ #bxx-cinematic-intro .bxx-intro-meta-right{font-size:7px!important;letter-spacing:.08em!important}
+ #bxx-cinematic-intro .bxx-intro-subtitle{font-size:9px!important;letter-spacing:.12em!important}
+ #bxx-cinematic-intro .bxx-intro-rule{font-size:7px!important;letter-spacing:.04em!important}
+}
+@media(max-height:650px) and (orientation:landscape){
+ #bxx-cinematic-intro .bxx-intro-emblem{width:clamp(130px,28vh,180px)!important}
+}
+</style>
 </body>
 </html>
