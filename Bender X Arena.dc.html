@@ -2415,7 +2415,7 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
 
   <div style="position:fixed;top:0;left:0;height:3px;width:100%;z-index:120;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--accent,#ff2130),#ff7a3d);box-shadow:0 0 12px var(--accent,#ff2130);animation:growX linear both;animation-timeline:scroll(root)"></div>
 
-  <nav style="{{ navStyle }}">
+  <nav aria-label="Основная навигация" style="{{ navStyle }}">
     <a href="#hero" style="display:flex;align-items:center;gap:11px">
       <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="Bender X Arena" style="height:42px;width:auto;display:block;filter:drop-shadow(0 0 12px color-mix(in srgb,var(--accent,#ff2130) 55%, transparent))">
       <span style="font-family:'Russo One',sans-serif;font-size:17px;letter-spacing:.06em;white-space:nowrap">BX_ARENA</span>
@@ -2430,7 +2430,7 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
       <a href="%D0%9E%20%D0%B0%D1%80%D0%B5%D0%BD%D0%B5.dc.html" style="transition:color .2s,transform .2s cubic-bezier(.16,1,.3,1)">О арене</a>
     </div>
     <details class="bxx-mobile-menu" id="bxx-mobile-nav-v2">
-      <summary aria-label="Открыть меню" aria-controls="bxx-mobile-menu-panel" aria-expanded="false" title="Меню">
+      <summary aria-label="Открыть меню" aria-controls="bxx-mobile-menu-panel" title="Меню">
         <span></span><span></span><span></span>
       </summary>
       <div class="bxx-mobile-menu-panel" id="bxx-mobile-menu-panel">
@@ -2577,34 +2577,6 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
     </div>
   </section>
 
-  <section class="arena-portals" data-reveal style="{{ revealStyle }}">
-    <div data-stagger style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px">
-      <div data-reveal>
-        <a href="%D0%91%D0%BE%D0%B9%D1%86%D1%8B%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="{{ portalStyle }}" style-hover="{{ portalHover }}">
-          <div style="position:absolute;inset:0;background:radial-gradient(120% 90% at 88% 0%, color-mix(in srgb,var(--accent,#ff2130) 26%, transparent), transparent 62%);pointer-events:none"></div>
-          <div style="position:absolute;right:-4%;bottom:-30%;font-family:'Russo One',sans-serif;font-size:15vw;line-height:.8;color:transparent;-webkit-text-stroke:1px #ffffff0d;pointer-events:none">16</div>
-          <div style="position:relative;z-index:2">
-            <div style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent,#ff2130)">Ростер · 5 классов</div>
-            <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,46px);line-height:.94;text-transform:uppercase;margin-top:10px">Бойцы арены</div>
-            <p style="font-size:14px;font-weight:300;line-height:1.55;color:#9a9aa4;margin-top:12px;max-width:360px">Шестнадцать бойцов, характеристики, спец-приёмы и досье каждого.</p>
-            <div style="margin-top:20px;font-size:14px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent,#ff2130)">Смотреть ростер →</div>
-          </div>
-        </a>
-      </div>
-      <div data-reveal>
-        <a href="%D0%A2%D0%BE%D0%BF%20%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2.dc.html" style="{{ portalStyle }}" style-hover="{{ portalHover }}">
-          <div style="position:absolute;inset:0;background:radial-gradient(120% 90% at 88% 0%, rgba(255,202,58,.2), transparent 62%);pointer-events:none"></div>
-          <div style="position:absolute;right:2%;bottom:-22%;font-family:'Russo One',sans-serif;font-size:13vw;line-height:.8;color:transparent;-webkit-text-stroke:1px #ffffff0d;pointer-events:none">01</div>
-          <div style="position:relative;z-index:2">
-            <div style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#ffca3a">РЕЙТИНГ · ДЕМО</div>
-            <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,46px);line-height:.94;text-transform:uppercase;margin-top:10px">Топ игроков</div>
-            <p style="font-size:14px;font-weight:300;line-height:1.55;color:#9a9aa4;margin-top:12px;max-width:360px">Демонстрация таблицы игроков. Официальный рейтинг и сезонные очки пока не подключены.</p>
-            <div style="margin-top:20px;font-size:14px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#ffca3a">Открыть ладдер →</div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
 
   
 
@@ -5058,6 +5030,15 @@ footer{border-top:1px solid var(--bx-border)!important;background:#07080b!import
 }
 @media(prefers-reduced-motion:reduce){.bxx-section-link{transition:none}}
 </style>
+
+<script id="bxx-mobile-menu-behavior">
+(function(){
+ const menu=document.getElementById('bxx-mobile-nav-v2');
+ if(!menu)return;
+ menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu.open=false}));
+ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&menu.open){menu.open=false;menu.querySelector('summary')?.focus()}});
+})();
+</script>
 <script id="bxx-published-content-v1">
 (function(){
  const URL='https://fewfpimbfgxlzghfqkmc.supabase.co',KEY='sb_publishable_5Pgf3aTIsP_HwmrO5RakEA_H4DF7Mny';
