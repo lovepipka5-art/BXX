@@ -4831,6 +4831,19 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
   #bxx-cinematic-intro *,#bxx-cinematic-intro *:before,#bxx-cinematic-intro *:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}
   #bxx-cinematic-intro .bxx-v3-track span{transform:scaleX(1)!important}
 }
+
+/* Safety visibility: the intro core must never remain transparent if a reveal animation is interrupted. */
+#bxx-cinematic-intro .bxx-v3-core,
+#bxx-cinematic-intro .bxx-v3-core > *,
+#bxx-cinematic-intro .bxx-v3-core .bxx-v3-logo-frame,
+#bxx-cinematic-intro .bxx-v3-core .bxx-v3-logo-frame img {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+#bxx-cinematic-intro .bxx-v3-core > * {
+  animation-play-state: running !important;
+}
+
 </style>
 
 </body>
