@@ -4686,6 +4686,24 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
     animation:none!important;opacity:1!important;transform:none!important;
   }
 }
+
+/* FIX: force the homepage slogan to remain visible independently of intro animation state */
+#hero .hero-sub{
+  display:flex!important;
+  opacity:1!important;
+  visibility:visible!important;
+  animation:none!important;
+  position:relative!important;
+  z-index:3!important;
+  margin:20px 0 0!important;
+  min-height:1.5em!important;
+  color:#f2f2f3!important;
+  font-size:clamp(16px,1.35vw,20px)!important;
+  line-height:1.4!important;
+  font-weight:700!important;
+  letter-spacing:.12em!important;
+  text-shadow:0 0 24px rgba(240,68,79,.28)!important;
+}
 </style>
 
 
