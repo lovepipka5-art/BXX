@@ -1992,6 +1992,27 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
   .bxx-nav-actions .bxx-register-link { display:none !important; }
   .bxx-nav-icon { width:42px !important; height:42px !important; }
   .bxx-nav-icon svg { width:21px !important; height:21px !important; }
+  .bxx-mobile-menu > summary:focus-visible,
+  .bxx-mobile-menu-panel a:focus-visible {
+    outline:2px solid #ff5360 !important;
+    outline-offset:3px !important;
+  }
+  .bxx-mobile-menu-panel a {
+    -webkit-tap-highlight-color:transparent;
+    transition:background .18s ease,border-color .18s ease,color .18s ease !important;
+  }
+  .bxx-mobile-menu[open] .bxx-mobile-menu-panel {
+    animation:bxxMenuEnter .18s ease-out both;
+  }
+  @keyframes bxxMenuEnter {
+    from { opacity:0; transform:translateY(-6px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    .bxx-mobile-menu > summary span,
+    .bxx-mobile-menu-panel a { transition:none !important; }
+    .bxx-mobile-menu[open] .bxx-mobile-menu-panel { animation:none !important; }
+  }
   #register > div { padding-left:14px !important; padding-right:14px !important; }
   #register > div > div {
     clip-path:none !important;
@@ -2298,10 +2319,10 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
       <a href="%D0%9E%20%D0%B0%D1%80%D0%B5%D0%BD%D0%B5.dc.html" style="transition:color .2s,transform .2s cubic-bezier(.16,1,.3,1)">О арене</a>
     </div>
     <details class="bxx-mobile-menu" id="bxx-mobile-nav-v2">
-      <summary aria-label="Открыть меню" title="Меню">
+      <summary aria-label="Открыть меню" aria-controls="bxx-mobile-menu-panel" aria-expanded="false" title="Меню">
         <span></span><span></span><span></span>
       </summary>
-      <div class="bxx-mobile-menu-panel">
+      <div class="bxx-mobile-menu-panel" id="bxx-mobile-menu-panel">
         <a href="#hero">Главная</a>
         <a href="%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%81%D1%82%D1%80%D0%B8%D0%BC%D0%BE%D0%B2.dc.html">Стримы</a>
         <a href="%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html">Новости</a>
@@ -3479,6 +3500,37 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
   client.auth.getSession().then(({data})=>{currentUser=data.session?.user||null;});
   client.auth.onAuthStateChange((_event,session)=>{currentUser=session?.user||null;});
  }catch(e){console.warn('BXX account init:',e)}
+})();
+</script>
+<script>
+(function () {
+  const menu = document.getElementById('bxx-mobile-nav-v2');
+  if (!menu) return;
+  const summary = menu.querySelector('summary');
+  const panel = menu.querySelector('.bxx-mobile-menu-panel');
+  if (!summary || !panel) return;
+
+  const syncMenuState = () => {
+    const expanded = menu.open;
+    summary.setAttribute('aria-expanded', String(expanded));
+    summary.setAttribute('aria-label', expanded ? 'Закрыть меню' : 'Открыть меню');
+    summary.setAttribute('title', expanded ? 'Закрыть меню' : 'Меню');
+  };
+
+  menu.addEventListener('toggle', syncMenuState);
+  panel.addEventListener('click', (event) => {
+    if (event.target.closest('a')) menu.open = false;
+  });
+  document.addEventListener('click', (event) => {
+    if (menu.open && !menu.contains(event.target)) menu.open = false;
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menu.open) {
+      menu.open = false;
+      summary.focus();
+    }
+  });
+  syncMenuState();
 })();
 </script>
 </body>
