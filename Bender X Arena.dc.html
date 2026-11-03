@@ -4071,5 +4071,67 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
 }
 </style>
 
+
+<style id="bxx-intro-v3-solid-logo-clean-bg">
+/* V3: restore a fully solid BX mark, replace the background and use a segmented charge meter. */
+#bxx-cinematic-intro{
+  background-color:#07080b!important;
+  background-image:
+    radial-gradient(ellipse 38% 42% at 50% 38%,rgba(155,18,31,.13),transparent 72%),
+    radial-gradient(ellipse 70% 32% at 50% 100%,rgba(94,10,20,.12),transparent 72%),
+    linear-gradient(180deg,#090a0e 0%,#111217 48%,#07080b 100%)!important;
+  background-size:cover!important;
+}
+#bxx-cinematic-intro:before{
+  background:
+    linear-gradient(90deg,transparent 0%,rgba(255,255,255,.018) 49.9%,rgba(255,255,255,.018) 50.1%,transparent 100%),
+    radial-gradient(ellipse 48% 54% at 50% 46%,transparent 24%,rgba(0,0,0,.42) 100%),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 6px)!important;
+  animation:none!important;opacity:1!important;
+}
+#bxx-cinematic-intro:after{
+  background:linear-gradient(90deg,transparent,rgba(255,35,51,.08),transparent)!important;
+  filter:none!important;opacity:.5!important;animation:none!important;
+}
+/* The old glow keyframe animated the logo image's opacity down to 42%. Keep the actual mark opaque. */
+#bxx-cinematic-intro [style*="animation:bxxIntroGlowV2"]{
+  opacity:1!important;animation:none!important;
+  filter:brightness(1.12) drop-shadow(0 0 22px rgba(255,35,51,.38))!important;
+}
+#bxx-cinematic-intro .bxx-intro-progress{
+  width:min(350px,76vw)!important;height:25px!important;margin-top:11px!important;
+  filter:drop-shadow(0 0 10px rgba(235,25,42,.18))!important;
+}
+#bxx-cinematic-intro .bxx-intro-progress-track{
+  inset:6px 0!important;border:1px solid rgba(185,55,66,.58)!important;
+  border-radius:1px!important;clip-path:polygon(0 0,100% 0,98.5% 100%,1.5% 100%)!important;
+  background:repeating-linear-gradient(90deg,#171216 0 9px,#08090c 9px 13px)!important;
+  box-shadow:inset 0 0 8px #000,0 0 10px rgba(210,22,40,.12)!important;
+}
+#bxx-cinematic-intro .bxx-intro-progress-track:before{
+  inset:1px!important;border:0!important;
+  background:repeating-linear-gradient(90deg,transparent 0 8px,rgba(0,0,0,.68) 8px 10px)!important;
+  clip-path:none!important;
+}
+#bxx-cinematic-intro .bxx-intro-progress-fill{
+  background:repeating-linear-gradient(90deg,#8e1020 0 9px,#f02a3c 9px 11px,#b7192b 11px 18px,#ff5360 18px 20px)!important;
+  box-shadow:0 0 8px rgba(255,30,48,.75),0 0 18px rgba(255,24,43,.35)!important;
+}
+#bxx-cinematic-intro .bxx-intro-progress-fill:after{
+  width:24px!important;top:-4px!important;bottom:-4px!important;
+  background:linear-gradient(90deg,transparent,rgba(255,245,240,.95),rgba(255,44,57,.5),transparent)!important;
+  filter:blur(2px)!important;
+}
+#bxx-cinematic-intro .bxx-intro-progress-glint{display:none!important}
+#bxx-cinematic-intro .bxx-intro-progress-core{display:none!important}
+@media(max-width:600px),(pointer:coarse){
+  #bxx-cinematic-intro .bxx-intro-progress{width:min(320px,78vw)!important;height:22px!important;margin-top:8px!important}
+  #bxx-cinematic-intro .bxx-intro-progress-track{inset:5px 0!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #bxx-cinematic-intro .bxx-intro-progress-fill{animation-duration:.6s!important}
+}
+</style>
+
 </body>
 </html>
