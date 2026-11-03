@@ -2472,39 +2472,52 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
     <div class="hero-scroll" style="position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:14px;letter-spacing:.3em;text-transform:uppercase;color:#6b6b73">Листай ↓</div>
   </section>
 
-  <div class="arena-ticker" style="position:relative;z-index:3;background:var(--accent,#ff2130);color:#0b0b0e;overflow:hidden;padding:13px 0;border-top:2px solid #0b0b0e;border-bottom:2px solid #0b0b0e">
-    <div style="display:flex;width:max-content;animation:marquee 24s linear infinite;font-family:'Russo One',sans-serif;font-size:15px;letter-spacing:.14em;text-transform:uppercase">
-      <span style="padding-right:40px">★ Season 4 ★ Призовой фонд $250 000 ★ 256 команд ★ Гранд-финал 12 июля ★ Live на Twitch &amp; YouTube ★ Flawless Victory ★&nbsp;</span>
-      <span style="padding-right:40px">★ Season 4 ★ Призовой фонд $250 000 ★ 256 команд ★ Гранд-финал 12 июля ★ Live на Twitch &amp; YouTube ★ Flawless Victory ★&nbsp;</span>
-    </div>
-  </div>
-
-  <section class="arena-stats" style="position:relative;z-index:3;background:linear-gradient(180deg,#0a0a0d,#0e0e12);border-bottom:1px solid #ffffff10;padding:clamp(30px,4vw,46px) clamp(18px,4vw,40px)">
-    <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(320px,1.1fr) minmax(0,1fr);gap:clamp(30px,5vw,64px);align-items:center">
-      <div>
-        <div style="font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent,#ff2130);margin-bottom:16px">До гранд-финала осталось</div>
-        <div style="display:flex;gap:clamp(8px,1.5vw,16px);align-items:stretch">
-          <sc-for list="{{ cdCells }}" as="c" hint-placeholder-count="4">
-            <div style="flex:1;position:relative;background:rgba(22,22,28,.12);backdrop-filter:blur(14px);border:1px solid #ffffff14;padding:clamp(12px,1.6vw,20px) 6px;text-align:center;clip-path:polygon(0 0,100% 0,100% 100%,10px 100%,0 calc(100% - 10px))">
-              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent,#ff2130)"></div>
-              <div style="font-family:'Russo One',sans-serif;font-size:clamp(30px,4.6vw,52px);line-height:1;color:#f4f4f5;font-variant-numeric:tabular-nums">{{ c.v }}</div>
-              <div style="font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:#83838d;margin-top:8px">{{ c.k }}</div>
-            </div>
-          </sc-for>
-        </div>
+  <section id="arena-hub" class="bxx-arena-hub" aria-labelledby="bxx-hub-title">
+    <div class="bxx-hub-inner">
+      <div class="bxx-hub-heading">
+        <span class="bxx-hub-kicker">BENDER X ARENA · COMPETITIVE HUB</span>
+        <h2 id="bxx-hub-title">ТВОЯ ИГРА. <span>ТВОЯ АРЕНА.</span></h2>
+        <p>Всё, что нужно бойцу: турнирная сцена, соперники, ростер и эфиры — в одном месте.</p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,26px)">
-        <div style="text-align:center">
-          <div style="font-family:'Russo One',sans-serif;font-size:clamp(26px,3.4vw,42px);color:var(--accent,#ff2130);line-height:1">{{ prize }}</div>
-          <div style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#83838d;margin-top:8px">призовой фонд</div>
+      <div class="bxx-hub-grid">
+        <a class="bxx-hub-card bxx-hub-card-featured" href="%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D0%BD%D0%B0%D1%8F%20%D1%81%D0%B5%D1%82%D0%BA%D0%B0.dc.html">
+          <span class="bxx-hub-index">01 / TOURNAMENTS</span>
+          <span class="bxx-hub-icon" aria-hidden="true">⚔</span>
+          <strong>ТУРНИРНАЯ СЦЕНА</strong>
+          <span class="bxx-hub-copy">Открывай сетку, следи за раундами и движением к финалу.</span>
+          <span class="bxx-hub-link">ОТКРЫТЬ СЕТКУ <b>↗</b></span>
+        </a>
+        <a class="bxx-hub-card" href="%D0%A2%D0%BE%D0%BF%20%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2.dc.html">
+          <span class="bxx-hub-index">02 / PLAYERS</span>
+          <span class="bxx-hub-icon" aria-hidden="true">♛</span>
+          <strong>ТОП ИГРОКОВ</strong>
+          <span class="bxx-hub-copy">Знакомься с таблицей бойцов. Текущие показатели на странице отмечены как демо.</span>
+          <span class="bxx-hub-link">СМОТРЕТЬ ТОП <b>↗</b></span>
+        </a>
+        <a class="bxx-hub-card" href="%D0%91%D0%BE%D0%B9%D1%86%D1%8B%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html">
+          <span class="bxx-hub-index">03 / ROSTER</span>
+          <span class="bxx-hub-icon" aria-hidden="true">✦</span>
+          <strong>ВЫБЕРИ БОЙЦА</strong>
+          <span class="bxx-hub-copy">Изучай ростер Mortal Kombat 1 и подбирай своего основного персонажа.</span>
+          <span class="bxx-hub-link">ИЗУЧИТЬ РОСТЕР <b>↗</b></span>
+        </a>
+        <a class="bxx-hub-card" href="%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%81%D1%82%D1%80%D0%B8%D0%BC%D0%BE%D0%B2.dc.html">
+          <span class="bxx-hub-index">04 / LIVE</span>
+          <span class="bxx-hub-icon" aria-hidden="true">▶</span>
+          <strong>ЭФИРЫ И МАТЧИ</strong>
+          <span class="bxx-hub-copy">Проверяй расписание трансляций и следи за событиями арены.</span>
+          <span class="bxx-hub-link">К РАСПИСАНИЮ <b>↗</b></span>
+        </a>
+      </div>
+      <div class="bxx-player-route">
+        <div class="bxx-route-heading">
+          <span class="bxx-hub-kicker">YOUR ROAD TO THE ARENA</span>
+          <h3>ТВОЙ ПУТЬ БОЙЦА</h3>
         </div>
-        <div style="text-align:center;border-left:1px solid #ffffff12;border-right:1px solid #ffffff12">
-          <div style="font-family:'Russo One',sans-serif;font-size:clamp(26px,3.4vw,42px);color:#f4f4f5;line-height:1">{{ teams }}</div>
-          <div style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#83838d;margin-top:8px">команд в сетке</div>
-        </div>
-        <div style="text-align:center">
-          <div style="font-family:'Russo One',sans-serif;font-size:clamp(26px,3.4vw,42px);color:#f4f4f5;line-height:1">{{ viewers }}</div>
-          <div style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#83838d;margin-top:8px">пик зрителей</div>
+        <div class="bxx-route-steps">
+          <a href="#register"><i>01</i><span><b>СОЗДАЙ ПРОФИЛЬ</b><small>Войди через Discord или почту</small></span><em>↗</em></a>
+          <a href="%D0%91%D0%BE%D0%B9%D1%86%D1%8B%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html"><i>02</i><span><b>НАЙДИ СВОЕГО БОЙЦА</b><small>Изучи персонажей и их особенности</small></span><em>↗</em></a>
+          <a href="%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D0%BD%D0%B0%D1%8F%20%D1%81%D0%B5%D1%82%D0%BA%D0%B0.dc.html"><i>03</i><span><b>ВЫХОДИ НА СЦЕНУ</b><small>Следи за турнирной сеткой и матчами</small></span><em>↗</em></a>
         </div>
       </div>
     </div>
@@ -4968,6 +4981,41 @@ footer{border-top:1px solid var(--bx-border)!important;background:#07080b!import
 @media(prefers-reduced-motion:reduce){
  #hero *,#news *,#schedule *,#register *,nav *,.arena-portals *{animation:none!important;transition:none!important}
 }
+</style>
+
+
+<style id="bxx-competitive-hub-structure-2026-11">
+/* Structured competitive entry point: real destinations, no fabricated event metrics. */
+.bxx-arena-hub{position:relative;z-index:3;padding:clamp(68px,8vw,112px) clamp(18px,4vw,40px);background:linear-gradient(180deg,#090b10,#11151d 52%,#0a0c11);border-bottom:1px solid rgba(255,255,255,.08)}
+.bxx-hub-inner{max-width:1320px;margin:0 auto}
+.bxx-hub-heading{max-width:760px;margin-bottom:34px}
+.bxx-hub-kicker{display:block;color:#ef4554;font:800 10px/1.4 'Inter',sans-serif;letter-spacing:.2em}
+.bxx-hub-heading h2,.bxx-route-heading h3{margin-top:12px;font:clamp(32px,5vw,62px)/.98 'Russo One',sans-serif;letter-spacing:-.04em;color:#f5f3f0}
+.bxx-hub-heading h2 span{color:#e43a4b}
+.bxx-hub-heading p{margin-top:14px;max-width:590px;color:#a9abb5;font:400 15px/1.7 'Inter',sans-serif}
+.bxx-hub-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.bxx-hub-card{position:relative;display:flex;min-height:260px;flex-direction:column;align-items:flex-start;padding:22px 20px;background:linear-gradient(145deg,#1a1e28,#10131a);border:1px solid rgba(255,255,255,.1);border-top:2px solid #a52a38;color:#f4f3f1;transition:transform .22s,border-color .22s,background .22s}
+.bxx-hub-card:hover{transform:translateY(-5px);border-color:rgba(239,69,84,.55);background:linear-gradient(145deg,#222631,#12151d);color:#fff}
+.bxx-hub-card-featured{background:linear-gradient(145deg,#28171e,#14131a);border-top-color:#ef4554}
+.bxx-hub-index{color:#858894;font:800 9px 'Inter',sans-serif;letter-spacing:.15em}
+.bxx-hub-icon{margin:22px 0 14px;color:#ef4554;font-size:25px;line-height:1}
+.bxx-hub-card strong{font:700 17px/1.2 'Russo One',sans-serif;letter-spacing:.01em}
+.bxx-hub-copy{margin-top:10px;color:#a9abb5;font:400 12px/1.6 'Inter',sans-serif}
+.bxx-hub-link{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;margin-top:auto;padding-top:22px;color:#f05a66;font:800 9px 'Inter',sans-serif;letter-spacing:.12em}
+.bxx-hub-link b{font-size:17px}
+.bxx-player-route{display:grid;grid-template-columns:.75fr 1.5fr;gap:38px;align-items:center;margin-top:58px;padding:30px 0 0;border-top:1px solid rgba(255,255,255,.1)}
+.bxx-route-heading h3{font-size:clamp(25px,3vw,38px)}
+.bxx-route-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.bxx-route-steps>a{display:flex;align-items:center;gap:12px;min-width:0;padding:17px 13px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);transition:border-color .2s,background .2s}
+.bxx-route-steps>a:hover{border-color:rgba(239,69,84,.5);background:rgba(239,69,84,.06);color:#fff}
+.bxx-route-steps i{color:#ef4554;font:700 19px 'Russo One',sans-serif;font-style:normal}
+.bxx-route-steps span{display:flex;flex:1;min-width:0;flex-direction:column;gap:5px}
+.bxx-route-steps b{font:800 9px/1.35 'Inter',sans-serif;letter-spacing:.06em}
+.bxx-route-steps small{color:#9295a0;font:400 10px/1.45 'Inter',sans-serif}
+.bxx-route-steps em{color:#ef4554;font-style:normal}
+@media(max-width:1050px){.bxx-hub-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.bxx-player-route{grid-template-columns:1fr;gap:20px}}
+@media(max-width:700px){.bxx-arena-hub{padding:58px 18px}.bxx-hub-heading{margin-bottom:24px}.bxx-hub-grid{grid-template-columns:1fr;gap:10px}.bxx-hub-card{min-height:205px;padding:20px}.bxx-hub-icon{margin:15px 0 10px}.bxx-player-route{margin-top:38px;padding-top:25px}.bxx-route-steps{grid-template-columns:1fr}.bxx-route-steps>a{padding:16px}.bxx-route-steps b{font-size:10px}.bxx-route-steps small{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.bxx-hub-card,.bxx-route-steps>a{transition:none!important}}
 </style>
 
 </body>
