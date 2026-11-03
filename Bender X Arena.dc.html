@@ -2356,30 +2356,37 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}" class="{{ rootClass }}">
   <div id="bxx-cinematic-intro" style="{{ introStyle }}" class="{{ introClass }}" aria-hidden="true">
-    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.22),rgba(0,0,0,.12) 48%,rgba(0,0,0,.48));pointer-events:none"></div>
-    <div style="position:absolute;inset:0;background:radial-gradient(80% 75% at 50% 42%, transparent 32%, rgba(0,0,0,.55) 78%, rgba(0,0,0,.85) 100%);pointer-events:none"></div>
-    <div class="bxx-intro-atmosphere" style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 48%,transparent 18%,rgba(0,0,0,.16) 68%,rgba(0,0,0,.62) 100%),repeating-linear-gradient(118deg,transparent 0 110px,rgba(255,42,55,.045) 111px,transparent 113px),linear-gradient(90deg,rgba(255,30,45,.06),transparent 22%,transparent 78%,rgba(255,30,45,.05) 100%);mix-blend-mode:screen"></div>
-    <div style="position:absolute;width:8px;height:8px;left:18%;top:30%;border-radius:50%;background:var(--accent,#ff2130);box-shadow:0 0 12px var(--accent,#ff2130);opacity:.6;animation:sparkFloat 7s ease-in-out infinite;pointer-events:none"></div>
-    <div style="position:absolute;width:6px;height:6px;left:78%;top:26%;border-radius:50%;background:#ff5a3c;box-shadow:0 0 10px #ff5a3c;opacity:.5;animation:sparkFloat 9s 1s ease-in-out infinite;pointer-events:none"></div>
-    <div style="position:absolute;width:7px;height:7px;left:70%;top:70%;border-radius:50%;background:var(--accent,#ff2130);box-shadow:0 0 12px var(--accent,#ff2130);opacity:.5;animation:sparkFloat 8s 2s ease-in-out infinite;pointer-events:none"></div>
-    <div style="position:absolute;width:5px;height:5px;left:24%;top:66%;border-radius:50%;background:#ff7a3d;box-shadow:0 0 9px #ff7a3d;opacity:.55;animation:sparkFloat 10s .5s ease-in-out infinite;pointer-events:none"></div>
-    <div style="position:absolute;inset:0;pointer-events:none;background:none!important;animation:none!important;opacity:0!important;display:none!important"></div>
-    <div style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:14px;z-index:2;padding:14vh 20px 0;text-align:center">
-      <div style="position:relative;width:clamp(320px,39vw,510px);aspect-ratio:1;flex-shrink:0;transform:translateZ(0);transform-origin:center">
-        <div style="position:absolute;inset:-8%;border-radius:50%;background:radial-gradient(closest-side, color-mix(in srgb,var(--accent,#ff2130) 30%, transparent), transparent 70%);filter:blur(20px);opacity:.6;animation:bxxIntroHaloV2 3.2s ease-in-out 1.25s infinite;pointer-events:none"></div>
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;animation:bxxIntroLogoV2 1.85s cubic-bezier(.16,1,.3,1) .08s both;transform-origin:50% 55%;will-change:transform,opacity,filter">
-          <div style="position:relative;width:92%;aspect-ratio:1;animation:bxxIntroFloatV2 5s ease-in-out 1.95s infinite;transform-origin:50% 50%;will-change:transform">
-            <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="" style="width:100%;height:auto;opacity:1;transform:scale(1.22);filter:brightness(1.08) drop-shadow(0 0 30px color-mix(in srgb,var(--accent,#ff2130) 62%, transparent)) drop-shadow(0 0 78px color-mix(in srgb,var(--accent,#ff2130) 34%, transparent));animation:bxxIntroGlowV2 3.6s ease-in-out 1.7s infinite;will-change:filter,transform">
-          </div>
+    <div class="bxx-intro-backdrop" aria-hidden="true"></div>
+    <div class="bxx-intro-vignette" aria-hidden="true"></div>
+    <div class="bxx-intro-frame" aria-hidden="true">
+      <span class="bxx-frame-corner bxx-frame-tl"></span><span class="bxx-frame-corner bxx-frame-tr"></span>
+      <span class="bxx-frame-corner bxx-frame-bl"></span><span class="bxx-frame-corner bxx-frame-br"></span>
+    </div>
+    <main class="bxx-intro-scene">
+      <div class="bxx-intro-meta">
+        <span>BENDER X ARENA</span>
+        <span class="bxx-intro-meta-right">FIGHTING NETWORK <i>—</i> 01</span>
+      </div>
+      <div class="bxx-intro-emblem">
+        <div class="bxx-emblem-aura"></div>
+        <div class="bxx-emblem-mark"><img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="Bender X Arena"></div>
+        <div class="bxx-emblem-cut"></div>
+      </div>
+      <div class="bxx-intro-wordmark"><span>BENDER</span><i>X</i><span>ARENA</span></div>
+      <div class="bxx-intro-subtitle">THE FIGHT STARTS HERE</div>
+      <div class="bxx-intro-rule"><span></span><b>EST. FOR COMPETITION</b><span></span></div>
+      <div class="bxx-intro-loader">
+        <div class="bxx-loader-orbit" aria-hidden="true">
+          <div class="bxx-loader-ring"></div>
+          <div class="bxx-loader-ticks"></div>
+          <div class="bxx-loader-core"><span></span></div>
+        </div>
+        <div class="bxx-loader-copy">
+          <span class="bxx-loader-label">ARENA INITIALIZATION</span>
+          <span class="bxx-loader-status">ПОДГОТОВКА К БОЮ</span>
         </div>
       </div>
-      <div style="position:relative;display:flex;justify-content:center;font-family:'Russo One',sans-serif;font-size:clamp(40px,8vw,88px);font-weight:700;letter-spacing:.08em;color:#fff;text-shadow:0 0 40px color-mix(in srgb,var(--accent,#ff2130) 55%, transparent);z-index:1;margin-top:-26px">
-        <span style="display:inline-block;opacity:0;animation:letterIn .5s cubic-bezier(.16,1,.3,1) .4s both">B</span><span style="display:inline-block;opacity:0;animation:letterIn .5s cubic-bezier(.16,1,.3,1) .46s both">E</span><span style="display:inline-block;opacity:0;animation:letterIn .5s cubic-bezier(.16,1,.3,1) .52s both">N</span><span style="display:inline-block;opacity:0;animation:letterIn .5s cubic-bezier(.16,1,.3,1) .58s both">D</span><span style="display:inline-block;opacity:0;animation:letterIn .5s cubic-bezier(.16,1,.3,1) .64s both">E</span><span style="display:inline-block;opacity:0;animation:letterIn .5s cubic-bezier(.16,1,.3,1) .70s both">R</span>
-        <span style="display:inline-block;opacity:0;color:var(--accent,#ff2130);animation:letterIn .5s cubic-bezier(.16,1,.3,1) .76s both, xBlink 6s 2.4s infinite;text-shadow:0 0 30px var(--accent,#ff2130)">X</span>
-        <span style="display:inline-block;opacity:0;animation:letterIn .5s cubic-bezier(.16,1,.3,1) .82s both">A</span><span style="display:inline-block;opacity:0;animation:letterIn .5s cubic-bezier(.16,1,.3,1) .88s both">R</span><span style="display:inline-block;opacity:0;animation:letterIn .5s cubic-bezier(.16,1,.3,1) .94s both">E</span><span style="display:inline-block;opacity:0;animation:letterIn .5s cubic-bezier(.16,1,.3,1) 1.0s both">N</span><span style="display:inline-block;opacity:0;animation:letterIn .5s cubic-bezier(.16,1,.3,1) 1.06s both">A</span>
-      </div>
-      <div class="bxx-intro-progress" role="presentation" aria-hidden="true"><div class="bxx-intro-progress-track"><div class="bxx-intro-progress-fill"></div><div class="bxx-intro-progress-glint"></div></div><span class="bxx-intro-progress-core">VS</span></div>
-    </div>
+    </main>
   </div>
   <canvas ref="{{ fxRef }}" style="position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none"></canvas>
   <div style="position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(80% 55% at 50% 0%, color-mix(in srgb,var(--accent,#ff2130) 12%, transparent), transparent 70%)"></div>
@@ -4257,6 +4264,147 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
 @media(prefers-reduced-motion:reduce){
  #bxx-cinematic-intro .bxx-intro-progress-track:before,
  #bxx-cinematic-intro .bxx-intro-progress-track:after{animation:none!important;transform:scaleX(1)!important}
+}
+</style>
+
+
+<style id="bxx-intro-cinematic-rebuild">
+/* Fresh cinematic arena intro — replaces the accumulated legacy intro layers. */
+#bxx-cinematic-intro{
+  position:fixed!important;inset:0!important;z-index:300!important;isolation:isolate!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  overflow:hidden!important;background:#050609!important;
+  background-image:none!important;opacity:1;visibility:visible;
+  transition:opacity .62s cubic-bezier(.65,0,.35,1),visibility 0s linear .64s!important;
+}
+#bxx-cinematic-intro .bxx-intro-backdrop{
+  position:absolute;inset:-2%;z-index:-3;
+  background-image:linear-gradient(180deg,rgba(3,4,7,.48),rgba(4,4,7,.22) 42%,rgba(0,0,0,.82)),url('uploads/intro-bg2.png');
+  background-size:cover;background-position:center 48%;
+  transform:scale(1.035);animation:bxxArenaBackdropIn 1.4s ease-out both;
+}
+#bxx-cinematic-intro .bxx-intro-vignette{
+  position:absolute;inset:0;z-index:-2;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 43%,transparent 12%,rgba(4,4,7,.28) 56%,rgba(0,0,0,.88) 100%),
+    linear-gradient(90deg,rgba(0,0,0,.48),transparent 28%,transparent 72%,rgba(0,0,0,.48));
+}
+#bxx-cinematic-intro .bxx-intro-frame{
+  position:absolute;inset:clamp(14px,2.4vw,34px);z-index:-1;pointer-events:none;
+  border-top:1px solid rgba(255,255,255,.10);border-bottom:1px solid rgba(255,255,255,.10);
+  opacity:0;animation:bxxFrameIn .7s .2s ease-out forwards;
+}
+#bxx-cinematic-intro .bxx-frame-corner{position:absolute;width:34px;height:34px;border-color:rgba(229,49,62,.72);border-style:solid}
+#bxx-cinematic-intro .bxx-frame-tl{top:-1px;left:-1px;border-width:1px 0 0 1px}
+#bxx-cinematic-intro .bxx-frame-tr{top:-1px;right:-1px;border-width:1px 1px 0 0}
+#bxx-cinematic-intro .bxx-frame-bl{bottom:-1px;left:-1px;border-width:0 0 1px 1px}
+#bxx-cinematic-intro .bxx-frame-br{bottom:-1px;right:-1px;border-width:0 1px 1px 0}
+#bxx-cinematic-intro .bxx-intro-scene{
+  width:min(760px,100%);min-height:100%;box-sizing:border-box;padding:clamp(34px,7vh,76px) 24px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  position:relative;z-index:2;
+}
+#bxx-cinematic-intro .bxx-intro-meta{
+  width:min(610px,90%);display:flex;justify-content:space-between;align-items:center;gap:12px;
+  color:rgba(238,238,242,.7);font:600 10px/1 'Oswald',sans-serif;letter-spacing:.24em;
+  opacity:0;animation:bxxMetaIn .65s .16s ease-out forwards;
+}
+#bxx-cinematic-intro .bxx-intro-meta-right{color:rgba(238,238,242,.48)}
+#bxx-cinematic-intro .bxx-intro-meta-right i{font-style:normal;color:#e43b49;padding:0 5px}
+#bxx-cinematic-intro .bxx-intro-emblem{
+  width:clamp(154px,25vh,248px);aspect-ratio:1;position:relative;margin:clamp(18px,3vh,30px) 0 4px;
+  display:grid;place-items:center;animation:bxxEmblemEnter .95s cubic-bezier(.16,1,.3,1) .12s both;
+}
+#bxx-cinematic-intro .bxx-emblem-aura{
+  position:absolute;inset:-24%;border-radius:50%;
+  background:radial-gradient(circle,rgba(198,40,53,.30),rgba(198,40,53,.08) 42%,transparent 70%);
+  filter:blur(15px);animation:bxxAuraPulse 2.6s ease-in-out .8s infinite;
+}
+#bxx-cinematic-intro .bxx-emblem-mark{position:relative;width:100%;height:100%;display:grid;place-items:center}
+#bxx-cinematic-intro .bxx-emblem-mark img{
+  display:block;width:100%;height:100%;object-fit:contain;opacity:1!important;
+  filter:drop-shadow(0 12px 28px rgba(0,0,0,.65)) drop-shadow(0 0 22px rgba(214,37,53,.35));
+}
+#bxx-cinematic-intro .bxx-emblem-cut{
+  position:absolute;left:-22%;right:-22%;top:50%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,67,78,.85),rgba(255,255,255,.72),rgba(255,67,78,.85),transparent);
+  box-shadow:0 0 18px rgba(232,37,54,.65);opacity:0;animation:bxxEmblemCut .7s .72s ease-out forwards;
+}
+#bxx-cinematic-intro .bxx-intro-wordmark{
+  display:flex;align-items:center;justify-content:center;gap:clamp(8px,1.7vw,18px);
+  white-space:nowrap;color:#f5f3f3;font:400 clamp(35px,6.4vw,72px)/.98 'Russo One',sans-serif;
+  letter-spacing:.025em;text-shadow:0 8px 28px rgba(0,0,0,.8);
+  opacity:0;animation:bxxWordmarkIn .72s .42s cubic-bezier(.16,1,.3,1) forwards;
+}
+#bxx-cinematic-intro .bxx-intro-wordmark i{font-style:normal;color:#e53a48;text-shadow:0 0 25px rgba(229,58,72,.65)}
+#bxx-cinematic-intro .bxx-intro-subtitle{
+  margin-top:12px;color:rgba(239,226,228,.72);font:600 10px/1 'Oswald',sans-serif;
+  letter-spacing:.42em;opacity:0;animation:bxxMetaIn .55s .68s ease-out forwards;
+}
+#bxx-cinematic-intro .bxx-intro-rule{
+  width:min(390px,70vw);display:flex;align-items:center;gap:14px;margin-top:24px;
+  color:rgba(232,229,232,.42);font:500 8px/1 'Oswald',sans-serif;letter-spacing:.25em;
+  opacity:0;animation:bxxMetaIn .55s .78s ease-out forwards;
+}
+#bxx-cinematic-intro .bxx-intro-rule span{height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(226,58,71,.7))}
+#bxx-cinematic-intro .bxx-intro-rule span:last-child{transform:scaleX(-1)}
+#bxx-cinematic-intro .bxx-intro-loader{
+  display:flex;align-items:center;gap:14px;margin-top:clamp(25px,4vh,38px);
+  opacity:0;animation:bxxMetaIn .55s .82s ease-out forwards;
+}
+#bxx-cinematic-intro .bxx-loader-orbit{width:38px;height:38px;position:relative;display:grid;place-items:center}
+#bxx-cinematic-intro .bxx-loader-ring{
+  position:absolute;inset:1px;border-radius:50%;
+  background:conic-gradient(from -90deg,#f04a57 0 72%,rgba(255,255,255,.08) 72% 100%);
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1.5px));
+  mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1.5px));
+  animation:bxxLoaderSpin 1.3s linear infinite;
+}
+#bxx-cinematic-intro .bxx-loader-ticks{
+  position:absolute;inset:-4px;border-radius:50%;
+  background:repeating-conic-gradient(from -90deg,rgba(255,255,255,.35) 0deg 1deg,transparent 1deg 30deg);
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 1px),#000 100%);
+  mask:radial-gradient(farthest-side,transparent calc(100% - 1px),#000 100%);
+  opacity:.55;
+}
+#bxx-cinematic-intro .bxx-loader-core{width:5px;height:5px;border-radius:50%;background:#f04452;box-shadow:0 0 12px #f04452}
+#bxx-cinematic-intro .bxx-loader-copy{display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:left}
+#bxx-cinematic-intro .bxx-loader-label{color:rgba(240,239,243,.45);font:600 8px/1 'Oswald',sans-serif;letter-spacing:.22em}
+#bxx-cinematic-intro .bxx-loader-status{color:#f1edef;font:600 11px/1 'Oswald',sans-serif;letter-spacing:.16em}
+#bxx-cinematic-intro.intro-leave{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
+#bxx-cinematic-intro.intro-leave .bxx-intro-scene{animation:bxxSceneExit .42s cubic-bezier(.7,0,.84,0) both!important}
+#bxx-cinematic-intro.intro-leave .bxx-intro-backdrop{animation:bxxBackdropExit .62s ease-in both!important}
+@keyframes bxxArenaBackdropIn{from{opacity:.35;transform:scale(1.08)}to{opacity:1;transform:scale(1.035)}}
+@keyframes bxxFrameIn{to{opacity:1}}
+@keyframes bxxMetaIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bxxEmblemEnter{0%{opacity:0;transform:translateY(28px) scale(.82);filter:blur(8px)}65%{opacity:1;transform:translateY(-3px) scale(1.025);filter:blur(0)}100%{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes bxxAuraPulse{0%,100%{opacity:.55;transform:scale(.94)}50%{opacity:.9;transform:scale(1.06)}}
+@keyframes bxxEmblemCut{0%{opacity:0;transform:scaleX(.2)}30%{opacity:1}100%{opacity:0;transform:scaleX(1.1)}}
+@keyframes bxxWordmarkIn{from{opacity:0;transform:translateY(18px);letter-spacing:.12em;filter:blur(5px)}to{opacity:1;transform:translateY(0);letter-spacing:.025em;filter:blur(0)}}
+@keyframes bxxLoaderSpin{to{transform:rotate(360deg)}}
+@keyframes bxxSceneExit{to{opacity:0;transform:translateY(-12px) scale(.985);filter:blur(3px)}}
+@keyframes bxxBackdropExit{to{opacity:.2;transform:scale(1.08)}}
+@media(max-width:700px),(pointer:coarse){
+  #bxx-cinematic-intro .bxx-intro-scene{padding:28px 16px;justify-content:center}
+  #bxx-cinematic-intro .bxx-intro-meta{width:100%;font-size:8px;letter-spacing:.16em}
+  #bxx-cinematic-intro .bxx-intro-emblem{width:clamp(132px,22vh,190px);margin:22px 0 5px}
+  #bxx-cinematic-intro .bxx-intro-wordmark{font-size:clamp(29px,8vw,43px);gap:7px;letter-spacing:0}
+  #bxx-cinematic-intro .bxx-intro-subtitle{font-size:9px;letter-spacing:.3em}
+  #bxx-cinematic-intro .bxx-intro-rule{margin-top:19px;width:82vw;font-size:7px;gap:9px}
+  #bxx-cinematic-intro .bxx-intro-loader{margin-top:25px}
+  #bxx-cinematic-intro .bxx-loader-orbit{width:34px;height:34px}
+  #bxx-cinematic-intro .bxx-frame-corner{width:22px;height:22px}
+}
+@media(max-height:650px) and (orientation:landscape){
+  #bxx-cinematic-intro .bxx-intro-scene{padding:14px 22px}
+  #bxx-cinematic-intro .bxx-intro-emblem{width:clamp(92px,24vh,145px);margin:8px 0 0}
+  #bxx-cinematic-intro .bxx-intro-wordmark{font-size:clamp(28px,5vw,46px)}
+  #bxx-cinematic-intro .bxx-intro-subtitle{margin-top:7px}
+  #bxx-cinematic-intro .bxx-intro-rule{margin-top:12px}
+  #bxx-cinematic-intro .bxx-intro-loader{margin-top:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  #bxx-cinematic-intro *,#bxx-cinematic-intro:before,#bxx-cinematic-intro:after{animation:none!important;transition:none!important;filter:none!important}
+  #bxx-cinematic-intro .bxx-intro-meta,#bxx-cinematic-intro .bxx-intro-emblem,#bxx-cinematic-intro .bxx-intro-wordmark,#bxx-cinematic-intro .bxx-intro-subtitle,#bxx-cinematic-intro .bxx-intro-rule,#bxx-cinematic-intro .bxx-intro-loader{opacity:1!important;transform:none!important}
 }
 </style>
 
