@@ -42,6 +42,89 @@
   @keyframes shine{0%{left:-60%}60%,100%{left:130%}}
   @keyframes bgLogoPulse{0%,100%{opacity:.05}50%{opacity:.1}}
   @keyframes xBlink{0%,90%,100%{opacity:1;filter:none}92%{opacity:.28}94%{opacity:1;filter:drop-shadow(0 0 22px var(--accent,#ff2130))}96%{opacity:.42}98%{opacity:1;filter:drop-shadow(0 0 28px var(--accent,#ff2130))}}
+
+  /* Mobile layout: keep navigation usable and prevent the news grid from overflowing */
+  @media (max-width:760px){
+    nav{
+      height:auto!important;
+      min-height:60px!important;
+      flex-wrap:wrap!important;
+      align-content:center!important;
+      row-gap:5px!important;
+      padding:8px 14px 6px!important;
+      background:rgba(8,8,10,.94)!important;
+    }
+    nav>a:first-child{gap:8px!important}
+    nav>a:first-child img{height:34px!important}
+    nav>a:first-child span{font-size:13px!important}
+    nav>div{
+      order:3!important;
+      flex:1 0 100%!important;
+      width:100%!important;
+      min-width:0!important;
+      overflow-x:auto!important;
+      overflow-y:hidden!important;
+      display:flex!important;
+      gap:18px!important;
+      padding:4px 0 7px!important;
+      white-space:nowrap!important;
+      scrollbar-width:none!important;
+      -webkit-overflow-scrolling:touch;
+    }
+    nav>div::-webkit-scrollbar{display:none}
+    nav>a:last-child{
+      font-size:11px!important;
+      letter-spacing:.09em!important;
+      padding:9px 12px!important;
+    }
+    header{
+      padding:142px 18px 32px!important;
+    }
+    header>div:first-child img{
+      width:min(72vw,340px)!important;
+      right:-8%!important;
+      top:42%!important;
+      opacity:.55!important;
+    }
+    header h1{
+      font-size:clamp(44px,12vw,72px)!important;
+      line-height:.92!important;
+      overflow-wrap:anywhere;
+    }
+    header p{font-size:15px!important;max-width:34rem!important}
+    #feed>div>div:first-child{
+      align-items:flex-start!important;
+      flex-direction:column!important;
+      gap:14px!important;
+    }
+    #feed>div>div:first-child>div:last-child{
+      width:100%!important;
+      display:flex!important;
+      flex-wrap:nowrap!important;
+      overflow-x:auto!important;
+      padding:2px 2px 8px!important;
+      scrollbar-width:none!important;
+      -webkit-overflow-scrolling:touch;
+    }
+    #feed>div>div:first-child>div:last-child::-webkit-scrollbar{display:none}
+    #feed [data-stagger]{
+      grid-template-columns:minmax(0,1fr)!important;
+      gap:12px!important;
+    }
+    #feed [data-stagger]>div{min-width:0!important}
+    #feed [data-stagger] a{min-width:0!important}
+    #feed [data-stagger] a>div:first-child{height:116px!important}
+    #feed [data-stagger] a>div:last-child{padding:17px!important}
+    #feed [data-stagger] a>div:last-child>div:nth-child(2){
+      font-size:19px!important;
+      overflow-wrap:anywhere;
+    }
+  }
+  @media (max-width:380px){
+    nav>a:first-child span{font-size:12px!important}
+    nav>a:last-child{font-size:10px!important;padding:8px 9px!important}
+    header h1{font-size:clamp(40px,11.5vw,52px)!important}
+  }
 </style>
 </helmet>
 <div style="{{ rootStyle }}" ref="{{ rootRef }}">
