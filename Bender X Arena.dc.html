@@ -4816,5 +4816,159 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
 }
 </style>
 
+
+<style id="bxx-homepage-hybrid-refresh-2026-11">
+/* Unified hybrid direction: cinematic Mortal Kombat identity + clear competitive platform UX */
+:root{
+ --bx-bg:#08090d;--bx-surface:#11141b;--bx-surface-2:#171b24;
+ --bx-border:rgba(255,255,255,.105);--bx-red:#d92c3c;--bx-red-hot:#f04452;
+ --bx-white:#f5f3f0;--bx-muted:#a5a7b0;
+}
+html{scroll-padding-top:88px}
+body{background:var(--bx-bg)!important;color:var(--bx-white)!important}
+nav{
+ height:76px!important;padding:0 clamp(18px,5vw,76px)!important;
+ background:rgba(7,8,12,.88)!important;border-bottom:1px solid var(--bx-border)!important;
+ backdrop-filter:blur(20px)!important;
+}
+nav>a:first-child img{height:40px!important}
+nav>div:first-of-type a{font:700 10px 'Inter',sans-serif!important;letter-spacing:.12em!important;color:#c8c8ce!important}
+nav>div:first-of-type a:hover{color:#fff!important}
+nav>div:nth-of-type(2)>a{font:800 10px 'Inter',sans-serif!important;letter-spacing:.1em!important}
+#hero.arena-hero,#hero{
+ position:relative!important;isolation:isolate!important;overflow:hidden!important;
+ min-height:min(900px,100svh)!important;
+ padding:clamp(132px,15vh,178px) clamp(22px,7vw,116px) 110px!important;
+ background:
+ linear-gradient(90deg,rgba(5,6,10,.98) 0%,rgba(5,6,10,.9) 35%,rgba(5,6,10,.48) 72%,rgba(5,6,10,.24) 100%),
+ linear-gradient(0deg,#08090d 0%,transparent 32%),
+ radial-gradient(ellipse at 78% 35%,rgba(217,44,60,.2),transparent 40%),#08090d!important;
+}
+#hero:before{
+ content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+ background:linear-gradient(120deg,transparent 0 64%,rgba(217,44,60,.11) 64.1%,transparent 64.7%),
+ repeating-linear-gradient(90deg,transparent 0 119px,rgba(255,255,255,.018) 120px);
+}
+#hero:after{
+ content:"";position:absolute;inset:7% 3.5% 9%;z-index:0;pointer-events:none;
+ border:1px solid rgba(255,255,255,.075);
+ clip-path:polygon(0 0,100% 0,100% 88%,92% 100%,0 100%);
+ background:linear-gradient(110deg,rgba(255,255,255,.025),transparent 48%,rgba(217,44,60,.035));
+}
+#hero>div{position:relative;z-index:2}
+#hero h1,.hero-title{
+ max-width:920px!important;font-family:'Russo One',sans-serif!important;
+ font-size:clamp(58px,8.4vw,132px)!important;line-height:.88!important;
+ letter-spacing:-.055em!important;text-wrap:balance!important;
+ text-shadow:0 14px 52px #000!important;
+}
+#hero .hero-badge{
+ display:inline-flex!important;align-items:center!important;
+ border-left:3px solid var(--bx-red-hot)!important;
+ background:rgba(255,255,255,.055)!important;border-top:1px solid var(--bx-border)!important;
+ border-right:1px solid var(--bx-border)!important;border-bottom:1px solid var(--bx-border)!important;
+ padding:11px 15px!important;font:800 10px 'Inter',sans-serif!important;
+ letter-spacing:.18em!important;color:#f1dfe1!important;
+}
+#hero .hero-sub{
+ display:flex!important;opacity:1!important;visibility:visible!important;animation:none!important;
+ margin-top:22px!important;color:#f3eeee!important;
+ font:700 clamp(12px,1.1vw,15px)/1.5 'Inter',sans-serif!important;
+ letter-spacing:.16em!important;text-shadow:0 0 24px rgba(240,68,82,.22)!important;
+}
+#hero .hero-text{
+ max-width:540px!important;margin-top:18px!important;color:#b9bac3!important;
+ font:400 clamp(15px,1.2vw,18px)/1.75 'Inter',sans-serif!important;
+}
+#hero .hero-cta{display:flex!important;gap:13px!important;flex-wrap:wrap!important;margin-top:32px!important}
+#hero .hero-cta a{
+ min-height:58px!important;padding:0 25px!important;border-radius:3px!important;
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ font:800 10px 'Inter',sans-serif!important;letter-spacing:.12em!important;
+}
+#hero .hero-cta a[href="#register"]{
+ background:linear-gradient(110deg,#ef3547,#b91d2d)!important;border:1px solid #ff6874!important;
+ box-shadow:0 5px 0 #76101b,0 14px 34px rgba(217,44,60,.2)!important;
+}
+#hero .hero-cta a.ghost{
+ background:rgba(16,18,24,.72)!important;border:1px solid rgba(255,255,255,.25)!important;
+}
+#hero .hero-scroll{opacity:.7!important;font:700 9px 'Inter',sans-serif!important;letter-spacing:.18em!important}
+#news,#schedule,#bracket,#register,.arena-portals{
+ scroll-margin-top:88px!important;position:relative!important;
+}
+#news,#schedule,#bracket{
+ background:linear-gradient(180deg,#0a0c11,#10131a 52%,#0a0c11)!important;
+}
+#news>div,#schedule>div,#bracket>div,.arena-portals>[data-stagger]{
+ max-width:1320px!important;
+}
+#news h2,#schedule h2,#bracket h2,#register h2{
+ font-family:'Russo One',sans-serif!important;letter-spacing:-.035em!important;
+}
+#news [data-stagger]>div>a{
+ min-height:220px!important;padding:25px!important;
+ background:linear-gradient(145deg,#191d26,#101219)!important;
+ border:1px solid var(--bx-border)!important;border-left:3px solid var(--bx-red)!important;
+ clip-path:none!important;border-radius:3px!important;
+ box-shadow:0 16px 40px rgba(0,0,0,.2)!important;
+}
+#news [data-stagger]>div>a:hover{transform:translateY(-4px)!important;border-color:rgba(240,68,82,.45)!important}
+#schedule [data-stagger]>div>div{
+ background:linear-gradient(145deg,#191d26,#101219)!important;
+ border:1px solid var(--bx-border)!important;border-top:2px solid var(--bx-red)!important;
+ border-radius:3px!important;clip-path:none!important;
+}
+.arena-portals{padding-top:clamp(48px,7vw,90px)!important;padding-bottom:clamp(64px,8vw,110px)!important}
+.arena-portals>[data-stagger]>div>a{
+ min-height:250px!important;padding:clamp(22px,3vw,36px)!important;
+ background:linear-gradient(145deg,rgba(27,31,41,.98),rgba(12,14,20,.98))!important;
+ border:1px solid var(--bx-border)!important;border-top:2px solid var(--bx-red)!important;
+ border-radius:3px!important;clip-path:none!important;
+ transition:transform .25s,border-color .25s,background .25s!important;
+}
+.arena-portals>[data-stagger]>div>a:hover{transform:translateY(-5px)!important;border-color:#d92c3c88!important}
+#register{background:linear-gradient(180deg,#08090d,#10131a 55%,#08090d)!important}
+#register>div>div{
+ border:1px solid var(--bx-border)!important;border-radius:4px!important;
+ background:linear-gradient(130deg,#151923,#0d0f15)!important;
+ box-shadow:0 32px 90px rgba(0,0,0,.42)!important;
+}
+#register [aria-live="polite"]{border-radius:3px!important}
+footer{border-top:1px solid var(--bx-border)!important;background:#07080b!important}
+#bxx-cinematic-intro{display:none!important;visibility:hidden!important;pointer-events:none!important}
+@media(max-width:760px){
+ nav{height:64px!important;padding-inline:14px!important}
+ nav>a:first-child img{height:34px!important}
+ #hero.arena-hero,#hero{
+  min-height:unset!important;min-height:90svh!important;
+  padding:118px 20px 92px!important;
+  background:linear-gradient(90deg,rgba(5,6,10,.96),rgba(5,6,10,.7)),
+   linear-gradient(0deg,#08090d 0%,transparent 48%),#08090d!important;
+ }
+ #hero:after{inset:5% 3% 7%!important}
+ #hero h1,.hero-title{font-size:clamp(48px,12.5vw,82px)!important;line-height:.94!important}
+ #hero .hero-sub{font-size:11px!important;letter-spacing:.1em!important}
+ #hero .hero-text{font-size:15px!important;line-height:1.65!important;max-width:35rem!important}
+ #hero .hero-cta{width:min(100%,370px)!important;flex-direction:column!important;align-items:stretch!important}
+ #hero .hero-cta a{width:100%!important;min-height:56px!important}
+ #hero .hero-scroll{left:20px!important;right:auto!important;bottom:24px!important}
+ #news,#schedule,#bracket{padding-block:58px!important}
+ #news>div,#schedule>div,#bracket>div{padding-inline:18px!important}
+ #news [data-stagger],#schedule [data-stagger]{grid-template-columns:minmax(0,1fr)!important}
+ .arena-portals>[data-stagger]{grid-template-columns:minmax(0,1fr)!important;padding-inline:18px!important}
+ .arena-portals>[data-stagger]>div>a{min-height:190px!important}
+ #register>div{padding-inline:14px!important}
+}
+@media(max-width:380px){
+ #hero.arena-hero,#hero{padding-inline:16px!important}
+ #hero h1,.hero-title{font-size:clamp(43px,12vw,58px)!important}
+ #hero .hero-text{font-size:14px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ #hero *,#news *,#schedule *,#register *,nav *,.arena-portals *{animation:none!important;transition:none!important}
+}
+</style>
+
 </body>
 </html>
