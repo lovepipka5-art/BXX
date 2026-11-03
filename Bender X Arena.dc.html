@@ -3674,7 +3674,16 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
  function openProfilePanel(){if(profilePanel){profilePanel.classList.add('open');profilePanel.setAttribute('aria-hidden','false')}}
  function closeProfilePanel(){if(profilePanel){profilePanel.classList.remove('open');profilePanel.setAttribute('aria-hidden','true')}}
  async function getUser(){
-  const {data,error}=await supa().auth.getUser();if(error)throw error;currentUser=data.user;return currentUser;
+  const client=supa();
+  // A visitor without an active session is simply signed out, not an auth failure.
+  const {data:sessionData,error:sessionError}=await client.auth.getSession();
+  if(sessionError)throw sessionError;
+  if(!sessionData.session){currentUser=null;return null;}
+  const {data,error}=await client.auth.getUser();
+  if(error&&error.name==='AuthSessionMissingError'){currentUser=null;return null;}
+  if(error)throw error;
+  currentUser=data.user||null;
+  return currentUser;
  }
  async function renderProfile(){
   if(!profileBody)return;
