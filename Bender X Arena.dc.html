@@ -2514,7 +2514,7 @@ nav a[href="#register"]:hover{transform:translateY(-2px)!important;box-shadow:0 
     </div>
   </section>
 
-  <section data-reveal style="{{ revealStyle }}">
+  <section class="arena-portals" data-reveal style="{{ revealStyle }}">
     <div data-stagger style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px">
       <div data-reveal>
         <a href="%D0%91%D0%BE%D0%B9%D1%86%D1%8B%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html" style="{{ portalStyle }}" style-hover="{{ portalHover }}">
@@ -4708,6 +4708,51 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
 
 
 
+
+
+<style id="bxx-mobile-home-cards-2026">
+/* Mobile-first card layout for homepage news, streams and destination portals. */
+@media (max-width:700px){
+  #news,#schedule{padding-top:58px!important;padding-bottom:58px!important}
+  #news>div,#schedule>div{padding-left:16px!important;padding-right:16px!important}
+  #news [data-stagger]{grid-template-columns:minmax(0,1fr)!important;gap:12px!important}
+  #news [data-stagger]>div>a{
+    min-height:0!important;padding:20px 18px!important;
+    clip-path:polygon(0 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%)!important;
+  }
+  #news [data-stagger]>div>a>div:nth-of-type(2){font-size:clamp(20px,5.8vw,25px)!important;line-height:1.08!important}
+  #news [data-stagger]>div>a p{font-size:14px!important;line-height:1.55!important}
+  #schedule [data-stagger]{grid-template-columns:minmax(0,1fr)!important;gap:10px!important}
+  #schedule [data-stagger]>div>div{
+    display:flex!important;align-items:center!important;gap:12px!important;
+    flex-wrap:wrap!important;padding:15px!important;min-width:0!important;
+  }
+  #schedule [data-stagger]>div>div>div:nth-child(2){display:none!important}
+  #schedule [data-stagger]>div>div>div:first-child{min-width:54px!important}
+  #schedule [data-stagger]>div>div>div:nth-child(3){flex:1 1 150px!important}
+  #schedule [data-stagger]>div>div>div:last-child{
+    flex:1 0 100%!important;justify-content:flex-end!important;
+    padding-top:10px!important;border-top:1px solid rgba(255,255,255,.08);
+  }
+  .arena-portals{padding-top:10px!important;padding-bottom:58px!important}
+  .arena-portals>[data-stagger]{
+    grid-template-columns:minmax(0,1fr)!important;gap:12px!important;
+    padding-left:16px!important;padding-right:16px!important;
+  }
+  .arena-portals>[data-stagger]>div>a{
+    display:block!important;min-height:210px!important;padding:22px!important;
+    overflow:hidden!important;
+  }
+  .arena-portals>[data-stagger]>div>a p{max-width:290px!important;font-size:14px!important}
+  #bracket [data-stagger]{grid-template-columns:minmax(0,1fr)!important}
+  #bracket [data-stagger]>div{min-width:0!important;max-width:100%!important}
+}
+@media (max-width:380px){
+  #news [data-stagger]>div>a{padding:17px 15px!important}
+  #schedule [data-stagger]>div>div{padding:13px!important;gap:9px!important}
+  .arena-portals>[data-stagger]>div>a{padding:19px!important;min-height:195px!important}
+}
+</style>
 
 </body>
 </html>
