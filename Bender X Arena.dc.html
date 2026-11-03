@@ -2848,7 +2848,7 @@ class Component extends DCLogic {
 
   getAuthClient(){
     if(!window.supabase||typeof window.supabase.createClient!=='function') throw new Error('Не удалось загрузить модуль авторизации. Обнови страницу и попробуй снова.');
-    if(!this._authClient) this._authClient=window.BXX_AUTH_CLIENT||(window.BXX_AUTH_CLIENT=window.supabase.createClient('https://rospclqxeijwvvrixdza.supabase.co','sb_publishable_V_gUdsAQ8zaiVW7zcwM7pg_3eSFbGoP',{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}));
+    if(!this._authClient) this._authClient=window.BXX_AUTH_CLIENT||(window.BXX_AUTH_CLIENT=window.supabase.createClient('https://fewfpimbfgxlzghfqkmc.supabase.co','sb_publishable_5Pgf3aTIsP_HwmrO5RakEA_H4DF7Mny',{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}));
     return this._authClient;
   }
   async startDiscordLogin(){
@@ -3605,7 +3605,7 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
  const supa=()=>{
    if(window.BXX_AUTH_CLIENT)return window.BXX_AUTH_CLIENT;
    if(!window.supabase||!window.supabase.createClient)throw new Error('Сервис аккаунтов пока не загрузился. Обнови страницу.');
-   return window.BXX_AUTH_CLIENT=window.supabase.createClient('https://rospclqxeijwvvrixdza.supabase.co','sb_publishable_V_gUdsAQ8zaiVW7zcwM7pg_3eSFbGoP',{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+   return window.BXX_AUTH_CLIENT=window.supabase.createClient('https://fewfpimbfgxlzghfqkmc.supabase.co','sb_publishable_5Pgf3aTIsP_HwmrO5RakEA_H4DF7Mny',{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
  };
  const modal=document.createElement('div');
  modal.className='bxx-account-modal';modal.id='bxx-account-modal';modal.setAttribute('aria-hidden','true');
