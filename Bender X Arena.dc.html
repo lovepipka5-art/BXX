@@ -3299,6 +3299,57 @@ nav .bxx-notif-dot{position:absolute!important;right:5px!important;top:5px!impor
 </style>
 
 
+<style id="bxx-intro-transition-finish">
+/* A deliberate final beat: the logo recedes, a red energy cut crosses, then the arena is revealed. */
+#bxx-cinematic-intro{
+  transition:opacity .82s cubic-bezier(.65,0,.35,1),visibility 0s linear .84s!important;
+}
+#bxx-cinematic-intro.intro-leave{
+  opacity:0!important;visibility:hidden!important;pointer-events:none!important;
+}
+#bxx-cinematic-intro.intro-leave>div[style*="padding:14vh 20px 0"]{
+  animation:bxxIntroContentExit .58s cubic-bezier(.7,0,.84,0) both!important;
+  pointer-events:none!important;
+}
+#bxx-cinematic-intro.intro-leave:after{
+  left:-55%!important;opacity:1!important;
+  animation:bxxIntroExitSlash .72s cubic-bezier(.16,1,.3,1) both!important;
+}
+.loaded #hero{
+  animation:bxxArenaReveal .72s cubic-bezier(.16,1,.3,1) both;
+  transform-origin:50% 45%;
+}
+@keyframes bxxIntroContentExit{
+  0%{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}
+  100%{opacity:0;transform:translate3d(0,-12px,0) scale(.965);filter:blur(4px)}
+}
+@keyframes bxxIntroExitSlash{
+  0%{left:-55%;opacity:0}
+  12%{opacity:.9}
+  72%{opacity:.72}
+  100%{left:125%;opacity:0}
+}
+@keyframes bxxArenaReveal{
+  0%{opacity:.72;filter:brightness(.72)}
+  100%{opacity:1;filter:brightness(1)}
+}
+@media(max-width:700px),(pointer:coarse){
+  #bxx-cinematic-intro{transition-duration:.68s!important}
+  #bxx-cinematic-intro.intro-leave>div[style*="padding:14vh 20px 0"]{
+    animation-duration:.48s!important;filter:none!important
+  }
+  #bxx-cinematic-intro.intro-leave:after{filter:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #bxx-cinematic-intro,#bxx-cinematic-intro.intro-leave,
+  #bxx-cinematic-intro.intro-leave>div[style*="padding:14vh 20px 0"],
+  #bxx-cinematic-intro.intro-leave:after,.loaded #hero{
+    animation:none!important;transition:none!important;filter:none!important;transform:none!important
+  }
+}
+</style>
+
+
 <style id="bxx-register-mobile-layout-fix">
 /* Registration section: stack copy and form instead of squeezing two desktop columns on phones. */
 @media (max-width: 760px) {
