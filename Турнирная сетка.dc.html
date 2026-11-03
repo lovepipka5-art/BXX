@@ -404,5 +404,50 @@ class Component extends DCLogic {
   }
 }
 </script>
+
+<style id="bxx-bracket-mobile-pass">
+/* Mobile tournament bracket: deliberate horizontal navigation and thumb-friendly picks. */
+@media(max-width:760px){
+  #bracket .bracket-toolbar{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:18px!important}
+  #bracket .bracket-toolbar>div:first-child{width:100%!important}
+  #bracket .bracket-toolbar>div:last-child{display:grid!important;grid-template-columns:1fr!important;gap:9px!important;width:100%!important}
+  #bracket .bracket-toolbar button{width:100%!important;min-height:46px!important;min-width:0!important;font-size:10px!important}
+  #bracket .bracket-viewport{
+    overflow-x:auto!important;overflow-y:hidden!important;
+    -webkit-overflow-scrolling:touch!important;overscroll-behavior-x:contain!important;
+    scroll-snap-type:x proximity!important;scrollbar-width:thin!important;
+    scrollbar-color:#ff2638 #17171b!important;
+    padding:34px 12px 18px!important;
+    background:linear-gradient(145deg,#121215,#09090b 70%)!important;
+  }
+  #bracket .bracket-viewport:after{
+    content:"ПРОКРУТИ СЕТКУ В СТОРОНУ  →";
+    position:absolute;top:9px;right:12px;z-index:3;
+    color:#ff6874;font:700 8px/1 'Oswald',sans-serif;letter-spacing:.16em;
+    pointer-events:none;
+  }
+  #bracket .bracket-board{width:max-content!important;min-width:0!important;gap:28px!important;padding:8px 4px 12px!important}
+  #bracket .bracket-round{flex:0 0 218px!important;min-width:218px!important;scroll-snap-align:start!important}
+  #bracket .round-heading{min-height:58px!important;margin-bottom:14px!important;padding:13px 8px 12px!important}
+  #bracket .bracket-round>div:nth-child(2){gap:14px!important}
+  #bracket .bracket-match{border-radius:2px!important}
+  #bracket .bracket-match>div{
+    min-height:58px!important;padding:15px 13px!important;
+    cursor:pointer!important;touch-action:manipulation!important;
+  }
+  #bracket .bracket-match>div span:nth-child(2){font-size:13px!important}
+  #bracket .bracket-champion{min-height:300px!important;padding:28px 14px!important}
+  #bracket .bracket-champion>div:nth-child(2){overflow-wrap:anywhere!important}
+}
+@media(max-width:380px){
+  #bracket .bracket-round{flex-basis:205px!important;min-width:205px!important}
+  #bracket .bracket-board{gap:20px!important}
+  #bracket .bracket-viewport{margin:0 -8px!important;padding-left:9px!important;padding-right:9px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #bracket .bracket-viewport{scroll-behavior:auto!important;scroll-snap-type:none!important}
+}
+</style>
+
 </body>
 </html>
