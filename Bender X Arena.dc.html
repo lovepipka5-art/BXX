@@ -5045,5 +5045,27 @@ footer{border-top:1px solid var(--bx-border)!important;background:#07080b!import
 }
 @media(prefers-reduced-motion:reduce){.bxx-section-link{transition:none}}
 </style>
+
+<style id="bxx-hero-copy-restore">
+/* Restore the branded hero copy after removing the unwanted mobile hub panel. */
+#hero .hero-sub{
+  display:flex!important;justify-content:flex-start!important;align-items:center!important;
+  max-width:760px!important;margin:18px 0 0!important;
+  font-family:'Oswald',sans-serif!important;font-size:clamp(20px,2vw,28px)!important;
+  font-weight:700!important;letter-spacing:.075em!important;line-height:1.2!important;
+  color:#fff!important;text-align:left!important;
+  text-shadow:0 0 30px rgba(240,68,79,.28)!important;
+}
+#hero .hero-text{
+  max-width:700px!important;margin:16px 0 0!important;
+  font-size:clamp(17px,1.3vw,20px)!important;line-height:1.7!important;
+  font-weight:400!important;color:#c2c2ca!important;
+}
+@media(max-width:700px){
+  #hero .hero-sub{font-size:clamp(17px,4.5vw,20px)!important;line-height:1.35!important;letter-spacing:.055em!important;margin-top:16px!important}
+  #hero .hero-text{max-width:380px!important;font-size:16px!important;line-height:1.65!important;margin-top:14px!important}
+}
+</style>
+
 </body>
 </html>
