@@ -2550,7 +2550,7 @@ footer{background:#070708!important;border-top:1px solid rgba(255,38,56,.24)!imp
       <sc-for list="{{ news }}" as="n" hint-placeholder-count="3">
         <article class="bxx-news-item">
           <a class="bxx-news-row" href="%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html">
-            <span class="bxx-news-index">BX / 0{{ n.id }}</span>
+            <span class="bxx-news-index">НОВОСТЬ</span>
             <span class="bxx-news-data"><span class="bxx-news-meta"><b>{{ n.tag }}</b><time>{{ n.date }}</time></span><strong>{{ n.title }}</strong><span class="bxx-news-excerpt">{{ n.excerpt }}</span></span>
             <span class="bxx-news-arrow" aria-hidden="true">↗</span>
           </a>
@@ -2616,7 +2616,7 @@ footer{background:#070708!important;border-top:1px solid rgba(255,38,56,.24)!imp
         <div class="bxx-route-copy"><span class="bxx-route-label">ТАБЛИЦА ИГРОКОВ</span><h3>РЕЙТИНГ<br>БОЙЦОВ</h3><p>Демо-таблица. Официального рейтинга пока нет.</p><span class="bxx-route-link">Открыть таблицу <b aria-hidden="true">↗</b></span></div>
       </a>
       <a class="bxx-route-card bxx-route-bracket" href="%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D0%BD%D0%B0%D1%8F%20%D1%81%D0%B5%D1%82%D0%BA%D0%B0.dc.html">
-        <span class="bxx-route-number">03</span><span class="bxx-route-symbol" aria-hidden="true">⌘</span>
+        <span class="bxx-route-number">03</span><span class="bxx-route-symbol" aria-hidden="true">×</span>
         <div class="bxx-route-copy"><span class="bxx-route-label">СЕТКИ И РЕЗУЛЬТАТЫ</span><h3>ХОД<br>ТУРНИРА</h3><p>Сетки, этапы и результаты.</p><span class="bxx-route-link">Открыть сетку <b aria-hidden="true">↗</b></span></div>
       </a>
     </div>
@@ -2659,7 +2659,7 @@ footer{background:#070708!important;border-top:1px solid rgba(255,38,56,.24)!imp
               <span><strong>СОЗДАТЬ АККАУНТ</strong><small>Быстрая регистрация на сайте</small></span><b aria-hidden="true">↗</b>
             </button>
           </sc-if>
-          <p class="bxx-register-note">Вход на сайт не заменяет регистрацию на конкретный турнир.</p>
+          <p class="bxx-register-note">Вход не заменяет заявку на турнир.</p>
         </div>
       </div>
     </div>
@@ -2972,7 +2972,7 @@ class Component extends DCLogic {
       pedNum:{fontFamily:"'Russo One',sans-serif",fontSize:first?'40px':'30px',color:mc,opacity:.85,lineHeight:1}
     };});
     const platC={Twitch:'#9146ff',YouTube:'#ff2b2b',Telegram:'#2aabee'};
-    const streams=[['АНОНС','—','Новые эфиры будут объявлены отдельно','Следи за обновлениями расписания','BXX',false]].map((r,i)=>({id:i,day:r[0],time:r[1],title:r[2],casters:r[3],platform:r[4],live:r[5],reminded:!!S.reminded[i],onRemind:()=>this.toggleRemind(i),bell:S.reminded[i]?'★':'☆',
+    const streams=[['СКОРО','—','Новые эфиры пока не запланированы','Расписание появится после публикации','ЭФИР',false]].map((r,i)=>({id:i,day:r[0],time:r[1],title:r[2],casters:r[3],platform:r[4],live:r[5],reminded:!!S.reminded[i],onRemind:()=>this.toggleRemind(i),bell:S.reminded[i]?'★':'☆',
       rowStyle:{display:'flex',alignItems:'center',gap:'14px',padding:'14px 16px',background:r[5]?'color-mix(in srgb,var(--accent,#ff2130) 10%, rgba(22,22,28,.12))':'rgba(22,22,28,.12)',border:'1px solid '+(r[5]?'color-mix(in srgb,var(--accent,#ff2130) 45%, transparent)':'#ffffff12'),clipPath:'polygon(0 0,100% 0,100% 100%,10px 100%,0 calc(100% - 10px))',transition:'transform .25s,border-color .25s'},
       platStyle:{fontFamily:"'Oswald',sans-serif",fontSize:'13px',fontWeight:600,letterSpacing:'.08em',textTransform:'uppercase',color:'#fff',background:platC[r[4]],padding:'5px 9px',whiteSpace:'nowrap'},
       bellStyle:{width:'34px',height:'34px',flexShrink:0,fontSize:'15px',color:S.reminded[i]?'var(--accent,#ff2130)':'#83838d',background:'transparent',border:'1px solid '+(S.reminded[i]?'color-mix(in srgb,var(--accent,#ff2130) 50%, transparent)':'#ffffff1f'),cursor:'pointer',transition:'all .2s'}}));
@@ -2982,7 +2982,7 @@ class Component extends DCLogic {
       glyph:this.glyphS({c:r[4],glyph:g},'clamp(80px,9vw,130px)'),
       rarStyle:{position:'absolute',top:'12px',left:'12px',fontFamily:"'Oswald',sans-serif",fontSize:'14px',fontWeight:700,letterSpacing:'.14em',textTransform:'uppercase',color:'#0b0b0e',background:rarC[r[2]],padding:'4px 9px'},
       addStyle:{fontFamily:"'Oswald',sans-serif",fontWeight:600,fontSize:'14px',letterSpacing:'.1em',textTransform:'uppercase',color:'#f4f4f5',background:'rgba(22,22,28,.14)',border:'1px solid #ffffff26',padding:'9px 14px',cursor:'pointer',transition:'all .2s'}}; });
-    const news=[['АРЕНА','АНОНСЫ','Новости и события BENDER X ARENA','Актуальные публикации, объявления турниров и обновления проекта будут появляться в разделе новостей.']].map((r,i)=>({id:i,tag:r[0],date:r[1],title:r[2],excerpt:r[3]}));
+    const news=[['НОВОСТИ','СКОРО','Новые публикации скоро появятся','Следи за анонсами турниров и обновлениями сообщества.']].map((r,i)=>({id:i,tag:r[0],date:r[1],title:r[2],excerpt:r[3]}));
     const gateChips=[];
     return {
       rootStyle:{'--accent':'#ff2130','--steel':'#cdd6df',position:'relative',minHeight:'100vh',background:'#08080a',overflowX:'hidden'},
@@ -5232,7 +5232,7 @@ nav.bxx-site-nav .bxx-mobile-menu>summary::-webkit-details-marker{display:none}
  overflow:hidden!important;text-align:left!important;
  background:radial-gradient(ellipse at 72% 48%,rgba(160,18,34,.19),transparent 39%),linear-gradient(112deg,#080809 0%,#0b090c 54%,#100b0f 100%)!important;
 }
-#hero.bxx-hero:before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,#080809 0%,rgba(8,8,9,.93) 34%,rgba(8,8,9,.32) 70%,rgba(8,8,9,.2)),url('uploads/intro-bg2.png') center 42%/cover no-repeat;opacity:.42;mix-blend-mode:screen}
+#hero.bxx-hero:before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 70% 38%,rgba(177,23,40,.24),transparent 42%),repeating-linear-gradient(132deg,transparent 0 82px,rgba(255,255,255,.018) 83px,transparent 85px),linear-gradient(90deg,#080809 0%,rgba(8,8,9,.88) 42%,rgba(8,8,9,.25) 100%);opacity:.72}
 #hero.bxx-hero:after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.2),transparent 32%,rgba(0,0,0,.24) 76%,#080809 100%),repeating-linear-gradient(0deg,transparent 0 5px,rgba(255,255,255,.012) 6px,transparent 7px);mix-blend-mode:normal}
 .bxx-hero-backdrop{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
 .bxx-hero-smoke{position:absolute;inset:-20%;background:radial-gradient(ellipse at 74% 58%,rgba(191,24,43,.25),transparent 38%),radial-gradient(ellipse at 22% 18%,rgba(91,14,27,.25),transparent 36%);filter:blur(26px)}
