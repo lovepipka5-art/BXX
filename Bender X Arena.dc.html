@@ -2607,15 +2607,15 @@ footer{background:#070708!important;border-top:1px solid rgba(255,38,56,.24)!imp
       
     </div>
     <div class="bxx-route-grid" data-stagger>
-      <a class="bxx-route-card bxx-route-fighters" href="%D0%91%D0%BE%D0%B9%D1%86%D1%8B%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html">
+      <a data-reveal class="bxx-route-card bxx-route-fighters" href="%D0%91%D0%BE%D0%B9%D1%86%D1%8B%20%D0%B0%D1%80%D0%B5%D0%BD%D1%8B.dc.html">
         <span class="bxx-route-number">01</span><span class="bxx-route-symbol" aria-hidden="true">✦</span>
         <div class="bxx-route-copy"><span class="bxx-route-label">РОСТЕР · 5 КЛАССОВ</span><h3>БОЙЦЫ<br>АРЕНЫ</h3><p>16 бойцов. Приёмы и стили.</p><span class="bxx-route-link">Открыть ростер <b aria-hidden="true">↗</b></span></div>
       </a>
-      <a class="bxx-route-card bxx-route-rating" href="%D0%A2%D0%BE%D0%BF%20%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2.dc.html">
+      <a data-reveal class="bxx-route-card bxx-route-rating" href="%D0%A2%D0%BE%D0%BF%20%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2.dc.html">
         <span class="bxx-route-number">02</span><span class="bxx-route-symbol" aria-hidden="true">Ⅱ</span>
         <div class="bxx-route-copy"><span class="bxx-route-label">ТАБЛИЦА ИГРОКОВ</span><h3>РЕЙТИНГ<br>БОЙЦОВ</h3><p>Демо-таблица. Официального рейтинга пока нет.</p><span class="bxx-route-link">Открыть таблицу <b aria-hidden="true">↗</b></span></div>
       </a>
-      <a class="bxx-route-card bxx-route-bracket" href="%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D0%BD%D0%B0%D1%8F%20%D1%81%D0%B5%D1%82%D0%BA%D0%B0.dc.html">
+      <a data-reveal class="bxx-route-card bxx-route-bracket" href="%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D0%BD%D0%B0%D1%8F%20%D1%81%D0%B5%D1%82%D0%BA%D0%B0.dc.html">
         <span class="bxx-route-number">03</span><span class="bxx-route-symbol" aria-hidden="true">×</span>
         <div class="bxx-route-copy"><span class="bxx-route-label">СЕТКИ И РЕЗУЛЬТАТЫ</span><h3>ХОД<br>ТУРНИРА</h3><p>Сетки, этапы и результаты.</p><span class="bxx-route-link">Открыть сетку <b aria-hidden="true">↗</b></span></div>
       </a>
@@ -5240,7 +5240,7 @@ nav.bxx-site-nav .bxx-mobile-menu>summary::-webkit-details-marker{display:none}
 .bxx-hero-sigil:before,.bxx-hero-sigil:after{content:"";position:absolute;inset:8%;border:1px solid rgba(255,255,255,.07);border-radius:50%}
 .bxx-hero-sigil:after{inset:19%;border-style:dashed;border-color:rgba(227,53,66,.2)}
 .bxx-hero-light{position:absolute;top:-10%;bottom:-10%;left:70%;width:1px;background:linear-gradient(180deg,transparent,rgba(242,56,73,.34),transparent);box-shadow:0 0 42px 9px rgba(205,33,52,.14)}
-.bxx-hero-embers{position:absolute;inset:0;opacity:.52;background-image:radial-gradient(circle at 12% 65%,#e93c4c 0 1px,transparent 2px),radial-gradient(circle at 79% 28%,#ef4b57 0 1px,transparent 2px),radial-gradient(circle at 54% 82%,#bc202f 0 2px,transparent 3px),radial-gradient(circle at 92% 71%,#fa4756 0 1px,transparent 2px);background-size:310px 280px,420px 340px,520px 400px,360px 260px;animation:bxxEmbers 22s linear infinite}
+.bxx-hero-embers{position:absolute;inset:0;opacity:.52;background-image:radial-gradient(circle at 12% 65%,#e93c4c 0 1px,transparent 2px),radial-gradient(circle at 79% 28%,#ef4b57 0 1px,transparent 2px),radial-gradient(circle at 54% 82%,#bc202f 0 2px,transparent 3px),radial-gradient(circle at 92% 71%,#fa4756 0 1px,transparent 2px);background-size:310px 280px,420px 340px,520px 400px,360px 260px}
 .bxx-hero-wrap{position:relative;z-index:3;display:grid;grid-template-columns:minmax(0,1.06fr) minmax(360px,.94fr);align-items:center;gap:clamp(14px,2vw,34px);width:min(100%,1320px);margin:0 auto}
 .bxx-hero-copy{position:relative;z-index:4;min-width:0;max-width:780px}
 .bxx-hero-kicker{display:flex;align-items:center;gap:10px;margin-bottom:26px;color:#f5dadd;font:700 12px/1.3 var(--bxx-body);letter-spacing:.095em;text-transform:uppercase}
@@ -5267,20 +5267,26 @@ nav.bxx-site-nav .bxx-mobile-menu>summary::-webkit-details-marker{display:none}
 .bxx-hero-art-ring{position:absolute;left:50%;top:52%;border:1px solid rgba(255,255,255,.1);border-radius:50%;transform:translate(-50%,-50%)}
 .bxx-hero-art-ring-one{width:90%;aspect-ratio:1}
 .bxx-hero-art-ring-two{width:68%;aspect-ratio:1;border-style:dashed;border-color:rgba(235,57,71,.24)}
-.bxx-hero-art img{position:relative;z-index:2;display:block;width:min(118%,820px);max-width:none;height:auto;object-fit:contain;filter:drop-shadow(0 24px 44px rgba(0,0,0,.8)) drop-shadow(0 0 30px rgba(179,22,42,.22));transform:translateX(-3%);animation:bxxFighterFloat 7s ease-in-out infinite}
+.bxx-hero-art img{position:relative;z-index:2;display:block;width:min(118%,820px);max-width:none;height:auto;object-fit:contain;filter:drop-shadow(0 24px 44px rgba(0,0,0,.8)) drop-shadow(0 0 30px rgba(179,22,42,.22));transform:translateX(-3%)}
 .bxx-hero-art-number{position:absolute;right:2%;bottom:0;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.1);font:700 clamp(110px,17vw,220px)/.8 var(--bxx-display);z-index:1}
 .bxx-hero-art-rule{position:absolute;right:0;bottom:11%;width:54%;height:2px;background:linear-gradient(90deg,transparent,#e13b49,transparent);z-index:2}
 .bxx-hero-bottom{position:absolute;left:clamp(20px,6vw,88px);right:clamp(20px,6vw,88px);bottom:25px;z-index:4;display:flex;justify-content:space-between;align-items:center;gap:20px;color:#928d95;font:700 10px var(--bxx-body);letter-spacing:.1em}
 .bxx-hero-bottom a{display:flex;align-items:center;gap:12px;color:#f0e9ec;text-decoration:none}
 .bxx-hero-bottom a b{display:grid;place-items:center;width:24px;height:24px;border:1px solid #9e3541;color:#ff6b77;font-size:16px}
-.loaded #hero .hero-badge{animation:none!important;opacity:1!important}
-.loaded #hero .bxx-title-white{animation:bxxTitleIn .72s cubic-bezier(.16,1,.3,1) .06s both}
-.loaded #hero .bxx-title-red{animation:bxxTitleIn .78s cubic-bezier(.16,1,.3,1) .22s both}
-.loaded #hero .bxx-hero-slogan{animation:bxxFadeUp .6s .42s both}
-.loaded #hero .bxx-hero-text{animation:bxxFadeUp .6s .52s both}
-.loaded #hero .bxx-hero-actions{animation:bxxFadeUp .62s .64s both}
-.loaded #hero .bxx-hero-index{animation:bxxFadeUp .6s .8s both}
-.loaded #hero .bxx-hero-art img{animation:bxxFighterEnter .95s cubic-bezier(.16,1,.3,1) .24s both,bxxFighterFloat 7s ease-in-out 1.2s infinite}
+@media(prefers-reduced-motion:no-preference){
+ .bxx-hero-embers{animation:bxxEmbers 22s linear infinite}
+ .loaded #hero .hero-badge{animation:none!important;opacity:1!important}
+ .loaded #hero .bxx-title-white{animation:bxxTitleIn .72s cubic-bezier(.16,1,.3,1) .06s both}
+ .loaded #hero .bxx-title-red{animation:bxxTitleIn .78s cubic-bezier(.16,1,.3,1) .22s both}
+ .loaded #hero .bxx-hero-slogan{animation:bxxFadeUp .6s .42s both}
+ .loaded #hero .bxx-hero-text{animation:bxxFadeUp .6s .52s both}
+ .loaded #hero .bxx-hero-actions{animation:bxxFadeUp .62s .64s both}
+ .loaded #hero .bxx-hero-index{animation:bxxFadeUp .6s .8s both}
+ .loaded #hero .bxx-hero-art img{animation:bxxFighterEnter .95s cubic-bezier(.16,1,.3,1) .24s both,bxxFighterFloat 7s ease-in-out 1.2s infinite}
+ .bxx-enter{animation:bxxContentEnter .62s cubic-bezier(.16,1,.3,1) var(--bxx-delay,0ms) both}
+ nav.bxx-site-nav .bxx-mobile-menu[open] .bxx-mobile-menu-panel{animation:bxxMenuIn .2s ease-out both}
+}
+.loaded 
 #hero .hero-scroll{display:none!important}
 
 /* Tournament hub: the Supabase publisher writes the real event into this live slot. */
@@ -5431,7 +5437,7 @@ footer.bxx-site-footer{position:relative!important;padding:58px clamp(20px,5vw,7
 .bxx-legal-disclaimer{max-width:670px;color:#97919a!important;text-align:left!important;text-align-last:left!important;line-height:1.6!important}
 
 /* Publisher-inserted news and stream cards use the same editorial entrance. */
-.bxx-enter{animation:bxxContentEnter .62s cubic-bezier(.16,1,.3,1) var(--bxx-delay,0ms) both}
+
 @keyframes bxxContentEnter{from{opacity:0;transform:translate3d(0,22px,0);filter:blur(5px)}to{opacity:1;transform:none;filter:none}}
 #schedule [data-stagger]>article:not(.bxx-stream-item){
  display:flex!important;align-items:center!important;gap:18px!important;min-width:0!important;
@@ -5473,7 +5479,7 @@ footer.bxx-site-footer{position:relative!important;padding:58px clamp(20px,5vw,7
  .bxx-footer-column a:hover{color:#ff727c!important}
  .bxx-mobile-menu-panel>a:hover{padding-left:19px!important}
 }
-nav.bxx-site-nav .bxx-mobile-menu[open] .bxx-mobile-menu-panel{animation:bxxMenuIn .2s ease-out both}
+
 button:active,a:active{transform:scale(.98)}
 @media(max-width:1100px){
  #hero.bxx-hero{min-height:840px!important;padding-top:135px!important}
