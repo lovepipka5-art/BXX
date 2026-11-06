@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="620" viewBox="0 0 900 620">
+<defs>
+ <linearGradient id="red" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff4b55"/><stop offset=".42" stop-color="#bd1024"/><stop offset="1" stop-color="#390810"/></linearGradient>
+ <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a9adb6"/><stop offset=".38" stop-color="#41434b"/><stop offset="1" stop-color="#101115"/></linearGradient>
+ <linearGradient id="black" x1="0" y1="0" x2="0.8" y2="1"><stop stop-color="#33343b"/><stop offset=".55" stop-color="#121317"/><stop offset="1" stop-color="#050506"/></linearGradient>
+ <linearGradient id="blade" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".3" stop-color="#bfc4cf"/><stop offset="1" stop-color="#555963"/></linearGradient>
+ <radialGradient id="halo"><stop stop-color="#d51a31" stop-opacity=".45"/><stop offset="1" stop-color="#d51a31" stop-opacity="0"/></radialGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feGaussianBlur stdDeviation="12"/></filter>
+</defs>
+<ellipse cx="450" cy="520" rx="360" ry="72" fill="#000" opacity=".7" filter="url(#shadow)"/>
+<ellipse cx="390" cy="320" rx="350" ry="300" fill="url(#halo)" opacity=".75"/>
+<!-- rear fighter: dark steel, angled stance -->
+<g stroke="#08090b" stroke-width="13" stroke-linejoin="round" stroke-linecap="round">
+ <path d="M564 304 L671 335 L738 457 L823 520 L790 555 L684 502 L619 407 L548 382Z" fill="url(#black)"/>
+ <path d="M619 395 L691 436 L665 527 L602 582 L563 559 L604 493 L583 439Z" fill="url(#steel)"/>
+ <path d="M692 435 L751 476 L801 525 L775 548 L706 511 L665 479Z" fill="url(#black)"/>
+ <path d="M549 263 L621 245 L682 298 L647 374 L579 383 L530 324Z" fill="url(#steel)"/>
+ <path d="M567 271 L622 262 L655 300 L633 345 L581 354 L552 317Z" fill="url(#black)" stroke-width="8"/>
+ <path d="M567 299 L594 288 L588 315 L565 321Z" fill="#e51b2b" stroke="none"/>
+ <path d="M622 289 L642 302 L626 320 L608 309Z" fill="#c5c8cf" stroke="none"/>
+ <path d="M550 286 L480 248 L448 192 L467 174 L518 223 L586 241Z" fill="url(#black)"/>
+ <path d="M464 186 L430 123 L448 114 L493 174Z" fill="url(#blade)" stroke-width="6"/>
+ <path d="M569 355 L512 406 L462 465 L433 444 L475 369 L521 327Z" fill="url(#steel)"/>
+ <path d="M463 465 L432 507 L395 492 L421 435Z" fill="url(#black)"/>
+</g>
+<!-- foreground crimson fighter -->
+<g stroke="#09090b" stroke-width="15" stroke-linejoin="round" stroke-linecap="round">
+ <!-- legs -->
+ <path d="M338 365 L435 382 L456 471 L403 555 L346 536 L384 463 L319 442Z" fill="url(#black)"/>
+ <path d="M401 534 L389 575 L316 583 L292 563 L342 528Z" fill="url(#steel)"/>
+ <path d="M277 359 L347 387 L321 470 L254 527 L205 498 L263 434Z" fill="url(#red)"/>
+ <path d="M254 520 L223 566 L163 557 L152 538 L205 493Z" fill="url(#black)"/>
+ <!-- torso -->
+ <path d="M282 239 L362 218 L422 278 L410 380 L342 414 L265 370 L250 297Z" fill="url(#red)"/>
+ <path d="M296 258 L356 245 L389 286 L374 350 L329 371 L286 342 L274 294Z" fill="url(#black)" stroke-width="8"/>
+ <path d="M301 281 L353 268 L366 287 L325 304Z" fill="#d9273a" stroke="none"/>
+ <path d="M329 311 L377 295 L370 327 L334 345Z" fill="#9b1225" stroke="none"/>
+ <path d="M274 270 L226 300 L196 355 L218 377 L271 340 L309 312Z" fill="url(#red)"/>
+ <path d="M198 352 L165 378 L136 358 L168 320 L202 324Z" fill="url(#black)"/>
+ <path d="M365 263 L412 281 L456 324 L436 351 L390 326 L354 308Z" fill="url(#red)"/>
+ <path d="M434 326 L469 350 L460 375 L422 358Z" fill="url(#steel)"/>
+ <!-- head and hood -->
+ <path d="M286 145 L323 113 L369 128 L393 166 L380 218 L350 245 L307 226 L278 191Z" fill="url(#red)"/>
+ <path d="M300 151 L326 130 L363 139 L380 168 L367 207 L345 225 L314 209 L294 184Z" fill="url(#black)" stroke-width="7"/>
+ <path d="M300 166 L327 159 L340 175 L323 188 L304 184Z" fill="#f2f2f3" stroke-width="3"/>
+ <path d="M347 175 L369 165 L371 185 L350 193Z" fill="#f2f2f3" stroke-width="3"/>
+ <path d="M303 198 L345 211 L367 195 L355 219 L333 230 L312 216Z" fill="#7e101e" stroke="none"/>
+ <path d="M285 149 L269 178 L286 222 L307 237 L280 232 L254 196 L259 160Z" fill="#6f0b19" stroke-width="7"/>
+ <!-- shoulder armor -->
+ <path d="M260 258 L293 237 L323 258 L309 291 L272 295 L246 278Z" fill="url(#steel)"/>
+ <path d="M360 248 L397 254 L418 286 L392 307 L363 289Z" fill="url(#red)"/>
+</g>
+<!-- twin blades -->
+<g stroke-linejoin="round">
+ <path d="M267 247 L115 75 L137 63 L298 232Z" fill="url(#blade)" stroke="#202127" stroke-width="7"/>
+ <path d="M121 80 L83 45 L137 63Z" fill="#e5e7eb"/>
+ <path d="M386 244 L502 67 L520 81 L418 270Z" fill="url(#blade)" stroke="#202127" stroke-width="7"/>
+ <path d="M502 67 L541 39 L520 81Z" fill="#e5e7eb"/>
+</g>
+<!-- red edge highlights -->
+<path d="M273 150 L312 113 L357 127" fill="none" stroke="#ff5a65" stroke-width="5" opacity=".85"/>
+<path d="M285 248 L333 231 L380 248" fill="none" stroke="#ff3447" stroke-width="4" opacity=".8"/>
+<path d="M557 270 L619 252 L657 301" fill="none" stroke="#d51b31" stroke-width="4" opacity=".8"/>
+</svg>

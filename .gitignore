@@ -1,0 +1,4 @@
+# Dev tooling / skills (not part of the site)
+.agents/
+.mcp.json
+skills-lock.json
