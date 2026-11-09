@@ -27,7 +27,7 @@ body{font-family:Manrope,Arial,sans-serif;isolation:isolate}
 .workspace{position:relative;z-index:1}
 .ambient-bx{position:fixed;inset:0 0 0 190px;z-index:0;overflow:hidden;pointer-events:none;user-select:none}
 .ambient-bx-motion{position:absolute;inset:0;transform:translate3d(var(--bx-x,0px),var(--bx-y,0px),0);transition:transform 1.8s ease-out}
-.ambient-bx img{position:absolute;left:50%;top:46%;width:min(100vw,1180px);height:auto;opacity:.095;transform:translate(-50%,-50%) rotate(-9deg);animation:bx-drift 22s ease-in-out infinite alternate}
+.ambient-bx img{position:absolute;left:50%;top:46%;width:min(100vw,1180px);height:auto;opacity:.16;transform:translate(-50%,-50%) rotate(-9deg);animation:bx-drift 22s ease-in-out infinite alternate}
 @keyframes bx-drift{from{transform:translate(-52%,-48%) rotate(-9deg) scale(.97)}to{transform:translate(-46%,-53%) rotate(-3deg) scale(1.04)}}
 .brand strong,.side-mark,.community h3,.bottom-banner h2{font-family:Manrope,Arial,sans-serif;letter-spacing:-.6px}
 .brand strong{font-size:14px;font-weight:800;line-height:1.3}.brand small{letter-spacing:1.8px;font-size:8px}
@@ -69,10 +69,67 @@ dialog{background:#0d0002;border-radius:10px}.close{border-radius:4px}
 .hero-content{animation:bx-enter .9s cubic-bezier(.2,.65,.25,1) both}
 @keyframes bx-enter{from{opacity:0;translate:0 18px}to{opacity:1;translate:0 0}}
 @media(max-width:1050px){.hero h1{font-size:clamp(54px,7vw,80px)}.rail{padding-left:0;border-left:0;margin-top:30px;gap:30px}.hero-content{width:100%}.account h3{margin-top:26px}}
-@media(max-width:760px){.ambient-bx{left:0}.ambient-bx img{width:160vw;opacity:.085;top:43%}.mobile-brand .brand strong{font-size:12px;letter-spacing:-.4px}.mobile-brand .brand small{font-size:7px;letter-spacing:1.1px}.workspace{padding:0 22px}.welcome h2{font-size:19px;line-height:1.4}.welcome p{font-size:12px}.hero{min-height:420px}.hero-content{padding:26px 0 45px}.hero h1{font-size:clamp(43px,10.7vw,75px);letter-spacing:-2.7px}.hero-copy{font-size:13px;max-width:330px}.hero-actions .btn{font-size:12px;padding:12px 16px}.quick-card{padding:25px 32px 25px 0}.quick-card h3{font-size:24px}.quick-card p{font-size:12px}.panel{padding:26px 0}.rail{gap:26px}.bottom-banner h2{font-size:26px}.topbar{margin-bottom:26px}.section-head{margin-top:36px}.menu-button{flex-shrink:0}.top-login{font-size:12px}.footer{font-size:10px}.explore-row p{font-size:12px}}
+@media(max-width:760px){.ambient-bx{left:0}.ambient-bx img{width:160vw;opacity:.14;top:43%}.mobile-brand .brand strong{font-size:12px;letter-spacing:-.4px}.mobile-brand .brand small{font-size:7px;letter-spacing:1.1px}.workspace{padding:0 22px}.welcome h2{font-size:19px;line-height:1.4}.welcome p{font-size:12px}.hero{min-height:420px}.hero-content{padding:26px 0 45px}.hero h1{font-size:clamp(43px,10.7vw,75px);letter-spacing:-2.7px}.hero-copy{font-size:13px;max-width:330px}.hero-actions .btn{font-size:12px;padding:12px 16px}.quick-card{padding:25px 32px 25px 0}.quick-card h3{font-size:24px}.quick-card p{font-size:12px}.panel{padding:26px 0}.rail{gap:26px}.bottom-banner h2{font-size:26px}.topbar{margin-bottom:26px}.section-head{margin-top:36px}.menu-button{flex-shrink:0}.top-login{font-size:12px}.footer{font-size:10px}.explore-row p{font-size:12px}}
 @media(max-width:360px){.workspace{padding:0 16px}.mobile-brand .brand strong{font-size:11px}.hero h1{font-size:42px}.hero-actions{gap:10px}.hero-actions .btn{padding:11px 12px;font-size:11px}.hero-tag{font-size:9px;letter-spacing:1.4px}}
 @media(prefers-reduced-motion:reduce){.ambient-bx img,.hero-content{animation:none!important}.ambient-bx-motion{transform:none!important;transition:none!important}.reveal-ready{opacity:1!important;translate:none!important;transition:none!important}}
 html.bx-paused .ambient-bx img{animation-play-state:paused}
+
+  /* BENDER X ARENA cinematic intro animation */
+  #hero-title{
+    position:relative!important;
+    animation:bxTitleRise 1.05s cubic-bezier(.16,1,.3,1) .12s both!important;
+    transform-origin:left center!important;
+    will-change:transform,opacity,filter!important;
+  }
+  #hero-title span{
+    display:inline-block!important;
+    opacity:0;
+    animation:bxWordReveal .82s cubic-bezier(.16,1,.3,1) both!important;
+    will-change:transform,opacity,filter;
+  }
+  #hero-title span:nth-of-type(1){animation-delay:.28s!important}
+  #hero-title span:nth-of-type(2){
+    animation:bxXReveal .72s cubic-bezier(.16,1,.3,1) .68s both!important;
+    transform-origin:center!important;
+  }
+  #hero-title span:nth-of-type(3){animation-delay:.86s!important}
+  #hero-title:after{
+    content:""!important;position:absolute!important;left:0!important;bottom:-.12em!important;
+    width:100%!important;height:2px!important;pointer-events:none!important;
+    background:linear-gradient(90deg,transparent 0%,#e51b2b 18%,#fff 50%,#e51b2b 78%,transparent 100%)!important;
+    box-shadow:0 0 16px rgba(229,27,43,.75)!important;
+    transform:scaleX(0)!important;transform-origin:left center!important;
+    animation:bxTitleLine .72s ease-out 1.18s both!important;
+  }
+  @keyframes bxTitleRise{
+    0%{opacity:0;transform:translateY(22px);filter:blur(12px)}
+    65%{opacity:1;filter:blur(0)}
+    100%{opacity:1;transform:translateY(0);filter:drop-shadow(0 10px 50px rgba(0,0,0,.7))}
+  }
+  @keyframes bxWordReveal{
+    0%{opacity:0;transform:translateY(26px) skewX(-7deg);filter:blur(9px);clip-path:inset(0 0 100% 0)}
+    72%{opacity:1;filter:blur(0);clip-path:inset(0 0 0 0)}
+    100%{opacity:1;transform:translateY(0) skewX(0);filter:drop-shadow(0 2px 12px rgba(255,255,255,.08));clip-path:inset(0 0 0 0)}
+  }
+  @keyframes bxXReveal{
+    0%{opacity:0;transform:scale(1.65) rotate(-14deg);filter:blur(8px);text-shadow:0 0 0 rgba(229,27,43,0)}
+    65%{opacity:1;transform:scale(.94) rotate(3deg);filter:blur(0);text-shadow:0 0 34px rgba(229,27,43,.7)}
+    100%{opacity:1;transform:scale(1) rotate(0);filter:blur(0);text-shadow:0 0 24px rgba(229,27,43,.34)}
+  }
+  @keyframes bxTitleLine{
+    0%{transform:scaleX(0);opacity:0}
+    20%{opacity:1}
+    100%{transform:scaleX(1);opacity:.72}
+  }
+  @media(prefers-reduced-motion:reduce){
+    #hero-title,#hero-title span,#hero-title:after{
+      animation:none!important;opacity:1!important;filter:none!important;transform:none!important;
+      clip-path:none!important;will-change:auto!important;
+    }
+  }
+
+
+#hero-title span:first-of-type,#hero-title span:last-of-type{color:var(--text)}
 
 </style>
 </head>
@@ -110,7 +167,7 @@ html.bx-paused .ambient-bx img{animation-play-state:paused}
 <div class="main-column">
 <section class="hero" aria-labelledby="hero-title">
 <img class="hero-bg" src="uploads/intro-bg2.png" alt="" fetchpriority="high">
-<div class="hero-content"><span class="hero-tag">ТЕРРИТОРИЯ СИЛЬНЫХ</span><h1 id="hero-title">BENDER <span>X</span><br>ARENA</h1><p class="hero-copy">Твой матч. Твоя арена. Твой титул.<br>Следи за боями, знакомься с участниками и стань частью сообщества.</p><div class="hero-actions"><a class="btn" href="Турнирная сетка.dc.html">К турнирам <svg class="icon"><use href="#i-arrow"/></svg></a><a class="btn outline" href="Расписание стримов.dc.html"><svg class="icon"><use href="#i-play"/></svg>Смотреть стримы</a></div></div>
+<div class="hero-content"><span class="hero-tag">ТЕРРИТОРИЯ СИЛЬНЫХ</span><h1 id="hero-title"><span>BENDER</span> <span>X</span><br><span>ARENA</span></h1><p class="hero-copy">Твой матч. Твоя арена. Твой титул.<br>Следи за боями, знакомься с участниками и стань частью сообщества.</p><div class="hero-actions"><a class="btn" href="Турнирная сетка.dc.html">К турнирам <svg class="icon"><use href="#i-arrow"/></svg></a><a class="btn outline" href="Расписание стримов.dc.html"><svg class="icon"><use href="#i-play"/></svg>Смотреть стримы</a></div></div>
 <div class="hero-footer"><span>ТУРНИРЫ · СТРИМЫ · СООБЩЕСТВО</span><b>ENTER THE ARENA <svg class="icon diagonal" aria-hidden="true"><use href="#i-arrow"/></svg></b></div>
 </section>
 <div class="section-head"><h2>Твоя арена</h2><span class="eyebrow">ВЫБЕРИ НАПРАВЛЕНИЕ</span></div>
