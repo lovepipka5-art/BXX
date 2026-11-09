@@ -165,6 +165,52 @@ body{font-family:'Oswald',sans-serif;background:radial-gradient(ellipse at 75% 8
 }
 @media(max-width:360px){.workspace{padding:0 16px}.hero-actions .btn{padding:12px;font-size:11px}}
 
+
+/* Cinematic arena: existing stage artwork, no oversized logo backdrop. */
+body{background:#070707}
+.ambient-bx{display:none}
+.workspace{--gutter:clamp(22px,3.4vw,56px);padding:0 var(--gutter)}
+.topbar{position:relative;z-index:4;background:#070707;min-height:84px}
+.dashboard{display:block}
+.hero{position:relative;margin:0 calc(-1 * var(--gutter)) 0;min-height:660px;display:flex;align-items:flex-start;justify-content:center;text-align:center;background:#070707;border:0;overflow:hidden}
+.hero .arena-scene{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 62%;z-index:-3;opacity:1;filter:brightness(1.45) saturate(.8)}
+.hero:before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,#07070799 0%,#07070722 42%,#07070700 60%,#070707 100%),linear-gradient(90deg,#07070788,transparent 28%,transparent 72%,#07070788)}
+.hero:after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 50% 45%,#b5001a22,transparent 60%);pointer-events:none}
+.arena-haze{mask-image:linear-gradient(180deg,transparent,#000 25%,#000 65%,transparent 90%);position:absolute;inset:30% -15% -12%;z-index:-1;background:radial-gradient(ellipse at 30% 70%,#b40b1933,transparent 48%),radial-gradient(ellipse at 75% 80%,#d9162833,transparent 50%);filter:blur(32px);animation:arenaMist 18s ease-in-out infinite alternate;pointer-events:none}
+@keyframes arenaMist{from{transform:translateX(-3%) scale(1);opacity:.5}to{transform:translateX(4%) scale(1.1);opacity:1}}
+.hero-content{width:100%;max-width:920px;padding:65px 30px 140px;position:relative;z-index:2}
+.hero-tag{font:400 20px/1.4 'Oswald',sans-serif;text-transform:none;letter-spacing:.06em;color:#f5d9dc}
+#hero-title{font-size:clamp(74px,8.3vw,128px);line-height:.98;letter-spacing:-.035em;margin:28px 0 36px;text-shadow:0 4px 40px #000;transform-origin:center!important}
+#hero-title span:nth-of-type(2){color:#ff2130}
+.hero-actions{justify-content:center;gap:16px}
+.hero-actions .btn{min-height:54px;padding:16px 28px;font-size:14px;letter-spacing:.07em}
+.hero-actions .btn.outline{background:#080708b3;backdrop-filter:blur(8px);border-color:#ffffff40}
+.hero-footer{position:absolute;left:36px;right:36px;bottom:34px;display:flex;justify-content:center;border:0;padding:0;color:#aa9396;font:400 11px 'Oswald',sans-serif;letter-spacing:.24em}
+.hero-footer b{display:none}
+.section-head{margin-top:36px}
+.quick-grid{gap:18px}
+.quick-card{background:linear-gradient(140deg,#16090b,#090808);border-color:#ffffff15;min-height:175px;padding:26px}
+.quick-card:before{font-size:20px;margin-bottom:25px}.quick-card h3{font-size:25px}
+.quick-card p{font-size:15px}
+.rail{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding-top:0;margin-top:42px;gap:20px}
+.rail .mini-section{display:none}.panel{padding:30px;background:#0c090a}
+.panel h3{font-size:32px}.account h3{margin-top:12px}.account .full{width:auto;padding:14px 24px}.account small{display:block}
+.community h3 br{display:none}.community h3{margin-top:0}.panel p{max-width:480px}
+@media(max-width:1050px){.hero{min-height:620px}#hero-title{font-size:clamp(64px,10vw,106px)}}
+@media(max-width:760px){
+.workspace{--gutter:20px;padding:0 var(--gutter)}.topbar{min-height:78px}
+.hero{min-height:590px}.hero-content{padding:65px 18px 150px}.hero-tag{font-size:18px;letter-spacing:0}
+#hero-title{font-size:clamp(42px,15.5vw,88px);line-height:1.06;letter-spacing:-.035em;margin:28px 0 34px}
+.hero .arena-scene{object-position:50% 70%;filter:brightness(1.6) saturate(.85)}
+.hero:before{background:linear-gradient(180deg,#07070788,transparent 55%,#070707 100%),linear-gradient(90deg,#07070722,transparent,#07070722)}
+.hero-actions{gap:10px}.hero-actions .btn{font-size:12px;padding:14px 17px;min-height:50px;letter-spacing:.025em}
+.hero-footer{left:16px;right:16px;bottom:30px;font-size:10px;letter-spacing:.18em}
+.section-head{margin-top:24px}.quick-grid{gap:12px}.quick-card{min-height:116px;padding:22px 42px 22px 65px}.quick-card:before{font-size:17px;margin:0}.quick-card h3{font-size:24px}.quick-card p{font-size:14px}
+.rail{grid-template-columns:1fr;margin-top:32px}.panel{padding:24px}.panel h3{font-size:28px}
+}
+@media(max-width:360px){.workspace{--gutter:16px}.hero-content{padding-left:14px;padding-right:14px}.hero-actions .btn{font-size:11px;padding:14px 12px}.hero{min-height:550px}}
+@media(prefers-reduced-motion:reduce){.arena-haze{animation:none}}
+
 </style>
 </head>
 <body>
@@ -196,12 +242,14 @@ body{font-family:'Oswald',sans-serif;background:radial-gradient(ellipse at 75% 8
 </header>
 <main id="main" tabindex="-1">
 <noscript><p class="noscript">Для входа в аккаунт включи JavaScript. Все разделы доступны по ссылкам ниже.</p></noscript>
-<div class="welcome"><div><h2>Добро пожаловать на арену</h2></div><span class="edition">BENDER X / FIGHTING COMMUNITY</span></div>
+
 <div class="dashboard">
 <div class="main-column">
 <section id="hero" class="hero" aria-labelledby="hero-title">
+<img class="arena-scene" src="uploads/intro-bg2.png" alt="" width="1376" height="768" fetchpriority="high">
+<div class="arena-haze" aria-hidden="true"></div>
 
-<div class="hero-content"><span class="hero-tag">ТЕРРИТОРИЯ СИЛЬНЫХ</span><h1 id="hero-title"><span>BENDER</span> <span>X</span><br><span>ARENA</span></h1><div class="hero-actions"><a class="btn" href="Турнирная сетка.dc.html">К турнирам <svg class="icon"><use href="#i-arrow"/></svg></a><a class="btn outline" href="Расписание стримов.dc.html"><svg class="icon"><use href="#i-play"/></svg>Смотреть стримы</a></div></div>
+<div class="hero-content"><span class="hero-tag">Добро пожаловать на арену</span><h1 id="hero-title"><span>BENDER</span> <span>X</span><br><span>ARENA</span></h1><div class="hero-actions"><a class="btn" href="Турнирная сетка.dc.html">К турнирам <svg class="icon"><use href="#i-arrow"/></svg></a><a class="btn outline" href="Расписание стримов.dc.html"><svg class="icon"><use href="#i-play"/></svg>Смотреть стримы</a></div></div>
 <div class="hero-footer"><span>ТУРНИРЫ · СТРИМЫ · СООБЩЕСТВО</span><b>ENTER THE ARENA <svg class="icon diagonal" aria-hidden="true"><use href="#i-arrow"/></svg></b></div>
 </section>
 <div class="section-head"><h2>Твоя арена</h2><span class="eyebrow">ВЫБЕРИ НАПРАВЛЕНИЕ</span></div>
@@ -218,7 +266,7 @@ body{font-family:'Oswald',sans-serif;background:radial-gradient(ellipse at 75% 8
 </div>
 <aside class="rail" aria-label="Аккаунт и сообщество">
 <section class="panel account" id="register"><span class="eyebrow">ТВОЁ МЕСТО НА АРЕНЕ</span><h3 id="account-title">Готов к бою?</h3><p id="account-copy">Войди в свой аккаунт через Discord или по ссылке на email.</p><button class="btn full" data-auth id="account-action">Войти / зарегистрироваться</button><small id="account-hint">Без пароля. Через твой аккаунт или почту.</small></section>
-<section class="panel community"><svg class="icon"><use href="#i-discord"/></svg><h3>Арена живёт<br>в Discord</h3><p>Обсуждай матчи, находи соперников и оставайся на связи с сообществом.</p><a href="https://discord.com/invite/qqctMjCTeg" target="_blank" rel="noopener noreferrer">Присоединиться <span><svg class="icon diagonal" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></section>
+<section class="panel community"><svg class="icon"><use href="#i-discord"/></svg><h3>Арена живёт <br>в Discord</h3><p>Обсуждай матчи, находи соперников и оставайся на связи с сообществом.</p><a href="https://discord.com/invite/qqctMjCTeg" target="_blank" rel="noopener noreferrer">Присоединиться <span><svg class="icon diagonal" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></section>
 <section class="panel mini-section"><h3>Знакомство с ареной</h3><a href="О арене.dc.html">О проекте <span><svg class="icon diagonal" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a href="Бойцы арены.dc.html">Участники <span><svg class="icon diagonal" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a href="Расписание стримов.dc.html">Трансляции <span><svg class="icon diagonal" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></section>
 </aside>
 </div>
