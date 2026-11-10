@@ -268,6 +268,87 @@ body{background:#070707}
 .rail .panel .btn {
   overflow-wrap: anywhere;
 }
+
+/* Arena feed: a full card and a preview of the next one. */
+.feed-heading { align-items: end; }
+.feed-heading .eyebrow { color: var(--red); }
+.feed-heading h2 { margin-top: 6px; }
+.feed-heading a { font-family: Manrope, Arial, sans-serif; white-space: nowrap; }
+.feed-track {
+  --card-width: 78%;
+  --feed-gap: 16px;
+  display: flex;
+  gap: var(--feed-gap);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+}
+.feed-track::-webkit-scrollbar { display: none; }
+.feed-track::after { content: ""; flex: 0 0 calc(100% - var(--card-width) - var(--feed-gap)); }
+.feed-news { display: contents; }
+.feed-card {
+  position: relative;
+  isolation: isolate;
+  flex: 0 0 var(--card-width);
+  min-width: 0;
+  min-height: 252px;
+  display: flex;
+  align-items: end;
+  scroll-snap-align: start;
+  overflow: hidden;
+  padding: clamp(20px, 4vw, 40px);
+  border: 1px solid #ff34344d;
+  border-radius: 12px;
+  background: radial-gradient(ellipse at 100% 0, #641116 0, #1a0a0b 55%, #0d0909 100%);
+}
+.feed-release { background: linear-gradient(115deg, #150a0b 28%, #5e1017 100%); }
+.feed-news-card { border-color: #ffffff26; }
+.feed-art {
+  position: absolute;
+  z-index: -2;
+  width: min(70%, 440px);
+  height: auto;
+  right: -4%;
+  top: 50%;
+  transform: translateY(-50%) rotate(-12deg);
+  opacity: .58;
+  pointer-events: none;
+}
+.feed-release::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(90deg, #100809 8%, #100809e0 32%, #10080945 100%);
+}
+.feed-news-card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 0 45%;
+  background: repeating-linear-gradient(130deg, transparent 0 17px, #ff5c601c 18px 19px);
+  mask-image: linear-gradient(90deg, transparent, #000);
+}
+.feed-card-copy { display: grid; gap: 12px; max-width: 40ch; overflow-wrap: anywhere; }
+.feed-card h3 { font: 600 clamp(24px, 3.5vw, 38px)/1.12 Oswald, sans-serif; text-transform: uppercase; }
+.feed-card p { font: 14px/1.65 Manrope, Arial, sans-serif; color: #ddd; }
+.feed-meta { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font: 600 12px/1.4 Manrope, Arial, sans-serif; color: #ccc; }
+.feed-meta span { padding: 5px 9px; border: 1px solid #ff5c6070; border-radius: 4px; background: #2b1012; color: #fff; }
+.feed-card-link { justify-self: start; display: inline-flex; align-items: center; min-height: 44px; padding-inline: 12px; border: 1px solid #ffffff40; border-radius: 6px; background: #0c0809; font: 700 13px/1.4 Manrope, Arial, sans-serif; }
+.feed-card-link:hover { border-color: var(--red); }
+.feed-track :focus-visible { outline-offset: -3px; }
+.feed-footer { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 12px; color: #c4c4c4; font: 600 13px/1.4 Manrope, Arial, sans-serif; }
+.feed-controls { display: flex; gap: 8px; }
+.feed-controls button { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid #ff4b4b7a; border-radius: 8px; background: #241013; }
+.feed-controls button:hover:not([aria-disabled="true"]) { background: #59151b; }
+.feed-controls button[aria-disabled="true"] { opacity: .42; cursor: default; }
+#feed-prev .icon { transform: rotate(180deg); }
+@media (max-width: 760px) {
+  .feed-track { --card-width: 89%; --feed-gap: 10px; }
+  .feed-card { min-height: 246px; }
+  .feed-art { width: 86%; right: -22%; }
+}
 </style>
 </head>
 <body>
@@ -322,8 +403,37 @@ body{background:#070707}
 <div class="tournament-info"><span class="eyebrow" id="tournament-state">СЛЕДУЮЩИЙ ТУРНИР</span><h2 id="tournament-title">Готовишься к следующему бою?</h2><p id="tournament-description">Загружаем ближайший турнир…</p><p id="tournament-date"></p><a class="btn" id="tournament-action" href="https://discord.com/invite/qqctMjCTeg" target="_blank" rel="noopener noreferrer">Анонсы в Discord <span aria-hidden="true">↗</span></a></div>
 <div class="tournament-clock"><p id="countdown-label">До старта</p><div class="countdown" id="countdown" role="timer" aria-label="Дата турнира уточняется"><div><b id="count-days">—</b><span>дней</span></div><div><b id="count-hours">—</b><span>часов</span></div><div><b id="count-minutes">—</b><span>минут</span></div><div><b id="count-seconds">—</b><span>секунд</span></div></div><p id="tournament-footnote">Отсчёт появится после объявления даты.</p></div>
 </section>
-<section class="home-feed" id="home-feed" aria-labelledby="home-feed-title"><div class="section-head"><h2 id="home-feed-title">Сейчас на арене</h2><a href="Новости арены.dc.html">Все новости →</a></div><div id="home-news" class="home-news" aria-live="polite"><p class="feed-state">Загружаем новости…</p></div><button type="button" class="feed-retry" id="feed-retry" hidden>Повторить загрузку</button></section>
-<section class="site-updates" id="site-updates" aria-labelledby="updates-title"><div class="update-label"><span class="eyebrow">ОБНОВЛЕНИЯ САЙТА</span><time datetime="2026-11-10">10 ноября</time></div><div><h2 id="updates-title">Арена становится удобнее.</h2><p>Ближайший турнир, новости и уведомления теперь на главной. Подробности для новичков можно раскрыть только тогда, когда они нужны.</p></div><a href="#next-tournament" class="text-link">К ближайшему турниру ↑</a></section>
+<section class="home-feed" id="home-feed" aria-labelledby="home-feed-title">
+  <div class="section-head feed-heading">
+    <div><span class="eyebrow">ЛЕНТА BX</span><h2 id="home-feed-title">Сейчас на арене</h2></div>
+    <a href="Новости арены.dc.html">Все новости →</a>
+  </div>
+  <div class="feed-track" id="feed-track" tabindex="0" aria-label="Новости и обновления арены">
+    <article class="feed-card feed-release" id="site-updates">
+      <img class="feed-art" src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="" loading="lazy" width="1000" height="1000">
+      <div class="feed-card-copy">
+        <div class="feed-meta"><span>Обновление сайта</span><time datetime="2026-11-10">10 ноября</time></div>
+        <h3>Арена становится удобнее.</h3>
+        <p>Ближайший турнир, новости и уведомления теперь на главной. Подробности для новичков можно раскрыть, когда они нужны.</p>
+        <a class="feed-card-link" href="#next-tournament">К ближайшему турниру →</a>
+      </div>
+    </article>
+    <div id="home-news" class="feed-news">
+      <article class="feed-card feed-news-card"><div class="feed-card-copy">
+        <div class="feed-meta"><span>Новости арены</span></div>
+        <h3>Загружаем новости…</h3>
+      </div></article>
+    </div>
+  </div>
+  <div class="feed-footer">
+    <span id="feed-position" role="status" aria-atomic="true">Карточка 1 из 2</span>
+    <div class="feed-controls" aria-label="Листать карточки">
+      <button type="button" id="feed-prev" aria-label="Предыдущая карточка" aria-controls="feed-track" aria-disabled="true"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      <button type="button" id="feed-next" aria-label="Следующая карточка" aria-controls="feed-track"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+    </div>
+  </div>
+  <button type="button" class="feed-retry" id="feed-retry" hidden>Повторить загрузку</button>
+</section>
 <div class="section-head"><h2>Твоя арена</h2><span class="eyebrow">ВЫБЕРИ НАПРАВЛЕНИЕ</span></div>
 <div class="quick-grid">
 <a class="quick-card" href="Бойцы арены.dc.html"><span class="arrow"><svg class="icon diagonal" aria-hidden="true"><use href="#i-arrow"/></svg></span><h3>Бойцы арены</h3><p>Познакомься с участниками</p></a>
@@ -468,8 +578,77 @@ function showTournament(t,error){clearInterval(ticker);ticker=null;target=null;[
  const link=t.status==='live'?safeURL(t.bracket_url,DISCORD):safeURL(t.registration_url,DISCORD);$('tournament-action').href=link;$('tournament-action').textContent=link===DISCORD?'Подробности в Discord':t.status==='live'?'Смотреть сетку':'Участвовать';
  if(t.status==='live'){$('countdown-label').textContent='Турнир идёт';$('countdown').setAttribute('aria-label','Турнир идёт');$('tournament-footnote').textContent='Следи за боями и поддерживай участников.';}else if(Number.isFinite(stamp)){target=stamp;$('countdown-label').textContent='До старта';$('tournament-footnote').textContent='Время начала указано по Москве.';tick();if(target>Date.now())ticker=setInterval(tick,1000);}
 }
-function showNews(rows,error){const root=$('home-news');root.replaceChildren();if(error||!rows.length){root.append(element('p',error?'Новости временно недоступны. Попробуй обновить ленту.':'Скоро здесь появятся анонсы турниров и новости сообщества. Пока присоединяйся к обсуждениям в Discord.','feed-state'));return;}
- for(const n of rows.slice(0,3)){const article=element('article',undefined,'news-preview');let date='';const stamp=Date.parse(n.published_at);if(Number.isFinite(stamp))date=new Intl.DateTimeFormat('ru-RU',{day:'numeric',month:'long',timeZone:'Europe/Moscow'}).format(new Date(stamp));article.append(element('div',[n.category||'Новости',date].filter(Boolean).join(' · '),'news-meta'),element('h3',n.title),element('p',n.excerpt||''));const link=element('a','Читать новости →');link.href=NEWS_PAGE;article.append(link);root.append(article);}
+const feedTrack = $('feed-track');
+const feedPrev = $('feed-prev');
+const feedNext = $('feed-next');
+const feedCards = () => Array.from(feedTrack.querySelectorAll('.feed-card'));
+
+function activeFeedCard(cards) {
+  const edge = feedTrack.getBoundingClientRect().left;
+  return cards.reduce((closest, card, index) =>
+    Math.abs(card.getBoundingClientRect().left - edge) <
+    Math.abs(cards[closest].getBoundingClientRect().left - edge) ? index : closest, 0);
+}
+
+function updateFeedControls() {
+  const cards = feedCards();
+  const index = activeFeedCard(cards);
+  const label = 'Карточка ' + (index + 1) + ' из ' + cards.length;
+  if ($('feed-position').textContent !== label) $('feed-position').textContent = label;
+  feedPrev.setAttribute('aria-disabled', String(index === 0));
+  feedNext.setAttribute('aria-disabled', String(index === cards.length - 1));
+}
+
+function moveFeed(step) {
+  const cards = feedCards();
+  const card = cards[activeFeedCard(cards) + step];
+  if (!card) return;
+  const left = feedTrack.scrollLeft + card.getBoundingClientRect().left - feedTrack.getBoundingClientRect().left;
+  feedTrack.scrollTo({ left, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+}
+
+feedPrev.addEventListener('click', () => moveFeed(-1));
+feedNext.addEventListener('click', () => moveFeed(1));
+feedTrack.addEventListener('scroll', updateFeedControls, { passive: true });
+feedTrack.addEventListener('keydown', event => {
+  if (event.target !== feedTrack || !['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+  event.preventDefault();
+  moveFeed(event.key === 'ArrowLeft' ? -1 : 1);
+});
+window.addEventListener('resize', updateFeedControls);
+updateFeedControls();
+
+function makeNewsCard(category, date, title, description, url, linkLabel) {
+  const article = element('article', undefined, 'feed-card feed-news-card');
+  const copy = element('div', undefined, 'feed-card-copy');
+  const meta = element('div', undefined, 'feed-meta');
+  meta.append(element('span', category));
+  if (date) meta.append(element('time', date));
+  copy.append(meta, element('h3', title));
+  if (description) copy.append(element('p', description));
+  if (url) {
+    const link = element('a', linkLabel, 'feed-card-link');
+    link.href = url;
+    copy.append(link);
+  }
+  article.append(copy);
+  return article;
+}
+
+function showNews(rows, error) {
+  const root = $('home-news');
+  const cards = error
+    ? [makeNewsCard('Новости арены', '', 'Лента временно недоступна', 'Попробуй загрузить новости ещё раз.')]
+    : rows.slice(0, 3).map(news => {
+        const stamp = Date.parse(news.published_at);
+        const date = Number.isFinite(stamp)
+          ? new Intl.DateTimeFormat('ru-RU', {day:'numeric', month:'long', timeZone:'Europe/Moscow'}).format(new Date(stamp))
+          : '';
+        return makeNewsCard(news.category || 'Новости арены', date, news.title, news.excerpt, NEWS_PAGE, 'Читать новости →');
+      });
+  if (!cards.length) cards.push(makeNewsCard('Новости арены', '', 'Новых публикаций пока нет', 'Здесь появятся анонсы турниров и новости сообщества.', DISCORD, 'В Discord →'));
+  root.replaceChildren(...cards);
+  updateFeedControls();
 }
 async function read(table,params){const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),10000);try{const res=await fetch(API+table+'?'+new URLSearchParams(params),{headers:{apikey:PUBLIC_KEY},signal:controller.signal});if(!res.ok)throw Error('HTTP '+res.status);const data=await res.json();if(!Array.isArray(data))throw Error('Invalid response');return data;}finally{clearTimeout(timeout);}}
 async function load(){if(busy)return;busy=true;$('feed-retry').disabled=true;const now=new Date().toISOString();try{const [tr,nr]=await Promise.allSettled([read('tournaments',{select:'id,title,description,game,status,starts_at,ends_at,registration_url,bracket_url',is_published:'eq.true',or:'(status.eq.live,and(status.eq.upcoming,starts_at.gt.'+now+'))',order:'starts_at.asc',limit:'20'}),read('news_posts',{select:'id,title,category,excerpt,published_at',is_published:'eq.true',order:'published_at.desc.nullslast',limit:'3'})]);const tournaments=tr.status==='fulfilled'?tr.value:[],news=nr.status==='fulfilled'?nr.value:[];const t=tournaments.find(x=>x.status==='live'&&(!x.ends_at||Date.parse(x.ends_at)>Date.now()))||tournaments.find(x=>x.status==='upcoming'&&Date.parse(x.starts_at)>Date.now());showTournament(t,tr.status==='rejected');showNews(news,nr.status==='rejected');items=[...(t?[{id:'tournament-'+t.id+'-'+t.starts_at+'-'+t.status,title:t.title,text:t.status==='live'?'Турнир уже идёт':'Опубликован анонс турнира',href:'#next-tournament'}]:[]),...news.map(n=>({id:'news-'+n.id+'-'+n.published_at,title:n.title,text:n.excerpt||'Новая публикация арены',href:NEWS_PAGE})),release];renderNotifications();$('feed-retry').hidden=tr.status==='fulfilled'&&nr.status==='fulfilled';}finally{busy=false;$('feed-retry').disabled=false;}}
