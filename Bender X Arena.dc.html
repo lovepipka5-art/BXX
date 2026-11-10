@@ -247,6 +247,38 @@ body{background:#070707}
 .hero .hero-tag{font-family:'Manrope',Arial,sans-serif;font-size:clamp(20px,2.2vw,28px);font-weight:600;line-height:1.4;letter-spacing:-.025em;color:#eee;text-wrap:balance}
 .hero .hero-footer{font-family:'Manrope',Arial,sans-serif;font-size:16px;font-weight:600;line-height:1.5;letter-spacing:.035em;color:#c4c4c4;text-align:center;text-wrap:balance}
 @media(max-width:600px){.hero .hero-tag{font-size:20px}.hero .hero-footer{font-size:14px;letter-spacing:.015em}}
+
+/* Match the supporting typography in the lower homepage to the hero. */
+.rail .panel,
+.bottom-banner {
+  font-family: 'Manrope', Arial, sans-serif;
+}
+
+.rail .panel h3,
+.bottom-banner h2 {
+  font-family: inherit;
+  font-size: clamp(23px, 2.4vw, 30px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -.025em;
+  text-transform: none;
+  overflow-wrap: anywhere;
+}
+
+.rail .panel .btn,
+.bottom-banner .btn {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: .02em;
+  text-align: center;
+  max-width: 100%;
+}
+
+.rail .panel .btn {
+  overflow-wrap: anywhere;
+}
 </style>
 </head>
 <body>
