@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
-<link rel="stylesheet" href="arena-theme.css?v=20261116-shell">
+<link rel="stylesheet" href="arena-theme.css?v=20261117-roster">
 </head>
 <body class="arena-shell-page">
 <x-dc>
@@ -141,7 +141,7 @@ footer{background:#101115!important;border-color:#303139!important}
         <span style="width:44px;height:1px;background:color-mix(in srgb,var(--accent,#ff2130) 60%, transparent)"></span>Ростер · сезон 4
       </div>
       <h1 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(42px,7vw,104px);line-height:.86;text-transform:uppercase;letter-spacing:-.022em;margin-top:12px;text-shadow:0 8px 40px #000;animation:heroRise .7s .12s both">Бойцы <span style="display:inline-block;color:var(--accent,#ff2130);animation:xBlink 6s 2.4s infinite">арены</span></h1>
-      <p style="max-width:520px;margin-top:16px;font-size:clamp(14px,1.4vw,17px);font-weight:300;line-height:1.6;color:#9a9aa4;animation:heroRise .7s .18s both">Шестнадцать бойцов, пять классов, один трон. Наведи на плашку — характеристики, клик — досье и спец-приём.</p>
+      <p style="max-width:520px;margin-top:16px;font-size:clamp(14px,1.4vw,17px);font-weight:300;line-height:1.6;color:#9a9aa4;animation:heroRise .7s .18s both">Демонстрационный каталог. Имена, классы и показатели приведены для примера интерфейса. Открой карточку, чтобы посмотреть досье.</p>
       <div style="display:flex;flex-wrap:wrap;align-items:stretch;gap:clamp(14px,2.4vw,30px);margin-top:clamp(24px,3vw,34px);animation:heroRise .7s .24s both">
         <sc-for list="{{ headStats }}" as="hs" hint-placeholder-count="4">
           <div style="{{ hs.style }}">
@@ -155,22 +155,14 @@ footer{background:#101115!important;border-color:#303139!important}
 
   <section id="roster" data-reveal style="{{ revealStyle }}">
     <div style="max-width:1480px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
-      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:clamp(20px,2.6vw,30px)">
-        <div style="display:flex;flex-wrap:wrap;gap:8px">
-          <sc-for list="{{ classes }}" as="c" hint-placeholder-count="6">
-            <button style="{{ c.style }}" onClick="{{ c.onClick }}">{{ c.label }}</button>
-          </sc-for>
-        </div>
-        <div style="display:flex;align-items:center;gap:14px">
-          <span style="font-size:14px;color:#83838d;letter-spacing:.04em">Найдено: <span style="font-family:'Russo One',sans-serif;color:#f4f4f5">{{ foundCount }}</span></span>
-          <div style="display:flex;gap:6px">
-            <sc-for list="{{ sorts }}" as="so" hint-placeholder-count="3">
-              <button style="{{ so.style }}" onClick="{{ so.onClick }}">{{ so.label }}</button>
-            </sc-for>
-          </div>
-        </div>
-      </div>
-      <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fill,minmax(224px,1fr));gap:18px">
+      <div class="arena-roster-toolbar">
+  <div class="arena-roster-search"><label for="fighter-search">Найти бойца</label><input id="fighter-search" type="search" placeholder="Имя, прозвище или регион" value="{{ query }}" onInput="{{ onSearch }}" autocomplete="off" aria-controls="fighter-results"></div>
+  <div class="arena-roster-sort"><span>Сортировка</span><div role="group" aria-label="Сортировка бойцов"><sc-for list="{{ sorts }}" as="so"><button class="arena-filter" type="button" aria-pressed="{{ so.active }}" onClick="{{ so.onClick }}">{{ so.label }}</button></sc-for></div></div>
+  <div class="arena-roster-filters" role="group" aria-label="Класс бойца"><sc-for list="{{ classes }}" as="c"><button class="arena-filter" type="button" aria-pressed="{{ c.active }}" onClick="{{ c.onClick }}">{{ c.label }}</button></sc-for></div>
+  <p class="arena-result-count" role="status" aria-live="polite">Найдено бойцов: {{ foundCount }}</p>
+</div>
+<sc-if value="{{ noResults }}"><div class="arena-empty"><h2>Боец не найден</h2><p>Попробуй другое имя или выбери все классы.</p><button class="arena-reset" onClick="{{ resetFilters }}" type="button">Сбросить поиск и фильтры</button></div></sc-if>
+<div id="fighter-results" class="arena-roster-grid" data-stagger style="display:grid;grid-template-columns:repeat(auto-fill,minmax(224px,1fr));gap:18px">
         <sc-for list="{{ visibleFighters }}" as="f" hint-placeholder-count="8">
           <div data-reveal>
             <dc-import name="Fighter" fighter="{{ f }}" hint-size="100%,440px"></dc-import>
@@ -225,7 +217,7 @@ class Component extends DCLogic {
     ];
     this.fxRef=el=>{this.fx=el}; this.glowRef=el=>{this.glow=el}; this.rootRef=el=>{this.root=el}; this.ghostRef=el=>{this.ghost=el}; this.barRef=el=>{this.bar=el};
   }
-  state={ filter:'Все', sort:'Рейтинг', scrolled:false };
+  state={ filter:'Все', sort:'Рейтинг', query:'', scrolled:false };
 
   componentDidMount(){
     if(this.root){ if(this.props.accent) this.root.style.setProperty('--accent',this.props.accent); }
@@ -235,12 +227,12 @@ class Component extends DCLogic {
     setTimeout(()=>this.setupReveals(),40);
   }
   componentWillUnmount(){ cancelAnimationFrame(this._raf); window.removeEventListener('mousemove',this._move); window.removeEventListener('scroll',this._scroll); if(this._fxResize) window.removeEventListener('resize',this._fxResize); if(this._io) this._io.disconnect(); }
-  componentDidUpdate(){ const key=this.state.filter+'|'+this.state.sort; if(this._lastKey!==undefined&&this._lastKey!==key){ this._lastKey=key; this.revealScan(); } }
+  componentDidUpdate(){ const key=this.state.filter+'|'+this.state.sort+'|'+this.state.query; if(this._lastKey!==undefined&&this._lastKey!==key){ this._lastKey=key; this.revealScan(); } }
   setupReveals(){
     if(!this.root) return;
     if(!('IntersectionObserver' in window)){ this.root.querySelectorAll('[data-reveal]').forEach(el=>el.classList.add('r-in')); return; }
     this._io=new IntersectionObserver(ents=>{ ents.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('r-in'); e.target.dataset.revealed='1'; this._io.unobserve(e.target); } }); },{threshold:0.08,rootMargin:'0px 0px -6% 0px'});
-    this._lastKey=this.state.filter+'|'+this.state.sort;
+    this._lastKey=this.state.filter+'|'+this.state.sort+'|'+this.state.query;
     this.revealScan();
   }
   revealScan(){
@@ -264,10 +256,11 @@ class Component extends DCLogic {
     const chip=(active)=>({fontFamily:"'Oswald',sans-serif",fontWeight:600,fontSize:'14px',letterSpacing:'.12em',textTransform:'uppercase',padding:'9px 16px',cursor:'pointer',border:'1px solid '+(active?'transparent':'#ffffff1f'),background:active?A:'#0e0e12',color:active?'#0b0b0e':'#c9c9d0',clipPath:'polygon(0 0,100% 0,100% 100%,7px 100%,0 calc(100% - 7px))',transition:'all .2s'});
     const small=(active)=>({fontFamily:"'Oswald',sans-serif",fontWeight:600,fontSize:'14px',letterSpacing:'.12em',textTransform:'uppercase',padding:'7px 11px',cursor:'pointer',border:'1px solid '+(active?'color-mix(in srgb,var(--accent,#ff2130) 55%, transparent)':'#ffffff1a'),background:active?'color-mix(in srgb,var(--accent,#ff2130) 16%, #0e0e12)':'#0e0e12',color:active?A:'#83838d',transition:'all .2s'});
     const classList=['Все','Ассасин','Берсерк','Танк','Колдун','Стрелок'];
-    const classes=classList.map(c=>({label:c,onClick:()=>this.setState({filter:c}),style:chip(S.filter===c)}));
+    const classes=classList.map(c=>({label:c,active:S.filter===c,onClick:()=>this.setState({filter:c}),style:chip(S.filter===c)}));
     const sortList=['Рейтинг','Имя','Винрейт'];
-    const sorts=sortList.map(s=>({label:s,onClick:()=>this.setState({sort:s}),style:small(S.sort===s)}));
-    let list=this.fighters.filter(f=>S.filter==='Все'||f.cls===S.filter);
+    const sorts=sortList.map(s=>({label:s,active:S.sort===s,onClick:()=>this.setState({sort:s}),style:small(S.sort===s)}));
+    const query=S.query.trim().toLocaleLowerCase('ru');
+    let list=this.fighters.filter(f=>(S.filter==='Все'||f.cls===S.filter)&&[f.name,f.tag,f.region].some(value=>String(value||'').toLocaleLowerCase('ru').includes(query)));
     if(S.sort==='Рейтинг') list=[...list].sort((a,b)=>this.ov(b)-this.ov(a));
     else if(S.sort==='Имя') list=[...list].sort((a,b)=>a.name.localeCompare(b.name,'ru'));
     else list=[...list].sort((a,b)=>b.wr-a.wr);
@@ -281,7 +274,9 @@ class Component extends DCLogic {
       revealStyle:{position:'relative',zIndex:3,padding:'clamp(38px,4.4vw,64px) 0 clamp(48px,5.6vw,86px)'},
       fxRef:this.fxRef, glowRef:this.glowRef, rootRef:this.rootRef, ghostRef:this.ghostRef, barRef:this.barRef,
       shineStyle:shine, classes, sorts, headStats,
-      visibleFighters:list, foundCount:list.length
+      visibleFighters:list, foundCount:list.length, noResults:list.length===0,
+      query:S.query, onSearch:event=>this.setState({query:event.target.value}),
+      resetFilters:()=>this.setState({query:'',filter:'Все'})
     };
   }
 }
