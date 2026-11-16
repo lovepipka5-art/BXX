@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
-<link rel="stylesheet" href="arena-theme.css?v=20261116-shell">
+<link rel="stylesheet" href="arena-theme.css?v=20261117-streams">
 </head>
 <body class="arena-shell-page">
 <x-dc>
@@ -132,19 +132,19 @@ footer{background:#101115!important;border-color:#303139!important}
 @media(prefers-reduced-motion:reduce){header *{animation:none!important}}
 </style>
 </helmet>
-<div class="arena-shell-content" style="{{ rootStyle }}" ref="{{ rootRef }}">
-  <canvas ref="{{ fxRef }}" style="position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none"></canvas>
+<div class="arena-shell-content" style="{{ rootStyle }}">
+  
   <div style="position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(75% 45% at 50% 0%, color-mix(in srgb,var(--accent,#ff2130) 10%, transparent), transparent 70%)"></div>
   <div style="position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(120% 120% at 50% 40%, transparent 58%, #000 130%)"></div>
-  <div ref="{{ glowRef }}" style="position:fixed;top:0;left:0;width:540px;height:540px;border-radius:50%;z-index:2;pointer-events:none;background:radial-gradient(closest-side, color-mix(in srgb,var(--accent,#ff2130) 13%, transparent), transparent);mix-blend-mode:screen"></div>
-  <div ref="{{ barRef }}" style="position:fixed;top:0;left:0;height:3px;width:0%;z-index:130;background:linear-gradient(90deg,var(--accent,#ff2130),#ff7a3d);box-shadow:0 0 12px var(--accent,#ff2130)"></div>
+  <div style="position:fixed;top:0;left:0;width:540px;height:540px;border-radius:50%;z-index:2;pointer-events:none;background:radial-gradient(closest-side, color-mix(in srgb,var(--accent,#ff2130) 13%, transparent), transparent);mix-blend-mode:screen"></div>
+  <div style="position:fixed;top:0;left:0;height:3px;width:0%;z-index:130;background:linear-gradient(90deg,var(--accent,#ff2130),#ff7a3d);box-shadow:0 0 12px var(--accent,#ff2130)"></div>
 
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10H3zM9 20v-7h6v7"/></symbol><symbol id="i-fight" viewBox="0 0 24 24"><path d="m4 3 6 2 10 13-2 2L5 10zM20 3l-6 2-3 4M8 14l-4 4 2 2 4-3M3 15l6 6M15 21l6-6"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3z"/></symbol><symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 3h8v6a4 4 0 0 1-8 0zM8 5H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4m-4 1v7m-5 1h10"/></symbol><symbol id="i-grid" viewBox="0 0 24 24"><path d="M3 3h5v5H3zM3 16h5v5H3zM16 9h5v6h-5zM8 5h4v13H8m4-6h4"/></symbol><symbol id="i-news" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4M8 18h8"/></symbol><symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol><symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></symbol><symbol id="i-discord" viewBox="0 0 24 24"><path d="M8 4 4 6 2 17l5 3 2-3m7-13 4 2 2 11-5 3-2-3M7 6a14 14 0 0 1 10 0M6 16a14 14 0 0 0 12 0"/><circle cx="8" cy="12" r="1"/><circle cx="16" cy="12" r="1"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></symbol></svg><aside class="arena-sidebar" aria-label="Главная навигация"><a class="arena-brand" href="Bender X Arena.dc.html"><img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="" width="48" height="48"><span>BENDER X ARENA<small>ТЕРРИТОРИЯ БОЯ</small></span></a><p class="arena-nav-caption">НАВИГАЦИЯ</p><div class="arena-links" role="navigation"><a href="Bender X Arena.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-home"/></svg>Главная</a><a href="Бойцы арены.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-fight"/></svg>Бойцы арены</a><a href="Расписание стримов.dc.html" aria-current="page"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-play"/></svg>Стримы</a><a href="Турнирная сетка.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-grid"/></svg>Турнирная сетка</a><a href="Топ игроков.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-trophy"/></svg>Топ игроков</a><a href="Новости арены.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-news"/></svg>Новости</a><a href="О арене.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-info"/></svg>Об арене</a></div><a class="arena-discord" href="https://discord.com/invite/qqctMjCTeg" target="_blank" rel="noopener noreferrer">Сообщество Discord ↗</a></aside>
 <div class="arena-page-topbar"><span class="arena-breadcrumb">Арена / <strong>Стримы</strong></span><details class="arena-mobile-menu"><summary><span aria-hidden="true">☰</span> BENDER X ARENA</summary><div class="arena-links"><a href="Bender X Arena.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-home"/></svg>Главная</a><a href="Бойцы арены.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-fight"/></svg>Бойцы арены</a><a href="Расписание стримов.dc.html" aria-current="page"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-play"/></svg>Стримы</a><a href="Турнирная сетка.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-grid"/></svg>Турнирная сетка</a><a href="Топ игроков.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-trophy"/></svg>Топ игроков</a><a href="Новости арены.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-news"/></svg>Новости</a><a href="О арене.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-info"/></svg>Об арене</a></div></details><a class="arena-account-link" href="Bender X Arena.dc.html#register">Мой аккаунт ↗</a></div>
 <div class="arena-bottom-nav" role="navigation" aria-label="Быстрые переходы"><a href="Bender X Arena.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-home"/></svg><span>Главная</span></a><a href="Турнирная сетка.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-grid"/></svg><span>Турниры</span></a><a href="Расписание стримов.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-play"/></svg><span>Стримы</span></a><a href="Bender X Arena.dc.html#register"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-user"/></svg><span>Аккаунт</span></a></div>
 
   <header style="position:relative;z-index:3;overflow:hidden;padding:clamp(112px,14vh,150px) clamp(18px,4vw,44px) clamp(30px,4vw,46px);border-bottom:1px solid #ffffff10">
-    <div ref="{{ ghostRef }}" style="position:absolute;inset:0;pointer-events:none;z-index:0">
+    <div style="position:absolute;inset:0;pointer-events:none;z-index:0">
       <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="" style="position:absolute;right:2%;top:46%;width:min(46vw,520px);height:auto;transform:translateY(-50%);animation:bgLogoPulse 8s ease-in-out infinite;mix-blend-mode:screen">
       <div style="position:absolute;left:-1%;bottom:-14%;font-family:'Russo One',sans-serif;font-size:17vw;line-height:.78;color:transparent;-webkit-text-stroke:1px #ffffff0a;white-space:nowrap">ON AIR</div>
     </div>
@@ -156,112 +156,21 @@ footer{background:#101115!important;border-color:#303139!important}
       </div>
       <h1 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(42px,7vw,104px);line-height:.86;text-transform:uppercase;letter-spacing:-.022em;margin-top:12px;text-shadow:0 8px 40px #000;animation:heroRise .7s .12s both">Расписание <span style="display:inline-block;color:var(--accent,#ff2130);animation:xBlink 6s 2.4s infinite">стримов</span></h1>
       <p style="max-width:520px;margin-top:16px;font-size:clamp(14px,1.4vw,17px);font-weight:300;line-height:1.6;color:#9a9aa4;animation:heroRise .7s .18s both">Актуальное расписание трансляций BENDER X ARENA. Даты и ссылки появляются после публикации администратором.</p>
-      <div style="display:flex;flex-wrap:wrap;align-items:stretch;gap:clamp(14px,2.4vw,30px);margin-top:clamp(24px,3vw,34px);animation:heroRise .7s .24s both">
-        <sc-for list="{{ headStats }}" as="hs" hint-placeholder-count="4">
-          <div style="{{ hs.style }}">
-            <div style="font-family:'Russo One',sans-serif;font-size:clamp(19px,2.1vw,27px);line-height:1;color:{{ hs.color }}">{{ hs.v }}</div>
-            <div style="font-size:14px;letter-spacing:.17em;text-transform:uppercase;color:#83838d;margin-top:6px">{{ hs.k }}</div>
-          </div>
-        </sc-for>
-      </div>
     </div>
   </header>
-
-  <section data-reveal style="{{ revealStyle }}">
-    <div style="max-width:1480px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
-      <div style="display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:clamp(20px,3vw,40px);align-items:stretch">
-        <div style="position:relative;overflow:hidden;background:rgba(18,18,23,.12);backdrop-filter:blur(14px);border:1px solid color-mix(in srgb,var(--accent,#ff2130) 45%, transparent);clip-path:polygon(0 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%)">
-          <div style="position:relative;aspect-ratio:16/9;overflow:hidden;background:radial-gradient(120% 90% at 30% 0%, color-mix(in srgb,var(--accent,#ff2130) 34%, transparent), #0b0b0e 62%)">
-            <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,#0000 0 2px,#00000047 2px 3px);opacity:.55;pointer-events:none"></div>
-            <div style="position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:clamp(14px,2.4vw,32px);pointer-events:none">
-              <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(22px,3.4vw,46px);text-transform:uppercase;color:#f4f4f5">КРИМЗОН</span>
-              <span style="font-family:'Russo One',sans-serif;font-size:clamp(26px,3.8vw,54px);color:transparent;background:linear-gradient(180deg,#fff,var(--accent,#ff2130));-webkit-background-clip:text;background-clip:text">VS</span>
-              <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(22px,3.4vw,46px);text-transform:uppercase;color:#f4f4f5">ВАЙПЕР</span>
-            </div>
-            <div style="position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:9px">
-              <span style="display:inline-flex;align-items:center;gap:6px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:var(--accent,#ff2130);padding:5px 10px;animation:livePulse 2.4s ease-in-out infinite"><span style="width:6px;height:6px;border-radius:50%;background:#fff;animation:blink 1s infinite"></span>LIVE</span>
-              <span style="font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#d0d0d6;background:#0b0b0ecc;border:1px solid #ffffff1f;padding:5px 10px">Гранд-финал · группа A</span>
-            </div>
-            <div style="position:absolute;bottom:14px;left:14px;display:flex;align-items:flex-end;gap:3px;height:22px">
-              <sc-for list="{{ eqBars }}" as="eb" hint-placeholder-count="7">
-                <span style="{{ eb.style }}"></span>
-              </sc-for>
-            </div>
-            <div style="position:absolute;bottom:14px;right:14px;font-family:'Russo One',sans-serif;font-size:14px;letter-spacing:.1em;color:#c1c1c9">{{ liveViewers }} смотрят</div>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;padding:18px 20px">
-            <div style="min-width:0">
-              <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(19px,2.2vw,26px);text-transform:uppercase;line-height:1">Идёт прямо сейчас</div>
-              <div style="font-size:13px;color:#83838d;margin-top:5px">каст: Мираж &amp; DENVER · Twitch</div>
-            </div>
-            <a href="#schedule" style="position:relative;overflow:hidden;font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:var(--accent,#ff2130);padding:14px 26px;clip-path:polygon(0 0,100% 0,100% 100%,11px 100%,0 calc(100% - 11px))" style-before="{{ shineStyle }}">▶ Смотреть эфир</a>
-          </div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:12px">
-          <div style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:#83838d">Кастеры недели</div>
-          <sc-for list="{{ casters }}" as="ct" hint-placeholder-count="3">
-            <div style="{{ ct.style }}" style-hover="{{ casterHover }}">
-              <div style="{{ ct.avatar }}">{{ ct.initial }}</div>
-              <div style="flex:1;min-width:0">
-                <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;text-transform:uppercase;line-height:1">{{ ct.name }}</div>
-                <div style="font-size:14px;color:#83838d;margin-top:4px">{{ ct.role }}</div>
-              </div>
-              <div style="text-align:right;flex-shrink:0">
-                <div style="font-family:'Russo One',sans-serif;font-size:14px;color:#f4f4f5">{{ ct.shows }}</div>
-                <div style="font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#6b6b73;margin-top:2px">эфиров</div>
-              </div>
-            </div>
-          </sc-for>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="schedule" data-reveal style="{{ revealStyle }}">
-    <div style="max-width:1480px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
-      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:clamp(20px,2.6vw,32px)">
-        <div>
-          <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,50px);line-height:.92;text-transform:uppercase">Вся неделя</h2>
-          <p style="font-size:13px;color:#83838d;margin-top:10px">Отмечено: <span style="font-family:'Russo One',sans-serif;color:var(--accent,#ff2130)">{{ remindCount }}</span> из {{ totalCount }}</p>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px">
-          <sc-for list="{{ platforms }}" as="pf" hint-placeholder-count="3">
-            <button style="{{ pf.style }}" onClick="{{ pf.onClick }}">{{ pf.label }}</button>
-          </sc-for>
-        </div>
-      </div>
-      <div style="position:relative;padding-left:clamp(84px,7.5vw,112px)">
-        <div style="position:absolute;left:clamp(84px,7.5vw,112px);top:10px;bottom:10px;width:1px;background:linear-gradient(180deg,transparent,#ffffff1f 7%,#ffffff1f 93%,transparent);transform:translateX(-1px)"></div>
-        <div data-stagger style="display:flex;flex-direction:column;gap:10px">
-          <sc-for list="{{ streams }}" as="s" hint-placeholder-count="7">
-            <div data-reveal style="position:relative">
-              <div style="{{ s.timeStyle }}">
-                <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.12em;color:#83838d;text-transform:uppercase">{{ s.day }}</div>
-                <div style="font-family:'Russo One',sans-serif;font-size:clamp(16px,1.7vw,21px);color:#f4f4f5;margin-top:2px">{{ s.time }}</div>
-              </div>
-              <div style="{{ s.dotStyle }}"></div>
-              <div style="{{ s.rowStyle }}" style-hover="{{ streamHover }}">
-                <div style="flex:1;min-width:0">
-                  <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">
-                    <span style="font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(15px,1.6vw,18px);text-transform:uppercase;letter-spacing:.02em">{{ s.title }}</span>
-                    <sc-if value="{{ s.live }}" hint-placeholder-val="{{ true }}"><span style="display:inline-flex;align-items:center;gap:5px;font-family:'Oswald',sans-serif;font-size:14px;font-weight:700;letter-spacing:.14em;color:#fff;background:var(--accent,#ff2130);padding:3px 8px"><span style="width:6px;height:6px;border-radius:50%;background:#fff;animation:blink 1s infinite"></span>LIVE</span></sc-if>
-                  </div>
-                  <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:6px;font-size:14px;color:#83838d">
-                    <span>каст: {{ s.casters }}</span>
-                    <span>{{ s.stage }}</span>
-                  </div>
-                </div>
-                <span style="{{ s.platStyle }}">{{ s.platform }}</span>
-                <button style="{{ s.bellStyle }}" onClick="{{ s.onRemind }}" title="Напомнить" aria-label="Напомнить о стриме">{{ s.bell }}</button>
-              </div>
-            </div>
-          </sc-for>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer style="position:relative;z-index:3;border-top:1px solid #ffffff12;background:#0a0a0d;padding:clamp(38px,4.6vw,60px) clamp(18px,4vw,44px) 28px">
+<section id="schedule" class="arena-stream-section" aria-labelledby="stream-list-title"><div>
+<div class="arena-news-heading"><div><span class="arena-news-kicker">ТРАНСЛЯЦИИ BX</span><h2 id="stream-list-title">Смотри бои вместе с ареной</h2></div><button class="arena-filter" type="button" onClick="{{ reload }}" disabled="{{ loading }}">Обновить</button></div>
+<div class="arena-news-controls"><label class="arena-news-search">Найти трансляцию<input type="search" placeholder="Название турнира или эфира" value="{{ query }}" onInput="{{ onSearch }}" aria-controls="stream-results"></label><div class="arena-roster-filters" role="group" aria-label="Платформа"><sc-for list="{{ platforms }}" as="platform"><button class="arena-filter" type="button" aria-pressed="{{ platform.active }}" onClick="{{ platform.onPick }}">{{ platform.label }}</button></sc-for></div></div>
+<p class="arena-news-status" role="status" aria-live="polite">{{ statusText }}</p><p class="arena-stream-timezone">Время указано по Москве · МСК</p>
+<sc-if value="{{ hasError }}"><div class="arena-empty"><h2>Расписание временно недоступно</h2><p>Попробуй загрузить трансляции ещё раз.</p><button class="arena-reset" onClick="{{ reload }}">Повторить загрузку</button></div></sc-if>
+<sc-if value="{{ empty }}"><div class="arena-empty"><h2>Готовимся к следующему эфиру</h2><p>После публикации анонса здесь появятся дата, время и ссылка на трансляцию.</p><a class="arena-reset" href="https://discord.com/invite/qqctMjCTeg" target="_blank" rel="noopener noreferrer">Анонсы в Discord ↗</a></div></sc-if>
+<sc-if value="{{ noMatches }}"><div class="arena-empty"><h2>Трансляции не найдены</h2><p>Измени запрос или выбери все платформы.</p><button class="arena-reset" onClick="{{ resetFilters }}">Сбросить фильтры</button></div></sc-if>
+<div id="stream-results" class="arena-stream-list" aria-busy="{{ loading }}"><sc-for list="{{ events }}" as="event">
+<article class="arena-stream-card"><div class="arena-stream-date"><span>{{ event.date }}</span><strong>{{ event.time }}</strong></div>
+<div class="arena-stream-info"><div class="arena-news-meta"><span>{{ event.platform }}</span><sc-if value="{{ event.live }}"><b class="arena-live-label">В ЭФИРЕ</b></sc-if></div><h2>{{ event.title }}</h2><p>{{ event.description }}</p></div>
+<div class="arena-stream-action"><sc-if value="{{ event.hasLink }}"><a href="{{ event.url }}" target="_blank" rel="noopener noreferrer" class="arena-reset">Открыть трансляцию ↗</a></sc-if><sc-if value="{{ event.noLink }}"><span>Ссылка скоро появится</span></sc-if></div>
+</article></sc-for></div>
+</div></section><footer style="position:relative;z-index:3;border-top:1px solid #ffffff12;background:#0a0a0d;padding:clamp(38px,4.6vw,60px) clamp(18px,4vw,44px) 28px">
     <div style="max-width:1480px;margin:0 auto;display:flex;flex-wrap:wrap;gap:26px;align-items:center;justify-content:space-between">
       <a href="Bender%20X%20Arena.dc.html#hero" style="display:inline-flex;align-items:center;gap:10px">
         <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="Bender X Arena" style="height:44px;width:auto;display:block;filter:drop-shadow(0 0 14px color-mix(in srgb,var(--accent,#ff2130) 45%, transparent))">
@@ -279,108 +188,51 @@ footer{background:#101115!important;border-color:#303139!important}
       <span style="max-width:560px;text-align:right">Bender X Arena — оригинальный вымышленный проект. Не связан с Mortal Kombat / NetherRealm Studios и не использует их персонажей.</span>
     </div>
   </footer>
-</div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#ff2130&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#ff2130&quot;,&quot;#e10600&quot;,&quot;#ff3b1f&quot;,&quot;#c60011&quot;],&quot;section&quot;:&quot;Стиль&quot;},&quot;particles&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Эффекты&quot;}}">
+</div></x-dc><script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  constructor(props){
-    super(props);
-    this.data=[
-      {day:'СЕГОДНЯ',time:'21:00',title:'Гранд-финал · группа A',casters:'Мираж & DENVER',platform:'Twitch',live:true,stage:'Bo5 · главная сцена'},
-      {day:'СЕГОДНЯ',time:'23:30',title:'Разбор матчей дня',casters:'SALEM',platform:'YouTube',live:false,stage:'аналитика'},
-      {day:'ЗАВТРА',time:'19:30',title:'1/2 финала · верхняя сетка',casters:'SALEM',platform:'YouTube',live:false,stage:'Bo5 · главная сцена'},
-      {day:'СБ',time:'18:00',title:'Шоу-матч звёзд',casters:'Мираж',platform:'YouTube',live:false,stage:'Bo3 · выставочный'},
-      {day:'ВС',time:'20:00',title:'Нижняя сетка · Revenge',casters:'DENVER & SALEM',platform:'Twitch',live:false,stage:'Bo5 · на вылет'},
-      {day:'ПН',time:'21:30',title:'Великий финал',casters:'вся студия',platform:'Twitch',live:false,stage:'Bo7 · титул'},
-      {day:'ВТ',time:'20:00',title:'Церемония награждения',casters:'Мираж & SALEM',platform:'Twitch',live:false,stage:'закрытие сезона'}
-    ];
-    this.fxRef=el=>{this.fx=el}; this.glowRef=el=>{this.glow=el}; this.rootRef=el=>{this.root=el}; this.ghostRef=el=>{this.ghost=el}; this.barRef=el=>{this.bar=el};
+  state={rows:[],loading:true,error:false,query:'',platform:null};
+  componentDidMount(){this.loadStreams();}
+  componentWillUnmount(){this.disposed=true;this.controller?.abort();}
+  async loadStreams(){
+    if(this.busy)return;
+    this.busy=true;this.setState({loading:true,error:false});
+    this.controller=new AbortController();
+    const timer=setTimeout(()=>this.controller.abort(),12000);
+    try{
+      const params=new URLSearchParams({select:'id,title,description,platform,stream_url,starts_at,status',is_published:'eq.true',order:'starts_at.asc.nullslast',limit:'100'});
+      const response=await fetch('https://fewfpimbfgxlzghfqkmc.supabase.co/rest/v1/stream_events?'+params,{headers:{apikey:'sb_publishable_5Pgf3aTIsP_HwmrO5RakEA_H4DF7Mny'},signal:this.controller.signal});
+      if(!response.ok)throw new Error('Streams request failed');
+      const rows=await response.json();
+      if(!Array.isArray(rows))throw new Error('Invalid streams response');
+      if(!this.disposed)this.setState({rows,loading:false,error:false});
+    }catch(error){if(!this.disposed)this.setState({loading:false,error:true});}
+    finally{clearTimeout(timer);this.busy=false;}
   }
-  state={ reminded:{0:true}, plat:'Все', scrolled:false, viewers:48213 };
-
-  componentDidMount(){
-    if(this.root && this.props.accent) this.root.style.setProperty('--accent',this.props.accent);
-    this.initFX();
-    this._vT=setInterval(()=>this.setState(s=>({viewers:Math.max(41000,s.viewers+Math.round((Math.random()-.42)*900))})),2600);
-    this._move=e=>this.onMove(e); window.addEventListener('mousemove',this._move,{passive:true});
-    this._scroll=()=>this.onScroll(); window.addEventListener('scroll',this._scroll,{passive:true});
-    setTimeout(()=>this.setupReveals(),40);
-  }
-  componentWillUnmount(){ clearInterval(this._vT); cancelAnimationFrame(this._raf); window.removeEventListener('mousemove',this._move); window.removeEventListener('scroll',this._scroll); if(this._fxResize) window.removeEventListener('resize',this._fxResize); if(this._io) this._io.disconnect(); }
-  componentDidUpdate(){ if(this._lastPlat!==undefined&&this._lastPlat!==this.state.plat){ this._lastPlat=this.state.plat; this.revealScan(); } }
-  setupReveals(){
-    if(!this.root) return;
-    if(!('IntersectionObserver' in window)){ this.root.querySelectorAll('[data-reveal]').forEach(el=>el.classList.add('r-in')); return; }
-    this._io=new IntersectionObserver(ents=>{ ents.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('r-in'); e.target.dataset.revealed='1'; this._io.unobserve(e.target); } }); },{threshold:0.08,rootMargin:'0px 0px -6% 0px'});
-    this._lastPlat=this.state.plat;
-    this.revealScan();
-  }
-  revealScan(){
-    if(!this.root||!this._io) return;
-    this.root.querySelectorAll('[data-reveal]').forEach(el=>{ if(el.dataset.revealed) return; const r=el.getBoundingClientRect(); if(r.top<window.innerHeight*0.92&&r.bottom>0){ el.classList.add('r-in'); el.dataset.revealed='1'; this._io.unobserve(el); } else { this._io.observe(el); } });
-  }
-  hexRgb(h){ h=(h||'#ff2130').replace('#',''); if(h.length===3) h=h.split('').map(x=>x+x).join(''); const n=parseInt(h,16); return (n>>16&255)+','+(n>>8&255)+','+(n&255); }
-  mkP(W,H,bottom){ const max=220+Math.random()*280; return {x:Math.random()*W,y:bottom?H+Math.random()*40:Math.random()*H,vy:.25+Math.random()*.95,vx:(Math.random()-.5)*.3,r:.6+Math.random()*2.3,alpha:.2+Math.random()*.5,life:max,max}; }
-  initFX(){ const cv=this.fx; if(!cv) return; const ctx=cv.getContext('2d'); let W=1,H=1; const resize=()=>{ const dpr=Math.min(2,window.devicePixelRatio||1); W=cv.clientWidth||window.innerWidth; H=cv.clientHeight||window.innerHeight; cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }; resize(); this._fxResize=resize; window.addEventListener('resize',resize);
-    const rgb=this.hexRgb(this.props.accent||'#ff2130'); const N=this.props.particles===false?0:74;
-    const ps=Array.from({length:N},()=>this.mkP(W,H));
-    const draw=()=>{ ctx.clearRect(0,0,W,H); for(const p of ps){ p.y-=p.vy; p.x+=p.vx; p.life--; if(p.y<-12||p.life<0) Object.assign(p,this.mkP(W,H,true)); const a=p.alpha*Math.min(1,p.life/60); ctx.beginPath(); ctx.fillStyle='rgba('+rgb+','+a+')'; ctx.shadowColor='rgba('+rgb+',.9)'; ctx.shadowBlur=p.r*4; ctx.arc(p.x,p.y,p.r,0,6.283); ctx.fill(); } ctx.shadowBlur=0; this._raf=requestAnimationFrame(draw); }; draw();
-  }
-  onMove(e){ if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; if(this.glow) this.glow.style.transform='translate('+(e.clientX-270)+'px,'+(e.clientY-270)+'px)'; const cx=e.clientX/window.innerWidth-.5, cy=e.clientY/window.innerHeight-.5; if(this.ghost) this.ghost.style.transform='translate('+(cx*-26)+'px,'+(cy*-12)+'px)'; }
-  onScroll(){ if(this._st) return; this._st=requestAnimationFrame(()=>{ this._st=null; const d=document.documentElement; const max=d.scrollHeight-window.innerHeight; if(this.bar) this.bar.style.width=(max>0?(window.scrollY/max*100):0)+'%'; const s=window.scrollY>28; if(s!==this.state.scrolled) this.setState({scrolled:s}); }); }
-
   renderVals(){
-    const S=this.state, A='var(--accent,#ff2130)';
-    const shine={content:"''",position:'absolute',top:0,left:'-60%',width:'46%',height:'100%',background:'linear-gradient(90deg,transparent,#ffffff5c,transparent)',transform:'skewX(-22deg)',animation:'shine 3.6s ease-in-out infinite',pointerEvents:'none'};
-    const platC={Twitch:'#9146ff',YouTube:'#ff2b2b'};
-    const chip=(active)=>({fontFamily:"'Oswald',sans-serif",fontWeight:600,fontSize:'14px',letterSpacing:'.12em',textTransform:'uppercase',padding:'9px 16px',cursor:'pointer',border:'1px solid '+(active?'transparent':'#ffffff1f'),background:active?A:'#0e0e12',color:active?'#0b0b0e':'#c9c9d0',clipPath:'polygon(0 0,100% 0,100% 100%,7px 100%,0 calc(100% - 7px))',transition:'all .2s'});
-    const platforms=['Все','Twitch','YouTube'].map(p=>({label:p,onClick:()=>this.setState({plat:p}),style:chip(S.plat===p)}));
-    const filtered=this.data.map((d,i)=>({d,i})).filter(x=>S.plat==='Все'||x.d.platform===S.plat);
-    const streams=filtered.map(({d,i})=>({
-      day:d.day,time:d.time,title:d.title,casters:d.casters,platform:d.platform,live:d.live,stage:d.stage,
-      bell:S.reminded[i]?'★':'☆', onRemind:()=>this.setState(s=>({reminded:{...s.reminded,[i]:!s.reminded[i]}})),
-      timeStyle:{position:'absolute',left:'calc(-1 * clamp(84px,7.5vw,112px))',top:0,bottom:0,width:'clamp(70px,6.6vw,96px)',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'flex-end',textAlign:'right'},
-      dotStyle:{position:'absolute',left:'-5px',top:'50%',width:'10px',height:'10px',marginTop:'-5px',background:d.live?A:'#2a2a30',border:'2px solid #08080a',borderRadius:'50%',boxShadow:d.live?'0 0 12px '+A:'none',zIndex:2},
-      rowStyle:{display:'flex',alignItems:'center',gap:'14px',padding:'15px 18px',background:d.live?'color-mix(in srgb,var(--accent,#ff2130) 10%, rgba(22,22,28,.12))':'rgba(22,22,28,.12)',border:'1px solid '+(d.live?'color-mix(in srgb,var(--accent,#ff2130) 45%, transparent)':'#ffffff12'),clipPath:'polygon(0 0,100% 0,100% 100%,10px 100%,0 calc(100% - 10px))',transition:'transform .25s,border-color .25s'},
-      platStyle:{fontFamily:"'Oswald',sans-serif",fontSize:'13px',fontWeight:600,letterSpacing:'.08em',textTransform:'uppercase',color:'#fff',background:platC[d.platform],padding:'5px 9px',whiteSpace:'nowrap',flexShrink:0},
-      bellStyle:{width:'34px',height:'34px',flexShrink:0,fontSize:'15px',color:S.reminded[i]?A:'#83838d',background:'transparent',border:'1px solid '+(S.reminded[i]?'color-mix(in srgb,var(--accent,#ff2130) 50%, transparent)':'#ffffff1f'),cursor:'pointer',transition:'all .2s'}
-    }));
-    const casterSrc=[['Мираж','главный кастер · play-by-play',128,'#ff2130'],['DENVER','аналитик · разбор комбо',96,'#cdd6df'],['SALEM','ведущий студии',74,'#ff5a3c']];
-    const casters=casterSrc.map(c=>({name:c[0],role:c[1],shows:c[2],initial:c[0][0],
-      style:{display:'flex',alignItems:'center',gap:'13px',padding:'14px 16px',background:'rgba(22,22,28,.12)',backdropFilter:'blur(14px)',border:'1px solid #ffffff12',clipPath:'polygon(0 0,100% 0,100% 100%,10px 100%,0 calc(100% - 10px))',transition:'transform .25s,border-color .25s'},
-      avatar:{width:'42px',height:'42px',flexShrink:0,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:"'Russo One',sans-serif",fontSize:'17px',color:'#0b0b0e',background:c[3],clipPath:'polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)'}}));
-    const eqBars=[0,1,2,3,4,5,6].map(i=>({style:{width:'4px',height:'100%',background:A,transformOrigin:'bottom',animation:'eqBar '+(0.6+i*0.13)+'s ease-in-out infinite alternate',opacity:.85}}));
-    const statBox=(bd)=>({display:'flex',flexDirection:'column',paddingLeft:bd?'clamp(14px,2.4vw,30px)':0,borderLeft:bd?'1px solid #ffffff14':'none'});
-    const remindCount=Object.keys(S.reminded).filter(k=>S.reminded[k]).length;
-    const headStats=[{k:'эфиров на неделе',v:this.data.length,color:A},{k:'сейчас в эфире',v:'1',color:'#f4f4f5'},{k:'платформы',v:'2',color:'#f4f4f5'},{k:'пик зрителей',v:'48K',color:'#f4f4f5'}].map((d,i)=>({k:d.k,v:d.v,color:d.color,style:statBox(i>0)}));
+    const S=this.state,platformOf=row=>String(row.platform||'Другая платформа').trim()||'Другая платформа';
+    const labels=[...new Set(S.rows.map(platformOf))];
+    const active=labels.includes(S.platform)?S.platform:null;
+    const query=S.query.trim().toLocaleLowerCase('ru');
+    const rows=S.rows.filter(row=>(active===null||platformOf(row)===active)&&
+      [row.title,row.description].some(value=>String(value||'').toLocaleLowerCase('ru').includes(query)));
+    const events=rows.map(row=>{
+      const stamp=Date.parse(row.starts_at),valid=Number.isFinite(stamp);
+      const url=String(row.stream_url||''),hasLink=/^https?:\/\//i.test(url);
+      return {title:String(row.title||'Трансляция'),description:String(row.description||''),platform:platformOf(row),
+        live:row.status==='live',url,hasLink,noLink:!hasLink,
+        date:valid?new Intl.DateTimeFormat('ru-RU',{day:'numeric',month:'long',year:'numeric',timeZone:'Europe/Moscow'}).format(new Date(stamp)):'Дата уточняется',
+        time:valid?new Intl.DateTimeFormat('ru-RU',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Moscow'}).format(new Date(stamp)):'—'};
+    });
     return {
-      rootStyle:{'--accent':'#ff2130',position:'relative',minHeight:'100vh',background:'#08080a',overflowX:'hidden'},
-      navStyle:{position:'fixed',top:'3px',left:0,right:0,zIndex:120,display:'flex',alignItems:'center',justifyContent:'space-between',gap:'clamp(12px,1.8vw,26px)',height:'60px',padding:'0 clamp(18px,4vw,44px)',background:S.scrolled?'rgba(8,8,10,.9)':'rgba(8,8,10,.1)',borderBottom:'1px solid '+(S.scrolled?'#ffffff14':'#ffffff00'),backdropFilter:'blur(12px)',transition:'background .3s,border-color .3s'},
-      revealStyle:{position:'relative',zIndex:3,padding:'clamp(38px,4.4vw,64px) 0'},
-      fxRef:this.fxRef, glowRef:this.glowRef, rootRef:this.rootRef, ghostRef:this.ghostRef, barRef:this.barRef,
-      shineStyle:shine, headStats, platforms, streams, casters, eqBars,
-      liveViewers:S.viewers.toLocaleString('ru-RU'), remindCount, totalCount:this.data.length,
-      streamHover:{transform:'translateX(6px)',borderColor:'color-mix(in srgb,var(--accent,#ff2130) 40%, transparent)'},
-      casterHover:{transform:'translateX(5px)',borderColor:'color-mix(in srgb,var(--accent,#ff2130) 38%, transparent)'}
+      rootStyle:{'--accent':'#f12a37',position:'relative',minHeight:'100vh',background:'#090909'},
+      events,query:S.query,loading:S.loading,hasError:S.error,
+      platforms:[{label:'Все',active:active===null,onPick:()=>this.setState({platform:null})},
+        ...labels.map(label=>({label,active:active===label,onPick:()=>this.setState({platform:label})}))],
+      statusText:S.loading?'Загружаем расписание…':S.error?'Не удалось обновить расписание':'Трансляций: '+events.length,
+      empty:!S.loading&&!S.error&&S.rows.length===0,
+      noMatches:!S.loading&&!S.error&&S.rows.length>0&&events.length===0,
+      reload:()=>this.loadStreams(),onSearch:event=>this.setState({query:event.target.value}),
+      resetFilters:()=>this.setState({query:'',platform:null})
     };
   }
-}
-</script>
-
-<script id="bxx-streams-published-v1">
-(function(){
- const db=window.supabase.createClient('https://fewfpimbfgxlzghfqkmc.supabase.co','sb_publishable_5Pgf3aTIsP_HwmrO5RakEA_H4DF7Mny');
- const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- const date=s=>s?new Date(s).toLocaleDateString('ru-RU',{weekday:'short',day:'2-digit',month:'long'}):'Дата уточняется';
- const time=s=>s?new Date(s).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}):'—';
- async function load(){const section=document.querySelector('#schedule [data-stagger]');if(!section)return;
-  try{const {data,error}=await db.from('stream_events').select('id,title,description,platform,stream_url,starts_at,status').eq('is_published',true).order('starts_at',{ascending:true}).limit(100);if(error)throw error;
-   const fake=document.querySelector('header + section');if(fake)fake.style.display='none';const stats=document.querySelector('header > div > div:last-child');if(stats)stats.style.display='none';
-   section.innerHTML=data?.length?data.map(s=>'<article style="position:relative;display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 20px;background:linear-gradient(145deg,#191d26,#101219);border:1px solid #ffffff18;border-left:3px solid '+(s.status==='live'?'#e33445':'#9c2936')+';min-width:0"><div style="min-width:112px"><div style="font:700 11px Inter,sans-serif;color:#9295a0;text-transform:uppercase">'+esc(date(s.starts_at))+'</div><div style="font:22px Russo One,sans-serif;margin-top:5px">'+esc(time(s.starts_at))+'</div></div><div style="flex:1;min-width:180px"><div style="font:700 20px Oswald,sans-serif;text-transform:uppercase">'+esc(s.title)+'</div><p style="font:13px/1.6 Inter,sans-serif;color:#a5a7b0;margin-top:5px">'+esc(s.description||'')+'</p></div><span style="font:800 10px Inter,sans-serif;color:'+(s.status==='live'?'#ff6470':'#c3c5cd')+'">'+(s.status==='live'?'● LIVE':esc(s.platform||'ЭФИР'))+'</span>'+(s.stream_url&&/^https?:\/\//i.test(s.stream_url)?'<a href="'+esc(s.stream_url)+'" target="_blank" rel="noopener noreferrer" style="color:#ff6470;font-size:10px;font-weight:800;letter-spacing:.1em">СМОТРЕТЬ ↗</a>':'')+'</article>').join(''):'<p style="padding:24px;color:#a5a7b0;background:#171b24;border:1px solid #ffffff18">Пока нет опубликованных эфиров. Следи за анонсами BENDER X ARENA.</p>';
-  }catch(e){console.warn('BXX streams:',e);section.innerHTML='<p style="color:#ff9ba3">Не удалось загрузить расписание. Обнови страницу позже.</p>'}
- }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(load,250),{once:true});else setTimeout(load,250);
-})();
-</script>
-</body>
-</html>
+}</script></body></html>
