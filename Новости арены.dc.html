@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
-<link rel="stylesheet" href="arena-theme.css?v=20261116-shell">
+<link rel="stylesheet" href="arena-theme.css?v=20261117-news">
 </head>
 <body class="arena-shell-page">
 <x-dc>
@@ -158,19 +158,19 @@ footer{background:#101115!important;border-color:#303139!important}
 @media(prefers-reduced-motion:reduce){header *{animation:none!important}}
 </style>
 </helmet>
-<div class="arena-shell-content" style="{{ rootStyle }}" ref="{{ rootRef }}">
-  <canvas ref="{{ fxRef }}" style="position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none"></canvas>
+<div class="arena-shell-content" style="{{ rootStyle }}">
+  
   <div style="position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(75% 45% at 50% 0%, color-mix(in srgb,var(--accent,#ff2130) 10%, transparent), transparent 70%)"></div>
   <div style="position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(120% 120% at 50% 40%, transparent 58%, #000 130%)"></div>
-  <div ref="{{ glowRef }}" style="position:fixed;top:0;left:0;width:540px;height:540px;border-radius:50%;z-index:2;pointer-events:none;background:radial-gradient(closest-side, color-mix(in srgb,var(--accent,#ff2130) 13%, transparent), transparent);mix-blend-mode:screen"></div>
-  <div ref="{{ barRef }}" style="position:fixed;top:0;left:0;height:3px;width:0%;z-index:130;background:linear-gradient(90deg,var(--accent,#ff2130),#ff7a3d);box-shadow:0 0 12px var(--accent,#ff2130)"></div>
+  <div style="position:fixed;top:0;left:0;width:540px;height:540px;border-radius:50%;z-index:2;pointer-events:none;background:radial-gradient(closest-side, color-mix(in srgb,var(--accent,#ff2130) 13%, transparent), transparent);mix-blend-mode:screen"></div>
+  <div style="position:fixed;top:0;left:0;height:3px;width:0%;z-index:130;background:linear-gradient(90deg,var(--accent,#ff2130),#ff7a3d);box-shadow:0 0 12px var(--accent,#ff2130)"></div>
 
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10H3zM9 20v-7h6v7"/></symbol><symbol id="i-fight" viewBox="0 0 24 24"><path d="m4 3 6 2 10 13-2 2L5 10zM20 3l-6 2-3 4M8 14l-4 4 2 2 4-3M3 15l6 6M15 21l6-6"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3z"/></symbol><symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 3h8v6a4 4 0 0 1-8 0zM8 5H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4m-4 1v7m-5 1h10"/></symbol><symbol id="i-grid" viewBox="0 0 24 24"><path d="M3 3h5v5H3zM3 16h5v5H3zM16 9h5v6h-5zM8 5h4v13H8m4-6h4"/></symbol><symbol id="i-news" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4M8 18h8"/></symbol><symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol><symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></symbol><symbol id="i-discord" viewBox="0 0 24 24"><path d="M8 4 4 6 2 17l5 3 2-3m7-13 4 2 2 11-5 3-2-3M7 6a14 14 0 0 1 10 0M6 16a14 14 0 0 0 12 0"/><circle cx="8" cy="12" r="1"/><circle cx="16" cy="12" r="1"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></symbol></svg><aside class="arena-sidebar" aria-label="Главная навигация"><a class="arena-brand" href="Bender X Arena.dc.html"><img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="" width="48" height="48"><span>BENDER X ARENA<small>ТЕРРИТОРИЯ БОЯ</small></span></a><p class="arena-nav-caption">НАВИГАЦИЯ</p><div class="arena-links" role="navigation"><a href="Bender X Arena.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-home"/></svg>Главная</a><a href="Бойцы арены.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-fight"/></svg>Бойцы арены</a><a href="Расписание стримов.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-play"/></svg>Стримы</a><a href="Турнирная сетка.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-grid"/></svg>Турнирная сетка</a><a href="Топ игроков.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-trophy"/></svg>Топ игроков</a><a href="Новости арены.dc.html" aria-current="page"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-news"/></svg>Новости</a><a href="О арене.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-info"/></svg>Об арене</a></div><a class="arena-discord" href="https://discord.com/invite/qqctMjCTeg" target="_blank" rel="noopener noreferrer">Сообщество Discord ↗</a></aside>
 <div class="arena-page-topbar"><span class="arena-breadcrumb">Арена / <strong>Новости</strong></span><details class="arena-mobile-menu"><summary><span aria-hidden="true">☰</span> BENDER X ARENA</summary><div class="arena-links"><a href="Bender X Arena.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-home"/></svg>Главная</a><a href="Бойцы арены.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-fight"/></svg>Бойцы арены</a><a href="Расписание стримов.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-play"/></svg>Стримы</a><a href="Турнирная сетка.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-grid"/></svg>Турнирная сетка</a><a href="Топ игроков.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-trophy"/></svg>Топ игроков</a><a href="Новости арены.dc.html" aria-current="page"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-news"/></svg>Новости</a><a href="О арене.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-info"/></svg>Об арене</a></div></details><a class="arena-account-link" href="Bender X Arena.dc.html#register">Мой аккаунт ↗</a></div>
 <div class="arena-bottom-nav" role="navigation" aria-label="Быстрые переходы"><a href="Bender X Arena.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-home"/></svg><span>Главная</span></a><a href="Турнирная сетка.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-grid"/></svg><span>Турниры</span></a><a href="Расписание стримов.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-play"/></svg><span>Стримы</span></a><a href="Bender X Arena.dc.html#register"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-user"/></svg><span>Аккаунт</span></a></div>
 
   <header style="position:relative;z-index:3;overflow:hidden;padding:clamp(112px,14vh,150px) clamp(18px,4vw,44px) clamp(30px,4vw,46px);border-bottom:1px solid #ffffff10">
-    <div ref="{{ ghostRef }}" style="position:absolute;inset:0;pointer-events:none;z-index:0">
+    <div style="position:absolute;inset:0;pointer-events:none;z-index:0">
       <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="" style="position:absolute;right:2%;top:46%;width:min(46vw,520px);height:auto;transform:translateY(-50%);animation:bgLogoPulse 8s ease-in-out infinite;mix-blend-mode:screen">
       <div style="position:absolute;left:-1%;bottom:-14%;font-family:'Russo One',sans-serif;font-size:17vw;line-height:.78;color:transparent;-webkit-text-stroke:1px #ffffff0a;white-space:nowrap">PATCH</div>
     </div>
@@ -184,97 +184,30 @@ footer{background:#101115!important;border-color:#303139!important}
       <p style="max-width:520px;margin-top:16px;font-size:clamp(14px,1.4vw,17px);font-weight:300;line-height:1.6;color:#9a9aa4;animation:heroRise .7s .18s both">Анонсы турниров, публикации и обновления BENDER X ARENA — только проверенная информация.</p>
     </div>
   </header>
-
-  <section data-reveal style="{{ revealStyle }}">
-    <div style="max-width:1480px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
-      <a href="#feed" style="{{ featureStyle }}" style-hover="{{ featureHover }}">
-        <div style="position:absolute;inset:0;background:radial-gradient(110% 100% at 84% 0%, color-mix(in srgb,var(--accent,#ff2130) 30%, transparent), transparent 60%);pointer-events:none"></div>
-        <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,#0000 0 3px,#0000002e 3px 4px);opacity:.4;pointer-events:none"></div>
-        <div style="position:absolute;right:-3%;bottom:-34%;font-family:'Russo One',sans-serif;font-size:min(24vw,300px);line-height:.8;color:transparent;-webkit-text-stroke:1px #ffffff0d;pointer-events:none">4.2</div>
-        <div style="position:relative;z-index:2;max-width:680px">
-          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-            <span style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#0b0b0e;background:var(--accent,#ff2130);padding:5px 11px">Главное</span>
-            <span style="font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#c1c1c9;border:1px solid #ffffff26;padding:5px 11px">Патч 4.2</span>
-            <span style="font-size:14px;color:#6b6b73;letter-spacing:.06em">12 июня 2026</span>
-          </div>
-          <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(30px,4.4vw,60px);line-height:.94;text-transform:uppercase;margin-top:16px">Ребаланс берсерков перед гранд-финалом</h2>
-          <p style="font-size:clamp(14px,1.5vw,17px);font-weight:300;line-height:1.6;color:#a7a7b0;margin-top:14px;max-width:560px">Урон «Багрового Разлома» снижен на 8%, ХАОС получил новую цепочку комбо и увеличенный стан. Танки стали медленнее восстанавливать блок, а колдуны — быстрее копить ману.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,2.6vw,34px);margin-top:24px">
-            <sc-for list="{{ featureStats }}" as="fs" hint-placeholder-count="3">
-              <div style="{{ fs.style }}">
-                <div style="font-family:'Russo One',sans-serif;font-size:clamp(18px,2vw,25px);line-height:1;color:{{ fs.color }}">{{ fs.v }}</div>
-                <div style="font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:#83838d;margin-top:6px">{{ fs.k }}</div>
-              </div>
-            </sc-for>
-          </div>
-          <div style="margin-top:26px;font-size:14px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent,#ff2130)">Читать патчноут →</div>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <section id="feed" data-reveal style="{{ revealStyle }}">
-    <div style="max-width:1480px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
-      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:clamp(20px,2.6vw,32px)">
-        <div>
-          <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,50px);line-height:.92;text-transform:uppercase">Все материалы</h2>
-          <p style="font-size:13px;color:#83838d;margin-top:10px">Показано: <span style="font-family:'Russo One',sans-serif;color:#f4f4f5">{{ foundCount }}</span></p>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px">
-          <sc-for list="{{ tags }}" as="t" hint-placeholder-count="5">
-            <button style="{{ t.style }}" onClick="{{ t.onClick }}">{{ t.label }}</button>
-          </sc-for>
-        </div>
-      </div>
-      <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px">
-        <sc-for list="{{ news }}" as="n" hint-placeholder-count="6">
-          <div data-reveal>
-            <a href="#feed" style="{{ n.cardStyle }}" style-hover="{{ newsHover }}">
-              <div style="{{ n.thumb }}">
-                <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,#0000 0 2px,#0000004d 2px 3px);opacity:.5;pointer-events:none"></div>
-                <div style="{{ n.thumbGlyph }}">{{ n.glyph }}</div>
-                <span style="{{ n.tagStyle }}">{{ n.tag }}</span>
-              </div>
-              <div style="display:flex;flex-direction:column;flex:1;padding:20px">
-                <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#6b6b73;letter-spacing:.06em">
-                  <span>{{ n.date }}</span><span style="color:#2f2f36">·</span><span>{{ n.read }} мин</span>
-                </div>
-                <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:20px;line-height:1.08;text-transform:uppercase;margin-top:10px">{{ n.title }}</div>
-                <p style="font-size:14px;font-weight:300;line-height:1.55;color:#9a9aa4;margin-top:10px">{{ n.excerpt }}</p>
-                <div style="margin-top:auto;padding-top:18px;font-size:14px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent,#ff2130)">Читать →</div>
-              </div>
-            </a>
-          </div>
-        </sc-for>
-      </div>
-    </div>
-  </section>
-
-  <section data-reveal style="{{ revealStyle }}">
-    <div style="max-width:1480px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
-      <div style="position:relative;overflow:hidden;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;background:linear-gradient(120deg,rgba(24,20,28,.12),rgba(17,17,22,.12));backdrop-filter:blur(14px);border:1px solid color-mix(in srgb,var(--accent,#ff2130) 38%, transparent);padding:clamp(28px,3.6vw,44px);clip-path:polygon(0 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%)">
-        <div style="position:absolute;top:-50%;right:8%;width:36px;height:200%;background:var(--accent,#ff2130);opacity:.14;transform:rotate(20deg);filter:blur(2px);pointer-events:none"></div>
-        <div style="position:relative;z-index:2;min-width:260px">
-          <div style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--accent,#ff2130)">Рассылка</div>
-          <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(24px,3vw,38px);line-height:.96;text-transform:uppercase;margin-top:10px">Патчи — первым</div>
-          <p style="font-size:14px;font-weight:300;line-height:1.55;color:#9a9aa4;margin-top:10px;max-width:400px">Раз в неделю: изменения баланса, расписание эфиров и результаты матчей.</p>
-        </div>
-        <div style="position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:10px;min-width:280px">
-          <sc-if value="{{ subscribed }}" hint-placeholder-val="{{ false }}">
-            <div style="display:flex;align-items:center;gap:10px;font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent,#ff2130)"><span style="font-family:'Russo One',sans-serif;font-size:22px">✔</span>Готово — проверь почту</div>
-          </sc-if>
-          <sc-if value="{{ notSubscribed }}" hint-placeholder-val="{{ true }}">
-            <input type="email" placeholder="твой e-mail" autocomplete="email" name="email" aria-label="Электронная почта" spellcheck="false" style="flex:1;min-width:180px;background:rgba(18,18,23,.12);backdrop-filter:blur(14px);border:1px solid #ffffff26;color:#f4f4f5;font-size:15px;padding:15px 18px;outline:none;clip-path:polygon(0 0,100% 0,100% 100%,10px 100%,0 calc(100% - 10px))">
-          </sc-if>
-          <sc-if value="{{ notSubscribed }}" hint-placeholder-val="{{ true }}">
-            <button style="position:relative;overflow:hidden;font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:var(--accent,#ff2130);border:none;padding:15px 28px;cursor:pointer;clip-path:polygon(0 0,100% 0,100% 100%,11px 100%,0 calc(100% - 11px))" onClick="{{ onSubscribe }}" style-before="{{ shineStyle }}">Подписаться</button>
-          </sc-if>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer style="position:relative;z-index:3;border-top:1px solid #ffffff12;background:#0a0a0d;padding:clamp(38px,4.6vw,60px) clamp(18px,4vw,44px) 28px">
+<section id="feed" class="arena-news-section" aria-labelledby="news-feed-title">
+<div>
+<div class="arena-news-heading"><div><span class="arena-news-kicker">ЛЕНТА BX</span><h2 id="news-feed-title">Сейчас на арене</h2></div><button class="arena-filter" type="button" onClick="{{ reload }}" disabled="{{ loading }}">Обновить</button></div>
+<div class="arena-news-controls">
+<label class="arena-news-search">Поиск публикаций<input type="search" placeholder="Турнир, игрок или событие" value="{{ query }}" onInput="{{ onSearch }}" aria-controls="news-results"></label>
+<div class="arena-roster-filters" role="group" aria-label="Категория новостей"><sc-for list="{{ categories }}" as="category"><button type="button" class="arena-filter" aria-pressed="{{ category.active }}" onClick="{{ category.onPick }}">{{ category.label }}</button></sc-for></div>
+</div>
+<p class="arena-news-status" role="status" aria-live="polite">{{ statusText }}</p>
+<sc-if value="{{ hasError }}"><div class="arena-empty"><h2>Лента временно недоступна</h2><p>Не удалось получить новости. Попробуй загрузить их ещё раз.</p><button class="arena-reset" onClick="{{ reload }}">Повторить загрузку</button></div></sc-if>
+<sc-if value="{{ empty }}"><div class="arena-empty"><h2>Новости скоро появятся</h2><p>Здесь будут анонсы турниров, результаты боёв и новости сообщества.</p><a class="arena-reset" href="https://discord.com/invite/qqctMjCTeg" target="_blank" rel="noopener noreferrer">Анонсы в Discord ↗</a></div></sc-if>
+<sc-if value="{{ noMatches }}"><div class="arena-empty"><h2>Публикации не найдены</h2><p>Попробуй другой запрос или выбери все категории.</p><button class="arena-reset" onClick="{{ resetFilters }}">Сбросить фильтры</button></div></sc-if>
+<div id="news-results" class="arena-news-grid" aria-busy="{{ loading }}">
+<sc-for list="{{ news }}" as="item">
+<article class="arena-news-card">
+<sc-if value="{{ item.hasCover }}"><img class="arena-news-cover" src="{{ item.cover }}" alt="" loading="lazy" onError="{{ item.onImageError }}"></sc-if>
+<div class="arena-news-copy"><div class="arena-news-meta"><span>{{ item.category }}</span><time>{{ item.date }}</time></div><h2>{{ item.title }}</h2><p class="arena-news-excerpt">{{ item.excerpt }}</p>
+<sc-if value="{{ item.hasContent }}"><details class="arena-news-details"><summary>Читать публикацию <span aria-hidden="true">+</span></summary><div class="arena-news-body">{{ item.content }}</div></details></sc-if>
+</div>
+</article>
+</sc-for>
+</div>
+</div>
+</section>
+<footer style="position:relative;z-index:3;border-top:1px solid #ffffff12;background:#0a0a0d;padding:clamp(38px,4.6vw,60px) clamp(18px,4vw,44px) 28px">
     <div style="max-width:1480px;margin:0 auto;display:flex;flex-wrap:wrap;gap:26px;align-items:center;justify-content:space-between">
       <a href="Bender%20X%20Arena.dc.html#hero" style="display:inline-flex;align-items:center;gap:10px">
         <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="Bender X Arena" style="height:44px;width:auto;display:block;filter:drop-shadow(0 0 14px color-mix(in srgb,var(--accent,#ff2130) 45%, transparent))">
@@ -292,101 +225,68 @@ footer{background:#101115!important;border-color:#303139!important}
       <span style="max-width:560px;text-align:right">Bender X Arena — оригинальный вымышленный проект. Не связан с Mortal Kombat / NetherRealm Studios и не использует их персонажей.</span>
     </div>
   </footer>
-</div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#ff2130&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#ff2130&quot;,&quot;#e10600&quot;,&quot;#ff3b1f&quot;,&quot;#c60011&quot;],&quot;section&quot;:&quot;Стиль&quot;},&quot;particles&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Эффекты&quot;}}">
+</div></x-dc>
+<script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  constructor(props){
-    super(props);
-    this.items=[
-      {tag:'ПАТЧ',date:'12 июня',read:4,title:'Ребаланс берсерков',excerpt:'Урон «Багрового Разлома» снижен на 8%. ХАОС получил новую цепочку комбо и увеличенный стан.',glyph:'К',c:'#ff2130'},
-      {tag:'ИВЕНТ',date:'8 июня',read:3,title:'Ночь кровавой луны',excerpt:'Лимитированный режим 2v2 с модификаторами. Эксклюзивный скин за 10 побед подряд.',glyph:'Н',c:'#7a1f2b'},
-      {tag:'РОАДМАП',date:'1 июня',read:6,title:'Сезон 5: что дальше',excerpt:'Два новых бойца, кроссплей и режим рейтинговых дуэлей уже этой осенью.',glyph:'Р',c:'#d11324'},
-      {tag:'МАТЧИ',date:'28 мая',read:5,title:'vX.KOBALT забрал верхнюю сетку',excerpt:'Разбор серии против N3RV: как читался «Змеиный Поцелуй» и почему решил третий раунд.',glyph:'В',c:'#cdd6df'},
-      {tag:'ИВЕНТ',date:'22 мая',read:2,title:'Открытые квалификации',excerpt:'Последняя волна отборочных: 64 слота, кроссплей, вход бесплатный для всех регионов.',glyph:'Т',c:'#74797f'},
-      {tag:'ПАТЧ',date:'15 мая',read:4,title:'Колдуны: правка маны',excerpt:'ПИРО и ФРОСТ копят ману на 12% быстрее, но «Ледяной Гроб» стал дороже по стоимости.',glyph:'П',c:'#ff3b1f'},
-      {tag:'КОМЬЮНИТИ',date:'9 мая',read:3,title:'Лучшие клипы месяца',excerpt:'Подборка самых зрелищных парирований и добиваний от игроков ладдера.',glyph:'Г',c:'#e6e8ea'},
-      {tag:'МАТЧИ',date:'2 мая',read:5,title:'Итоги группового этапа',excerpt:'Кто вышел в плей-офф, какие апсеты случились и чего ждать от нижней сетки.',glyph:'Р',c:'#c60011'}
-    ];
-    this.fxRef=el=>{this.fx=el}; this.glowRef=el=>{this.glow=el}; this.rootRef=el=>{this.root=el}; this.ghostRef=el=>{this.ghost=el}; this.barRef=el=>{this.bar=el};
+  state = { rows:[], loading:true, error:false, query:'', category:null, failedImages:[] };
+  componentDidMount(){ this.loadNews(); }
+  componentWillUnmount(){ this.disposed=true; this.controller?.abort(); }
+  async loadNews(){
+    if(this.busy)return;
+    this.busy=true;
+    this.setState({loading:true,error:false});
+    this.controller=new AbortController();
+    const timer=setTimeout(()=>this.controller.abort(),12000);
+    try{
+      const params=new URLSearchParams({
+        select:'id,title,category,excerpt,content,cover_image_url,published_at',
+        is_published:'eq.true',order:'published_at.desc.nullslast',limit:'100'
+      });
+      const response=await fetch('https://fewfpimbfgxlzghfqkmc.supabase.co/rest/v1/news_posts?'+params,{
+        headers:{apikey:'sb_publishable_5Pgf3aTIsP_HwmrO5RakEA_H4DF7Mny'},
+        signal:this.controller.signal
+      });
+      if(!response.ok)throw new Error('News request failed');
+      const rows=await response.json();
+      if(!Array.isArray(rows))throw new Error('Invalid news response');
+      if(!this.disposed)this.setState({rows,loading:false,error:false,failedImages:[]});
+    }catch(error){
+      if(!this.disposed)this.setState({loading:false,error:true});
+    }finally{clearTimeout(timer);this.busy=false;}
   }
-  state={ tag:'Все', scrolled:false, subscribed:false };
-
-  componentDidMount(){
-    if(this.root && this.props.accent) this.root.style.setProperty('--accent',this.props.accent);
-    this.initFX();
-    this._move=e=>this.onMove(e); window.addEventListener('mousemove',this._move,{passive:true});
-    this._scroll=()=>this.onScroll(); window.addEventListener('scroll',this._scroll,{passive:true});
-    setTimeout(()=>this.setupReveals(),40);
-  }
-  componentWillUnmount(){ cancelAnimationFrame(this._raf); window.removeEventListener('mousemove',this._move); window.removeEventListener('scroll',this._scroll); if(this._fxResize) window.removeEventListener('resize',this._fxResize); if(this._io) this._io.disconnect(); }
-  componentDidUpdate(){ if(this._lastTag!==undefined&&this._lastTag!==this.state.tag){ this._lastTag=this.state.tag; this.revealScan(); } }
-  setupReveals(){
-    if(!this.root) return;
-    if(!('IntersectionObserver' in window)){ this.root.querySelectorAll('[data-reveal]').forEach(el=>el.classList.add('r-in')); return; }
-    this._io=new IntersectionObserver(ents=>{ ents.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('r-in'); e.target.dataset.revealed='1'; this._io.unobserve(e.target); } }); },{threshold:0.08,rootMargin:'0px 0px -6% 0px'});
-    this._lastTag=this.state.tag;
-    this.revealScan();
-  }
-  revealScan(){
-    if(!this.root||!this._io) return;
-    this.root.querySelectorAll('[data-reveal]').forEach(el=>{ if(el.dataset.revealed) return; const r=el.getBoundingClientRect(); if(r.top<window.innerHeight*0.92&&r.bottom>0){ el.classList.add('r-in'); el.dataset.revealed='1'; this._io.unobserve(el); } else { this._io.observe(el); } });
-  }
-  hexRgb(h){ h=(h||'#ff2130').replace('#',''); if(h.length===3) h=h.split('').map(x=>x+x).join(''); const n=parseInt(h,16); return (n>>16&255)+','+(n>>8&255)+','+(n&255); }
-  mkP(W,H,bottom){ const max=220+Math.random()*280; return {x:Math.random()*W,y:bottom?H+Math.random()*40:Math.random()*H,vy:.25+Math.random()*.95,vx:(Math.random()-.5)*.3,r:.6+Math.random()*2.3,alpha:.2+Math.random()*.5,life:max,max}; }
-  initFX(){ const cv=this.fx; if(!cv) return; const ctx=cv.getContext('2d'); let W=1,H=1; const resize=()=>{ const dpr=Math.min(2,window.devicePixelRatio||1); W=cv.clientWidth||window.innerWidth; H=cv.clientHeight||window.innerHeight; cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }; resize(); this._fxResize=resize; window.addEventListener('resize',resize);
-    const rgb=this.hexRgb(this.props.accent||'#ff2130'); const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches; const N=(reduced||this.props.particles===false)?0:70;
-    const ps=Array.from({length:N},()=>this.mkP(W,H));
-    const draw=()=>{ ctx.clearRect(0,0,W,H); for(const p of ps){ p.y-=p.vy; p.x+=p.vx; p.life--; if(p.y<-12||p.life<0) Object.assign(p,this.mkP(W,H,true)); const a=p.alpha*Math.min(1,p.life/60); ctx.beginPath(); ctx.fillStyle='rgba('+rgb+','+a+')'; ctx.shadowColor='rgba('+rgb+',.9)'; ctx.shadowBlur=p.r*4; ctx.arc(p.x,p.y,p.r,0,6.283); ctx.fill(); } ctx.shadowBlur=0; this._raf=requestAnimationFrame(draw); }; draw();
-  }
-  onMove(e){ if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; if(this.glow) this.glow.style.transform='translate('+(e.clientX-270)+'px,'+(e.clientY-270)+'px)'; const cx=e.clientX/window.innerWidth-.5, cy=e.clientY/window.innerHeight-.5; if(this.ghost) this.ghost.style.transform='translate('+(cx*-26)+'px,'+(cy*-12)+'px)'; }
-  onScroll(){ if(this._st) return; this._st=requestAnimationFrame(()=>{ this._st=null; const d=document.documentElement; const max=d.scrollHeight-window.innerHeight; if(this.bar) this.bar.style.width=(max>0?(window.scrollY/max*100):0)+'%'; const s=window.scrollY>28; if(s!==this.state.scrolled) this.setState({scrolled:s}); }); }
-
   renderVals(){
-    const S=this.state, A='var(--accent,#ff2130)';
-    const shine={content:"''",position:'absolute',top:0,left:'-60%',width:'46%',height:'100%',background:'linear-gradient(90deg,transparent,#ffffff5c,transparent)',transform:'skewX(-22deg)',animation:'shine 3.6s ease-in-out infinite',pointerEvents:'none'};
-    const chip=(active)=>({fontFamily:"'Oswald',sans-serif",fontWeight:600,fontSize:'14px',letterSpacing:'.12em',textTransform:'uppercase',padding:'9px 16px',cursor:'pointer',border:'1px solid '+(active?'transparent':'#ffffff1f'),background:active?A:'#0e0e12',color:active?'#0b0b0e':'#c9c9d0',clipPath:'polygon(0 0,100% 0,100% 100%,7px 100%,0 calc(100% - 7px))',transition:'all .2s'});
-    const tagList=['Все','ПАТЧ','ИВЕНТ','МАТЧИ','РОАДМАП','КОМЬЮНИТИ'];
-    const tags=tagList.map(t=>({label:t,onClick:()=>this.setState({tag:t}),style:chip(S.tag===t)}));
-    const tagC={'ПАТЧ':'#ff2130','ИВЕНТ':'#b06bff','МАТЧИ':'#38b6ff','РОАДМАП':'#ffb02e','КОМЬЮНИТИ':'#3ddc84'};
-    const list=this.items.filter(n=>S.tag==='Все'||n.tag===S.tag);
-    const news=list.map(n=>({
-      tag:n.tag,date:n.date,read:n.read,title:n.title,excerpt:n.excerpt,glyph:n.glyph,
-      cardStyle:{position:'relative',display:'flex',flexDirection:'column',height:'100%',background:'rgba(22,22,28,.12)',backdropFilter:'blur(14px)',border:'1px solid #ffffff12',overflow:'hidden',clipPath:'polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%)',transition:'border-color .3s,transform .3s'},
-      thumb:{position:'relative',height:'132px',overflow:'hidden',background:'radial-gradient(120% 90% at 50% 0%, '+n.c+'59, #0c0c10 64%)',borderBottom:'1px solid '+n.c+'44'},
-      thumbGlyph:{position:'absolute',left:'50%',top:'50%',transform:'translate(-50%,-50%)',fontFamily:"'Russo One',sans-serif",fontSize:'76px',lineHeight:1,color:'transparent',WebkitTextStroke:'2px '+n.c+'6b',userSelect:'none',pointerEvents:'none'},
-      tagStyle:{position:'absolute',top:'11px',left:'11px',fontFamily:"'Oswald',sans-serif",fontSize:'14px',fontWeight:700,letterSpacing:'.14em',textTransform:'uppercase',color:'#0b0b0e',background:tagC[n.tag]||A,padding:'4px 9px'}
-    }));
-    const statBox=(bd)=>({display:'flex',flexDirection:'column',paddingLeft:bd?'clamp(16px,2.6vw,34px)':0,borderLeft:bd?'1px solid #ffffff14':'none'});
-    const featureStats=[{k:'изменений',v:24,color:A},{k:'бойцов затронуто',v:9,color:'#f4f4f5'},{k:'версия',v:'4.2.0',color:'#f4f4f5'}].map((d,i)=>({k:d.k,v:d.v,color:d.color,style:statBox(i>0)}));
+    const S=this.state;
+    const categoryOf=row=>String(row.category||'Новости').trim()||'Новости';
+    const labels=[...new Set(S.rows.map(categoryOf))];
+    const active=labels.includes(S.category)?S.category:null;
+    const query=S.query.trim().toLocaleLowerCase('ru');
+    const filtered=S.rows.filter(row=>(active===null||categoryOf(row)===active)&&
+      [row.title,row.excerpt,row.content].some(value=>String(value||'').toLocaleLowerCase('ru').includes(query)));
+    const news=filtered.map(row=>{
+      const cover=String(row.cover_image_url||'');
+      const stamp=Date.parse(row.published_at);
+      return {
+        title:String(row.title||'Без заголовка'),category:categoryOf(row),
+        excerpt:String(row.excerpt||''),content:String(row.content||''),
+        hasContent:!!String(row.content||'').trim(),
+        cover,hasCover:/^https?:\/\//i.test(cover)&&!S.failedImages.includes(row.id),
+        onImageError:()=>this.setState(previous=>({failedImages:[...previous.failedImages,row.id]})),
+        date:Number.isFinite(stamp)?new Intl.DateTimeFormat('ru-RU',{day:'numeric',month:'long',year:'numeric',timeZone:'Europe/Moscow'}).format(new Date(stamp)):'Дата не указана'
+      };
+    });
     return {
-      rootStyle:{'--accent':'#ff2130',position:'relative',minHeight:'100vh',background:'#08080a',overflowX:'hidden'},
-      navStyle:{position:'fixed',top:'3px',left:0,right:0,zIndex:120,display:'flex',alignItems:'center',justifyContent:'space-between',gap:'clamp(12px,1.8vw,26px)',height:'60px',padding:'0 clamp(18px,4vw,44px)',background:S.scrolled?'rgba(8,8,10,.9)':'rgba(8,8,10,.1)',borderBottom:'1px solid '+(S.scrolled?'#ffffff14':'#ffffff00'),backdropFilter:'blur(12px)',transition:'background .3s,border-color .3s'},
-      revealStyle:{position:'relative',zIndex:3,padding:'clamp(34px,4vw,58px) 0'},
-      fxRef:this.fxRef, glowRef:this.glowRef, rootRef:this.rootRef, ghostRef:this.ghostRef, barRef:this.barRef,
-      shineStyle:shine, tags, news, foundCount:list.length, featureStats,
-      featureStyle:{position:'relative',display:'block',overflow:'hidden',background:'linear-gradient(140deg,rgba(24,20,28,.12),rgba(15,15,20,.10))',backdropFilter:'blur(14px)',border:'1px solid color-mix(in srgb,var(--accent,#ff2130) 42%, transparent)',padding:'clamp(30px,4vw,56px)',clipPath:'polygon(0 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%)',transition:'transform .35s,border-color .35s,box-shadow .35s'},
-      featureHover:{transform:'translateY(-6px)',boxShadow:'0 26px 60px #000a'},
-      newsHover:{transform:'translateY(-6px)',borderColor:'color-mix(in srgb,var(--accent,#ff2130) 45%, transparent)'},
-      subscribed:S.subscribed, notSubscribed:!S.subscribed, onSubscribe:()=>this.setState({subscribed:true})
+      rootStyle:{'--accent':'#f12a37',position:'relative',minHeight:'100vh',background:'#090909'},
+      news,query:S.query,loading:S.loading,hasError:S.error,
+      categories:[{label:'Все',active:active===null,onPick:()=>this.setState({category:null})},
+        ...labels.map(label=>({label,active:active===label,onPick:()=>this.setState({category:label})}))],
+      statusText:S.loading?'Загружаем новости…':S.error?'Не удалось обновить ленту':'Публикаций: '+news.length,
+      empty:!S.loading&&!S.error&&S.rows.length===0,
+      noMatches:!S.loading&&!S.error&&S.rows.length>0&&news.length===0,
+      reload:()=>this.loadNews(),
+      onSearch:event=>this.setState({query:event.target.value}),
+      resetFilters:()=>this.setState({query:'',category:null})
     };
   }
 }
 </script>
-
-<script id="bxx-news-published-v1">
-(function(){
- const db=window.supabase.createClient('https://fewfpimbfgxlzghfqkmc.supabase.co','sb_publishable_5Pgf3aTIsP_HwmrO5RakEA_H4DF7Mny');
- const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- const date=s=>s?new Date(s).toLocaleDateString('ru-RU',{day:'2-digit',month:'long',year:'numeric'}):'Дата не указана';
- async function load(){const section=document.querySelector('#feed [data-stagger]');if(!section)return;
-  try{const {data,error}=await db.from('news_posts').select('id,title,category,excerpt,content,cover_image_url,published_at').eq('is_published',true).order('published_at',{ascending:false}).limit(100);if(error)throw error;
-   const feature=document.querySelector('header + section');if(feature)feature.style.display='none';
-   section.innerHTML=data?.length?data.map(n=>'<article style="padding:24px;background:linear-gradient(145deg,#191d26,#101219);border:1px solid #ffffff18;border-left:3px solid #d92c3c;min-width:0"><div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><span style="background:#d92c3c;color:white;padding:4px 8px;font-size:10px;font-weight:800;letter-spacing:.12em">'+esc(n.category||'НОВОСТИ')+'</span><time style="font-size:12px;color:#9295a0">'+esc(date(n.published_at))+'</time></div><h2 style="font:700 clamp(22px,3vw,32px)/1.1 Oswald,sans-serif;text-transform:uppercase;margin-top:16px">'+esc(n.title)+'</h2>'+(n.cover_image_url&&/^https?:\/\//i.test(n.cover_image_url)?'<img src="'+esc(n.cover_image_url)+'" alt="" loading="lazy" style="display:block;width:100%;max-height:340px;object-fit:cover;margin-top:18px">':'')+'<p style="font:14px/1.7 Inter,sans-serif;color:#b0b2bb;margin-top:14px">'+esc(n.excerpt||'')+'</p><div style="font:14px/1.8 Inter,sans-serif;color:#d2d3d8;white-space:pre-wrap;margin-top:14px">'+esc(n.content||'')+'</div></article>').join(''):'<p style="grid-column:1/-1;padding:24px;color:#a5a7b0;background:#171b24;border:1px solid #ffffff18">Пока нет опубликованных новостей. Загляни позже — анонсы появятся здесь.</p>';
-  }catch(e){console.warn('BXX news:',e);section.innerHTML='<p style="grid-column:1/-1;color:#ff9ba3">Не удалось загрузить новости. Обнови страницу позже.</p>'}
- }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(load,250),{once:true});else setTimeout(load,250);
-})();
-</script>
-</body>
-</html>
+</body></html>
