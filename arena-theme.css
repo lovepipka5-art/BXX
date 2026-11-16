@@ -18,3 +18,19 @@ body.arena-shell-page{margin:0;background:var(--arena-bg)!important;color:var(--
 @media(prefers-reduced-motion:reduce){.arena-shell-content>header *{animation:none!important}}
 
 .arena-icon{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.arena-links a[aria-current] .arena-icon{color:var(--arena-red)}
+
+/* Shared roster controls and card surfaces. */
+.arena-roster-toolbar{display:grid;grid-template-columns:minmax(220px,1fr) auto;gap:24px;background:var(--arena-panel);border:1px solid var(--arena-line);border-radius:5px;padding:24px;margin-bottom:26px}
+.arena-roster-search label,.arena-roster-sort>span{display:block;font:600 12px/1.4 Manrope,sans-serif;color:var(--arena-muted);margin-bottom:10px}
+.arena-roster-search input{width:100%;min-height:48px;border:1px solid #58242d;border-radius:5px;padding:12px 16px;font:14px Manrope,sans-serif;background:#090909;color:white}
+.arena-roster-sort>div,.arena-roster-filters{display:flex;flex-wrap:wrap;gap:8px}
+.arena-filter,.arena-reset{min-height:46px;padding:12px 16px;border:1px solid #58242d;border-radius:5px;background:#180b10;color:#dfced2;font:600 13px Manrope,sans-serif;cursor:pointer}
+.arena-filter[aria-pressed="true"]{background:#ba182b;border-color:#f12a37;color:#fff}
+.arena-filter:hover,.arena-reset:hover{border-color:#ff5867;background:#6f1121;color:#fff}
+.arena-result-count{align-self:center;text-align:right;font:13px Manrope,sans-serif;color:var(--arena-muted)}
+.arena-empty{padding:48px 24px;text-align:center;background:#140e10;border:1px solid var(--arena-line);border-radius:5px}
+.arena-empty h2{font:600 32px Oswald,sans-serif}.arena-empty p{margin:12px 0 24px;font:14px/1.7 Manrope,sans-serif;color:var(--arena-muted)}
+.arena-fighter-card>div>div>div{border-radius:5px!important;clip-path:none!important;background-color:#140e10!important}
+.arena-fighter-card:focus-visible{outline:2px solid #f12a37;outline-offset:5px}
+@media(max-width:1050px){.arena-roster-toolbar{grid-template-columns:1fr}.arena-result-count{text-align:left}.arena-roster-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))!important}}
+@media(max-width:520px){.arena-roster-toolbar{padding:18px;gap:20px}.arena-filter{padding:11px 12px}.arena-roster-grid{grid-template-columns:1fr!important;max-width:380px;margin-inline:auto}}
