@@ -56,3 +56,18 @@ body.arena-shell-page{margin:0;background:var(--arena-bg)!important;color:var(--
 .arena-news-body{padding-top:20px;white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.85 Manrope,sans-serif;color:#eee}
 @media(max-width:1000px){.arena-news-grid{grid-template-columns:1fr}}
 @media(max-width:520px){.arena-news-controls,.arena-news-copy{padding:20px}.arena-news-heading h2{font-size:30px}.arena-news-heading{gap:12px}.arena-news-grid{gap:18px}}
+
+/* Broadcast schedule uses the same controls and surfaces as the news feed. */
+.arena-stream-timezone{font:12px/1.6 Manrope,sans-serif;color:var(--arena-muted);margin:-8px 0 24px}
+.arena-stream-list{display:grid;gap:18px}
+.arena-stream-card{display:grid;grid-template-columns:155px minmax(0,1fr) auto;gap:28px;align-items:center;background:var(--arena-panel);border:1px solid var(--arena-line);border-left:3px solid var(--arena-red);border-radius:5px;padding:26px}
+.arena-stream-date{display:grid;gap:10px;font:12px/1.6 Manrope,sans-serif;color:var(--arena-muted)}
+.arena-stream-date strong{font:600 38px/1 Oswald,sans-serif;color:#fff}
+.arena-stream-info h2{font:600 28px/1.15 Oswald,sans-serif;margin:14px 0 10px;overflow-wrap:anywhere}
+.arena-stream-info p{font:14px/1.8 Manrope,sans-serif;color:var(--arena-muted);overflow-wrap:anywhere}
+.arena-live-label{font:700 11px Manrope,sans-serif;color:#ff7885;letter-spacing:.08em}
+.arena-stream-action a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;min-height:48px;text-align:center}
+.arena-stream-action>span{font:12px/1.6 Manrope,sans-serif;color:var(--arena-muted)}
+.arena-news-heading button:disabled{opacity:.55;cursor:wait}
+@media(max-width:1100px){.arena-stream-card{grid-template-columns:130px minmax(0,1fr)}.arena-stream-action{grid-column:2}}
+@media(max-width:600px){.arena-stream-card{grid-template-columns:1fr;padding:22px;gap:20px}.arena-stream-date{display:flex;align-items:center;justify-content:space-between;gap:16px}.arena-stream-action{grid-column:1}.arena-stream-action a{width:100%}.arena-stream-date strong{font-size:32px}}
