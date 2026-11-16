@@ -449,5 +449,25 @@ class Component extends DCLogic {
 }
 </style>
 
+
+<style id="bxx-tournament-hub-pass-20261116">
+/* Match the tournament hub to the red, black and editorial reference direction. */
+:root{--accent:#d52c3b;--arena-red:#d52c3b;--arena-ink:#101115;--arena-panel:#191a20;--arena-muted:#a8a9b0}
+#bracket{background:#101115!important;color:#f2f2f3}
+#bracket:before{background:radial-gradient(ellipse at 50% 40%,rgba(213,44,59,.11),transparent 44%),linear-gradient(180deg,#101115,#17181e 52%,#101115)!important}
+#bracket:after{color:rgba(255,255,255,.035)!important}
+#bracket h1,#bracket h2,#bracket h3{font-family:Oswald,'Arial Narrow',sans-serif!important;text-transform:uppercase;letter-spacing:.015em!important}
+#bracket h2{font-size:clamp(42px,6vw,78px)!important;line-height:.94!important}
+#bracket button{background:#1b1c22!important;border-color:#393a42!important;color:#e8e8eb!important;border-radius:5px!important;min-height:44px}
+#bracket button:hover{background:#281318!important;border-color:#d52c3b!important}
+#bracket .bracket-viewport{background:linear-gradient(145deg,#17181e,#111216)!important;border:1px solid #303139!important;border-radius:8px!important}
+#bracket .bracket-round{scroll-snap-align:start}
+#bracket .bracket-match{background:#1b1c22!important;border:1px solid #34353d!important;border-radius:5px!important}
+#bracket .bracket-match>div:hover{background:rgba(213,44,59,.1)!important}
+#bracket .bracket-champion{background:linear-gradient(145deg,rgba(213,44,59,.15),#191a20 75%)!important;border-color:rgba(213,44,59,.5)!important;border-radius:8px!important}
+#bracket .round-heading{color:#d1d1d6!important;border-color:#383940!important}
+@media(max-width:760px){#bracket{padding-top:100px!important}#bracket h2{font-size:clamp(38px,11vw,56px)!important}#bracket .bracket-toolbar button{min-height:48px!important}#bracket .bracket-viewport{border-radius:6px!important}}
+@media(prefers-reduced-motion:reduce){#bracket *{scroll-behavior:auto!important}}
+</style>
 </body>
 </html>
