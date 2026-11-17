@@ -6,7 +6,7 @@ const redirectTo=()=>new URL('Bender X Arena.dc.html',location.href).href;
 function rememberReturn(){try{sessionStorage.setItem('bx-account-return','1');}catch{}}
 function steamURL(value){if(!value.trim())return '';const u=new URL(value);if(u.protocol!=='https:'||u.hostname!=='steamcommunity.com'||u.username||u.password||u.port||!/^\/(id\/[a-zA-Z0-9_-]+|profiles\/[0-9]{17})\/?$/.test(u.pathname))throw Error('Укажи ссылку https://steamcommunity.com/id/имя или /profiles/SteamID.');return u.origin+u.pathname;}
 function preview(){const nick=$('nickname').value.trim()||'Игрок';$('preview-name').textContent=nick;$('preview-bio').textContent=$('bio').value||'Твоя история начинается здесь.';$('preview-main').textContent=$('main-fighter').value;$('preview-avatar').textContent=$('emblem').value==='initials'?Array.from(nick).slice(0,2).join('').toUpperCase():$('emblem').value;$('preview').dataset.banner=$('banner').value;document.querySelectorAll('[name="banner-choice"]').forEach(el=>el.checked=el.value===$('banner').value);document.querySelectorAll('[name="emblem-choice"]').forEach(el=>el.checked=el.value===$('emblem').value);}
-function render(next){user=next;$('member').hidden=!user;$('login').hidden=!!user;if(!user){$('profile-form').reset();$('steam-form').reset();return;}
+function render(next){user=next;$('member').hidden=!user;$('login').hidden=!!user;if(!user){$('password-form').reset();$('set-password-form').reset();$('profile-form').reset();$('steam-form').reset();return;}
 const m=user.user_metadata||{},p=m.bx_profile||{};
 $('nickname').value=p.nickname||m.display_name||m.full_name||'Игрок';$('bio').value=p.bio||'';$('main-fighter').value=p.main||'';
 $('emblem').value=['BX','X','initials'].includes(p.emblem)?p.emblem:'BX';$('banner').value=['crimson','ice','graphite'].includes(p.banner)?p.banner:'crimson';
@@ -28,5 +28,32 @@ $('logout').onclick=()=>run(async()=>{const {error}=await client.auth.signOut();
 $('login-discord').onclick=()=>run(async()=>{rememberReturn();const {error}=await client.auth.signInWithOAuth({provider:'discord',options:{redirectTo:redirectTo()}});if(error)throw error;});
 $('link-discord').onclick=()=>run(async()=>{if(!user)throw Error('Сначала войди.');rememberReturn();const {error}=await client.auth.linkIdentity({provider:'discord',options:{redirectTo:redirectTo()}});if(error)throw Error('Подключение Discord не завершено: '+error.message);});
 $('email-form').onsubmit=e=>{e.preventDefault();if(!$('email-form').reportValidity())return;run(async()=>{rememberReturn();const {error}=await client.auth.signInWithOtp({email:$('login-email').value.trim(),options:{emailRedirectTo:redirectTo()}});if(error)throw error;message('Ссылка отправлена. После входа открой «Личный кабинет» на главной.');});};
+let registering=false;
+function passwordMode(value){registering=value;
+$('mode-login').setAttribute('aria-pressed',String(!value));$('mode-register').setAttribute('aria-pressed',String(value));
+$('signup-name-label').hidden=!value;$('password-confirm-label').hidden=!value;
+for(const id of ['signup-name','password-confirm']){$(id).disabled=!value;$(id).required=value;}
+$('auth-password').value='';$('password-confirm').value='';$('auth-password').minLength=value?8:1;
+$('auth-password').autocomplete=value?'new-password':'current-password';$('auth-password').type='password';
+$('toggle-password').textContent='Показать';$('toggle-password').setAttribute('aria-pressed','false');$('toggle-password').setAttribute('aria-label','Показать пароль');
+$('password-title').textContent=value?'Твоя история начинается.':'С возвращением.';
+$('password-description').textContent=value?'Выбери ник, укажи почту и создай пароль.':'Войди с почтой и паролем. Твой профиль уже ждёт.';
+$('password-hint').textContent=value?'Минимум 8 символов. Ник отображается в профиле; для входа используется почта.':'Для входа используется почта. Вход по нику пока не подключён.';
+$('password-submit').textContent=value?'Создать аккаунт ↗':'Войти на арену ↗';message('');}
+$('mode-login').onclick=()=>passwordMode(false);$('mode-register').onclick=()=>passwordMode(true);
+$('toggle-password').onclick=()=>{const show=$('auth-password').type==='password';$('auth-password').type=show?'text':'password';$('toggle-password').textContent=show?'Скрыть':'Показать';$('toggle-password').setAttribute('aria-pressed',String(show));$('toggle-password').setAttribute('aria-label',show?'Скрыть пароль':'Показать пароль');};
+function passwordError(error){if(error.code==='invalid_credentials')return 'Не удалось войти. Проверь почту и пароль.';if(error.code==='email_not_confirmed')return 'Подтверди почту по ссылке из письма.';if(error.status===429)return 'Слишком много попыток. Подожди и попробуй снова.';return error.message||'Не удалось выполнить действие.';}
+$('password-form').onsubmit=e=>{e.preventDefault();if(!$('password-form').reportValidity())return;
+const isSignup=registering,email=$('password-email').value.trim(),password=$('auth-password').value,nickname=$('signup-name').value.trim();
+if(isSignup&&(nickname.length<2||password.length<8||password!==$('password-confirm').value)){message('Проверь ник (от 2 символов), пароль (от 8 символов) и его повтор.');return;}
+run(async()=>{if(!client)throw Error('Сервис входа недоступен. Повтори подключение.');message(isSignup?'Создаём аккаунт…':'Входим на арену…');
+let result;if(isSignup){rememberReturn();result=await client.auth.signUp({email,password,options:{emailRedirectTo:redirectTo(),data:{display_name:nickname,bx_profile:{nickname,banner:'crimson',emblem:'BX'}}}});}else result=await client.auth.signInWithPassword({email,password});
+if(result.error)throw Error(passwordError(result.error));$('auth-password').value='';$('password-confirm').value='';
+if(result.data.session){render(result.data.session.user);message('Ты на арене. Настрой свой профиль.');}else message('Проверь почту для подтверждения регистрации. Если аккаунт уже есть, используй вход или ссылку из письма.');
+});};
+$('set-password-form').onsubmit=e=>{e.preventDefault();if(!$('set-password-form').reportValidity())return;const password=$('new-password').value;
+if(password!==$('new-password-confirm').value){message('Пароли не совпадают.');return;}
+run(async()=>{if(!user)throw Error('Сначала войди в аккаунт.');const {error}=await client.auth.updateUser({password});if(error)throw Error(passwordError(error));$('set-password-form').reset();message('Пароль сохранён. Для входа используй почту и новый пароль.');});};
+
 init();
 })();
