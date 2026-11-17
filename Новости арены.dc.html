@@ -4,160 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
-<link rel="stylesheet" href="arena-theme.css?v=20261117-news">
-</head>
+<link rel="stylesheet" href="arena-theme.css?v=20261117-media">
+<title>Новости — BENDER X ARENA</title></head>
 <body class="arena-shell-page">
 <x-dc>
-<helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Russo+One&display=swap" rel="stylesheet">
-<style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;color-scheme:dark}
-  body{background:#08080a;color:#f4f4f5;font-family:'Oswald',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-  a{color:inherit;text-decoration:none}
-  a:hover{color:var(--accent,#ff2130)}
-  input,button{font-family:inherit}
-  button,a,input,select,textarea{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-  :focus-visible{outline:2px solid var(--accent,#ff2130);outline-offset:3px}
-  nav a:hover{transform:translateY(-2px)}
-  ::selection{background:#ff2130;color:#fff}
-  ::-webkit-scrollbar{width:11px;height:11px}
-  ::-webkit-scrollbar-track{background:#0c0c0f}
-  ::-webkit-scrollbar-thumb{background:#26262c;border:2px solid #0c0c0f}
-  ::-webkit-scrollbar-thumb:hover{background:var(--accent,#ff2130)}
-  [data-reveal]{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-  [data-reveal].r-in{opacity:1;transform:none}
-  [data-stagger]>[data-reveal]:nth-child(2){transition-delay:.07s}
-  [data-stagger]>[data-reveal]:nth-child(3){transition-delay:.14s}
-  [data-stagger]>[data-reveal]:nth-child(4){transition-delay:.2s}
-  [data-stagger]>[data-reveal]:nth-child(5){transition-delay:.26s}
-  [data-stagger]>[data-reveal]:nth-child(n+6){transition-delay:.3s}
-  @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
-  [data-reveal]{opacity:1!important;transform:none!important}
-}
-  @keyframes heroRise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
-  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
-  @keyframes shine{0%{left:-60%}60%,100%{left:130%}}
-  @keyframes bgLogoPulse{0%,100%{opacity:.05}50%{opacity:.1}}
-  @keyframes xBlink{0%,90%,100%{opacity:1;filter:none}92%{opacity:.28}94%{opacity:1;filter:drop-shadow(0 0 22px var(--accent,#ff2130))}96%{opacity:.42}98%{opacity:1;filter:drop-shadow(0 0 28px var(--accent,#ff2130))}}
-
-  /* Mobile layout: keep navigation usable and prevent the news grid from overflowing */
-  @media (max-width:760px){
-    nav{
-      height:auto!important;
-      min-height:60px!important;
-      flex-wrap:wrap!important;
-      align-content:center!important;
-      row-gap:5px!important;
-      padding:8px 14px 6px!important;
-      background:rgba(8,8,10,.94)!important;
-    }
-    nav>a:first-child{gap:8px!important}
-    nav>a:first-child img{height:34px!important}
-    nav>a:first-child span{font-size:13px!important}
-    nav>div{
-      order:3!important;
-      flex:1 0 100%!important;
-      width:100%!important;
-      min-width:0!important;
-      overflow-x:auto!important;
-      overflow-y:hidden!important;
-      display:flex!important;
-      gap:18px!important;
-      padding:4px 0 7px!important;
-      white-space:nowrap!important;
-      scrollbar-width:none!important;
-      -webkit-overflow-scrolling:touch;
-    }
-    nav>div::-webkit-scrollbar{display:none}
-    nav>a:last-child{
-      font-size:11px!important;
-      letter-spacing:.09em!important;
-      padding:9px 12px!important;
-    }
-    header{
-      padding:142px 18px 32px!important;
-    }
-    header>div:first-child img{
-      width:min(72vw,340px)!important;
-      right:-8%!important;
-      top:42%!important;
-      opacity:.55!important;
-    }
-    header h1{
-      font-size:clamp(44px,12vw,72px)!important;
-      line-height:.92!important;
-      overflow-wrap:anywhere;
-    }
-    header p{font-size:15px!important;max-width:34rem!important}
-    #feed>div>div:first-child{
-      align-items:flex-start!important;
-      flex-direction:column!important;
-      gap:14px!important;
-    }
-    #feed>div>div:first-child>div:last-child{
-      width:100%!important;
-      display:flex!important;
-      flex-wrap:nowrap!important;
-      overflow-x:auto!important;
-      padding:2px 2px 8px!important;
-      scrollbar-width:none!important;
-      -webkit-overflow-scrolling:touch;
-    }
-    #feed>div>div:first-child>div:last-child::-webkit-scrollbar{display:none}
-    #feed [data-stagger]{
-      grid-template-columns:minmax(0,1fr)!important;
-      gap:12px!important;
-    }
-    #feed [data-stagger]>div{min-width:0!important}
-    #feed [data-stagger] a{min-width:0!important}
-    #feed [data-stagger] a>div:first-child{height:116px!important}
-    #feed [data-stagger] a>div:last-child{padding:17px!important}
-    #feed [data-stagger] a>div:last-child>div:nth-child(2){
-      font-size:19px!important;
-      overflow-wrap:anywhere;
-    }
-  }
-  @media (max-width:380px){
-    nav>a:first-child span{font-size:12px!important}
-    nav>a:last-child{font-size:10px!important;padding:8px 9px!important}
-    header h1{font-size:clamp(40px,11.5vw,52px)!important}
-  }
-
-  /* bxx-news-mobile-refine-2026 */
-  @media(max-width:760px){
-    nav>div a,nav>div span{min-height:40px;display:inline-flex;align-items:center}
-    #feed [data-stagger] a>div:last-child{min-width:0!important}
-    #feed [data-stagger] a>div:last-child>p{overflow-wrap:anywhere}
-    footer>div:last-child>span:last-child{text-align:left!important}
-  }
-  @media(max-width:520px){
-    #feed [data-stagger] a>div:first-child{height:100px!important}
-    #feed [data-stagger] a>div:last-child{padding:16px!important}
-    #feed [data-stagger] a>div:last-child>div:nth-child(2){font-size:18px!important}
-  }
-  @media(max-width:380px){#feed [data-stagger] a>div:last-child>div:nth-child(2){font-size:17px!important}}
-</style>
-
-<style id="bxx-editorial-hub-pass-20261116">
-:root{--accent:#d52c3b;--arena-red:#d52c3b}
-body{background:#101115!important;color:#f2f2f3!important}
-header{background:radial-gradient(ellipse at 78% 32%,rgba(213,44,59,.14),transparent 38%),linear-gradient(115deg,#101115,#17181e 70%,#101115)!important;border-color:#303139!important}
-header h1{font-family:Oswald,'Arial Narrow',sans-serif!important;letter-spacing:.005em!important}
-header p{color:#b4b5bc!important;max-width:640px!important}
-header>div[style*="max-width:1480px"]>div[style*="display:flex"]>div{border-color:#393a42!important}
-section[data-reveal]{color:#f2f2f3}
-section[data-reveal] h2{font-family:Oswald,'Arial Narrow',sans-serif!important;letter-spacing:.015em!important}
-section[data-reveal] a[style*="clip-path"]{border-radius:7px!important;clip-path:none!important;background-color:#191a20!important}
-section[data-reveal] a[style*="clip-path"]:hover{border-color:rgba(213,44,59,.55)!important}
-footer{background:#101115!important;border-color:#303139!important}
-@media(max-width:760px){header h1{line-height:.94!important}section[data-reveal] h2{line-height:1!important}}
-@media(prefers-reduced-motion:reduce){header *{animation:none!important}}
-</style>
-</helmet>
+<helmet><style>*{box-sizing:border-box}body{margin:0}a{color:inherit;text-decoration:none}button,input{font:inherit}@keyframes bgLogoPulse{0%,100%{opacity:.05}50%{opacity:.1}}@media(prefers-reduced-motion:reduce){*{animation:none!important}}</style></helmet>
 <div class="arena-shell-content" style="{{ rootStyle }}">
   
   <div style="position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(75% 45% at 50% 0%, color-mix(in srgb,var(--accent,#ff2130) 10%, transparent), transparent 70%)"></div>
@@ -193,20 +44,20 @@ footer{background:#101115!important;border-color:#303139!important}
 </div>
 <p class="arena-news-status" role="status" aria-live="polite">{{ statusText }}</p>
 <sc-if value="{{ hasError }}"><div class="arena-empty"><h2>Лента временно недоступна</h2><p>Не удалось получить новости. Попробуй загрузить их ещё раз.</p><button class="arena-reset" onClick="{{ reload }}">Повторить загрузку</button></div></sc-if>
-<sc-if value="{{ empty }}"><div class="arena-empty"><h2>Новости скоро появятся</h2><p>Здесь будут анонсы турниров, результаты боёв и новости сообщества.</p><a class="arena-reset" href="https://discord.com/invite/qqctMjCTeg" target="_blank" rel="noopener noreferrer">Анонсы в Discord ↗</a></div></sc-if>
+<sc-if value="{{ empty }}"><div class="arena-media-empty"><div class="arena-media-empty-copy"><span class="arena-news-kicker">НОВАЯ ГЛАВА АРЕНЫ</span><h2>История<br>только начинается.</h2><p>Анонсы турниров, результаты и жизнь сообщества появятся здесь после публикации. Следи за следующими событиями вместе с нами.</p><a class="arena-reset arena-tournament-primary" href="https://discord.com/invite/qqctMjCTeg" target="_blank" rel="noopener noreferrer">Анонсы в Discord ↗</a></div><div class="arena-media-empty-art" aria-hidden="true"><img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt=""><span>NEWSROOM</span></div></div></sc-if>
 <sc-if value="{{ noMatches }}"><div class="arena-empty"><h2>Публикации не найдены</h2><p>Попробуй другой запрос или выбери все категории.</p><button class="arena-reset" onClick="{{ resetFilters }}">Сбросить фильтры</button></div></sc-if>
 <div id="news-results" class="arena-news-grid" aria-busy="{{ loading }}">
 <sc-for list="{{ news }}" as="item">
-<article class="arena-news-card">
+<article class="arena-news-card" data-featured="{{ item.featured }}">
 <sc-if value="{{ item.hasCover }}"><img class="arena-news-cover" src="{{ item.cover }}" alt="" loading="lazy" onError="{{ item.onImageError }}"></sc-if>
-<div class="arena-news-copy"><div class="arena-news-meta"><span>{{ item.category }}</span><time>{{ item.date }}</time></div><h2>{{ item.title }}</h2><p class="arena-news-excerpt">{{ item.excerpt }}</p>
+<sc-if value="{{ item.noCover }}"><div class="arena-news-fallback" aria-hidden="true"><img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt=""><span>BX / NEWSROOM</span></div></sc-if><div class="arena-news-copy"><div class="arena-news-meta"><span>{{ item.category }}</span><time>{{ item.date }}</time></div><h2>{{ item.title }}</h2><p class="arena-news-excerpt">{{ item.excerpt }}</p>
 <sc-if value="{{ item.hasContent }}"><details class="arena-news-details"><summary>Читать публикацию <span aria-hidden="true">+</span></summary><div class="arena-news-body">{{ item.content }}</div></details></sc-if>
 </div>
 </article>
 </sc-for>
 </div>
 </div>
-</section>
+</section><section class="arena-media-next" aria-label="Продолжить знакомство с ареной"><div><div><span class="arena-news-kicker">АРЕНА ПРОДОЛЖАЕТСЯ</span><h2>Смотри, как пишется история.</h2></div><a class="arena-reset" href="Расписание стримов.dc.html">Расписание эфиров ↗</a></div></section>
 <footer style="position:relative;z-index:3;border-top:1px solid #ffffff12;background:#0a0a0d;padding:clamp(38px,4.6vw,60px) clamp(18px,4vw,44px) 28px">
     <div style="max-width:1480px;margin:0 auto;display:flex;flex-wrap:wrap;gap:26px;align-items:center;justify-content:space-between">
       <a href="Bender%20X%20Arena.dc.html#hero" style="display:inline-flex;align-items:center;gap:10px">
@@ -262,10 +113,11 @@ class Component extends DCLogic {
     const query=S.query.trim().toLocaleLowerCase('ru');
     const filtered=S.rows.filter(row=>(active===null||categoryOf(row)===active)&&
       [row.title,row.excerpt,row.content].some(value=>String(value||'').toLocaleLowerCase('ru').includes(query)));
-    const news=filtered.map(row=>{
+    const news=filtered.map((row,index)=>{
       const cover=String(row.cover_image_url||'');
       const stamp=Date.parse(row.published_at);
       return {
+        featured:index===0, noCover:!/^https?:\/\//i.test(cover)||S.failedImages.includes(row.id),
         title:String(row.title||'Без заголовка'),category:categoryOf(row),
         excerpt:String(row.excerpt||''),content:String(row.content||''),
         hasContent:!!String(row.content||'').trim(),
