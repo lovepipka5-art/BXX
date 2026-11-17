@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
-<link rel="stylesheet" href="arena-theme.css?v=20261116-shell">
-</head>
+<link rel="stylesheet" href="arena-theme.css?v=20261117-about">
+<title>Об арене — BENDER X ARENA</title><meta name="description" content="Турниры, трансляции и сообщество Mortal Kombat. Найди свой следующий бой на BENDER X ARENA."></head>
 <body class="arena-shell-page">
 <x-dc>
 <helmet>
@@ -102,19 +102,19 @@ footer{background:#101115!important;border-color:#303139!important}
 @media(prefers-reduced-motion:reduce){header *{animation:none!important}}
 </style>
 </helmet>
-<div class="arena-shell-content" style="{{ rootStyle }}" ref="{{ rootRef }}">
-  <canvas ref="{{ fxRef }}" style="position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none"></canvas>
+<div class="arena-shell-content" style="{{ rootStyle }}">
+  
   <div style="position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(75% 45% at 50% 0%, color-mix(in srgb,var(--accent,#ff2130) 10%, transparent), transparent 70%)"></div>
   <div style="position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(120% 120% at 50% 40%, transparent 58%, #000 130%)"></div>
-  <div ref="{{ glowRef }}" style="position:fixed;top:0;left:0;width:540px;height:540px;border-radius:50%;z-index:2;pointer-events:none;background:radial-gradient(closest-side, color-mix(in srgb,var(--accent,#ff2130) 13%, transparent), transparent);mix-blend-mode:screen"></div>
-  <div ref="{{ barRef }}" style="position:fixed;top:0;left:0;height:3px;width:0%;z-index:130;background:linear-gradient(90deg,var(--accent,#ff2130),#ff7a3d);box-shadow:0 0 12px var(--accent,#ff2130)"></div>
+  <div style="position:fixed;top:0;left:0;width:540px;height:540px;border-radius:50%;z-index:2;pointer-events:none;background:radial-gradient(closest-side, color-mix(in srgb,var(--accent,#ff2130) 13%, transparent), transparent);mix-blend-mode:screen"></div>
+  <div style="position:fixed;top:0;left:0;height:3px;width:0%;z-index:130;background:linear-gradient(90deg,var(--accent,#ff2130),#ff7a3d);box-shadow:0 0 12px var(--accent,#ff2130)"></div>
 
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10H3zM9 20v-7h6v7"/></symbol><symbol id="i-fight" viewBox="0 0 24 24"><path d="m4 3 6 2 10 13-2 2L5 10zM20 3l-6 2-3 4M8 14l-4 4 2 2 4-3M3 15l6 6M15 21l6-6"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3z"/></symbol><symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 3h8v6a4 4 0 0 1-8 0zM8 5H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4m-4 1v7m-5 1h10"/></symbol><symbol id="i-grid" viewBox="0 0 24 24"><path d="M3 3h5v5H3zM3 16h5v5H3zM16 9h5v6h-5zM8 5h4v13H8m4-6h4"/></symbol><symbol id="i-news" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4M8 18h8"/></symbol><symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol><symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></symbol><symbol id="i-discord" viewBox="0 0 24 24"><path d="M8 4 4 6 2 17l5 3 2-3m7-13 4 2 2 11-5 3-2-3M7 6a14 14 0 0 1 10 0M6 16a14 14 0 0 0 12 0"/><circle cx="8" cy="12" r="1"/><circle cx="16" cy="12" r="1"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></symbol></svg><aside class="arena-sidebar" aria-label="Главная навигация"><a class="arena-brand" href="Bender X Arena.dc.html"><img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="" width="48" height="48"><span>BENDER X ARENA<small>ТЕРРИТОРИЯ БОЯ</small></span></a><p class="arena-nav-caption">НАВИГАЦИЯ</p><div class="arena-links" role="navigation"><a href="Bender X Arena.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-home"/></svg>Главная</a><a href="Бойцы арены.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-fight"/></svg>Бойцы арены</a><a href="Расписание стримов.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-play"/></svg>Стримы</a><a href="Турнирная сетка.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-grid"/></svg>Турнирная сетка</a><a href="Топ игроков.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-trophy"/></svg>Топ игроков</a><a href="Новости арены.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-news"/></svg>Новости</a><a href="О арене.dc.html" aria-current="page"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-info"/></svg>Об арене</a></div><a class="arena-discord" href="https://discord.com/invite/qqctMjCTeg" target="_blank" rel="noopener noreferrer">Сообщество Discord ↗</a></aside>
 <div class="arena-page-topbar"><span class="arena-breadcrumb">Арена / <strong>Об арене</strong></span><details class="arena-mobile-menu"><summary><span aria-hidden="true">☰</span> BENDER X ARENA</summary><div class="arena-links"><a href="Bender X Arena.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-home"/></svg>Главная</a><a href="Бойцы арены.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-fight"/></svg>Бойцы арены</a><a href="Расписание стримов.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-play"/></svg>Стримы</a><a href="Турнирная сетка.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-grid"/></svg>Турнирная сетка</a><a href="Топ игроков.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-trophy"/></svg>Топ игроков</a><a href="Новости арены.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-news"/></svg>Новости</a><a href="О арене.dc.html" aria-current="page"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-info"/></svg>Об арене</a></div></details><a class="arena-account-link" href="Bender X Arena.dc.html#register">Мой аккаунт ↗</a></div>
 <div class="arena-bottom-nav" role="navigation" aria-label="Быстрые переходы"><a href="Bender X Arena.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-home"/></svg><span>Главная</span></a><a href="Турнирная сетка.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-grid"/></svg><span>Турниры</span></a><a href="Расписание стримов.dc.html"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-play"/></svg><span>Стримы</span></a><a href="Bender X Arena.dc.html#register"><svg class="arena-icon" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-user"/></svg><span>Аккаунт</span></a></div>
 
   <header style="position:relative;z-index:3;overflow:hidden;padding:clamp(112px,14vh,150px) clamp(18px,4vw,44px) clamp(30px,4vw,46px);border-bottom:1px solid #ffffff10">
-    <div ref="{{ ghostRef }}" style="position:absolute;inset:0;pointer-events:none;z-index:0">
+    <div style="position:absolute;inset:0;pointer-events:none;z-index:0">
       <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="" style="position:absolute;right:2%;top:46%;width:min(46vw,520px);height:auto;transform:translateY(-50%);animation:bgLogoPulse 8s ease-in-out infinite;mix-blend-mode:screen">
       <div style="position:absolute;left:-1%;bottom:-14%;font-family:'Russo One',sans-serif;font-size:17vw;line-height:.78;color:transparent;-webkit-text-stroke:1px #ffffff0a;white-space:nowrap">ARENA</div>
     </div>
@@ -128,59 +128,26 @@ footer{background:#101115!important;border-color:#303139!important}
       <p style="max-width:560px;margin-top:16px;font-size:clamp(14px,1.4vw,17px);font-weight:300;line-height:1.6;color:#9a9aa4;animation:heroRise .7s .18s both">Bender X Arena — это турнирная платформа, где сходятся лучшие бойцы. Что мы такое, во что играем и как всё устроено.</p>
     </div>
   </header>
-
-  <section data-reveal style="{{ revealStyle }}">
-    <div style="max-width:1480px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
-        <sc-for list="{{ stats }}" as="st" hint-placeholder-count="3">
-          <div data-reveal style="position:relative;overflow:hidden;background:rgba(22,22,28,.12);backdrop-filter:blur(14px);border:1px solid #ffffff12;padding:clamp(24px,3vw,38px);clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%)">
-            <div style="position:absolute;right:-10%;bottom:-18%;font-family:'Russo One',sans-serif;font-size:min(16vw,170px);line-height:.8;color:transparent;-webkit-text-stroke:1px #ffffff0a;pointer-events:none">{{ st.glyph }}</div>
-            <div style="position:relative;z-index:2">
-              <div style="font-family:'Russo One',sans-serif;font-size:clamp(34px,4.4vw,56px);line-height:1;color:var(--accent,#ff2130)">{{ st.value }}</div>
-              <div style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#83838d;margin-top:8px">{{ st.label }}</div>
-              <p style="font-size:14px;font-weight:300;line-height:1.55;color:#9a9aa4;margin-top:12px">{{ st.text }}</p>
-            </div>
-          </div>
-        </sc-for>
-      </div>
-    </div>
-  </section>
-
-  <section data-reveal style="{{ revealStyle }}">
-    <div style="max-width:1480px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
-      <div style="max-width:760px">
-        <div style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--accent,#ff2130)">Кто мы</div>
-        <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,50px);line-height:.92;text-transform:uppercase;margin-top:12px">Дом соревновательных файтов</h2>
-      </div>
-      <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:clamp(22px,3vw,36px)">
-        <sc-for list="{{ features }}" as="f" hint-placeholder-count="4">
-          <div data-reveal style="position:relative;overflow:hidden;background:linear-gradient(150deg,rgba(24,20,28,.12),rgba(15,15,20,.10));backdrop-filter:blur(14px);border:1px solid #ffffff12;padding:clamp(24px,3vw,34px);clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%);transition:border-color .3s,transform .3s" style-hover="{{ cardHover }}">
-            <div style="font-family:'Russo One',sans-serif;font-size:30px;line-height:1;color:var(--accent,#ff2130)">{{ f.num }}</div>
-            <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:21px;line-height:1.08;text-transform:uppercase;margin-top:16px">{{ f.title }}</div>
-            <p style="font-size:14px;font-weight:300;line-height:1.55;color:#9a9aa4;margin-top:10px">{{ f.text }}</p>
-          </div>
-        </sc-for>
-      </div>
-    </div>
-  </section>
-
-  <section data-reveal style="{{ revealStyle }}">
-    <div style="max-width:1480px;margin:0 auto;padding:0 clamp(18px,4vw,44px)">
-      <div style="position:relative;overflow:hidden;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;background:linear-gradient(120deg,rgba(24,20,28,.12),rgba(17,17,22,.12));backdrop-filter:blur(14px);border:1px solid color-mix(in srgb,var(--accent,#ff2130) 38%, transparent);padding:clamp(28px,3.6vw,44px);clip-path:polygon(0 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%)">
-        <div style="position:absolute;top:-50%;right:8%;width:36px;height:200%;background:var(--accent,#ff2130);opacity:.14;transform:rotate(20deg);filter:blur(2px);pointer-events:none"></div>
-        <div style="position:relative;z-index:2;min-width:260px">
-          <div style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--accent,#ff2130)">Сообщество</div>
-          <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(24px,3vw,38px);line-height:.96;text-transform:uppercase;margin-top:10px">Мы в Discord</div>
-          <p style="font-size:14px;font-weight:300;line-height:1.55;color:#9a9aa4;margin-top:10px;max-width:400px">Анонсы эфиров, обсуждение матчей, поиск соперников и прямые трансляции — всё в одном месте.</p>
-        </div>
-        <div style="position:relative;z-index:2;min-width:280px">
-          <a href="#" style="display:inline-flex;align-items:center;gap:10px;font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#0b0b0e;background:#5865f2;padding:15px 28px;clip-path:polygon(0 0,100% 0,100% 100%,11px 100%,0 calc(100% - 11px))">Вступить в Discord</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer style="position:relative;z-index:3;border-top:1px solid #ffffff12;background:#0a0a0d;padding:clamp(38px,4.6vw,60px) clamp(18px,4vw,44px) 28px">
+<section class="arena-about" aria-labelledby="about-manifesto"><div>
+<div class="arena-manifesto">
+<div class="arena-manifesto-copy"><span class="arena-news-kicker">BENDER X ARENA / MORTAL KOMBAT</span><h2 id="about-manifesto">БОЛЬШЕ,<br>ЧЕМ <em>ОДИН БОЙ.</em></h2><p>Место, где встречаются игроки и зрители. Находи турниры, следи за трансляциями и оставайся частью сообщества между матчами.</p><a class="arena-reset arena-tournament-primary" href="Турнирная сетка.dc.html">Найти свой турнир <span aria-hidden="true">↗</span></a></div>
+<div class="arena-manifesto-art" aria-hidden="true"><span class="arena-art-label">ENTER THE ARENA</span><img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt=""><span class="arena-art-bottom">BENDER X / FIGHTING COMMUNITY</span></div>
+</div>
+<div class="arena-about-strip" aria-hidden="true"><span>ТУРНИРЫ</span><b>✦</b><span>ТРАНСЛЯЦИИ</span><b>✦</b><span>СООБЩЕСТВО</span></div>
+<div class="arena-news-heading arena-about-heading"><div><span class="arena-news-kicker">ВЫБЕРИ СВОЮ СТОРОНУ АРЕНЫ</span><h2>Играй. Смотри. Будь в теме.</h2></div><span class="arena-about-caption">Три способа быть ближе к игре</span></div>
+<div class="arena-destination-grid">
+<a class="arena-destination" href="Турнирная сетка.dc.html"><div class="arena-destination-top"><span>01 / ИГРОКАМ</span><svg class="arena-icon" aria-hidden="true"><use href="#i-grid"/></svg></div><div class="arena-destination-word" aria-hidden="true">FIGHT</div><h3>Твой следующий<br>соперник ждёт</h3><p>Даты турниров, регистрация и сетки соревнований в одном каталоге.</p><span class="arena-destination-link">Выбрать турнир <b aria-hidden="true">↗</b></span></a>
+<a class="arena-destination" href="Расписание стримов.dc.html"><div class="arena-destination-top"><span>02 / ЗРИТЕЛЯМ</span><svg class="arena-icon" aria-hidden="true"><use href="#i-play"/></svg></div><div class="arena-destination-word" aria-hidden="true">WATCH</div><h3>Не пропусти<br>решающий раунд</h3><p>Расписание эфиров и прямые ссылки на площадки трансляций.</p><span class="arena-destination-link">Открыть расписание <b aria-hidden="true">↗</b></span></a>
+<a class="arena-destination" href="Новости арены.dc.html"><div class="arena-destination-top"><span>03 / СООБЩЕСТВУ</span><svg class="arena-icon" aria-hidden="true"><use href="#i-news"/></svg></div><div class="arena-destination-word" aria-hidden="true">FOLLOW</div><h3>История арены<br>продолжается</h3><p>Анонсы, публикации и события проекта — всё важное рядом.</p><span class="arena-destination-link">Читать новости <b aria-hidden="true">↗</b></span></a>
+</div>
+<div class="arena-about-bottom"><div class="arena-community-panel"><span class="arena-news-kicker">НА СВЯЗИ МЕЖДУ БОЯМИ</span><h2>СВОИ<br>УЖЕ <em>ЗДЕСЬ.</em></h2><p>Обсуждай матчи, ищи соперников и следи за анонсами в Discord-сообществе BENDER X ARENA.</p><a class="arena-reset arena-tournament-primary" href="https://discord.com/invite/qqctMjCTeg" target="_blank" rel="noopener noreferrer">Присоединиться к Discord ↗</a></div>
+<div class="arena-faq"><span class="arena-news-kicker">ПЕРЕД ПЕРВЫМ РАУНДОМ</span><h2>Коротко о главном</h2>
+<details><summary>Как участвовать в турнире?<span aria-hidden="true">+</span></summary><p>Открой каталог турниров, выбери ближайшее событие и перейди по ссылке «Регистрация». Правила, допуск и формат указывает организатор на своей площадке.</p></details>
+<details><summary>Где смотреть матчи?<span aria-hidden="true">+</span></summary><p>В разделе «Стримы» собраны опубликованные эфиры. Время указано по Москве. Кнопка трансляции открывает площадку, указанную организатором.</p></details>
+<details><summary>Почему в каталоге нет событий?<span aria-hidden="true">+</span></summary><p>В каталоге отображаются опубликованные турниры. Если анонсов пока нет, загляни позже или следи за новостями сообщества в Discord.</p></details>
+<details><summary>Где найти завершённый турнир?<span aria-hidden="true">+</span></summary><p>В каталоге выбери фильтр «Завершённые». Ссылка на сетку остаётся доступной, если организатор её опубликовал.</p></details>
+</div></div>
+</div></section><footer style="position:relative;z-index:3;border-top:1px solid #ffffff12;background:#0a0a0d;padding:clamp(38px,4.6vw,60px) clamp(18px,4vw,44px) 28px">
     <div style="max-width:1480px;margin:0 auto;display:flex;flex-wrap:wrap;gap:26px;align-items:center;justify-content:space-between">
       <a href="Bender%20X%20Arena.dc.html#hero" style="display:inline-flex;align-items:center;gap:10px">
         <img src="uploads/1784499586717-019f7c76-1764-77c6-9c60-732c8958b10c.png" alt="Bender X Arena" style="height:44px;width:auto;display:block;filter:drop-shadow(0 0 14px color-mix(in srgb,var(--accent,#ff2130) 45%, transparent))">
@@ -197,69 +164,4 @@ footer{background:#101115!important;border-color:#303139!important}
       <span>© 2026 BENDER X ARENA. Все права защищены.</span>
       <span style="max-width:560px;text-align:right">Bender X Arena — оригинальный вымышленный проект. Не связан с Mortal Kombat / NetherRealm Studios и не использует их персонажей.</span>
     </div>
-  </footer>
-</div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#ff2130&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#ff2130&quot;,&quot;#e10600&quot;,&quot;#ff3b1f&quot;,&quot;#c60011&quot;],&quot;section&quot;:&quot;Стиль&quot;},&quot;particles&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Эффекты&quot;}}">
-class Component extends DCLogic {
-  constructor(props){
-    super(props);
-    this.fxRef=el=>{this.fx=el}; this.glowRef=el=>{this.glow=el}; this.rootRef=el=>{this.root=el}; this.ghostRef=el=>{this.ghost=el}; this.barRef=el=>{this.bar=el};
-  }
-  state={ scrolled:false };
-
-  componentDidMount(){
-    if(this.root && this.props.accent) this.root.style.setProperty('--accent',this.props.accent);
-    this.initFX();
-    this._move=e=>this.onMove(e); window.addEventListener('mousemove',this._move,{passive:true});
-    this._scroll=()=>this.onScroll(); window.addEventListener('scroll',this._scroll,{passive:true});
-    setTimeout(()=>this.setupReveals(),40);
-  }
-  componentWillUnmount(){ cancelAnimationFrame(this._raf); window.removeEventListener('mousemove',this._move); window.removeEventListener('scroll',this._scroll); if(this._fxResize) window.removeEventListener('resize',this._fxResize); if(this._io) this._io.disconnect(); }
-  setupReveals(){
-    if(!this.root) return;
-    if(!('IntersectionObserver' in window)){ this.root.querySelectorAll('[data-reveal]').forEach(el=>el.classList.add('r-in')); return; }
-    this._io=new IntersectionObserver(ents=>{ ents.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('r-in'); e.target.dataset.revealed='1'; this._io.unobserve(e.target); } }); },{threshold:0.08,rootMargin:'0px 0px -6% 0px'});
-    this.revealScan();
-  }
-  revealScan(){
-    if(!this.root||!this._io) return;
-    this.root.querySelectorAll('[data-reveal]').forEach(el=>{ if(el.dataset.revealed) return; const r=el.getBoundingClientRect(); if(r.top<window.innerHeight*0.92&&r.bottom>0){ el.classList.add('r-in'); el.dataset.revealed='1'; this._io.unobserve(el); } else { this._io.observe(el); } });
-  }
-  hexRgb(h){ h=(h||'#ff2130').replace('#',''); if(h.length===3) h=h.split('').map(x=>x+x).join(''); const n=parseInt(h,16); return (n>>16&255)+','+(n>>8&255)+','+(n&255); }
-  mkP(W,H,bottom){ const max=220+Math.random()*280; return {x:Math.random()*W,y:bottom?H+Math.random()*40:Math.random()*H,vy:.25+Math.random()*.95,vx:(Math.random()-.5)*.3,r:.6+Math.random()*2.3,alpha:.2+Math.random()*.5,life:max,max}; }
-  initFX(){ const cv=this.fx; if(!cv) return; const ctx=cv.getContext('2d'); let W=1,H=1; const resize=()=>{ const dpr=Math.min(2,window.devicePixelRatio||1); W=cv.clientWidth||window.innerWidth; H=cv.clientHeight||window.innerHeight; cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }; resize(); this._fxResize=resize; window.addEventListener('resize',resize);
-    const rgb=this.hexRgb(this.props.accent||'#ff2130'); const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches; const N=(reduced||this.props.particles===false)?0:70;
-    const ps=Array.from({length:N},()=>this.mkP(W,H));
-    const draw=()=>{ ctx.clearRect(0,0,W,H); for(const p of ps){ p.y-=p.vy; p.x+=p.vx; p.life--; if(p.y<-12||p.life<0) Object.assign(p,this.mkP(W,H,true)); const a=p.alpha*Math.min(1,p.life/60); ctx.beginPath(); ctx.fillStyle='rgba('+rgb+','+a+')'; ctx.shadowColor='rgba('+rgb+',.9)'; ctx.shadowBlur=p.r*4; ctx.arc(p.x,p.y,p.r,0,6.283); ctx.fill(); } ctx.shadowBlur=0; this._raf=requestAnimationFrame(draw); }; draw();
-  }
-  onMove(e){ if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; if(this.glow) this.glow.style.transform='translate('+(e.clientX-270)+'px,'+(e.clientY-270)+'px)'; const cx=e.clientX/window.innerWidth-.5, cy=e.clientY/window.innerHeight-.5; if(this.ghost) this.ghost.style.transform='translate('+(cx*-26)+'px,'+(cy*-12)+'px)'; }
-  onScroll(){ if(this._st) return; this._st=requestAnimationFrame(()=>{ this._st=null; const d=document.documentElement; const max=d.scrollHeight-window.innerHeight; if(this.bar) this.bar.style.width=(max>0?(window.scrollY/max*100):0)+'%'; const s=window.scrollY>28; if(s!==this.state.scrolled) this.setState({scrolled:s}); }); }
-
-  renderVals(){
-    const S=this.state, A='var(--accent,#ff2130)';
-    const shine={content:"''",position:'absolute',top:0,left:'-60%',width:'46%',height:'100%',background:'linear-gradient(90deg,transparent,#ffffff5c,transparent)',transform:'skewX(-22deg)',animation:'shine 3.6s ease-in-out infinite',pointerEvents:'none'};
-    const stats=[
-      {glyph:'4',value:'4',label:'сезона',text:'Четыре полных турнирных сезона пройдено. Пятый уже готовит новых бойцов.'},
-      {glyph:'3',value:'120+',label:'бойцов',text:'Ростер пополняется каждые полгода: от брутальных танков до хитрых колдунов.'},
-      {glyph:'6',value:'24/7',label:'режим',text:'Рейтинговые дуэли, турниры и тренировочная зона работают без выходных.'}
-    ];
-    const features=[
-      {num:'01',title:'Турниры',text:'Еженедельные сетки, плей-офф и гранд-финал. Каждый может заявиться на квалификацию.'},
-      {num:'02',title:'Рейтинги',text:'Прозрачный ладдер с очками, дивизионами и сезонными наградами за топ.'},
-      {num:'03',title:'Стримы',text:'Официальные эфиры с комментаторами, повторами и разборами ключевых моментов.'},
-      {num:'04',title:'Сообщество',text:'Discord-комьюнити, где обсуждают мету, ищут напарников и следят за новостями.'}
-    ];
-    return {
-      rootStyle:{'--accent':'#ff2130',position:'relative',minHeight:'100vh',background:'#08080a',overflowX:'hidden'},
-      navStyle:{position:'fixed',top:'3px',left:0,right:0,zIndex:120,display:'flex',alignItems:'center',justifyContent:'space-between',gap:'clamp(12px,1.8vw,26px)',height:'60px',padding:'0 clamp(18px,4vw,44px)',background:S.scrolled?'rgba(8,8,10,.9)':'rgba(8,8,10,.1)',borderBottom:'1px solid '+(S.scrolled?'#ffffff14':'#ffffff00'),backdropFilter:'blur(12px)',transition:'background .3s,border-color .3s'},
-      revealStyle:{position:'relative',zIndex:3,padding:'clamp(34px,4vw,58px) 0'},
-      fxRef:this.fxRef, glowRef:this.glowRef, rootRef:this.rootRef, ghostRef:this.ghostRef, barRef:this.barRef,
-      shineStyle:shine, stats, features,
-      cardHover:{transform:'translateY(-6px)',borderColor:'color-mix(in srgb,var(--accent,#ff2130) 45%, transparent)'}
-    };
-  }
-}
-</script>
-</body>
-</html>
+  </footer></div></x-dc><script type="text/x-dc" data-dc-script>class Component extends DCLogic { renderVals(){return {rootStyle:{position:"relative",minHeight:"100vh"}};} }</script></body></html>
