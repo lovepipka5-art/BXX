@@ -1,0 +1,32 @@
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);let client,user,busy=false;
+const message=t=>{$('status').textContent=t;};
+const redirectTo=()=>new URL('Bender X Arena.dc.html',location.href).href;
+function rememberReturn(){try{sessionStorage.setItem('bx-account-return','1');}catch{}}
+function steamURL(value){if(!value.trim())return '';const u=new URL(value);if(u.protocol!=='https:'||u.hostname!=='steamcommunity.com'||u.username||u.password||u.port||!/^\/(id\/[a-zA-Z0-9_-]+|profiles\/[0-9]{17})\/?$/.test(u.pathname))throw Error('Укажи ссылку https://steamcommunity.com/id/имя или /profiles/SteamID.');return u.origin+u.pathname;}
+function preview(){const nick=$('nickname').value.trim()||'Игрок';$('preview-name').textContent=nick;$('preview-bio').textContent=$('bio').value||'Твоя история начинается здесь.';$('preview-main').textContent=$('main-fighter').value;$('preview-avatar').textContent=$('emblem').value==='initials'?Array.from(nick).slice(0,2).join('').toUpperCase():$('emblem').value;$('preview').dataset.banner=$('banner').value;}
+function render(next){user=next;$('member').hidden=!user;$('login').hidden=!!user;if(!user){$('profile-form').reset();$('steam-form').reset();return;}
+const m=user.user_metadata||{},p=m.bx_profile||{};
+$('nickname').value=p.nickname||m.display_name||m.full_name||'Игрок';$('bio').value=p.bio||'';$('main-fighter').value=p.main||'';
+$('emblem').value=['BX','X','initials'].includes(p.emblem)?p.emblem:'BX';$('banner').value=['crimson','ice','graphite'].includes(p.banner)?p.banner:'crimson';
+$('user-email').textContent=user.email||'Вход через провайдера';
+const discord=(user.identities||[]).some(i=>i.provider==='discord');$('discord-state').textContent=discord?'Подключён через Discord':'Не подключён';$('link-discord').hidden=discord;
+let steam='';try{steam=steamURL(m.bx_steam_profile||'');}catch{}
+$('steam-url').value=steam;$('steam-open').hidden=!steam;$('steam-remove').hidden=!steam;if(steam)$('steam-open').href=steam;else $('steam-open').removeAttribute('href');preview();}
+async function run(fn){if(busy)return;busy=true;document.querySelectorAll('button').forEach(b=>b.disabled=true);$('profile-fields').disabled=true;try{await fn();}catch(e){message(e.message||'Не удалось выполнить действие. Повтори попытку.');}finally{busy=false;document.querySelectorAll('button').forEach(b=>b.disabled=false);$('profile-fields').disabled=false;}}
+async function sdk(){if(window.supabase)return;await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js';const timer=setTimeout(()=>reject(Error('Модуль входа не ответил. Повтори подключение.')),15000);s.onload=()=>{clearTimeout(timer);window.supabase?resolve():reject(Error('Ошибка модуля входа'));};s.onerror=()=>{clearTimeout(timer);reject(Error('Не удалось загрузить вход.'));};document.head.append(s);});}
+async function init(){await run(async()=>{$('retry').hidden=true;message('Проверяем вход…');await sdk();if(!client){client=window.supabase.createClient('https://rospclqxeijwvvrixdza.supabase.co','sb_publishable_V_gUdsAQ8zaiVW7zcwM7pg_3eSFbGoP',{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});client.auth.onAuthStateChange((event,session)=>{if(event==='SIGNED_OUT'){render(null);message('Ты вышел из аккаунта.');}else if(event==='SIGNED_IN'&&!user)render(session?.user||null);});}
+const {data,error}=await client.auth.getSession();if(error)throw error;if(data.session){const r=await client.auth.getUser();if(r.error)throw r.error;render(r.data.user);}else render(null);message(user?'Профиль загружен.':'Войди, чтобы настроить кабинет.');});if(!client||($('login').hidden&&$('member').hidden))$('retry').hidden=false;}
+$('retry').onclick=init;
+$('profile-form').addEventListener('input',preview);
+$('profile-form').addEventListener('submit',e=>{e.preventDefault();if(!$('profile-form').reportValidity())return;run(async()=>{if(!user)throw Error('Сначала войди.');const nickname=$('nickname').value.trim();if(nickname.length<2)throw Error('Ник должен содержать минимум 2 символа.');const {data,error}=await client.auth.updateUser({data:{display_name:nickname,bx_profile:{nickname,bio:$('bio').value.trim(),main:$('main-fighter').value.trim(),emblem:$('emblem').value,banner:$('banner').value}}});if(error)throw error;render(data.user);message('Профиль сохранён в аккаунте.');});});
+async function saveSteam(value){if(!user)throw Error('Сначала войди.');const url=steamURL(value);const {data,error}=await client.auth.updateUser({data:{bx_steam_profile:url}});if(error)throw error;render(data.user);message(url?'Ссылка Steam сохранена. Владение профилем не подтверждено.':'Ссылка Steam удалена.');}
+$('steam-form').onsubmit=e=>{e.preventDefault();if($('steam-form').reportValidity())run(()=>saveSteam($('steam-url').value));};
+$('steam-remove').onclick=()=>run(()=>saveSteam(''));
+$('logout').onclick=()=>run(async()=>{const {error}=await client.auth.signOut();if(error)throw error;render(null);message('Ты вышел из аккаунта.');});
+$('login-discord').onclick=()=>run(async()=>{rememberReturn();const {error}=await client.auth.signInWithOAuth({provider:'discord',options:{redirectTo:redirectTo()}});if(error)throw error;});
+$('link-discord').onclick=()=>run(async()=>{if(!user)throw Error('Сначала войди.');rememberReturn();const {error}=await client.auth.linkIdentity({provider:'discord',options:{redirectTo:redirectTo()}});if(error)throw Error('Подключение Discord не завершено: '+error.message);});
+$('email-form').onsubmit=e=>{e.preventDefault();if(!$('email-form').reportValidity())return;run(async()=>{rememberReturn();const {error}=await client.auth.signInWithOtp({email:$('login-email').value.trim(),options:{emailRedirectTo:redirectTo()}});if(error)throw error;message('Ссылка отправлена. После входа открой «Личный кабинет» на главной.');});};
+init();
+})();
