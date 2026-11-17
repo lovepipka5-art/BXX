@@ -1,0 +1,27 @@
+/* Compact profile workspace, matching the shared arena shell. */
+.account-main{max-width:1200px;padding:28px 28px 48px}
+.account-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 0 20px;margin:0;border:0;border-bottom:1px solid #39232d;background:none;overflow:visible}
+.account-heading h1{font:600 clamp(26px,3vw,36px)/1.2 Oswald,Arial,sans-serif;margin:8px 0 0}
+.account-heading .arena-news-kicker{font-size:9px;letter-spacing:.15em}
+.account-heading>a{font:600 12px Manrope,Arial,sans-serif;color:#cfacbb;min-height:44px;display:flex;align-items:center}
+.account-status{min-height:0;margin:0;padding:12px 0;font-size:12px}.account-status:empty{padding:8px 0}
+.account-guest{max-width:480px;text-align:center;margin:32px auto;padding:28px;border:1px solid #4c2938;border-radius:8px;background:#171015}
+.guest-emblem{display:grid;place-items:center;margin:0 auto 18px;width:56px;height:56px;background:#391625;border:1px solid #76304b;border-radius:12px;font:600 24px Oswald,Arial,sans-serif;color:#f287a2}
+.account-guest h2{font:500 28px Oswald,Arial,sans-serif;margin:0 0 12px}.account-guest p{font:13px/1.7 Manrope,Arial,sans-serif;color:#baa9b3;margin:0 0 20px}
+.account-guest button{min-height:44px;border:1px solid #8b344e;border-radius:5px;padding:10px 16px;background:#b5233d;color:white;font:600 12px Manrope,Arial,sans-serif;margin:4px;cursor:pointer}.account-guest button+button{background:transparent}
+.account-sections{gap:6px;margin:8px 0 24px;padding-bottom:14px}
+.account-sections button{min-height:44px;background:transparent;border:1px solid transparent;border-radius:5px;color:#bda9b5;padding:10px 16px;font:600 12px Manrope,Arial,sans-serif;cursor:pointer}
+.account-sections button[aria-pressed=true]{background:#391a29;border-color:#78344e;color:#fff}
+.account-layout{grid-template-columns:minmax(220px,280px) minmax(0,1fr);gap:24px}
+.account-editor{gap:16px}.account-panel{padding:24px}
+.profile-cover{height:120px}.profile-cover:after{display:none}.profile-cover img{width:200px;top:-38px;right:-24px}.profile-cover>span{font-size:8px;top:16px;left:18px}
+.profile-avatar{width:64px;height:64px;font-size:24px;margin:-32px 0 16px;border-radius:9px}
+.profile-copy{padding:0 20px 22px}.profile-copy h2{font-size:28px;margin:8px 0}.profile-copy p{font-size:12px;line-height:1.6}.profile-preview-label{font-size:10px;padding-top:12px;margin-top:16px}
+.account-layout>aside>.account-note{font-size:10px!important;margin:12px 0}
+.account-panel .panel-heading{margin-bottom:20px}.account-panel .panel-heading h2,.account-panel h2{font-size:26px;margin:8px 0 16px}
+.account-panel label{margin-bottom:16px}.account-panel input,.account-panel textarea{font-size:16px;min-height:44px;padding:10px 12px}
+.account-panel fieldset.style-choices{margin:20px 0}.cover-sample{height:64px}.cover-sample>b{font-size:40px}
+.profile-save-row{align-items:center}.profile-save-row>span{max-width:220px;font-size:10px}
+.account-main footer{margin-top:24px}
+@media(max-width:1000px){.account-layout{grid-template-columns:1fr}.account-layout>aside{position:static}.profile-preview{display:grid;grid-template-columns:110px minmax(0,1fr)}.profile-cover{height:100%;min-height:150px}.profile-cover>span{display:none}.profile-copy{padding:18px}.profile-avatar{width:44px;height:44px;font-size:18px;margin:0 0 8px;border:0}.profile-preview-label{margin-top:12px}.profile-copy h2{font-size:25px}.account-layout>aside>.account-note{display:none}}
+@media(max-width:760px){.account-main{padding:20px 16px 32px}.account-heading h1{font-size:28px}.account-heading>a{font-size:11px}.account-panel{padding:20px 16px}.account-sections{width:100%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px}.account-sections button{padding:10px 4px;font-size:11px}.account-layout{gap:16px}.profile-preview{grid-template-columns:80px minmax(0,1fr)}.profile-cover img{width:160px;right:-80px;top:0}.profile-copy{padding:16px}.profile-copy .arena-news-kicker{font-size:8px}.profile-save-row>span{display:none}.profile-save-row button{width:100%}.cover-options,.emblem-options{gap:8px}.cover-sample{height:56px}.account-guest{padding:24px 18px;margin:20px auto}.account-guest button{width:100%;margin:6px 0}}
