@@ -3,10 +3,10 @@
 const $=id=>document.getElementById(id);let client,user,busy=false;
 const message=t=>{$('status').textContent=t;};
 const redirectTo=()=>new URL('Bender X Arena.dc.html',location.href).href;
-function rememberReturn(){try{sessionStorage.setItem('bx-account-return','1');}catch{}}
+function rememberReturn(){try{sessionStorage.setItem('bx-auth-return',location.pathname);}catch{}}
 function steamURL(value){if(!value.trim())return '';const u=new URL(value);if(u.protocol!=='https:'||u.hostname!=='steamcommunity.com'||u.username||u.password||u.port||!/^\/(id\/[a-zA-Z0-9_-]+|profiles\/[0-9]{17})\/?$/.test(u.pathname))throw Error('Укажи ссылку https://steamcommunity.com/id/имя или /profiles/SteamID.');return u.origin+u.pathname;}
 function preview(){const nick=$('nickname').value.trim()||'Игрок';$('preview-name').textContent=nick;$('preview-bio').textContent=$('bio').value||'Твоя история начинается здесь.';$('preview-main').textContent=$('main-fighter').value;$('preview-avatar').textContent=$('emblem').value==='initials'?Array.from(nick).slice(0,2).join('').toUpperCase():$('emblem').value;$('preview').dataset.banner=$('banner').value;document.querySelectorAll('[name="banner-choice"]').forEach(el=>el.checked=el.value===$('banner').value);document.querySelectorAll('[name="emblem-choice"]').forEach(el=>el.checked=el.value===$('emblem').value);}
-function render(next){user=next;$('member').hidden=!user;$('login').hidden=!!user;if(!user){$('password-form').reset();$('set-password-form').reset();$('profile-form').reset();$('steam-form').reset();return;}
+function render(next){user=next;$('member').hidden=!user;$('login').hidden=!!user;if(!user){$('set-password-form').reset();$('profile-form').reset();$('steam-form').reset();return;}
 const m=user.user_metadata||{},p=m.bx_profile||{};
 $('nickname').value=p.nickname||m.display_name||m.full_name||'Игрок';$('bio').value=p.bio||'';$('main-fighter').value=p.main||'';
 $('emblem').value=['BX','X','initials'].includes(p.emblem)?p.emblem:'BX';$('banner').value=['crimson','ice','graphite'].includes(p.banner)?p.banner:'crimson';
@@ -14,46 +14,29 @@ $('user-email').textContent=user.email||'Вход через провайдер�
 const discord=(user.identities||[]).some(i=>i.provider==='discord');$('discord-state').textContent=discord?'Подключён через Discord':'Не подключён';$('link-discord').hidden=discord;
 let steam='';try{steam=steamURL(m.bx_steam_profile||'');}catch{}
 $('steam-url').value=steam;$('steam-open').hidden=!steam;$('steam-remove').hidden=!steam;if(steam)$('steam-open').href=steam;else $('steam-open').removeAttribute('href');preview();}
-async function run(fn){if(busy)return;busy=true;document.querySelectorAll('button').forEach(b=>b.disabled=true);$('profile-fields').disabled=true;try{await fn();}catch(e){message(e.message||'Не удалось выполнить действие. Повтори попытку.');}finally{busy=false;document.querySelectorAll('button').forEach(b=>b.disabled=false);$('profile-fields').disabled=false;}}
-async function sdk(){if(window.supabase)return;await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js';const timer=setTimeout(()=>reject(Error('Модуль входа не ответил. Повтори подключение.')),15000);s.onload=()=>{clearTimeout(timer);window.supabase?resolve():reject(Error('Ошибка модуля входа'));};s.onerror=()=>{clearTimeout(timer);reject(Error('Не удалось загрузить вход.'));};document.head.append(s);});}
-async function init(){await run(async()=>{$('retry').hidden=true;message('Проверяем вход…');await sdk();if(!client){client=window.supabase.createClient('https://rospclqxeijwvvrixdza.supabase.co','sb_publishable_V_gUdsAQ8zaiVW7zcwM7pg_3eSFbGoP',{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});client.auth.onAuthStateChange((event,session)=>{if(event==='SIGNED_OUT'){render(null);message('Ты вышел из аккаунта.');}else if(event==='SIGNED_IN'&&!user)render(session?.user||null);});}
-const {data,error}=await client.auth.getSession();if(error)throw error;if(data.session){const r=await client.auth.getUser();if(r.error)throw r.error;render(r.data.user);}else render(null);message(user?'Профиль загружен.':'Войди, чтобы настроить кабинет.');});if(!client||($('login').hidden&&$('member').hidden))$('retry').hidden=false;}
+async function run(fn){if(busy)return;busy=true;const buttons=[...document.querySelectorAll('.account-main button')];buttons.forEach(b=>b.disabled=true);$('profile-fields').disabled=true;try{await window.BXArenaAuth.deadline(fn());}catch(e){message(e.message||'Не удалось выполнить действие. Повтори попытку.');}finally{busy=false;buttons.forEach(b=>b.disabled=false);$('profile-fields').disabled=false;}}
+async function init(){
+ $('retry').hidden=true;message('Подключаем профиль…');
+ try{client=await window.BXArenaAuth.ready();const session=window.BXArenaAuth.session;
+ if(session){const result=await window.BXArenaAuth.deadline(client.auth.getUser());if(result.error)throw result.error;render(result.data.user);}
+ else render(null);message('');
+ }catch(e){render(null);message(e.message||'Не удалось подключиться. Попробуй ещё раз.');$('retry').hidden=false;}
+}
 $('retry').onclick=init;
+window.addEventListener('bx:auth',event=>{client=window.BXArenaAuth.client||client;const next=event.detail.session?.user||null;if(next?.id!==user?.id||(!next&&user)){render(next);message('');}});
 $('profile-form').addEventListener('input',e=>{if(e.target.name==='banner-choice')$('banner').value=e.target.value;if(e.target.name==='emblem-choice')$('emblem').value=e.target.value;preview();});
 $('profile-form').addEventListener('submit',e=>{e.preventDefault();if(!$('profile-form').reportValidity())return;run(async()=>{if(!user)throw Error('Сначала войди.');const nickname=$('nickname').value.trim();if(nickname.length<2)throw Error('Ник должен содержать минимум 2 символа.');const {data,error}=await client.auth.updateUser({data:{display_name:nickname,bx_profile:{nickname,bio:$('bio').value.trim(),main:$('main-fighter').value.trim(),emblem:$('emblem').value,banner:$('banner').value}}});if(error)throw error;render(data.user);message('Профиль сохранён в аккаунте.');});});
 async function saveSteam(value){if(!user)throw Error('Сначала войди.');const url=steamURL(value);const {data,error}=await client.auth.updateUser({data:{bx_steam_profile:url}});if(error)throw error;render(data.user);message(url?'Ссылка Steam сохранена. Владение профилем не подтверждено.':'Ссылка Steam удалена.');}
 $('steam-form').onsubmit=e=>{e.preventDefault();if($('steam-form').reportValidity())run(()=>saveSteam($('steam-url').value));};
 $('steam-remove').onclick=()=>run(()=>saveSteam(''));
 $('logout').onclick=()=>run(async()=>{const {error}=await client.auth.signOut();if(error)throw error;render(null);message('Ты вышел из аккаунта.');});
-$('login-discord').onclick=()=>run(async()=>{rememberReturn();const {error}=await client.auth.signInWithOAuth({provider:'discord',options:{redirectTo:redirectTo()}});if(error)throw error;});
 $('link-discord').onclick=()=>run(async()=>{if(!user)throw Error('Сначала войди.');rememberReturn();const {error}=await client.auth.linkIdentity({provider:'discord',options:{redirectTo:redirectTo()}});if(error)throw Error('Подключение Discord не завершено: '+error.message);});
-$('email-form').onsubmit=e=>{e.preventDefault();if(!$('email-form').reportValidity())return;run(async()=>{rememberReturn();const {error}=await client.auth.signInWithOtp({email:$('login-email').value.trim(),options:{emailRedirectTo:redirectTo()}});if(error)throw error;message('Ссылка отправлена. После входа открой «Личный кабинет» на главной.');});};
-let registering=false;
-function passwordMode(value){registering=value;
-$('mode-login').setAttribute('aria-pressed',String(!value));$('mode-register').setAttribute('aria-pressed',String(value));
-$('signup-name-label').hidden=!value;$('password-confirm-label').hidden=!value;
-for(const id of ['signup-name','password-confirm']){$(id).disabled=!value;$(id).required=value;}
-$('auth-password').value='';$('password-confirm').value='';$('auth-password').minLength=value?8:1;
-$('auth-password').autocomplete=value?'new-password':'current-password';$('auth-password').type='password';
-$('toggle-password').textContent='Показать';$('toggle-password').setAttribute('aria-pressed','false');$('toggle-password').setAttribute('aria-label','Показать пароль');
-$('password-title').textContent=value?'Твоя история начинается.':'С возвращением.';
-$('password-description').textContent=value?'Выбери ник, укажи почту и создай пароль.':'Войди с почтой и паролем. Твой профиль уже ждёт.';
-$('password-hint').textContent=value?'Минимум 8 символов. Ник отображается в профиле; для входа используется почта.':'Для входа используется почта. Вход по нику пока не подключён.';
-$('password-submit').textContent=value?'Создать аккаунт ↗':'Войти на арену ↗';message('');}
-$('mode-login').onclick=()=>passwordMode(false);$('mode-register').onclick=()=>passwordMode(true);
-$('toggle-password').onclick=()=>{const show=$('auth-password').type==='password';$('auth-password').type=show?'text':'password';$('toggle-password').textContent=show?'Скрыть':'Показать';$('toggle-password').setAttribute('aria-pressed',String(show));$('toggle-password').setAttribute('aria-label',show?'Скрыть пароль':'Показать пароль');};
-function passwordError(error){if(error.code==='invalid_credentials')return 'Не удалось войти. Проверь почту и пароль.';if(error.code==='email_not_confirmed')return 'Подтверди почту по ссылке из письма.';if(error.status===429)return 'Слишком много попыток. Подожди и попробуй снова.';return error.message||'Не удалось выполнить действие.';}
-$('password-form').onsubmit=e=>{e.preventDefault();if(!$('password-form').reportValidity())return;
-const isSignup=registering,email=$('password-email').value.trim(),password=$('auth-password').value,nickname=$('signup-name').value.trim();
-if(isSignup&&(nickname.length<2||password.length<8||password!==$('password-confirm').value)){message('Проверь ник (от 2 символов), пароль (от 8 символов) и его повтор.');return;}
-run(async()=>{if(!client)throw Error('Сервис входа недоступен. Повтори подключение.');message(isSignup?'Создаём аккаунт…':'Входим на арену…');
-let result;if(isSignup){rememberReturn();result=await client.auth.signUp({email,password,options:{emailRedirectTo:redirectTo(),data:{display_name:nickname,bx_profile:{nickname,banner:'crimson',emblem:'BX'}}}});}else result=await client.auth.signInWithPassword({email,password});
-if(result.error)throw Error(passwordError(result.error));$('auth-password').value='';$('password-confirm').value='';
-if(result.data.session){render(result.data.session.user);message('Ты на арене. Настрой свой профиль.');}else message('Проверь почту для подтверждения регистрации. Если аккаунт уже есть, используй вход или ссылку из письма.');
-});};
 $('set-password-form').onsubmit=e=>{e.preventDefault();if(!$('set-password-form').reportValidity())return;const password=$('new-password').value;
 if(password!==$('new-password-confirm').value){message('Пароли не совпадают.');return;}
-run(async()=>{if(!user)throw Error('Сначала войди в аккаунт.');const {error}=await client.auth.updateUser({password});if(error)throw Error(passwordError(error));$('set-password-form').reset();message('Пароль сохранён. Для входа используй почту и новый пароль.');});};
+run(async()=>{if(!user)throw Error('Сначала войди в аккаунт.');const {error}=await client.auth.updateUser({password});if(error)throw error;$('set-password-form').reset();message('Пароль сохранён. Для входа используй почту и новый пароль.');});};
 
-init();
+const tabs=[...document.querySelectorAll('[data-account-tab]')];
+function selectTab(tab){tabs.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.accountTab===tab)));$('profile-form').hidden=tab!=='profile';$('connections').hidden=tab!=='connections';$('password-settings').hidden=tab!=='security';$('session-panel').hidden=tab!=='security';}
+tabs.forEach(b=>b.addEventListener('click',()=>selectTab(b.dataset.accountTab)));selectTab('profile');
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
