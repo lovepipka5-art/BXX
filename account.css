@@ -33,3 +33,19 @@
 @media(max-width:1200px){.account-layout{grid-template-columns:280px minmax(0,1fr)}.emblem-option>span{flex-direction:column;gap:4px}.profile-save-row{align-items:stretch;flex-direction:column}}
 @media(max-width:1000px){.account-layout{grid-template-columns:1fr}.account-layout>aside{position:static}.profile-cover{height:220px}.profile-cover img{width:300px}.account-login{grid-template-columns:1fr}.login-art{min-height:220px}.login-art img{width:240px;bottom:-48px;right:12%}.emblem-option>span{flex-direction:row}.profile-save-row{flex-direction:row}}
 @media(max-width:600px){.account-heading{padding:28px 24px}.account-heading-art{font-size:180px;top:20px;right:0}.account-sections{gap:8px;display:grid;grid-template-columns:1fr}.account-sections a{padding:12px 16px}.account-panel{padding:24px 20px}.account-panel.account-login{padding:0}.login-copy{padding:28px 24px}.cover-options,.emblem-options{gap:8px}.cover-sample{height:80px}.cover-option small{font-size:9px}.emblem-option>span{flex-direction:column;padding:8px}.profile-save-row{flex-direction:column;align-items:stretch}.connection{padding:16px}.profile-cover:after{font-size:36px}.account-heading h1{font-size:44px}}
+
+/* Password sign-in and registration. */
+.auth-modes{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:#090909;border:1px solid var(--arena-line);padding:6px;margin:24px 0 28px;border-radius:7px}
+.auth-modes button{min-height:46px;border:0;border-radius:4px;background:transparent;color:var(--arena-muted);font:700 13px Manrope,sans-serif;cursor:pointer}
+.auth-modes button[aria-pressed="true"]{background:#631324;color:white}
+.login-copy #password-title{font-size:clamp(30px,3vw,44px);letter-spacing:-.03em;margin:16px 0}#password-description{margin-bottom:28px}
+.password-field{display:flex;border:1px solid #62313b;border-radius:5px;background:var(--arena-bg);overflow:hidden}
+.account-panel .password-field input{border:0;border-radius:0;min-width:0}.password-field button{border:0;background:transparent;color:#f1cbd3;padding:0 16px;font:600 11px Manrope,sans-serif;cursor:pointer;min-height:48px}
+.password-field:focus-within{outline:2px solid var(--arena-red);outline-offset:3px}
+#password-form>label[for="auth-password"]{margin-bottom:8px}#password-form .account-note{margin:10px 0 20px;font-size:11px!important}
+#password-submit,.auth-discord{width:100%;min-height:50px}
+.auth-divider{position:relative;text-align:center;margin:24px 0;color:var(--arena-muted);font:11px Manrope,sans-serif}.auth-divider:before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--arena-line)}.auth-divider span{position:relative;padding:0 16px;background:var(--arena-panel)}
+.auth-discord{background:#252037;border-color:#54436b}
+.auth-email-option{border-top:1px solid var(--arena-line);margin-top:24px;padding-top:8px}.auth-email-option summary{cursor:pointer;min-height:48px;padding:16px 0;color:var(--arena-muted);font:600 12px/1.6 Manrope,sans-serif}
+@media(min-width:1001px){.account-login{grid-template-columns:minmax(260px,.9fr) minmax(0,1.1fr)}.login-art span{top:48px;left:32px}.login-art img{bottom:12%;width:110%;right:-30%}.login-copy{padding:40px}}
+@media(max-width:600px){.login-copy{padding:24px}.auth-modes{margin-top:20px}.password-field button{padding:0 12px}}
