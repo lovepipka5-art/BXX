@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
-<link rel="stylesheet" href="arena-theme.css?v=20261117-tournaments">
+<link rel="stylesheet" href="arena-theme.css?v=20261117-tournament-grid">
 </head>
 <body class="arena-shell-page">
 <x-dc>
@@ -74,9 +74,9 @@
 <sc-if value="{{ hasError }}"><div class="arena-empty"><h2>Не удалось загрузить турниры</h2><p>Проверь соединение и повтори попытку.</p><button class="arena-reset" onClick="{{ reload }}">Повторить загрузку</button></div></sc-if>
 <sc-if value="{{ empty }}"><div class="arena-tournament-empty"><div class="arena-tournament-emblem" aria-hidden="true">BX</div><span class="arena-news-kicker">СЛЕДУЮЩИЙ ТУРНИР ГОТОВИТСЯ</span><h2>Арена ждёт своих бойцов</h2><p>Здесь появятся даты, регистрация и сетки после публикации первых событий. Следи за анонсами сообщества.</p><a class="arena-reset" href="https://discord.com/invite/qqctMjCTeg" target="_blank" rel="noopener noreferrer">Сообщество арены ↗</a></div></sc-if>
 <sc-if value="{{ noMatches }}"><div class="arena-empty"><h2>Турниры не найдены</h2><p>Попробуй другой запрос или выбери все события.</p><button class="arena-reset" onClick="{{ reset }}">Сбросить фильтры</button></div></sc-if>
-<div id="tournament-results" class="arena-tournament-grid" aria-busy="{{ loading }}"><sc-for list="{{ events }}" as="event"><article class="arena-tournament-card" data-status="{{ event.status }}">
+<div class="arena-tournament-viewbar"><span>Сначала текущие и ближайшие события</span><div role="group" aria-label="Вид каталога"><button type="button" class="arena-filter" aria-pressed="{{ gridActive }}" onClick="{{ showGrid }}">Карточки</button><button type="button" class="arena-filter" aria-pressed="{{ listActive }}" onClick="{{ showList }}">Список</button></div></div><div id="tournament-results" class="arena-tournament-grid arena-tournament-grid-v2" data-view="{{ view }}" aria-busy="{{ loading }}"><sc-for list="{{ events }}" as="event"><article class="arena-tournament-card" data-status="{{ event.status }}" data-featured="{{ event.featured }}">
 <div class="arena-tournament-top"><span>{{ event.game }}</span><b>{{ event.statusLabel }}</b></div>
-<div class="arena-tournament-copy"><p class="arena-news-kicker">{{ event.date }} · {{ event.time }}</p><h3>{{ event.title }}</h3><p class="arena-tournament-description">{{ event.description }}</p><sc-if value="{{ event.end }}"><p class="arena-tournament-end">Окончание: {{ event.end }}</p></sc-if></div>
+<div class="arena-event-dateband"><div><strong>{{ event.day }}</strong><span>{{ event.month }}</span></div><p><b>{{ event.time }}</b><span>МСК · {{ event.year }}</span></p><svg class="arena-event-bracket" viewBox="0 0 96 64" aria-hidden="true"><path d="M4 8h20v16H4m20-8h20v32H24m-20-8h20v16H4m40-24h20v16H44m20-8h24"/></svg></div><div class="arena-tournament-copy"><p class="arena-news-kicker">{{ event.date }}</p><h3>{{ event.title }}</h3><details class="arena-event-details"><summary>О турнире <span aria-hidden="true">+</span></summary><p class="arena-tournament-description">{{ event.description }}</p></details><sc-if value="{{ event.end }}"><p class="arena-tournament-end">Окончание: {{ event.end }}</p></sc-if></div>
 <div class="arena-tournament-actions"><sc-if value="{{ event.registration }}"><a class="arena-reset arena-tournament-primary" href="{{ event.registration }}" target="_blank" rel="noopener noreferrer">Регистрация ↗</a></sc-if><sc-if value="{{ event.bracket }}"><a class="arena-reset" href="{{ event.bracket }}" target="_blank" rel="noopener noreferrer">Смотреть сетку ↗</a></sc-if><sc-if value="{{ event.noLinks }}"><span>{{ event.linkNote }}</span></sc-if></div>
 </article></sc-for></div>
 <div class="arena-tournament-guide"><div><span>01 / ВЫБОР</span><h3>Найди соревнование</h3><p>Выбирай ближайший турнир или возвращайся к завершённым событиям.</p></div><div><span>02 / УЧАСТИЕ</span><h3>Изучи условия</h3><p>Регистрация ведёт на страницу организатора с правилами и требованиями.</p></div><div><span>03 / РЕЗУЛЬТАТ</span><h3>Следи за сеткой</h3><p>Открывай доступную сетку и проверяй результаты на площадке турнира.</p></div></div>
@@ -98,7 +98,7 @@
       <span style="max-width:560px;text-align:right">Bender X Arena — оригинальный вымышленный проект. Не связан с Mortal Kombat / NetherRealm Studios и не использует их персонажей.</span>
     </div>
   </footer></div></x-dc><script type="text/x-dc" data-dc-script>class Component extends DCLogic {
-  state={rows:[],loading:true,error:false,query:'',status:'all'};
+  state={rows:[],loading:true,error:false,query:'',status:'all',view:'grid'};
   componentDidMount(){this.loadTournaments();}
   componentWillUnmount(){this.disposed=true;this.controller?.abort();}
   async loadTournaments(){
@@ -123,13 +123,17 @@
     const date=v=>Number.isFinite(stamp(v))?new Intl.DateTimeFormat('ru-RU',{day:'numeric',month:'long',year:'numeric',timeZone:'Europe/Moscow'}).format(new Date(v)):'Дата уточняется';
     const time=v=>Number.isFinite(stamp(v))?new Intl.DateTimeFormat('ru-RU',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Moscow'}).format(new Date(v)):'—';
     const query=S.query.trim().toLocaleLowerCase('ru'),priority={live:0,upcoming:1,completed:2,cancelled:3};
-    const rows=S.rows.filter(r=>(S.status==='all'||r.status===S.status)&&[r.title,r.description,r.game].some(v=>String(v||'').toLocaleLowerCase('ru').includes(query))).sort((a,b)=>(priority[a.status]??4)-(priority[b.status]??4)||(a.status==='completed'?stamp(b.starts_at)-stamp(a.starts_at):stamp(a.starts_at)-stamp(b.starts_at)));
-    const events=rows.map(r=>{const registration=r.status==='upcoming'?safe(r.registration_url):'',bracket=safe(r.bracket_url);return{
+    const rows=S.rows.filter(r=>(S.status==='all'||r.status===S.status)&&[r.title,r.description,r.game].some(v=>String(v||'').toLocaleLowerCase('ru').includes(query))).sort((a,b)=>(priority[a.status]??4)-(priority[b.status]??4)||(!Number.isFinite(stamp(a.starts_at))?(!Number.isFinite(stamp(b.starts_at))?0:1):!Number.isFinite(stamp(b.starts_at))?-1:a.status==='completed'?stamp(b.starts_at)-stamp(a.starts_at):stamp(a.starts_at)-stamp(b.starts_at)));
+    const events=rows.map((r,index)=>{const registration=r.status==='upcoming'?safe(r.registration_url):'',bracket=safe(r.bracket_url);return{
+      featured:index===0&&(r.status==='live'||r.status==='upcoming'),
+      day:Number.isFinite(stamp(r.starts_at))?new Intl.DateTimeFormat('ru-RU',{day:'2-digit',timeZone:'Europe/Moscow'}).format(new Date(r.starts_at)):'—',
+      month:Number.isFinite(stamp(r.starts_at))?new Intl.DateTimeFormat('ru-RU',{month:'long',timeZone:'Europe/Moscow'}).format(new Date(r.starts_at)):'Дата уточняется',
+      year:Number.isFinite(stamp(r.starts_at))?new Intl.DateTimeFormat('ru-RU',{year:'numeric',timeZone:'Europe/Moscow'}).format(new Date(r.starts_at)):'—',
       title:r.title||'Турнир арены',description:r.description||'Подробности будут опубликованы организатором.',game:r.game||'Игра уточняется',
       status:r.status,statusLabel:labels[r.status]||'Статус уточняется',date:date(r.starts_at),time:time(r.starts_at),
       end:Number.isFinite(stamp(r.ends_at))?date(r.ends_at)+' · '+time(r.ends_at):'',registration,bracket,noLinks:!registration&&!bracket,
       linkNote:r.status==='cancelled'?'Турнир отменён':r.status==='completed'?'Сетка пока не опубликована':'Ссылки скоро появятся'};});
-    return {rootStyle:{position:'relative',minHeight:'100vh'},events,query:S.query,loading:S.loading,hasError:S.error,
+    return {rootStyle:{position:'relative',minHeight:'100vh'},events,view:S.view||'grid',gridActive:S.view!=='list',listActive:S.view==='list',showGrid:()=>this.setState({view:'grid'}),showList:()=>this.setState({view:'list'}),query:S.query,loading:S.loading,hasError:S.error,
       filters:Object.entries(labels).map(([id,label])=>({label,count:id==='all'?S.rows.length:S.rows.filter(r=>r.status===id).length,active:S.status===id,onPick:()=>this.setState({status:id})})),
       statusText:S.loading?'Загружаем турниры…':S.error?'Не удалось обновить каталог':'Найдено турниров: '+events.length,
       empty:!S.loading&&!S.error&&!S.rows.length,noMatches:!S.loading&&!S.error&&S.rows.length>0&&!events.length,
