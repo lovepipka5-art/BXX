@@ -7,13 +7,21 @@
   const STREAMS = 'Расписание стримов.dc.html';
   const API = 'https://fewfpimbfgxlzghfqkmc.supabase.co/rest/v1/';
   const PUBLIC_KEY = 'sb_publishable_5Pgf3aTIsP_HwmrO5RakEA_H4DF7Mny';
-  const UPDATE = {
+  const SITE_UPDATES = [{
+    id: 'home-bx-teaser-2026-11-18',
+    title: 'Видеознакомство с BX Arena',
+    text: 'Турниры, эфиры и спарринги в коротком тизере на главной.',
+    date: '2026-11-18T00:00:00+03:00',
+    href: '#teaser-link',
+    cover: 'uploads/bx-arena-teaser.webp'
+  }, {
     id: 'home-bx-program-2026-11-18',
     title: 'Афиша и эфиры на главной',
     text: 'Ближайший турнир и трансляцию теперь можно найти сразу под обложкой.',
     date: '2026-11-18T00:00:00+03:00',
-    href: '#arena-program'
-  };
+    href: '#arena-program',
+    cover: 'uploads/bx-fightstick.webp'
+  }];
 
   function make(tag, text, className) {
     const node = document.createElement(tag);
@@ -90,6 +98,41 @@
   window.addEventListener('bx:auth', event => showPlayer(event.detail.session));
   showPlayer(window.BXArenaAuth?.session);
 
+  const teaserLink = byId('teaser-link');
+  const teaserDialog = byId('arena-teaser');
+  const teaser = byId('teaser-video');
+  const teaserError = byId('teaser-error');
+
+  teaserLink.addEventListener('click', event => {
+    if (typeof teaserDialog.showModal !== 'function' || event.defaultPrevented
+        || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+    event.preventDefault();
+    if (teaserDialog.open) return;
+    teaserDialog.showModal();
+    document.documentElement.classList.add('bx-teaser-open');
+    teaserError.hidden = !teaser.error;
+    if (teaser.ended) teaser.currentTime = 0;
+    teaser.play().catch(error => {
+      if (teaserDialog.open && error.name === 'NotSupportedError') teaserError.hidden = false;
+    });
+  });
+  byId('teaser-close').addEventListener('click', () => teaserDialog.close());
+  teaserDialog.addEventListener('click', event => {
+    if (event.target !== teaserDialog) return;
+    const { top, right, bottom, left } = teaserDialog.getBoundingClientRect();
+    if (event.clientX < left || event.clientX > right || event.clientY < top || event.clientY > bottom) {
+      teaserDialog.close();
+    }
+  });
+  teaserDialog.addEventListener('close', () => {
+    teaser.pause();
+    document.documentElement.classList.remove('bx-teaser-open');
+    teaserLink.focus({ preventScroll: true });
+  });
+  teaser.addEventListener('error', () => { teaserError.hidden = false; });
+  teaser.addEventListener('playing', () => { teaserError.hidden = true; });
+
   const guide = byId('arena-guide');
   guide.open = setting('bxx-hub-guide-open') !== '0';
   guide.addEventListener('toggle', () => setting('bxx-hub-guide-open', guide.open ? '1' : '0'));
@@ -154,7 +197,7 @@
 
   const bell = byId('notification-toggle');
   const notifications = byId('notification-panel');
-  let notificationItems = [UPDATE];
+  let notificationItems = [...SITE_UPDATES];
   const notificationKey = 'bxx-notifications-read-v1';
   let readIds = new Set();
   try {
@@ -208,7 +251,7 @@
     if (!event.target.closest('.notifications')) showNotifications(false);
   });
   document.addEventListener('keydown', event => {
-    if (event.key !== 'Escape' || event.defaultPrevented || byId('bx-auth-dialog')?.open) return;
+    if (event.key !== 'Escape' || event.defaultPrevented || teaserDialog.open || byId('bx-auth-dialog')?.open) return;
     if (!searchResults.hidden) {
       searchResults.hidden = true;
       search.focus();
@@ -435,18 +478,18 @@
       cover: publicURL(post.cover_image_url),
       href: NEWS
     }));
-    const update = {
-      key: UPDATE.id,
+    const releases = SITE_UPDATES.map(update => ({
+      key: update.id,
       kind: 'news',
       icon: 'news',
-      date: Date.parse(UPDATE.date),
+      date: Date.parse(update.date),
       label: 'Обновление сайта',
-      title: UPDATE.title,
-      excerpt: UPDATE.text,
-      cover: 'uploads/bx-fightstick.webp',
-      href: UPDATE.href
-    };
-    const recent = [...results, ...posts, update].sort((a, b) => (b.date || 0) - (a.date || 0));
+      title: update.title,
+      excerpt: update.text,
+      cover: update.cover,
+      href: update.href
+    }));
+    const recent = [...results, ...posts, ...releases].sort((a, b) => (b.date || 0) - (a.date || 0));
     return [...events.filter(row => row.label === 'Идёт сейчас'), ...recent, ...events.filter(row => row.label === 'Скоро')];
   }
 
@@ -524,7 +567,7 @@
         title: featured.title, text: featured.status === 'live' ? 'Турнир идёт' : 'Опубликован анонс турнира',
         href: '#next-tournament'
       });
-      nextItems.push(UPDATE);
+      nextItems.push(...SITE_UPDATES);
       if (JSON.stringify(nextItems) !== JSON.stringify(notificationItems)) {
         notificationItems = nextItems;
         renderNotifications();

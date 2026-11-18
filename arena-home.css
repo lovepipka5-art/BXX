@@ -271,7 +271,13 @@ body.bx-home {
   font: 500 clamp(19px, 2.05vw, 29px)/1.2 var(--bx-display);
   text-transform: uppercase;
 }
-.bx-home .hero-intro { margin-top: 8px; color: var(--bx-muted); font-size: 13px; }
+.bx-home .hero-intro {
+  max-width: 43ch;
+  margin-top: 9px;
+  color: #ded3d8;
+  font-size: clamp(13px, 1.2vw, 16px);
+  line-height: 1.55;
+}
 .bx-home .btn {
   display: inline-flex;
   align-items: center;
@@ -315,6 +321,114 @@ body.bx-home {
 .bx-home #poster-motion[aria-pressed="true"] .pause-mark { display: none; }
 .bx-home .arena-poster[data-motion-paused="true"] :is(.hero-bx, .poster-light, .hero-content) { animation-play-state: paused; }
 
+/* On-demand video teaser */
+.bx-home .hero-teaser {
+  position: absolute;
+  z-index: 1;
+  right: clamp(70px, 6vw, 104px);
+  bottom: 13px;
+  display: grid;
+  grid-template-columns: 91px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-height: 62px;
+  padding: 5px 14px 5px 5px;
+  border: 1px solid #a16069;
+  background: #150d13ed;
+  box-shadow: 0 8px 23px #06030570;
+  text-align: left;
+  transition: border-color .22s, background .22s;
+  scroll-margin-top: 24px;
+}
+.bx-home .hero-teaser:hover { border-color: #fa8491; background: #311923; }
+.bx-home .teaser-preview {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #301821;
+}
+.bx-home .teaser-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .65;
+  transition: opacity .22s, transform .3s var(--bx-ease);
+}
+.bx-home .hero-teaser:hover img { opacity: .9; transform: scale(1.07); }
+.bx-home .teaser-play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: white;
+}
+.bx-home .teaser-play .icon {
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+  stroke: none;
+}
+.bx-home .teaser-link-copy { display: grid; gap: 4px; min-width: 0; }
+.bx-home .teaser-link-copy strong { color: #fff; font-size: 13px; line-height: 1.25; }
+.bx-home .teaser-link-copy > span {
+  color: #d9bfc8;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+html.bx-teaser-open { overflow: hidden; }
+.bx-home .teaser-dialog {
+  width: min(860px, calc(100vw - 24px));
+  max-width: none;
+  max-height: calc(100dvh - 24px);
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  border: 1px solid #9a5663;
+  background: #151014;
+  color: var(--bx-white);
+  box-shadow: 0 18px 75px #000c;
+}
+.bx-home .teaser-dialog::backdrop { background: #090609dc; }
+.bx-home .teaser-header {
+  display: flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 12px 6px 18px;
+}
+.bx-home .teaser-header h2 { font: 600 clamp(20px, 3vw, 26px)/1.18 var(--bx-display); }
+.bx-home #teaser-close {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid #5f383f;
+  background: #21161c;
+  font-size: 26px;
+  line-height: 1;
+}
+.bx-home #teaser-close:hover { border-color: #fa8491; background: #382029; }
+.bx-home #teaser-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(58dvh, 485px);
+  aspect-ratio: 16 / 9;
+  background: #090609;
+  object-fit: contain;
+}
+.bx-home #teaser-error { margin: 12px 18px 0; color: var(--bx-muted); font-size: 13px; }
+.bx-home #teaser-error a { color: #ffd1da; text-decoration: underline; }
+.bx-home .teaser-actions { display: flex; flex-wrap: wrap; gap: 9px; padding: 13px 18px; }
+.bx-home .teaser-primary { border-color: #d44551; background: var(--bx-action); }
+.bx-home .teaser-primary:hover { background: #d2273a; }
+
 /* Section links and the next tournament and stream */
 .bx-home .arena-shortcuts {
   display: grid;
@@ -326,16 +440,27 @@ body.bx-home {
 .bx-home .arena-shortcuts a {
   display: flex;
   align-items: center;
-  gap: 10px;
-  min-height: 58px;
-  padding: 12px clamp(12px, 2vw, 25px);
-  font-size: 13px;
-  font-weight: 700;
+  gap: 11px;
+  min-height: 68px;
+  min-width: 0;
+  padding: 10px clamp(12px, 2vw, 23px);
   transition: background .18s, color .18s;
 }
 .bx-home .arena-shortcuts a + a { border-left: 1px solid var(--bx-line); }
-.bx-home .arena-shortcuts a:hover { background: #281a21; color: #fff; }
-.bx-home .arena-shortcuts a > .icon:first-child { color: #ff7580; }
+.bx-home .arena-shortcuts a:hover { background: #25171d; color: #fff; }
+.bx-home .shortcut-icon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: none;
+  place-items: center;
+  border: 1px solid #6a3c46;
+  background: linear-gradient(138deg, #351c26, #211619);
+  color: #fa818d;
+}
+.bx-home .shortcut-copy { display: grid; gap: 2px; min-width: 0; line-height: 1.22; }
+.bx-home .shortcut-copy strong { font-size: 14px; font-weight: 800; }
+.bx-home .shortcut-copy small { color: #c5b3bb; font-size: 11px; }
 .bx-home .shortcut-arrow { margin-left: auto; width: 16px; height: 16px; color: #c2a7af; }
 .bx-home .arena-program {
   display: grid;
@@ -643,13 +768,13 @@ body.bx-home {
   .bx-home .mobile-brand img { display: block; object-fit: contain; }
   .bx-home .breadcrumb, .bx-home .search { display: none; }
   .bx-home .notification-panel { position: fixed; top: 64px; right: 14px; }
-  .bx-home .arena-poster { min-height: 385px; align-items: end; }
-  .bx-home .hero-content { width: 100%; padding: 25px 20px 29px; }
+  .bx-home .arena-poster { display: grid; align-content: end; grid-template-columns: minmax(0, 1fr); min-height: 417px; }
+  .bx-home .hero-content { width: 100%; padding: 26px 20px 17px; }
   .bx-home .hero-tag { font-size: 11px; gap: 8px; }
   .bx-home .hero-tag::before { width: 18px; }
   .bx-home #hero-title { font-size: clamp(48px, 13.4vw, 86px); margin: 20px 0 16px; }
   .bx-home .hero-slogan { font-size: clamp(18px, 4.6vw, 26px); }
-  .bx-home .hero-intro { font-size: 12px; }
+  .bx-home .hero-intro { max-width: 40ch; font-size: 13px; }
   .bx-home .poster-cta { margin-top: 20px; }
   .bx-home .hero-bx-stage { inset: -8% -25% 4% 13%; }
   .bx-home .hero-bx { width: min(118%, 615px); top: 49%; left: 58%; opacity: .88; }
@@ -659,8 +784,29 @@ body.bx-home {
       linear-gradient(0deg, #0d080deb, #0d080dc2 25%, transparent 62%);
   }
   .bx-home #poster-motion { right: 10px; bottom: 10px; }
-  .bx-home .arena-shortcuts a { justify-content: center; gap: 7px; padding-inline: 5px; min-height: 54px; font-size: 11px; }
-  .bx-home .arena-shortcuts a .icon { width: 16px; height: 16px; }
+  .bx-home .hero-teaser {
+    position: relative;
+    inset: auto;
+    justify-self: start;
+    margin: 0 64px 14px 20px;
+    min-width: 0;
+    max-width: calc(100% - 84px);
+    grid-template-columns: 77px minmax(0, 1fr);
+    min-height: 54px;
+  }
+  .bx-home .teaser-link-copy strong { font-size: 12px; }
+  .bx-home .arena-shortcuts a {
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px 4px;
+    min-height: 73px;
+    text-align: center;
+  }
+  .bx-home .shortcut-icon { width: 27px; height: 27px; }
+  .bx-home .shortcut-icon .icon { width: 16px; height: 16px; }
+  .bx-home .shortcut-copy strong { font-size: 11px; }
+  .bx-home .shortcut-copy small { font-size: 9px; }
   .bx-home .arena-shortcuts .shortcut-arrow { display: none; }
   .bx-home .arena-program { margin-top: 14px; }
   .bx-home .program-content { padding: 17px 14px; }
@@ -704,14 +850,15 @@ body.bx-home {
   .bx-home .program-card { min-height: 168px; }
 }
 @media (max-width: 350px) {
-  .bx-home .arena-shortcuts a { flex-direction: column; gap: 4px; }
+  .bx-home .shortcut-copy small { display: none; }
   .bx-home #hero-title { font-size: 45px; }
   .bx-home .hero-content { padding-inline: 15px; }
+  .bx-home .hero-teaser { margin-left: 15px; max-width: calc(100% - 79px); }
   .bx-home .feed-heading a { font-size: 11px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .bx-home .hero-bx, .bx-home .poster-light, .bx-home .hero-content { animation: none; }
   .bx-home .hero-bx-motion { transition: none; transform: none; }
   .bx-home #poster-motion { display: none; }
-  .bx-home :is(.btn, .arena-shortcuts a, .hub-filters button, .hub-post-link, .hub-post-link > .icon, .program-card, .program-art) { transition: none; }
+  .bx-home :is(.btn, .arena-shortcuts a, .hub-filters button, .hub-post-link, .hub-post-link > .icon, .program-card, .program-art, .hero-teaser, .teaser-preview img) { transition: none; }
 }

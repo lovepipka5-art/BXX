@@ -12,9 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="arena-navigation.css?v=1">
   <link rel="stylesheet" href="arena-auth.css?v=1">
-  <link rel="stylesheet" href="arena-home.css?v=2">
+  <link rel="stylesheet" href="arena-home.css?v=3">
   <script src="arena-auth.js?v=1" defer></script>
-  <script src="arena-home.js?v=2" defer></script>
+  <script src="arena-home.js?v=3" defer></script>
 </head>
 <body class="bx-home">
   <script src="arena-navigation.js?v=1"></script>
@@ -59,12 +59,19 @@
           </div>
         </div>
         <div class="hero-content">
-          <p class="hero-tag">Добро пожаловать на арену</p>
+          <p class="hero-tag">Турнирная площадка Mortal Kombat 1</p>
           <h1 id="hero-title">BENDER <span>X</span><br> ARENA</h1>
           <p class="hero-slogan">Арена, где рождаются чемпионы.</p>
-          <p class="hero-intro">Турниры и сообщество Mortal Kombat 1.</p>
+          <p class="hero-intro">Выходи в турнирную сетку, смотри эфиры и находи соперников для спаррингов.</p>
           <a class="btn poster-cta" href="Турнирная сетка.dc.html">К турнирам <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
+        <a class="hero-teaser" id="teaser-link" href="uploads/bx-arena-teaser.mp4" aria-haspopup="dialog" aria-controls="arena-teaser" aria-label="Смотреть тизер BX Arena, 16 секунд">
+          <span class="teaser-preview" aria-hidden="true">
+            <img src="uploads/bx-arena-teaser.webp" alt="" width="480" height="270" decoding="async">
+            <span class="teaser-play"><svg class="icon" viewBox="0 0 24 24"><path d="m9 5 12 7-12 7z"/></svg></span>
+          </span>
+          <span class="teaser-link-copy"><strong>Смотреть тизер</strong><span>0:16</span></span>
+        </a>
         <button type="button" id="poster-motion" aria-label="Пауза анимации BX" aria-pressed="false" title="Пауза анимации BX" hidden>
           <svg class="icon pause-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14m6-14v14"/></svg>
           <svg class="icon play-mark" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"/></svg>
@@ -72,9 +79,21 @@
       </section>
 
       <nav class="arena-shortcuts" aria-label="Быстрые переходы с главной">
-        <a href="Топ игроков.dc.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-grid"/></svg><span>Топ игроков</span><svg class="icon shortcut-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <a href="Бойцы арены.dc.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-fight"/></svg><span>Бойцы</span><svg class="icon shortcut-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <a href="https://discord.com/invite/qqctMjCTeg" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-discord"/></svg><span>Discord</span><svg class="icon shortcut-arrow diagonal" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a href="Топ игроков.dc.html">
+          <span class="shortcut-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-grid"/></svg></span>
+          <span class="shortcut-copy"><strong>Рейтинг</strong><small>Таблица игроков</small></span>
+          <svg class="icon shortcut-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+        <a href="Бойцы арены.dc.html">
+          <span class="shortcut-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-fight"/></svg></span>
+          <span class="shortcut-copy"><strong>Бойцы арены</strong><small>Профили участников</small></span>
+          <svg class="icon shortcut-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+        <a href="https://discord.com/invite/qqctMjCTeg" target="_blank" rel="noopener noreferrer">
+          <span class="shortcut-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-discord"/></svg></span>
+          <span class="shortcut-copy"><strong>Спарринги</strong><small>Discord</small></span>
+          <svg class="icon shortcut-arrow diagonal" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
       </nav>
 
       <section class="arena-program" id="arena-program" aria-label="Турниры и трансляции">
@@ -160,5 +179,19 @@
       <a href="О арене.dc.html">Об арене <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </footer>
   </div>
+  <dialog id="arena-teaser" class="teaser-dialog" aria-labelledby="teaser-title">
+    <header class="teaser-header">
+      <h2 id="teaser-title">Знакомство с BX Arena</h2>
+      <button type="button" id="teaser-close" aria-label="Закрыть тизер" autofocus>×</button>
+    </header>
+    <video id="teaser-video" src="uploads/bx-arena-teaser.mp4" width="960" height="540" controls playsinline preload="none" poster="uploads/bx-arena-teaser.webp" aria-label="Видеотизер BX Arena">
+      <p><a href="uploads/bx-arena-teaser.mp4">Открыть тизер</a></p>
+    </video>
+    <p id="teaser-error" role="status" hidden>Не удалось воспроизвести тизер. <a href="uploads/bx-arena-teaser.mp4">Открыть видео отдельно</a></p>
+    <div class="teaser-actions">
+      <a class="btn teaser-primary" href="Турнирная сетка.dc.html">К турнирам <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn" href="https://discord.com/invite/qqctMjCTeg" target="_blank" rel="noopener noreferrer">Найти спарринг <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-discord"/></svg></a>
+    </div>
+  </dialog>
 </body>
 </html>
