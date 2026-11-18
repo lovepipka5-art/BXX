@@ -4,14 +4,15 @@
   const byId = id => document.getElementById(id);
   const TOURNAMENTS = 'Турнирная сетка.dc.html';
   const NEWS = 'Новости арены.dc.html#feed';
-  const DISCORD = 'https://discord.com/invite/qqctMjCTeg';
+  const STREAMS = 'Расписание стримов.dc.html';
   const API = 'https://fewfpimbfgxlzghfqkmc.supabase.co/rest/v1/';
   const PUBLIC_KEY = 'sb_publishable_5Pgf3aTIsP_HwmrO5RakEA_H4DF7Mny';
   const UPDATE = {
-    id: 'home-bx-poster-2026-11-18',
-    title: 'Обложка BX вернулась',
-    text: 'Турниры и новости арены теперь под афишей BX.',
-    href: '#hero'
+    id: 'home-bx-program-2026-11-18',
+    title: 'Афиша и эфиры на главной',
+    text: 'Ближайший турнир и трансляцию теперь можно найти сразу под обложкой.',
+    date: '2026-11-18T00:00:00+03:00',
+    href: '#arena-program'
   };
 
   function make(tag, text, className) {
@@ -90,7 +91,7 @@
   showPlayer(window.BXArenaAuth?.session);
 
   const guide = byId('arena-guide');
-  guide.open = setting('bxx-hub-guide-open') === '1';
+  guide.open = setting('bxx-hub-guide-open') !== '0';
   guide.addEventListener('toggle', () => setting('bxx-hub-guide-open', guide.open ? '1' : '0'));
 
   // Animate the existing BX art. Pause off screen and respect the OS motion setting.
@@ -253,31 +254,59 @@
     }
   }
 
+  function showDate(element, value) {
+    const timestamp = Date.parse(value);
+    element.hidden = !Number.isFinite(timestamp);
+    if (element.hidden) {
+      element.removeAttribute('datetime');
+      element.textContent = '';
+    } else {
+      element.dateTime = value;
+      element.textContent = timestampFormat.format(timestamp) + ' МСК';
+    }
+    return timestamp;
+  }
+
   function showTournament(event, failed) {
     const live = event?.status === 'live';
     const description = typeof event?.description === 'string' ? event.description.trim() : '';
-    const start = Date.parse(event?.starts_at);
     const details = byId('tournament-details');
     if (event?.id !== featuredId) details.open = false;
     featuredId = event?.id;
 
     tournament.dataset.eventState = live ? 'live' : event ? 'upcoming' : failed ? 'error' : 'empty';
     byId('tournament-state').textContent = live ? 'Турнир идёт' : 'Ближайший турнир';
-    byId('tournament-title').textContent = event?.title || (failed ? 'Расписание недоступно' : 'Дата ещё не объявлена');
+    byId('tournament-title').textContent = event?.title || 'Турнирная сетка';
+    const note = byId('tournament-note');
+    note.hidden = !!event;
+    note.textContent = failed ? 'Не удалось загрузить анонсы.' : 'Следующая дата ещё не объявлена.';
     byId('tournament-description').textContent = description;
     details.hidden = !description;
-    eventDate.hidden = !Number.isFinite(start);
-    if (!eventDate.hidden) {
-      eventDate.dateTime = event.starts_at;
-      eventDate.textContent = timestampFormat.format(start) + ' МСК';
-    }
+    const start = showDate(eventDate, event?.starts_at);
 
     const action = byId('tournament-action');
     const url = publicURL(live ? event?.bracket_url : event?.registration_url);
     external(action, url || TOURNAMENTS);
-    action.querySelector('span').textContent = url ? (live ? 'Сетка' : 'Регистрация') : 'Каталог';
+    action.querySelector('span').textContent = url ? (live ? 'Смотреть сетку' : 'Регистрация') : 'Открыть каталог';
     nextStart = !live && Number.isFinite(start) ? start : 0;
     tick();
+  }
+
+  function showStream(stream, failed) {
+    const live = stream?.status === 'live';
+    byId('next-stream').dataset.eventState = live ? 'live' : stream ? 'upcoming' : failed ? 'error' : 'empty';
+    byId('stream-state').textContent = live ? 'В эфире' : 'Ближайший эфир';
+    byId('stream-title').textContent = stream?.title || 'Эфиры BX';
+    const note = byId('stream-note');
+    const platform = typeof stream?.platform === 'string' ? stream.platform.trim() : '';
+    note.hidden = !!stream && !platform;
+    note.textContent = stream ? platform : failed ? 'Не удалось загрузить расписание.' : 'Новый эфир пока не объявлен.';
+    showDate(byId('stream-date'), stream?.starts_at);
+
+    const action = byId('stream-action');
+    const url = live ? publicURL(stream.stream_url) : '';
+    external(action, url || STREAMS);
+    action.querySelector('span').textContent = url ? 'Смотреть эфир' : 'К расписанию';
   }
 
   const feed = byId('home-news');
@@ -297,7 +326,7 @@
   let rendered = '';
   let loaded = false;
   let loading = false;
-  let sources = [[], [], []];
+  const sources = [[], [], [], []];
 
   function postElement(row) {
     const post = make('article', null, 'hub-post');
@@ -406,7 +435,18 @@
       cover: publicURL(post.cover_image_url),
       href: NEWS
     }));
-    const recent = [...results, ...posts].sort((a, b) => (b.date || 0) - (a.date || 0));
+    const update = {
+      key: UPDATE.id,
+      kind: 'news',
+      icon: 'news',
+      date: Date.parse(UPDATE.date),
+      label: 'Обновление сайта',
+      title: UPDATE.title,
+      excerpt: UPDATE.text,
+      cover: 'uploads/bx-fightstick.webp',
+      href: UPDATE.href
+    };
+    const recent = [...results, ...posts, update].sort((a, b) => (b.date || 0) - (a.date || 0));
     return [...events.filter(row => row.label === 'Идёт сейчас'), ...recent, ...events.filter(row => row.label === 'Скоро')];
   }
 
@@ -445,6 +485,11 @@
         }),
         read('tournaments', {
           select: fields, is_published: 'eq.true', status: 'eq.completed', order: 'ends_at.desc.nullslast', limit: '20'
+        }),
+        read('stream_events', {
+          select: 'id,title,platform,stream_url,starts_at,status', is_published: 'eq.true',
+          or: '(status.eq.live,and(status.eq.scheduled,starts_at.gt.' + now + '))',
+          order: 'starts_at.asc.nullslast', limit: '20'
         })
       ]);
 
@@ -452,16 +497,19 @@
       failureKinds = [];
       requests.forEach((result, index) => {
         if (result.status === 'fulfilled') sources[index] = result.value;
-        else failureKinds.push(kinds[index]);
+        else if (kinds[index]) failureKinds.push(kinds[index]);
       });
 
-      const [events, news, completed] = sources;
+      const [events, news, completed, streams] = sources;
       const currentTime = Date.now();
       const active = events.filter(event => event.status === 'live'
         ? !event.ends_at || Date.parse(event.ends_at) > currentTime
         : event.status === 'upcoming' && Date.parse(event.starts_at) > currentTime);
       const featured = active.find(event => event.status === 'live') || active[0];
       showTournament(featured, failureKinds.includes('tournaments'));
+      const stream = streams.find(item => item.status === 'live')
+        || streams.find(item => item.status === 'scheduled' && Date.parse(item.starts_at) > currentTime);
+      showStream(stream, requests[3].status === 'rejected');
       rows = buildRows(active, news, completed);
       loaded = true;
       renderFeed();

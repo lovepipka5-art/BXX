@@ -12,9 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="arena-navigation.css?v=1">
   <link rel="stylesheet" href="arena-auth.css?v=1">
-  <link rel="stylesheet" href="arena-home.css?v=1">
+  <link rel="stylesheet" href="arena-home.css?v=2">
   <script src="arena-auth.js?v=1" defer></script>
-  <script src="arena-home.js?v=1" defer></script>
+  <script src="arena-home.js?v=2" defer></script>
 </head>
 <body class="bx-home">
   <script src="arena-navigation.js?v=1"></script>
@@ -72,32 +72,42 @@
       </section>
 
       <nav class="arena-shortcuts" aria-label="Быстрые переходы с главной">
-        <a href="Расписание стримов.dc.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"/></svg><span>Трансляции</span><svg class="icon shortcut-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a href="Топ игроков.dc.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-grid"/></svg><span>Топ игроков</span><svg class="icon shortcut-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <a href="Бойцы арены.dc.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-fight"/></svg><span>Бойцы</span><svg class="icon shortcut-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <a href="https://discord.com/invite/qqctMjCTeg" target="_blank" rel="noopener noreferrer"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-discord"/></svg><span>Discord</span><svg class="icon shortcut-arrow diagonal" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </nav>
 
-      <section class="next-tournament" id="next-tournament" aria-labelledby="tournament-title" data-event-state="loading">
-        <div class="event-mark" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-trophy"/></svg></div>
-        <div class="event-copy">
-          <p id="tournament-state">Ближайший турнир</p>
-          <h2 id="tournament-title">Загружаем расписание…</h2>
-          <time id="tournament-date" hidden></time>
-          <details id="tournament-details" hidden>
-            <summary>О турнире</summary>
-            <p id="tournament-description"></p>
-          </details>
-        </div>
-        <div class="event-side">
-          <div class="tournament-clock" id="countdown" role="timer" aria-label="До старта" hidden>
-            <small class="clock-caption" aria-hidden="true">До старта</small>
-            <span><b id="count-days">00</b><small>дн</small></span>
-            <span><b id="count-hours">00</b><small>ч</small></span>
-            <span><b id="count-minutes">00</b><small>мин</small></span>
+      <section class="arena-program" id="arena-program" aria-label="Турниры и трансляции">
+        <article class="next-tournament program-card" id="next-tournament" aria-labelledby="tournament-title" data-event-state="loading">
+          <img class="program-art" src="uploads/bx-fightstick.webp" alt="" width="480" height="480" decoding="async">
+          <div class="program-content">
+            <p class="program-label"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-trophy"/></svg><span id="tournament-state">Ближайший турнир</span></p>
+            <h2 id="tournament-title">Турнирная сетка</h2>
+            <p id="tournament-note" class="program-note">Проверяем анонсы…</p>
+            <time id="tournament-date" hidden></time>
+            <details id="tournament-details" hidden>
+              <summary>О турнире</summary>
+              <p id="tournament-description"></p>
+            </details>
+            <div class="tournament-clock" id="countdown" role="timer" aria-label="До старта" hidden>
+              <small class="clock-caption" aria-hidden="true">До старта</small>
+              <span><b id="count-days">00</b><small>дн</small></span>
+              <span><b id="count-hours">00</b><small>ч</small></span>
+              <span><b id="count-minutes">00</b><small>мин</small></span>
+            </div>
+            <a class="btn event-action" id="tournament-action" href="Турнирная сетка.dc.html"><span>Открыть каталог</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
-          <a class="btn event-action" id="tournament-action" href="Турнирная сетка.dc.html"><span>Каталог</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        </div>
-        <noscript><p>Расписание доступно в разделе <a href="Турнирная сетка.dc.html">«Турнирная сетка»</a>.</p></noscript>
+        </article>
+        <article class="program-card stream-feature" aria-labelledby="stream-title" id="next-stream" data-event-state="loading">
+          <img class="program-art" src="uploads/bx-broadcast.webp" alt="" width="480" height="480" decoding="async">
+          <div class="program-content">
+            <p class="program-label"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"/></svg><span id="stream-state">Ближайший эфир</span></p>
+            <h2 id="stream-title">Эфиры BX</h2>
+            <p id="stream-note" class="program-note">Проверяем расписание…</p>
+            <time id="stream-date" hidden></time>
+            <a class="btn event-action" id="stream-action" href="Расписание стримов.dc.html"><span>К расписанию</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </article>
       </section>
 
       <div class="arena-desk">
@@ -127,14 +137,13 @@
             <div><p>Моя арена</p><h2 id="account-title">Профиль игрока</h2></div>
             <a href="account.html" aria-label="Открыть личный кабинет"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </section>
-          <details id="arena-guide" class="arena-guide">
-            <summary><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-info"/></svg><span>Впервые на арене?</span><span class="guide-plus" aria-hidden="true"></span></summary>
+          <details id="arena-guide" class="arena-guide" open>
+            <summary><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-info"/></svg><span>Первый турнир</span><span class="guide-plus" aria-hidden="true"></span></summary>
             <ol>
-              <li><a href="account.html" data-bx-auth="register">Создай профиль</a></li>
-              <li><a href="Турнирная сетка.dc.html">Выбери турнир и проверь регламент</a></li>
-              <li><a href="https://discord.com/invite/qqctMjCTeg" target="_blank" rel="noopener noreferrer">Найди соперников в Discord</a></li>
+              <li><a href="account.html" data-bx-auth="register"><span>Создай профиль</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+              <li><a href="Турнирная сетка.dc.html"><span>Найди турнир и проверь правила</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+              <li><a href="https://discord.com/invite/qqctMjCTeg" target="_blank" rel="noopener noreferrer"><span>Договорись о спарринге</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
             </ol>
-            <a class="guide-about" href="О арене.dc.html">Об арене <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </details>
         </aside>
       </div>
