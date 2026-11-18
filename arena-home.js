@@ -3,7 +3,8 @@
 
   const byId = id => document.getElementById(id);
   const TOURNAMENTS = 'Турнирная сетка.dc.html';
-  const NEWS = 'Новости арены.dc.html#feed';
+  const NEWS_PAGE = 'Новости арены.dc.html';
+  const NEWS = NEWS_PAGE + '#feed';
   const STREAMS = 'Расписание стримов.dc.html';
   const API = 'https://fewfpimbfgxlzghfqkmc.supabase.co/rest/v1/';
   const PUBLIC_KEY = 'sb_publishable_5Pgf3aTIsP_HwmrO5RakEA_H4DF7Mny';
@@ -352,15 +353,93 @@
     action.querySelector('span').textContent = url ? 'Смотреть эфир' : 'К расписанию';
   }
 
-  const feed = byId('home-news');
+  const widget = byId('home-news');
+  const newsStatus = byId('news-status');
+  const newsRetry = byId('news-retry');
+  let renderedNews = '';
+
+  function newsHref(post) {
+    const id = String(post.id ?? '');
+    return /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(id)
+      ? NEWS_PAGE + '?post=' + encodeURIComponent(id) + '#feed'
+      : NEWS;
+  }
+
+  function datedMeta(className, label, date) {
+    const meta = make('div', null, className);
+    meta.append(make('b', label));
+    if (Number.isFinite(date)) {
+      const time = make('time', dayFormat.format(date));
+      time.dateTime = new Date(date).toISOString();
+      meta.append(time);
+    }
+    return meta;
+  }
+
+  function newsTile(item, index) {
+    const article = make('article');
+    const lead = index === 0;
+    const link = make('a', null, lead ? 'news-tile news-tile-lead' : 'news-tile');
+    link.href = item.href;
+    link.dataset.newsId = item.id;
+
+    const visual = make('span', null, 'news-visual');
+    visual.setAttribute('aria-hidden', 'true');
+    visual.append(icon('news'));
+    if (item.cover) {
+      const image = make('img');
+      image.alt = '';
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      image.referrerPolicy = 'no-referrer';
+      image.addEventListener('error', () => image.remove(), { once: true });
+      image.src = item.cover;
+      visual.append(image);
+    }
+
+    const copy = make('div', null, 'news-copy');
+    copy.append(datedMeta('news-meta', item.category, Date.parse(item.date)), make('h3', item.title));
+    if (lead && item.excerpt) copy.append(make('p', item.excerpt));
+    link.append(visual, copy, icon('arrow'));
+    article.append(link);
+    return article;
+  }
+
+  function renderNews(posts, failed) {
+    const items = posts.length ? posts.slice(0, 3).map(post => ({
+      id: 'news-' + post.id,
+      category: post.category || 'Новости',
+      title: post.title,
+      excerpt: post.excerpt,
+      date: post.published_at,
+      cover: publicURL(post.cover_image_url),
+      href: newsHref(post)
+    })) : SITE_UPDATES.map(update => ({
+      ...update, category: 'Обновление сайта', excerpt: update.text
+    }));
+
+    newsStatus.textContent = failed ? 'Не удалось обновить новости.' : '';
+    newsRetry.hidden = !failed;
+    const fingerprint = JSON.stringify(items);
+    if (renderedNews === fingerprint) return;
+    const focusedId = widget.contains(document.activeElement) ? document.activeElement.dataset.newsId : '';
+    widget.replaceChildren(...items.map(newsTile));
+    if (focusedId) {
+      const links = [...widget.querySelectorAll('[data-news-id]')];
+      const nextFocus = links.find(link => link.dataset.newsId === focusedId) || links[0];
+      nextFocus?.focus({ preventScroll: true });
+    }
+    renderedNews = fingerprint;
+  }
+
+  const feed = byId('home-activity');
   const more = byId('feed-more');
   const retry = byId('feed-retry');
   const filters = [...document.querySelectorAll('[data-feed-filter]')];
   const emptyCopy = {
-    all: 'Новых публикаций пока нет.',
+    all: 'Анонсов и результатов пока нет.',
     tournaments: 'Новых анонсов пока нет.',
-    results: 'Опубликованных результатов пока нет.',
-    news: 'Новостей пока нет.'
+    results: 'Опубликованных результатов пока нет.'
   };
   let chosenFilter = 'all';
   let limit = 5;
@@ -380,27 +459,8 @@
     const mark = make('span', null, 'hub-post-mark ' + row.kind);
     mark.setAttribute('aria-hidden', 'true');
     mark.append(icon(row.icon));
-    if (row.cover) {
-      const image = make('img');
-      image.alt = '';
-      image.loading = 'lazy';
-      image.decoding = 'async';
-      image.referrerPolicy = 'no-referrer';
-      image.addEventListener('error', () => image.remove(), { once: true });
-      image.src = row.cover;
-      mark.append(image);
-    }
-
     const body = make('div');
-    const meta = make('div', null, 'hub-post-meta');
-    meta.append(make('b', row.label));
-    if (Number.isFinite(row.date)) {
-      const time = make('time', dayFormat.format(row.date));
-      time.dateTime = new Date(row.date).toISOString();
-      meta.append(time);
-    }
-    body.append(meta, make('h3', row.title));
-    if (row.excerpt) body.append(make('p', row.excerpt, 'hub-post-excerpt'));
+    body.append(datedMeta('hub-post-meta', row.label, row.date), make('h3', row.title));
     link.append(mark, body, icon('arrow'));
     post.append(link);
     return post;
@@ -411,7 +471,7 @@
     const current = visible.slice(0, limit);
     const failed = chosenFilter === 'all' ? failureKinds.length > 0 : failureKinds.includes(chosenFilter);
     const status = byId('feed-status');
-    status.textContent = !loaded ? 'Загружаем публикации…' : failed && current.length ? 'Часть публикаций не загрузилась.' : '';
+    status.textContent = !loaded ? 'Загружаем события…' : failed && current.length ? 'Часть событий не загрузилась.' : '';
     if (!loaded) return;
 
     const fingerprint = JSON.stringify([chosenFilter, failed, current]);
@@ -421,7 +481,7 @@
         feed.replaceChildren(...current.map(postElement));
       } else {
         const empty = make('p', null, 'hub-empty');
-        empty.append(icon('info'), make('span', failed ? 'Не удалось загрузить публикации.' : emptyCopy[chosenFilter]));
+        empty.append(icon('info'), make('span', failed ? 'Не удалось загрузить события.' : emptyCopy[chosenFilter]));
         feed.replaceChildren(empty);
       }
       if (focusedId) {
@@ -448,7 +508,7 @@
     feed.children[oldLimit]?.querySelector('a')?.focus();
   });
 
-  function buildRows(active, news, finished) {
+  function buildRows(active, finished) {
     const events = active.map(event => ({
       key: 'event-' + event.id,
       kind: 'tournaments',
@@ -467,29 +527,7 @@
       title: event.title,
       href: publicURL(event.bracket_url, TOURNAMENTS)
     }));
-    const posts = news.map(post => ({
-      key: 'news-' + post.id,
-      kind: 'news',
-      icon: 'news',
-      date: Date.parse(post.published_at),
-      label: post.category || 'Новость',
-      title: post.title,
-      excerpt: post.excerpt,
-      cover: publicURL(post.cover_image_url),
-      href: NEWS
-    }));
-    const releases = SITE_UPDATES.map(update => ({
-      key: update.id,
-      kind: 'news',
-      icon: 'news',
-      date: Date.parse(update.date),
-      label: 'Обновление сайта',
-      title: update.title,
-      excerpt: update.text,
-      cover: update.cover,
-      href: update.href
-    }));
-    const recent = [...results, ...posts, ...releases].sort((a, b) => (b.date || 0) - (a.date || 0));
+    const recent = results.sort((a, b) => (b.date || 0) - (a.date || 0));
     return [...events.filter(row => row.label === 'Идёт сейчас'), ...recent, ...events.filter(row => row.label === 'Скоро')];
   }
 
@@ -513,7 +551,9 @@
     if (loading) return;
     loading = true;
     retry.disabled = true;
+    newsRetry.disabled = true;
     feed.setAttribute('aria-busy', 'true');
+    widget.setAttribute('aria-busy', 'true');
     const now = new Date().toISOString();
     const fields = 'id,title,description,status,starts_at,ends_at,registration_url,bracket_url';
     try {
@@ -536,7 +576,7 @@
         })
       ]);
 
-      const kinds = ['tournaments', 'news', 'results'];
+      const kinds = ['tournaments', '', 'results'];
       failureKinds = [];
       requests.forEach((result, index) => {
         if (result.status === 'fulfilled') sources[index] = result.value;
@@ -553,14 +593,15 @@
       const stream = streams.find(item => item.status === 'live')
         || streams.find(item => item.status === 'scheduled' && Date.parse(item.starts_at) > currentTime);
       showStream(stream, requests[3].status === 'rejected');
-      rows = buildRows(active, news, completed);
+      renderNews(news, requests[1].status === 'rejected');
+      rows = buildRows(active, completed);
       loaded = true;
       renderFeed();
       retry.hidden = !failureKinds.length;
 
       const nextItems = news.map(post => ({
         id: 'news-' + post.id + '-' + post.published_at,
-        title: post.title, text: post.excerpt || 'Новая публикация арены', href: NEWS
+        title: post.title, text: post.excerpt || 'Новая публикация арены', href: newsHref(post)
       }));
       if (featured) nextItems.unshift({
         id: 'tournament-' + featured.id + '-' + featured.starts_at + '-' + featured.status,
@@ -575,11 +616,14 @@
     } finally {
       loading = false;
       retry.disabled = false;
+      newsRetry.disabled = false;
       feed.setAttribute('aria-busy', 'false');
+      widget.setAttribute('aria-busy', 'false');
     }
   }
 
   retry.addEventListener('click', load);
+  newsRetry.addEventListener('click', load);
   document.addEventListener('visibilitychange', () => {
     updateMotion();
     if (!document.hidden) {

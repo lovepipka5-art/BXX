@@ -12,9 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="arena-navigation.css?v=1">
   <link rel="stylesheet" href="arena-auth.css?v=1">
-  <link rel="stylesheet" href="arena-home.css?v=3">
+  <link rel="stylesheet" href="arena-home.css?v=4">
   <script src="arena-auth.js?v=1" defer></script>
-  <script src="arena-home.js?v=3" defer></script>
+  <script src="arena-home.js?v=4" defer></script>
 </head>
 <body class="bx-home">
   <script src="arena-navigation.js?v=1"></script>
@@ -130,27 +130,34 @@
       </section>
 
       <div class="arena-desk">
-        <section class="home-feed" id="home-feed" aria-labelledby="home-feed-title">
+        <section class="arena-news-widget" id="news-widget" aria-labelledby="news-widget-title">
           <header class="feed-heading">
-            <h2 id="home-feed-title">Сейчас на арене</h2>
-            <a href="Новости арены.dc.html">Все новости <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <h2 id="news-widget-title">Новости арены</h2>
+            <a href="Новости арены.dc.html#feed">Все новости <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </header>
-          <div class="hub-filters" role="group" aria-label="Фильтр ленты">
-            <button type="button" data-feed-filter="all" aria-pressed="true" aria-controls="home-news">Всё</button>
-            <button type="button" data-feed-filter="tournaments" aria-pressed="false" aria-controls="home-news">Турниры</button>
-            <button type="button" data-feed-filter="results" aria-pressed="false" aria-controls="home-news">Результаты</button>
-            <button type="button" data-feed-filter="news" aria-pressed="false" aria-controls="home-news">Новости</button>
-          </div>
-          <p id="feed-status" class="feed-status" role="status">Загружаем публикации…</p>
-          <div id="home-news" class="hub-feed-list" aria-busy="true"></div>
+          <p id="news-status" class="feed-status" role="status">Загружаем новости…</p>
+          <div id="home-news" class="news-widget-list" aria-busy="true"></div>
           <div class="feed-controls">
-            <button type="button" id="feed-more" hidden>Показать ещё <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-            <button type="button" id="feed-retry" hidden>Повторить загрузку</button>
+            <button type="button" id="news-retry" hidden>Обновить новости</button>
           </div>
-          <noscript><p>Открой <a href="Новости арены.dc.html">новости арены</a>, чтобы увидеть публикации.</p></noscript>
+          <noscript><p>Открой <a href="Новости арены.dc.html#feed">все новости</a>, чтобы увидеть публикации.</p></noscript>
         </section>
 
-        <aside class="arena-rail" id="register" aria-label="Профиль и знакомство с ареной">
+        <aside class="arena-rail" id="register" aria-label="Турниры и знакомство с ареной">
+          <section class="home-feed" id="home-feed" aria-labelledby="home-feed-title">
+            <h2 id="home-feed-title">Сейчас на арене</h2>
+            <div class="hub-filters" role="group" aria-label="Турниры и результаты">
+              <button type="button" data-feed-filter="all" aria-pressed="true" aria-controls="home-activity">Всё</button>
+              <button type="button" data-feed-filter="tournaments" aria-pressed="false" aria-controls="home-activity">Турниры</button>
+              <button type="button" data-feed-filter="results" aria-pressed="false" aria-controls="home-activity">Результаты</button>
+            </div>
+            <p id="feed-status" class="feed-status" role="status">Загружаем события…</p>
+            <div id="home-activity" class="hub-feed-list" aria-busy="true"></div>
+            <div class="feed-controls">
+              <button type="button" id="feed-more" hidden>Показать ещё <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+              <button type="button" id="feed-retry" hidden>Повторить загрузку</button>
+            </div>
+          </section>
           <section id="home-player" class="arena-player" aria-labelledby="account-title" hidden>
             <span class="player-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-user"/></svg></span>
             <div><p>Моя арена</p><h2 id="account-title">Профиль игрока</h2></div>
